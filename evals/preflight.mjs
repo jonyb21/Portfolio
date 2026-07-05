@@ -28,6 +28,7 @@ assert(site.hero.image === "/assets/furniture/hero-lounge-chair.webp", "Hero use
 assert(site.projects.some(project => project.image === site.hero.image), "Hero chair image is also listed as a work project");
 assert(fs.readFileSync("public/app.js", "utf8").includes("heroImageFade") || css.includes("@keyframes heroImageFade"), "Hero image rotates without changing the rest of the site");
 assert(css.includes("animation: heroImageFade 25s") && css.includes("calc(var(--i) * 5s)"), "Hero image uses a five-second fade cadence");
+assert(css.includes(".hero-image img") && css.includes("position: absolute"), "Hero carousel images are stacked in the visible frame");
 assert(css.includes("brightness(0.78)"), "Hero image is brightened without changing global image treatment");
 assert(fs.readFileSync("public/app.js", "utf8").includes("function imageUrl") && fs.readFileSync("public/app.js", "utf8").includes("?v=20260705-4"), "Local images use cache-busted URLs for instant reloads");
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");
@@ -70,6 +71,7 @@ assert(fs.readFileSync("public/app.js", "utf8").includes("project.cardImage || p
 assert(fs.readFileSync("public/app.js", "utf8").includes("image-preview-trigger"), "Product images open an image preview");
 assert(fs.readFileSync("public/app.js", "utf8").includes("preview-backdrop"), "Image preview can close by tapping the backdrop");
 assert(css.includes(".preview-frame") && css.includes("border-radius: 28px"), "Image preview uses rounded corners");
+assert(css.includes(".preview-frame img") && css.includes("brightness(1.08)"), "Image preview does not inherit the dark page image treatment");
 assert(!fs.readFileSync("public/app.js", "utf8").includes('alt="${escapeHtml(project.title)} detail view"'), "Product pages do not duplicate the detail crop before the gallery");
 assert(fs.readFileSync("public/app.js", "utf8").includes("projectCardImages"), "Work cards cycle through product images");
 assert(fs.readFileSync("public/app.js", "utf8").includes('<a class="project-card" href="${escapeHtml(projectUrl(project))}">'), "Work card images remain clickable links to project pages");

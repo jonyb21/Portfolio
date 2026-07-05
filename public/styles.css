@@ -157,6 +157,8 @@ body[data-page="home"] nav a:last-child {
 }
 
 .hero-image img {
+  position: absolute;
+  inset: 0;
   opacity: 0;
   filter: saturate(0.84) brightness(0.78) contrast(1.03);
   animation: heroImageFade 25s infinite ease-in-out;
@@ -532,6 +534,7 @@ h2 {
   max-height: 88dvh;
   object-fit: contain;
   background: #050505;
+  filter: saturate(0.96) brightness(1.08) contrast(1);
 }
 
 .preview-close {
