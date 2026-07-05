@@ -65,6 +65,14 @@ function validateImage(value) {
   if (!fs.existsSync(path.join(publicDir, value))) throw new Error(`Image path does not exist: ${value}`);
 }
 
+function validatePagePath(value, slugs, label) {
+  if (!value.startsWith("/") || value.includes("#") || value.includes("..")) throw new Error(`${label} must use separate page paths`);
+  if (value === "/" || fs.existsSync(path.join(publicDir, `${value.slice(1)}.html`))) return;
+  const productMatch = value.match(/^\/work\/([^/]+)$/);
+  if (productMatch && slugs.has(productMatch[1])) return;
+  throw new Error(`${label} points to a missing page`);
+}
+
 function validateSite(site) {
   if (!site || typeof site !== "object") throw new Error("Site payload must be an object");
   if (!site.brand || !site.hero?.title || !site.hero?.image) throw new Error("Brand, hero title, and hero image are required");
@@ -87,9 +95,10 @@ function validateSite(site) {
     slugs.add(project.slug);
     if (project.href !== `/work/${project.slug}`) throw new Error("Project links must match their product page slug");
   }
+  validatePagePath(site.hero.ctaHref, slugs, "Hero CTA");
   for (const item of site.nav) {
     if (!item.label || !item.href) throw new Error("Every nav item needs a label and URL");
-    if (!item.href.startsWith("/") || item.href.includes("#")) throw new Error("Nav links must use separate page paths");
+    validatePagePath(item.href, slugs, "Nav links");
   }
   for (const item of site.about.experience) {
     if (!item.role || !item.company) throw new Error("Every experience item needs a role and company");

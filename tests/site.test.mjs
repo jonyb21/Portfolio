@@ -21,6 +21,8 @@ assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.proje
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], image: "/assets/furniture/missing.png" }] }), /does not exist/);
 validateSite({ ...validSite, projects: [{ ...validSite.projects[0], image: "https://example.com/chair.png" }] });
 assert.throws(() => validateSite({ ...validSite, nav: [{ label: "Work", href: "#work" }] }), /separate page paths/);
+assert.throws(() => validateSite({ ...validSite, nav: [{ label: "Missing", href: "/missing" }] }), /missing page/);
+assert.throws(() => validateSite({ ...validSite, hero: { ...validSite.hero, ctaHref: "/missing" } }), /missing page/);
 
 const server = createServer();
 await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
