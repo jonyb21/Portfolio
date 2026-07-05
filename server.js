@@ -88,7 +88,14 @@ function authed(req) {
 
 function staticFile(urlPath, res) {
   let clean = urlPath === "/" ? "/index.html" : decodeURIComponent(urlPath);
-  if (/^\/work\/[^/]+$/.test(clean)) clean = "/product.html";
+  const productMatch = clean.match(/^\/work\/([^/]+)$/);
+  if (productMatch) {
+    const site = loadSite();
+    if (!site.projects.some(project => project.slug === productMatch[1])) {
+      return send(res, 404, "Not found", "text/plain; charset=utf-8");
+    }
+    clean = "/product.html";
+  }
   if (!path.extname(clean)) clean += ".html";
   const filePath = path.normalize(path.join(publicDir, clean));
   if (!filePath.startsWith(publicDir)) return send(res, 403, "Forbidden", "text/plain; charset=utf-8");

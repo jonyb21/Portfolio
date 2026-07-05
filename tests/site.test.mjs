@@ -37,6 +37,9 @@ try {
   assert.equal(productPage.status, 200);
   assert.match(await productPage.text(), /product-page/);
 
+  const missingProduct = await fetch(`${base}/work/not-a-project`);
+  assert.equal(missingProduct.status, 404);
+
   const aboutPage = await fetch(`${base}/about`);
   assert.equal(aboutPage.status, 200);
   assert.match(await aboutPage.text(), /experience-list/);

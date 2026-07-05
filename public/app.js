@@ -86,7 +86,11 @@ function render(site) {
   const productPage = document.getElementById("product-page");
   if (productPage) {
     const slug = location.pathname.split("/").filter(Boolean).at(-1);
-    const project = site.projects.find(item => item.slug === slug) || site.projects[0];
+    const project = site.projects.find(item => item.slug === slug);
+    if (!project) {
+      productPage.innerHTML = '<p class="page-intro">Project not found.</p>';
+      return;
+    }
     document.title = `${project.title} | ${site.brand}`;
     productPage.innerHTML = `
       <a class="text-link back-link" href="/work"><span aria-hidden="true">←</span><span>Back to work</span></a>
