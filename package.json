@@ -1,0 +1,15 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Jon portfolio site with a small JSON-backed admin UI.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/site.test.mjs",
+    "eval": "node evals/preflight.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio Admin</title>
+    <link rel="stylesheet" href="/admin.css">
+  </head>
+  <body>
+    <main class="admin-shell">
+      <section class="toolbar">
+        <div>
+          <p>Portfolio Admin</p>
+          <h1>Site content</h1>
+        </div>
+        <a href="/">View site</a>
+      </section>
+
+      <form id="admin-form">
+        <label>
+          Admin password
+          <input id="password" type="password" autocomplete="current-password" required>
+        </label>
+        <label>
+          Site JSON
+          <textarea id="payload" spellcheck="false"></textarea>
+        </label>
+        <div class="actions">
+          <button type="button" id="reload">Reload</button>
+          <button type="submit">Save</button>
+        </div>
+        <output id="status">Loading content…</output>
+      </form>
+    </main>
+    <script src="/admin.js" defer></script>
+  </body>
+</html>
