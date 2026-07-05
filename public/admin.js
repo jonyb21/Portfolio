@@ -56,6 +56,8 @@ function fillForm() {
     "workCta",
     "about.title",
     "about.body",
+    "about.experienceTitle",
+    "about.experienceIntro",
     "contact.title",
     "contact.body",
     "contact.email"
@@ -65,6 +67,9 @@ function fillForm() {
 
   renderProjects();
   renderNav();
+  field("about.experienceText").value = (site.about.experience || [])
+    .map(item => [item.role, item.company, item.period, item.description].join(" | "))
+    .join("\n");
 }
 
 function projectRow(project, index) {
@@ -137,6 +142,8 @@ function collect() {
     "workCta",
     "about.title",
     "about.body",
+    "about.experienceTitle",
+    "about.experienceIntro",
     "contact.title",
     "contact.body",
     "contact.email"
@@ -159,6 +166,12 @@ function collect() {
     label: row.querySelector('[data-key="label"]').value.trim(),
     href: row.querySelector('[data-key="href"]').value.trim()
   }));
+
+  site.about.experience = field("about.experienceText").value
+    .split("\n")
+    .map(line => line.split(" | ").map(part => part.trim()))
+    .filter(parts => parts[0])
+    .map(([role, company = "", period = "", description = ""]) => ({ role, company, period, description }));
 
   return site;
 }

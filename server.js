@@ -63,7 +63,8 @@ function validateSite(site) {
   if (!site || typeof site !== "object") throw new Error("Site payload must be an object");
   if (!site.brand || !site.hero?.title || !site.hero?.image) throw new Error("Brand, hero title, and hero image are required");
   if (!site.workTitle || !site.workIntro) throw new Error("Work title and intro are required");
-  if (!site.about?.title || !site.contact?.email) throw new Error("About title and contact email are required");
+  if (!site.about?.title || !site.about?.experienceTitle || !site.contact?.email) throw new Error("About title, experience title, and contact email are required");
+  if (!Array.isArray(site.about.experience) || site.about.experience.length < 1) throw new Error("At least one experience item is required");
   if (!Array.isArray(site.projects) || site.projects.length < 1) throw new Error("At least one project is required");
   if (!Array.isArray(site.nav) || site.nav.length < 1) throw new Error("At least one nav item is required");
   for (const project of site.projects) {
@@ -72,6 +73,9 @@ function validateSite(site) {
   }
   for (const item of site.nav) {
     if (!item.label || !item.href) throw new Error("Every nav item needs a label and URL");
+  }
+  for (const item of site.about.experience) {
+    if (!item.role || !item.company) throw new Error("Every experience item needs a role and company");
   }
 }
 
@@ -84,6 +88,7 @@ function authed(req) {
 
 function staticFile(urlPath, res) {
   let clean = urlPath === "/" ? "/index.html" : decodeURIComponent(urlPath);
+  if (/^\/work\/[^/]+$/.test(clean)) clean = "/product.html";
   if (!path.extname(clean)) clean += ".html";
   const filePath = path.normalize(path.join(publicDir, clean));
   if (!filePath.startsWith(publicDir)) return send(res, 403, "Forbidden", "text/plain; charset=utf-8");

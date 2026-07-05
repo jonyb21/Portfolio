@@ -27,10 +27,19 @@ try {
   assert.equal(site.nav[0].href, "/work");
   assert.equal(site.projects[0].slug, "silhouette-sofa");
   assert.match(site.projects[0].summary, /single continuous gesture/);
+  assert.equal(site.about.experience[0].role, "Furniture and object designer");
 
   const workPage = await fetch(`${base}/work`);
   assert.equal(workPage.status, 200);
   assert.match(await workPage.text(), /Selected Work/);
+
+  const productPage = await fetch(`${base}/work/silhouette-sofa`);
+  assert.equal(productPage.status, 200);
+  assert.match(await productPage.text(), /product-page/);
+
+  const aboutPage = await fetch(`${base}/about`);
+  assert.equal(aboutPage.status, 200);
+  assert.match(await aboutPage.text(), /experience-list/);
 
   const denied = await fetch(`${base}/api/site`, {
     method: "PUT",

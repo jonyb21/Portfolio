@@ -30,6 +30,10 @@ function safeUrl(value, fallback = "#") {
   return fallback;
 }
 
+function projectUrl(project) {
+  return safeUrl(project.href || `/work/${project.slug}`);
+}
+
 function render(site) {
   site.contact.emailHref = `mailto:${site.contact.email}`;
   setText('[data-field="brand"]', site.brand);
@@ -41,6 +45,8 @@ function render(site) {
   setText('[data-field="workCta"]', site.workCta);
   setText('[data-field="about.title"]', site.about.title);
   setText('[data-field="about.body"]', site.about.body);
+  setText('[data-field="about.experienceTitle"]', site.about.experienceTitle);
+  setText('[data-field="about.experienceIntro"]', site.about.experienceIntro);
   setText('[data-field="contact.title"]', site.contact.title);
   setText('[data-field="contact.body"]', site.contact.body);
   setText('[data-field="contact.email"]', site.contact.email);
@@ -58,16 +64,31 @@ function render(site) {
 
   const projects = document.getElementById("projects");
   if (projects) projects.innerHTML = site.projects.map(project => `
-    <a class="project-card" href="${escapeHtml(safeUrl(project.href || `#${project.slug}`))}">
+    <a class="project-card" href="${escapeHtml(projectUrl(project))}">
       <img src="${escapeHtml(safeUrl(project.image, "/assets/furniture/hero-lounge-chair.png"))}" alt="${escapeHtml(project.title)}">
       <span>${escapeHtml(project.title)}</span>
       <b aria-hidden="true">→</b>
     </a>
   `).join("");
 
-  const details = document.getElementById("project-details");
-  if (details) details.innerHTML = site.projects.map(project => `
-    <article class="project-detail" id="${escapeHtml(project.slug)}">
+  const experience = document.getElementById("experience-list");
+  if (experience) experience.innerHTML = (site.about.experience || []).map(item => `
+    <article class="experience-item">
+      <p>${escapeHtml(item.period)}</p>
+      <h3>${escapeHtml(item.role)}</h3>
+      <strong>${escapeHtml(item.company)}</strong>
+      <span>${escapeHtml(item.description)}</span>
+    </article>
+  `).join("");
+
+  const productPage = document.getElementById("product-page");
+  if (productPage) {
+    const slug = location.pathname.split("/").filter(Boolean).at(-1);
+    const project = site.projects.find(item => item.slug === slug) || site.projects[0];
+    document.title = `${project.title} | ${site.brand}`;
+    productPage.innerHTML = `
+      <a class="text-link back-link" href="/work"><span aria-hidden="true">←</span><span>Back to work</span></a>
+      <article class="project-detail single" id="${escapeHtml(project.slug)}">
       <div class="detail-copy">
         <p class="project-meta">${escapeHtml(project.type || "Furniture")} / ${escapeHtml(project.year || "")}</p>
         <h2>${escapeHtml(project.title)}</h2>
@@ -85,8 +106,11 @@ function render(site) {
       <figure class="detail-image">
         <img src="${escapeHtml(safeUrl(project.detailImage || project.image, "/assets/furniture/hero-lounge-chair-detail.png"))}" alt="${escapeHtml(project.title)} detail view">
       </figure>
-    </article>
-  `).join("");
+      <figure class="detail-image wide">
+        <img src="${escapeHtml(safeUrl(project.image, "/assets/furniture/hero-lounge-chair.png"))}" alt="${escapeHtml(project.title)} full view">
+      </figure>
+    </article>`;
+  }
 }
 
 fetch("/api/site")

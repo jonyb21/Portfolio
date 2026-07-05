@@ -34,7 +34,7 @@
       "materials": "Olive boucle upholstery, hardwood frame, blackened stone table",
       "image": "/assets/furniture/silhouette-sofa.png",
       "detailImage": "/assets/furniture/silhouette-sofa-detail.png",
-      "href": "#silhouette-sofa",
+      "href": "/work/silhouette-sofa",
       "summary": "A low, rounded sofa study designed around a single continuous gesture. The back, arms, and seat read as one softened volume while the foreground table gives the piece a grounded architectural counterpoint.",
       "notes": [
         "Continuous wraparound back for a calm profile from every angle.",
@@ -50,7 +50,7 @@
       "materials": "Cream boucle, sculpted walnut, concealed webbing",
       "image": "/assets/furniture/arc-lounge-chair.png",
       "detailImage": "/assets/furniture/arc-lounge-chair-detail.png",
-      "href": "#arc-lounge-chair",
+      "href": "/work/arc-lounge-chair",
       "summary": "A compact chair built around a continuous walnut arm rail. The cream upholstered forms sit inside the frame rather than on top of it, making the construction feel light without becoming fragile.",
       "notes": [
         "Rounded walnut transitions remove hard stops at the arm and front leg.",
@@ -66,7 +66,7 @@
       "materials": "Ribbed walnut, satin finish, slim timber legs",
       "image": "/assets/furniture/foundry-sideboard.png",
       "detailImage": "/assets/furniture/foundry-sideboard-detail.png",
-      "href": "#foundry-sideboard",
+      "href": "/work/foundry-sideboard",
       "summary": "A long storage piece with a precise ribbed front and restrained styling surface. The rhythm of the vertical fluting adds depth while keeping the cabinet quiet enough for living spaces.",
       "notes": [
         "Vertical ribbing breaks up the broad face without visual noise.",
@@ -77,7 +77,29 @@
   ],
   "about": {
     "title": "About",
-    "body": "Jon Brooks is a furniture and object designer working across seating, storage, and small interior pieces. The practice is built around restraint: clear proportions, tactile materials, and construction details that stay useful after the first impression fades."
+    "body": "Jon Brooks is a furniture and object designer working across seating, storage, and small interior pieces. The practice is built around restraint: clear proportions, tactile materials, and construction details that stay useful after the first impression fades.",
+    "experienceTitle": "Experience",
+    "experienceIntro": "Relevant work across furniture design, product development, fabrication, and client-led interior pieces.",
+    "experience": [
+      {
+        "role": "Furniture and object designer",
+        "company": "Independent practice",
+        "period": "Current",
+        "description": "Designing seating, storage, and interior objects from concept through visual direction, materials, and build-ready detail."
+      },
+      {
+        "role": "Industrial design and product development",
+        "company": "Studio and client projects",
+        "period": "Previous",
+        "description": "Developed product concepts, refined proportions, selected materials, and prepared presentation assets for design reviews."
+      },
+      {
+        "role": "Fabrication and prototyping",
+        "company": "Workshop-led projects",
+        "period": "Previous",
+        "description": "Worked through mockups, joinery decisions, finish samples, and prototype iterations to connect design intent with production reality."
+      }
+    ]
   },
   "contact": {
     "title": "Contact",

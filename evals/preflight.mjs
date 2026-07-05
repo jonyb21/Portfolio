@@ -3,13 +3,14 @@ import fs from "node:fs";
 
 const index = fs.readFileSync("public/index.html", "utf8");
 const work = fs.readFileSync("public/work.html", "utf8");
+const product = fs.readFileSync("public/product.html", "utf8");
 const about = fs.readFileSync("public/about.html", "utf8");
 const contact = fs.readFileSync("public/contact.html", "utf8");
 const css = fs.readFileSync("public/styles.css", "utf8");
 const admin = fs.readFileSync("public/admin.html", "utf8");
 const site = JSON.parse(fs.readFileSync("data/site.json", "utf8"));
 
-assert(!/[—–]/.test(index + work + about + contact + css + admin + JSON.stringify(site)), "No em dash or en dash in shipped UI");
+assert(!/[—–]/.test(index + work + product + about + contact + css + admin + JSON.stringify(site)), "No em dash or en dash in shipped UI");
 assert(!index.includes('id="work"'), "Home page is landing hero only");
 assert(work.includes('body data-page="work"'), "Work tab is a separate page");
 assert(about.includes('body data-page="about"'), "About tab is a separate page");
@@ -22,10 +23,14 @@ assert(site.projects.length === 3, "Reference screen has three selected work car
 assert(site.nav.every(item => item.href.startsWith("/")), "Top nav uses page URLs, not anchors");
 assert(site.hero.image === "/assets/furniture/hero-lounge-chair.png", "Hero uses generated furniture image");
 assert(site.projects.every(project => project.image.startsWith("/assets/furniture/")), "Project images use generated furniture assets");
+assert(site.projects.every(project => project.href === `/work/${project.slug}`), "Each project links to its own page");
 assert(site.hero.detailImage === "/assets/furniture/hero-lounge-chair-detail.png", "Hero has generated detail image");
 assert(site.projects.every(project => project.detailImage?.startsWith("/assets/furniture/")), "Projects use generated detail crop assets");
 assert(site.projects.every(project => project.summary && project.notes?.length >= 3), "Projects have finished portfolio copy");
-assert(work.includes('id="project-details"'), "Work page renders project detail sections");
+assert(site.about.experience.length >= 3, "About page has relevant experience entries");
+assert(about.includes('id="experience-list"'), "About page renders experience list");
+assert(!work.includes('id="project-details"'), "Work page lists projects without inline detail sections");
+assert(product.includes('id="product-page"'), "Project template renders project detail pages");
 assert(!admin.includes("Site JSON"), "Admin UI does not expose raw JSON editing");
 assert(admin.includes('data-tab="home"'), "Admin UI has interactive section tabs");
 assert(admin.includes('id="projects-editor"'), "Admin UI has project form editing");
