@@ -201,7 +201,7 @@ function render(site) {
     }
     document.title = `${project.title} | ${site.brand}`;
     productPage.innerHTML = `
-      <a class="text-link back-link" href="/work"><span class="arrow-mark arrow-left" aria-hidden="true"></span><span>Back to work</span></a>
+      <a class="text-link back-link" href="/work"><span>Back to work</span></a>
       <article class="project-detail single" id="${escapeHtml(project.slug)}">
       <div class="detail-copy">
         <p class="project-meta">${escapeHtml(project.type || "Furniture")} / ${escapeHtml(project.year || "")}</p>

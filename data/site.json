@@ -15,15 +15,15 @@
     }
   ],
   "hero": {
-    "title": "Designing furniture with clarity, character, and longevity.",
-    "body": "I'm Jon Brooks, an industrial designer creating considered furniture and products with quiet silhouettes, honest materials, and details built to age well.",
+    "title": "Designing products with clarity, character, and longevity.",
+    "body": "I'm Jon Brooks, a product designer with a strong interest in furniture, creating considered products with clear function, honest materials, and details built to age well.",
     "cta": "View selected work",
     "ctaHref": "/work",
     "image": "/assets/furniture/hero-lounge-chair.webp",
     "detailImage": "/assets/furniture/hero-lounge-chair-detail.webp"
   },
   "workTitle": "Selected Work",
-  "workIntro": "A focused selection of furniture studies balancing softened forms, durable joinery, and materials that invite touch.",
+  "workIntro": "A focused selection of product and furniture studies balancing softened forms, durable joinery, and materials that invite touch.",
   "workCta": "Get in contact",
   "projects": [
     {
@@ -324,22 +324,22 @@
   ],
   "about": {
     "title": "About",
-    "body": "Jon Brooks is a furniture and product designer with broad experience across design development, AI-assisted image generation, cross-platform coding, and custom tools. The work combines practical industrial-design thinking with an ability to think outside the box, using technology to test ideas faster and make each design direction more resolved.",
+    "body": "Jon Brooks is a product designer with a strong interest in furniture, broad experience across design development, AI-assisted image generation, cross-platform coding, and custom tools. He has ventured into learning and trying as many AI tools as he can get his hands on, using them to test ideas faster and make each design direction more resolved. He is naturally investigative: when a subject is unfamiliar, he makes it his mission to learn it deeply, test different methods, and turn new ideas into practical design capability. He values that everyone has their own way of working, and stays open to new methods, perspectives, and workflows rather than defaulting to one fixed approach.",
     "portrait": "/assets/portrait.webp",
     "experienceTitle": "Relevant Experience",
-    "experienceIntro": "Overall experience that supports the furniture practice, from physical product thinking through AI visual workflows, coding, custom app development, and practical design problem-solving.",
+    "experienceIntro": "Overall experience that supports product design work, from furniture and physical product thinking through AI visual workflows, coding, custom app development, and practical design problem-solving.",
     "experience": [
       {
-        "role": "Furniture and product design",
+        "role": "Product and furniture design",
         "company": "Independent design practice",
         "period": "Design",
-        "description": "Developing seating, storage, and interior products with a focus on proportion, material character, presentation imagery, and build-ready design intent."
+        "description": "Developing furniture and broader product concepts with a focus on proportion, material character, presentation imagery, and build-ready design intent."
       },
       {
-        "role": "AI image generation",
+        "role": "AI and image generation",
         "company": "Concept and visual workflow",
         "period": "AI",
-        "description": "Extensive experience using AI image generation to explore form, material mood, lighting, room context, and high-end presentation directions before committing to a final design path."
+        "description": "Extensive experience using AI and image generation while actively learning and trying as many AI tools as possible to explore form, material mood, lighting, room context, and high-end presentation directions before committing to a final design path."
       },
       {
         "role": "Coding and custom tools",
@@ -351,7 +351,7 @@
         "role": "Creative problem-solving",
         "company": "Design systems and workflows",
         "period": "Approach",
-        "description": "Combining hands-on design judgment with outside-the-box thinking, technical curiosity, and practical workflow building so ideas can move from early concept to clear, usable design outcomes."
+        "description": "Combining hands-on design judgment with outside-the-box thinking, technical curiosity, and a willingness to investigate unfamiliar subjects until they become usable design capability."
       }
     ]
   },

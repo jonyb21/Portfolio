@@ -117,31 +117,6 @@ body[data-page="home"] nav a:last-child {
   font-weight: 500;
 }
 
-.arrow-mark {
-  display: inline-block;
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
-  background: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M126 74c20-20 52-20 72 0l146 146c20 20 20 52 0 72L198 438c-20 20-52 20-72 0s-20-52 0-72l110-110L126 146c-20-20-20-52 0-72z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M126 74c20-20 52-20 72 0l146 146c20 20 20 52 0 72L198 438c-20 20-52 20-72 0s-20-52 0-72l110-110L126 146c-20-20-20-52 0-72z'/%3E%3C/svg%3E") center / contain no-repeat;
-  transform: scale(0.64);
-  transform-origin: center;
-  transition: transform 160ms ease;
-}
-
-.arrow-left {
-  transform: scale(0.64) rotate(180deg);
-}
-
-.text-link:hover .arrow-mark {
-  transform: translateX(6px) scale(0.64);
-}
-
-.text-link:hover .arrow-left {
-  transform: translateX(-6px) scale(0.64) rotate(180deg);
-}
-
 .hero-image,
 .project-card {
   position: relative;

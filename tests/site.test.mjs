@@ -72,8 +72,12 @@ try {
   assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"));
   assert.equal(site.about.experienceTitle, "Relevant Experience");
   assert.equal(site.about.portrait, "/assets/portrait.webp");
-  assert.equal(site.about.experience[0].role, "Furniture and product design");
-  assert.equal(site.about.experience[1].role, "AI image generation");
+  assert.equal(site.hero.title, "Designing products with clarity, character, and longevity.");
+  assert.match(site.about.body, /product designer with a strong interest in furniture/);
+  assert.match(site.about.body, /makes it his mission to learn it deeply/);
+  assert.equal(site.about.experience[0].role, "Product and furniture design");
+  assert.equal(site.about.experience[1].role, "AI and image generation");
+  assert.match(site.about.experience[1].description, /trying as many AI tools as possible/);
   assert.match(site.about.experience.at(-1).description, /outside-the-box thinking/);
   assert.equal(site.contact.email, "jonbrooks35@gmail.com");
   assert.equal(site.contact.phone, "0412 218 673");
