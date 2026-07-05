@@ -178,7 +178,6 @@ function render(site) {
       </span>
       <span class="sr-only">${escapeHtml(project.title)}</span>
       <span class="project-title">${escapeHtml(project.title)}</span>
-      <b class="arrow-mark" aria-hidden="true"></b>
     </a>
   `).join("");
 

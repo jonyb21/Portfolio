@@ -3,7 +3,7 @@
   --bg: #060707;
   --panel: #181816;
   --line: #2b2b28;
-  --text: #f0eee8;
+  --text: #e6e2d8;
   --muted: #b7b4ad;
   --accent: #adbd68;
   --radius: 28px;
@@ -163,7 +163,7 @@ body[data-page="home"] nav a:last-child {
   filter: saturate(0.84) brightness(0.78) contrast(1.03);
   transition: opacity 2200ms ease-in-out, transform 5200ms ease;
   transform: scale(1.02);
-  object-fit: contain;
+  object-fit: cover;
   will-change: opacity, transform;
 }
 
@@ -270,8 +270,7 @@ h2 {
   pointer-events: none;
 }
 
-.project-title,
-.project-card .arrow-mark {
+.project-title {
   position: absolute;
   z-index: 1;
   bottom: 30px;
@@ -279,13 +278,8 @@ h2 {
 
 .project-title {
   left: 30px;
-  max-width: calc(100% - 88px);
+  max-width: calc(100% - 60px);
   font-size: clamp(1.35rem, 2vw, 1.75rem);
-}
-
-.project-card .arrow-mark {
-  right: 30px;
-  color: var(--accent);
 }
 
 .project-details {

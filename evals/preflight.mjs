@@ -20,6 +20,7 @@ assert(about.includes('body data-page="about"'), "About tab is a separate page")
 assert(contact.includes('body data-page="contact"'), "Contact tab is a separate page");
 assert(index.includes("min-h") === false, "Viewport height is owned by CSS");
 assert(css.includes("min-height: 100dvh"), "Uses stable dynamic viewport height");
+assert(css.includes("--text: #e6e2d8"), "Main text uses a softened off-white token");
 assert(css.includes("--accent: #adbd68"), "Olive accent is muted");
 assert(site.workCta === "Get in contact", "Work CTA uses the requested contact wording");
 assert(css.includes("grid-template-columns: repeat(3"), "Selected work uses a three-card desktop grid");
@@ -32,7 +33,7 @@ assert(fs.readFileSync("public/app.js", "utf8").includes("recent.includes") && f
 assert(!fs.readFileSync("public/app.js", "utf8").includes("[\n      site.hero.image,"), "Hero carousel uses one image per project instead of duplicating the featured product");
 assert(css.includes("transition: opacity 2200ms ease-in-out"), "Hero image uses a slow fade transition");
 assert(css.includes(".hero-image img") && css.includes("position: absolute"), "Hero carousel images are stacked in the visible frame");
-assert(css.includes(".hero-image img") && css.includes("object-fit: contain"), "Hero carousel shows the full product image");
+assert(css.includes(".hero-image img") && css.includes("object-fit: cover"), "Hero carousel images fill the tile without side bars");
 assert(css.includes("brightness(0.78)"), "Hero image is brightened without changing global image treatment");
 assert(fs.readFileSync("public/app.js", "utf8").includes("function imageUrl") && fs.readFileSync("public/app.js", "utf8").includes("?v=20260705-4"), "Local images use cache-busted URLs for instant reloads");
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");
@@ -84,6 +85,7 @@ assert(!fs.readFileSync("public/app.js", "utf8").includes("projectCardImages"), 
 assert(fs.readFileSync("public/app.js", "utf8").includes('<a class="project-card" href="${escapeHtml(projectUrl(project))}">'), "Work card images remain clickable links to project pages");
 assert(fs.readFileSync("public/app.js", "utf8").includes("sr-only"), "Work cards keep accessible project names");
 assert(fs.readFileSync("public/app.js", "utf8").includes("project-title"), "Work cards keep the original visible title overlay");
+assert(!fs.readFileSync("public/app.js", "utf8").includes('<b class="arrow-mark" aria-hidden="true"></b>'), "Work cards do not show tile arrows");
 assert(!fs.readFileSync("public/app.js", "utf8").includes("<figcaption>"), "Product gallery images do not show text captions");
 assert(!css.includes("@keyframes projectCardFade"), "Work card image transitions are removed outside the homepage slideshow");
 assert(css.includes(".arrow-mark") && css.includes("-webkit-mask") && css.includes("width: 34px") && css.includes("background: currentColor"), "Visible arrows use the shared large filled green chevron mark");
