@@ -28,6 +28,8 @@ assert(contact.includes(`mailto:${site.contact.email}`), "Contact fallback email
 assert(!/[→←]|-&gt;/.test(index + work + product + about + contact + fs.readFileSync("public/app.js", "utf8")), "Arrows use HTML entities for stable rendering");
 assert(site.projects.every(project => project.image.startsWith("/assets/furniture/")), "Project images use generated furniture assets");
 assert(site.projects.every(project => project.href === `/work/${project.slug}`), "Each project links to its own page");
+assert(fs.readFileSync("server.js", "utf8").includes("Project slugs must be unique"), "Server rejects duplicate project slugs");
+assert(fs.readFileSync("public/admin.js", "utf8").includes("href: `/work/${slug}`"), "Admin keeps project links tied to slugs");
 assert(site.hero.detailImage === "/assets/furniture/hero-lounge-chair-detail.png", "Hero has generated detail image");
 assert(site.projects.every(project => project.detailImage?.startsWith("/assets/furniture/")), "Projects use generated detail crop assets");
 assert(site.projects.every(project => project.summary && project.notes?.length >= 3), "Projects have finished portfolio copy");

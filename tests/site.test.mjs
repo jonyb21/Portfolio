@@ -10,8 +10,12 @@ fs.copyFileSync(path.resolve("data/site.json"), process.env.PORTFOLIO_DATA_PATH)
 
 const { createServer, validateSite } = await import("../server.js");
 
-validateSite(JSON.parse(fs.readFileSync(process.env.PORTFOLIO_DATA_PATH, "utf8")));
+const validSite = JSON.parse(fs.readFileSync(process.env.PORTFOLIO_DATA_PATH, "utf8"));
+validateSite(validSite);
 assert.throws(() => validateSite({ projects: [] }), /Brand/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], href: "/work/wrong" }] }), /links/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0] }, { ...validSite.projects[0] }] }), /unique/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], slug: "Bad Slug", href: "/work/Bad Slug" }] }), /lowercase/);
 
 const server = createServer();
 await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));

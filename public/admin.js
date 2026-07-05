@@ -24,6 +24,10 @@ function set(path, value) {
   target[last] = value;
 }
 
+function slugify(value) {
+  return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "new-project";
+}
+
 function toast(message, type = "success") {
   status.value = message;
   const existing = document.querySelector(".toast");
@@ -150,17 +154,21 @@ function collect() {
   ].forEach(name => set(name, field(name).value.trim()));
 
   site.projects = Array.from(projectsEditor.querySelectorAll(".editor-card")).map(row => ({
-    title: row.querySelector('[data-key="title"]').value.trim(),
-    slug: row.querySelector('[data-key="slug"]').value.trim(),
-    year: row.querySelector('[data-key="year"]').value.trim(),
-    type: row.querySelector('[data-key="type"]').value.trim(),
-    materials: row.querySelector('[data-key="materials"]').value.trim(),
-    image: row.querySelector('[data-key="image"]').value.trim(),
-    detailImage: row.querySelector('[data-key="detailImage"]').value.trim(),
-    href: row.querySelector('[data-key="href"]').value.trim() || "#",
-    summary: row.querySelector('[data-key="summary"]').value.trim(),
-    notes: row.querySelector('[data-key="notesText"]').value.split("\n").map(note => note.trim()).filter(Boolean)
-  }));
+    const title = row.querySelector('[data-key="title"]').value.trim();
+    const slug = slugify(row.querySelector('[data-key="slug"]').value || title);
+    return {
+      title,
+      slug,
+      year: row.querySelector('[data-key="year"]').value.trim(),
+      type: row.querySelector('[data-key="type"]').value.trim(),
+      materials: row.querySelector('[data-key="materials"]').value.trim(),
+      image: row.querySelector('[data-key="image"]').value.trim(),
+      detailImage: row.querySelector('[data-key="detailImage"]').value.trim(),
+      href: `/work/${slug}`,
+      summary: row.querySelector('[data-key="summary"]').value.trim(),
+      notes: row.querySelector('[data-key="notesText"]').value.split("\n").map(note => note.trim()).filter(Boolean)
+    };
+  });
 
   site.nav = Array.from(navEditor.querySelectorAll(".editor-card")).map(row => ({
     label: row.querySelector('[data-key="label"]').value.trim(),

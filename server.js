@@ -67,9 +67,14 @@ function validateSite(site) {
   if (!Array.isArray(site.about.experience) || site.about.experience.length < 1) throw new Error("At least one experience item is required");
   if (!Array.isArray(site.projects) || site.projects.length < 1) throw new Error("At least one project is required");
   if (!Array.isArray(site.nav) || site.nav.length < 1) throw new Error("At least one nav item is required");
+  const slugs = new Set();
   for (const project of site.projects) {
     if (!project.title || !project.image) throw new Error("Every project needs a title and image");
     if (!project.slug || !project.summary || !project.detailImage) throw new Error("Every project needs a slug, summary, and detail image");
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(project.slug)) throw new Error("Project slugs must be lowercase words separated by hyphens");
+    if (slugs.has(project.slug)) throw new Error("Project slugs must be unique");
+    slugs.add(project.slug);
+    if (project.href !== `/work/${project.slug}`) throw new Error("Project links must match their product page slug");
   }
   for (const item of site.nav) {
     if (!item.label || !item.href) throw new Error("Every nav item needs a label and URL");
