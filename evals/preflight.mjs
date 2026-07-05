@@ -22,6 +22,9 @@ assert(css.includes("grid-template-columns: repeat(3"), "Selected work uses a th
 assert(site.projects.length === 3, "Reference screen has three selected work cards");
 assert(site.nav.every(item => item.href.startsWith("/")), "Top nav uses page URLs, not anchors");
 assert(site.hero.image === "/assets/furniture/hero-lounge-chair.png", "Hero uses generated furniture image");
+assert(index.includes(site.hero.body), "Home fallback copy matches site data");
+assert(work.includes(`<span data-field="workCta">${site.workCta}</span>`), "Work fallback CTA matches site data");
+assert(contact.includes(`mailto:${site.contact.email}`), "Contact fallback email matches site data");
 assert(site.projects.every(project => project.image.startsWith("/assets/furniture/")), "Project images use generated furniture assets");
 assert(site.projects.every(project => project.href === `/work/${project.slug}`), "Each project links to its own page");
 assert(site.hero.detailImage === "/assets/furniture/hero-lounge-chair-detail.png", "Hero has generated detail image");
