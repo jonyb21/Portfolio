@@ -25,6 +25,7 @@ assert.throws(() => validateSite({ ...validSite, nav: [{ label: "Work", href: "#
 assert.throws(() => validateSite({ ...validSite, nav: [{ label: "Missing", href: "/missing" }] }), /missing page/);
 assert.throws(() => validateSite({ ...validSite, hero: { ...validSite.hero, ctaHref: "" } }), /Hero CTA is required/);
 assert.throws(() => validateSite({ ...validSite, hero: { ...validSite.hero, ctaHref: "/missing" } }), /missing page/);
+assert.throws(() => validateSite({ ...validSite, about: { ...validSite.about, experience: [{ ...validSite.about.experience[0], description: "" }] } }), /period, and description/);
 
 const server = createServer();
 await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));

@@ -46,6 +46,7 @@ assert(site.projects.every(project => project.summary && project.notes?.length >
 assert(site.about.experience.length >= 3, "About page has relevant experience entries");
 assert(site.about.experienceTitle === "Relevant Experience", "About page frames work history as relevant experience");
 assert(site.about.experience.some(item => /Prototyping/.test(item.role)), "About page includes hands-on prototyping experience");
+assert(fs.readFileSync("server.js", "utf8").includes("role, company, period, and description"), "Server keeps about experience rows complete");
 assert(about.includes('id="experience-list"'), "About page renders experience list");
 assert(!work.includes('id="project-details"'), "Work page lists projects without inline detail sections");
 assert(product.includes('id="product-page"'), "Project template renders project detail pages");

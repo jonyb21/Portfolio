@@ -103,7 +103,7 @@ function validateSite(site) {
     validatePagePath(item.href, slugs, "Nav links");
   }
   for (const item of site.about.experience) {
-    if (!item.role || !item.company) throw new Error("Every experience item needs a role and company");
+    if (!item.role || !item.company || !item.period || !item.description) throw new Error("Every experience item needs role, company, period, and description");
   }
 }
 
