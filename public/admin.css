@@ -1,11 +1,12 @@
 :root {
   color-scheme: dark;
-  --bg: #101111;
-  --panel: #191a1a;
-  --line: #333;
-  --text: #f4f1ea;
-  --muted: #aaa49a;
-  --accent: #c6d875;
+  --bg: #060707;
+  --panel: #181816;
+  --line: #2b2b28;
+  --text: #e6e2d8;
+  --muted: #b7b4ad;
+  --accent: #adbd68;
+  --radius: 28px;
 }
 
 * {
@@ -15,7 +16,11 @@
 body {
   margin: 0;
   min-height: 100dvh;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 22% 12%, rgb(255 255 255 / 0.035), transparent 24rem),
+    linear-gradient(90deg, rgb(255 255 255 / 0.018) 1px, transparent 1px),
+    linear-gradient(var(--bg), var(--bg));
+  background-size: auto, 5px 5px, auto;
   color: var(--text);
   font-family: "Avenir Next", "Segoe UI", sans-serif;
 }
@@ -58,7 +63,7 @@ form {
   gap: 18px;
   padding: 22px;
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: var(--radius);
   background: var(--panel);
 }
 
@@ -80,7 +85,7 @@ form {
   gap: 8px;
   padding: 8px;
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: var(--radius);
   background: var(--panel);
 }
 
@@ -94,8 +99,8 @@ input,
 textarea,
 button {
   border: 1px solid var(--line);
-  border-radius: 10px;
-  background: #0b0c0c;
+  border-radius: 14px;
+  background: var(--bg);
   color: var(--text);
   font: inherit;
 }
@@ -149,8 +154,8 @@ button[type="submit"],
   gap: 12px;
   padding: 16px;
   border: 1px solid var(--line);
-  border-radius: 14px;
-  background: #111212;
+  border-radius: var(--radius);
+  background: rgb(255 255 255 / 0.025);
 }
 
 .editor-card button,
@@ -168,8 +173,8 @@ output {
   right: 20px;
   bottom: 20px;
   padding: 12px 14px;
-  border: 1px solid rgba(198, 216, 117, 0.4);
-  border-radius: 12px;
+  border: 1px solid rgb(173 189 104 / 0.4);
+  border-radius: 14px;
   background: #171911;
   color: var(--accent);
 }

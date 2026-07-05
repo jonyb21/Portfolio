@@ -20,6 +20,7 @@ html {
 body {
   margin: 0;
   min-height: 100dvh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 22% 12%, rgb(255 255 255 / 0.035), transparent 24rem),
     linear-gradient(90deg, rgb(255 255 255 / 0.018) 1px, transparent 1px),
@@ -299,6 +300,7 @@ h2 {
 .detail-copy {
   display: grid;
   gap: 22px;
+  min-width: 0;
 }
 
 .project-meta {
@@ -316,6 +318,7 @@ h2 {
   color: var(--muted);
   font-size: clamp(1rem, 1.4vw, 1.2rem);
   line-height: 1.6;
+  overflow-wrap: break-word;
 }
 
 .detail-copy dl {
@@ -331,6 +334,7 @@ h2 {
 .detail-copy dd {
   margin: 0;
   color: var(--text);
+  overflow-wrap: break-word;
 }
 
 .detail-copy ul {
@@ -346,6 +350,7 @@ h2 {
   padding-left: 18px;
   position: relative;
   line-height: 1.45;
+  overflow-wrap: break-word;
 }
 
 .detail-copy li::before {
@@ -603,7 +608,8 @@ body.preview-open {
   }
 
   nav {
-    gap: 18px;
+    gap: 14px;
+    font-size: 0.95rem;
   }
 
   .hero,

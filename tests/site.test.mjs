@@ -11,7 +11,11 @@ fs.copyFileSync(path.resolve("data/site.json"), process.env.PORTFOLIO_DATA_PATH)
 const { createServer, validateSite } = await import("../server.js");
 
 const validSite = JSON.parse(fs.readFileSync(process.env.PORTFOLIO_DATA_PATH, "utf8"));
+const adminCss = fs.readFileSync("public/admin.css", "utf8");
 validateSite(validSite);
+assert(adminCss.includes("--text: #e6e2d8"));
+assert(adminCss.includes("--accent: #adbd68"));
+assert(adminCss.includes("border-radius: var(--radius)"));
 assert.throws(() => validateSite({ projects: [] }), /Brand/);
 assert.throws(() => validateSite({ ...validSite, brand: "   " }), /Brand/);
 assert.throws(() => validateSite({ ...validSite, contact: { ...validSite.contact, email: "not-email" } }), /valid email/);
