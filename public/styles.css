@@ -111,7 +111,7 @@ body[data-page="home"] nav a:last-child {
 .text-link {
   display: inline-flex;
   align-items: center;
-  gap: 20px;
+  gap: 5mm;
   color: var(--accent);
   font-size: clamp(1.12rem, 1.35vw, 1.24rem);
   font-weight: 500;
@@ -250,13 +250,6 @@ h2 {
 }
 
 .project-card-images img {
-  opacity: 0;
-  animation: projectCardFade 60s infinite ease-in-out;
-  animation-delay: calc(var(--i) * 6s);
-  will-change: opacity, transform;
-}
-
-.project-card-images img:first-child {
   opacity: 1;
 }
 
@@ -267,25 +260,6 @@ h2 {
 
 .project-card:hover .project-card-images img {
   filter: saturate(0.86) brightness(0.9) contrast(1.06);
-}
-
-@keyframes projectCardFade {
-  0%,
-  13% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  18%,
-  95% {
-    opacity: 0;
-    transform: scale(1.025);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
 }
 
 .project-card::after {
@@ -648,7 +622,7 @@ body.preview-open {
     animation: none !important;
   }
 
-  .project-card-images img:first-child {
+  .project-card-images img {
     opacity: 1;
   }
 }

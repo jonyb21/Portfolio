@@ -54,6 +54,7 @@ try {
   const site = await fetch(`${base}/api/site`).then(response => response.json());
   assert.equal(site.brand, "Jon Brooks");
   assert.equal(site.nav[0].href, "/work");
+  assert.equal(site.workCta, "Get in contact");
   assert.equal(site.projects[0].slug, "contour-lounge-chair");
   assert.equal(site.projects.length, 5);
   assert(site.projects.some(project => project.slug === "dining-table" && project.title === "Ridge Dining Table"));

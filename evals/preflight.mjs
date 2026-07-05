@@ -21,6 +21,7 @@ assert(contact.includes('body data-page="contact"'), "Contact tab is a separate 
 assert(index.includes("min-h") === false, "Viewport height is owned by CSS");
 assert(css.includes("min-height: 100dvh"), "Uses stable dynamic viewport height");
 assert(css.includes("--accent: #adbd68"), "Olive accent is muted");
+assert(site.workCta === "Get in contact", "Work CTA uses the requested contact wording");
 assert(css.includes("grid-template-columns: repeat(3"), "Selected work uses a three-card desktop grid");
 assert(site.projects.length === 5, "Work page includes five selected work projects");
 assert(site.nav.every(item => item.href.startsWith("/")), "Top nav uses page URLs, not anchors");
@@ -79,16 +80,17 @@ assert(fs.readFileSync("public/app.js", "utf8").includes("preview-backdrop"), "I
 assert(css.includes(".preview-frame") && css.includes("border-radius: 28px"), "Image preview uses rounded corners");
 assert(css.includes(".preview-frame img") && css.includes("brightness(1.08)"), "Image preview does not inherit the dark page image treatment");
 assert(!fs.readFileSync("public/app.js", "utf8").includes('alt="${escapeHtml(project.title)} detail view"'), "Product pages do not duplicate the detail crop before the gallery");
-assert(fs.readFileSync("public/app.js", "utf8").includes("projectCardImages"), "Work cards cycle through product images");
+assert(!fs.readFileSync("public/app.js", "utf8").includes("projectCardImages"), "Work cards are static outside the homepage slideshow");
 assert(fs.readFileSync("public/app.js", "utf8").includes('<a class="project-card" href="${escapeHtml(projectUrl(project))}">'), "Work card images remain clickable links to project pages");
 assert(fs.readFileSync("public/app.js", "utf8").includes("sr-only"), "Work cards keep accessible project names");
 assert(fs.readFileSync("public/app.js", "utf8").includes("project-title"), "Work cards keep the original visible title overlay");
 assert(!fs.readFileSync("public/app.js", "utf8").includes("<figcaption>"), "Product gallery images do not show text captions");
-assert(css.includes("@keyframes projectCardFade"), "Work card image transitions use a slow fade");
+assert(!css.includes("@keyframes projectCardFade"), "Work card image transitions are removed outside the homepage slideshow");
 assert(css.includes(".arrow-mark") && css.includes("-webkit-mask") && css.includes("width: 34px") && css.includes("background: currentColor"), "Visible arrows use the shared large filled green chevron mark");
 assert(css.includes("scale(0.64)"), "Chevron arrows are reduced to roughly 70 percent of the previous size");
 assert(css.includes("font-size: clamp(1.12rem"), "CTA text is scaled to match the large chevron");
-assert(css.includes("prefers-reduced-motion") && css.includes("animation: none"), "Work card motion respects reduced-motion settings");
+assert(css.includes("gap: 5mm"), "CTA arrows use the requested 5mm horizontal offset");
+assert(css.includes("prefers-reduced-motion") && css.includes("animation: none"), "Motion respects reduced-motion settings");
 assert(adminJs.includes('data-key="viewsText"'), "Admin UI edits product image studies without raw JSON");
 assert(site.about.experience.length >= 3, "About page has relevant experience entries");
 assert(site.about.portrait === "/assets/portrait.webp", "About page uses the supplied portrait image");

@@ -71,15 +71,6 @@ function phoneUrl(value) {
   return phone ? `tel:${phone}` : "#";
 }
 
-function projectCardImages(project) {
-  const images = [
-    project.cardImage,
-    project.image,
-    ...(Array.isArray(project.views) ? project.views.map(view => view.image) : [])
-  ].filter(Boolean);
-  return [...new Set(images)];
-}
-
 function renderProjectViews(project) {
   const views = Array.isArray(project.views) ? project.views : [];
   if (!views.length) return "";
@@ -183,8 +174,7 @@ function render(site) {
   if (projects) projects.innerHTML = site.projects.map(project => `
     <a class="project-card" href="${escapeHtml(projectUrl(project))}">
       <span class="project-card-images" aria-hidden="true">
-        ${projectCardImages(project).map((image, index) => `
-        <img src="${escapeHtml(imageUrl(image))}" alt="" style="--i: ${index}">`).join("")}
+        <img src="${escapeHtml(imageUrl(project.cardImage || project.image))}" alt="">
       </span>
       <span class="sr-only">${escapeHtml(project.title)}</span>
       <span class="project-title">${escapeHtml(project.title)}</span>
