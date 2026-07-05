@@ -46,6 +46,12 @@ assert(adminJs.includes("(await response.json()).error"), "Admin shows server va
 assert(site.hero.detailImage === "/assets/furniture/hero-lounge-chair-detail.png", "Hero has generated detail image");
 assert(site.projects.every(project => project.detailImage?.startsWith("/assets/furniture/")), "Projects use generated detail crop assets");
 assert(site.projects.every(project => project.summary && project.notes?.length >= 3), "Projects have finished portfolio copy");
+assert(site.projects.every(project => project.views?.length === 4), "Each project has four product page image studies");
+assert(site.projects.every(project => project.views.filter(view => view.type === "crop").length === 3), "Each project has three cropped product studies");
+assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").length === 1), "Each project has one in situ view");
+assert(site.projects.every(project => project.views.every(view => view.image.startsWith("/assets/furniture/"))), "Product image studies use local furniture assets");
+assert(fs.readFileSync("public/app.js", "utf8").includes("project-gallery"), "Product pages render the image study gallery");
+assert(adminJs.includes('data-key="viewsText"'), "Admin UI edits product image studies without raw JSON");
 assert(site.about.experience.length >= 3, "About page has relevant experience entries");
 assert(site.about.experienceTitle === "Relevant Experience", "About page frames work history as relevant experience");
 assert(site.about.experience.some(item => /Prototyping/.test(item.role)), "About page includes hands-on prototyping experience");
@@ -61,5 +67,6 @@ assert(adminJs.includes("function nextProjectSlug()"), "New admin projects get d
 assert(adminJs.includes("const slug = nextProjectSlug()"), "New admin projects use the duplicate-safe slug helper");
 assert(adminJs.includes("href: `/work/${slug}`"), "New admin projects default to product pages");
 assert(adminJs.includes("Add the key material or construction detail."), "New admin projects start with useful detail notes");
-assert(readme.includes("Each project needs materials and at least three notes"), "README documents project detail requirements");
+assert(readme.includes("Each project needs materials, at least three notes"), "README documents project detail requirements");
+assert(readme.includes("Label | Image URL | crop or insitu"), "README documents product image study rows");
 assert(readme.includes("Role | Company | Period | Description"), "README documents experience row format");

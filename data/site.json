@@ -40,6 +40,28 @@
         "Swept rear frame creates a clear silhouette from the side.",
         "Dark upholstery lets the cushion read as one calm volume.",
         "Low seat angle gives the chair a relaxed lounge posture."
+      ],
+      "views": [
+        {
+          "label": "Upholstery edge",
+          "image": "/assets/furniture/contour-lounge-chair-crop-1.png",
+          "type": "crop"
+        },
+        {
+          "label": "Swept walnut joint",
+          "image": "/assets/furniture/contour-lounge-chair-crop-2.png",
+          "type": "crop"
+        },
+        {
+          "label": "Side profile study",
+          "image": "/assets/furniture/contour-lounge-chair-crop-3.png",
+          "type": "crop"
+        },
+        {
+          "label": "In situ",
+          "image": "/assets/furniture/contour-lounge-chair-insitu.png",
+          "type": "insitu"
+        }
       ]
     },
     {
@@ -56,6 +78,28 @@
         "Continuous wraparound back for a calm profile from every angle.",
         "Dense upholstery texture chosen to hold shadow and soften wear.",
         "Low table pairing reinforces the sofa's horizontal silhouette."
+      ],
+      "views": [
+        {
+          "label": "Boucle radius",
+          "image": "/assets/furniture/silhouette-sofa-crop-1.png",
+          "type": "crop"
+        },
+        {
+          "label": "Low table relationship",
+          "image": "/assets/furniture/silhouette-sofa-crop-2.png",
+          "type": "crop"
+        },
+        {
+          "label": "Wraparound profile",
+          "image": "/assets/furniture/silhouette-sofa-crop-3.png",
+          "type": "crop"
+        },
+        {
+          "label": "In situ",
+          "image": "/assets/furniture/silhouette-sofa-insitu.png",
+          "type": "insitu"
+        }
       ]
     },
     {
@@ -72,6 +116,28 @@
         "Rounded walnut transitions remove hard stops at the arm and front leg.",
         "Generous cushion radius gives the chair a softer domestic posture.",
         "Contrasting upholstery and timber make the frame legible at a glance."
+      ],
+      "views": [
+        {
+          "label": "Cream boucle edge",
+          "image": "/assets/furniture/arc-lounge-chair-crop-1.png",
+          "type": "crop"
+        },
+        {
+          "label": "Walnut arm transition",
+          "image": "/assets/furniture/arc-lounge-chair-crop-2.png",
+          "type": "crop"
+        },
+        {
+          "label": "Frame and cushion study",
+          "image": "/assets/furniture/arc-lounge-chair-crop-3.png",
+          "type": "crop"
+        },
+        {
+          "label": "In situ",
+          "image": "/assets/furniture/arc-lounge-chair-insitu.png",
+          "type": "insitu"
+        }
       ]
     },
     {
@@ -88,6 +154,28 @@
         "Vertical ribbing breaks up the broad face without visual noise.",
         "Inset legs keep the cabinet mass floating just above the floor.",
         "Satin walnut finish holds detail in low light and avoids glare."
+      ],
+      "views": [
+        {
+          "label": "Ribbed walnut face",
+          "image": "/assets/furniture/foundry-sideboard-crop-1.png",
+          "type": "crop"
+        },
+        {
+          "label": "Floating leg detail",
+          "image": "/assets/furniture/foundry-sideboard-crop-2.png",
+          "type": "crop"
+        },
+        {
+          "label": "Styled top edge",
+          "image": "/assets/furniture/foundry-sideboard-crop-3.png",
+          "type": "crop"
+        },
+        {
+          "label": "In situ",
+          "image": "/assets/furniture/foundry-sideboard-insitu.png",
+          "type": "insitu"
+        }
       ]
     }
   ],

@@ -349,9 +349,55 @@ h2 {
   background: var(--panel);
 }
 
+.detail-image img {
+  filter: saturate(0.82) brightness(0.7) contrast(1.05);
+}
+
 .detail-image.wide {
   grid-column: 1 / -1;
   aspect-ratio: 1.9;
+}
+
+.project-gallery {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.gallery-image {
+  position: relative;
+  aspect-ratio: 0.92;
+}
+
+.gallery-image img {
+  filter: saturate(0.86) brightness(0.86) contrast(1.04);
+}
+
+.gallery-image.insitu {
+  grid-column: 1 / -1;
+  aspect-ratio: 1.9;
+}
+
+.gallery-image figcaption {
+  position: absolute;
+  z-index: 1;
+  left: 22px;
+  bottom: 20px;
+  max-width: calc(100% - 44px);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  line-height: 1.1;
+  text-shadow: 0 2px 18px rgb(0 0 0 / 0.72);
+}
+
+.gallery-image::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 0;
+  background: linear-gradient(transparent, rgb(0 0 0 / 0.64));
+  pointer-events: none;
 }
 
 .about {
@@ -506,6 +552,14 @@ h2 {
 
   .detail-image {
     aspect-ratio: 0.92;
+  }
+
+  .project-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-image.insitu {
+    aspect-ratio: 1.05;
   }
 
   .experience-item {

@@ -34,6 +34,23 @@ function projectUrl(project) {
   return safeUrl(project.href || `/work/${project.slug}`);
 }
 
+function renderProjectViews(project) {
+  const views = Array.isArray(project.views) ? project.views : [];
+  if (!views.length) return "";
+  return `
+      <div class="project-gallery" aria-label="${escapeHtml(project.title)} image studies">
+        ${views.map(view => {
+          const type = view.type === "insitu" ? "insitu" : "crop";
+          const fallback = type === "insitu" ? project.image : project.detailImage || project.image;
+          return `
+        <figure class="detail-image gallery-image ${type}">
+          <img src="${escapeHtml(safeUrl(view.image, fallback))}" alt="${escapeHtml(view.alt || `${project.title} ${view.label || "view"}`)}">
+          <figcaption>${escapeHtml(view.label || "Detail view")}</figcaption>
+        </figure>`;
+        }).join("")}
+      </div>`;
+}
+
 function render(site) {
   site.contact.emailHref = `mailto:${site.contact.email}`;
   setText('[data-field="brand"]', site.brand);
@@ -115,6 +132,7 @@ function render(site) {
       <figure class="detail-image wide">
         <img src="${escapeHtml(safeUrl(project.image, "/assets/furniture/hero-lounge-chair.png"))}" alt="${escapeHtml(project.title)} full view">
       </figure>
+      ${renderProjectViews(project)}
     </article>`;
   }
 }

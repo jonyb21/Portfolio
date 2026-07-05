@@ -21,6 +21,9 @@ assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.proje
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], materials: "" }] }), /materials/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], notes: ["Only one"] }] }), /detail notes/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], notes: ["One", "Two", "   "] }] }), /detail notes/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], views: validSite.projects[0].views.slice(0, 3) }] }), /cropped views/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], views: validSite.projects[0].views.map(view => ({ ...view, type: "crop" })) }] }), /in situ view/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], views: [{ ...validSite.projects[0].views[0], image: "/assets/furniture/missing-view.png" }, ...validSite.projects[0].views.slice(1)] }] }), /does not exist/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], image: "/assets/furniture/missing.png" }] }), /does not exist/);
 validateSite({ ...validSite, projects: [{ ...validSite.projects[0], image: "https://example.com/chair.png" }] });
 assert.throws(() => validateSite({ ...validSite, nav: [{ label: "Work", href: "#work" }] }), /separate page paths/);
@@ -43,6 +46,9 @@ try {
   assert.equal(site.nav[0].href, "/work");
   assert.equal(site.projects[0].slug, "contour-lounge-chair");
   assert.match(site.projects[0].summary, /continuous timber frame/);
+  assert.equal(site.projects[0].views.length, 4);
+  assert.equal(site.projects[0].views.filter(view => view.type === "crop").length, 3);
+  assert.equal(site.projects[0].views.filter(view => view.type === "insitu").length, 1);
   assert.equal(site.about.experienceTitle, "Relevant Experience");
   assert.equal(site.about.experience[0].role, "Furniture and object design");
   assert.match(site.about.experience.at(-1).description, /bespoke and small-batch pieces/);

@@ -94,8 +94,17 @@ function validateSite(site) {
     if (!present(project.title) || !present(project.image)) throw new Error("Every project needs a title and image");
     if (!present(project.slug) || !present(project.summary) || !present(project.detailImage)) throw new Error("Every project needs a slug, summary, and detail image");
     if (!present(project.materials) || !Array.isArray(project.notes) || project.notes.length < 3 || project.notes.some(note => !present(note))) throw new Error("Every project needs materials and at least three detail notes");
+    if (!Array.isArray(project.views) || project.views.length !== 4) throw new Error("Every project needs three cropped views and one in situ view");
     validateImage(project.image);
     validateImage(project.detailImage);
+    for (const view of project.views) {
+      if (!present(view.label) || !present(view.image)) throw new Error("Every project image study needs a label and image");
+      if (!["crop", "insitu"].includes(view.type)) throw new Error("Project image studies must be crop or insitu");
+      validateImage(view.image);
+    }
+    if (project.views.filter(view => view.type === "crop").length !== 3 || project.views.filter(view => view.type === "insitu").length !== 1) {
+      throw new Error("Every project needs three cropped views and one in situ view");
+    }
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(project.slug)) throw new Error("Project slugs must be lowercase words separated by hyphens");
     if (slugs.has(project.slug)) throw new Error("Project slugs must be unique");
     slugs.add(project.slug);

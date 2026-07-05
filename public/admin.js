@@ -100,6 +100,7 @@ function projectRow(project, index) {
     <label>Detail image URL <input data-project="${index}" data-key="detailImage"></label>
     <label>Summary <textarea data-project="${index}" data-key="summary" rows="4"></textarea></label>
     <label>Notes <textarea data-project="${index}" data-key="notesText" rows="4" placeholder="One note per line"></textarea></label>
+    <label>Image studies <textarea data-project="${index}" data-key="viewsText" rows="5" placeholder="Label | Image URL | crop or insitu"></textarea></label>
   `;
   row.querySelector('[data-key="title"]').value = project.title || "";
   row.querySelector('[data-key="slug"]').value = project.slug || "";
@@ -110,6 +111,9 @@ function projectRow(project, index) {
   row.querySelector('[data-key="detailImage"]').value = project.detailImage || "";
   row.querySelector('[data-key="summary"]').value = project.summary || "";
   row.querySelector('[data-key="notesText"]').value = (project.notes || []).join("\n");
+  row.querySelector('[data-key="viewsText"]').value = (project.views || [])
+    .map(view => [view.label, view.image, view.type || "crop"].join(" | "))
+    .join("\n");
   return row;
 }
 
@@ -171,7 +175,12 @@ function collect() {
       detailImage: row.querySelector('[data-key="detailImage"]').value.trim(),
       href: `/work/${slug}`,
       summary: row.querySelector('[data-key="summary"]').value.trim(),
-      notes: row.querySelector('[data-key="notesText"]').value.split("\n").map(note => note.trim()).filter(Boolean)
+      notes: row.querySelector('[data-key="notesText"]').value.split("\n").map(note => note.trim()).filter(Boolean),
+      views: row.querySelector('[data-key="viewsText"]').value
+        .split("\n")
+        .map(line => line.split(" | ").map(part => part.trim()))
+        .filter(parts => parts[0] && parts[1])
+        .map(([label, image, type = "crop"]) => ({ label, image, type: type === "insitu" ? "insitu" : "crop" }))
     };
   });
 
@@ -232,6 +241,12 @@ document.getElementById("add-project").addEventListener("click", () => {
       "Add the main design intent.",
       "Add the key material or construction detail.",
       "Add the final use case or room context."
+    ],
+    views: [
+      { label: "Material detail", image: "/assets/furniture/hero-lounge-chair-detail.png", type: "crop" },
+      { label: "Frame detail", image: "/assets/furniture/hero-lounge-chair-detail.png", type: "crop" },
+      { label: "Profile study", image: "/assets/furniture/hero-lounge-chair.png", type: "crop" },
+      { label: "In situ", image: "/assets/furniture/hero-lounge-chair.png", type: "insitu" }
     ]
   });
   renderProjects();

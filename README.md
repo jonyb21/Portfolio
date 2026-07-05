@@ -19,7 +19,13 @@ Set `ADMIN_PASSWORD` in `.env`, then open `http://127.0.0.1:8788/admin`.
 
 The admin saves `data/site.json`. Docker mounts `./data` so edits survive container rebuilds.
 
-Project images can use existing `/assets/...` files or full `https://` URLs. Each project needs materials and at least three notes so its detail page renders cleanly.
+Project images can use existing `/assets/...` files or full `https://` URLs. Each project needs materials, at least three notes, three cropped image studies, and one in situ image so its detail page renders cleanly.
+
+Image study rows use:
+
+```text
+Label | Image URL | crop or insitu
+```
 
 Experience rows use:
 
