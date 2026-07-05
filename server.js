@@ -19,14 +19,15 @@ const types = {
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
   ".svg": "image/svg+xml",
-  ".png": "image/png"
+  ".png": "image/png",
+  ".webp": "image/webp"
 };
 
 function send(res, status, body, type = "application/json; charset=utf-8") {
   res.writeHead(status, {
     "content-type": type,
     "x-content-type-options": "nosniff",
-    "cache-control": type.startsWith("text/html") ? "no-store" : "public, max-age=300"
+    "cache-control": type.startsWith("text/html") || type.startsWith("application/json") ? "no-store" : "public, max-age=300"
   });
   res.end(body);
 }
@@ -82,28 +83,33 @@ function validateSite(site) {
   if (!site || typeof site !== "object") throw new Error("Site payload must be an object");
   if (!present(site.brand) || !present(site.hero?.title) || !present(site.hero?.image)) throw new Error("Brand, hero title, and hero image are required");
   if (!present(site.workTitle) || !present(site.workIntro)) throw new Error("Work title and intro are required");
-  if (!present(site.about?.title) || !present(site.about?.experienceTitle) || !present(site.contact?.email)) throw new Error("About title, experience title, and contact email are required");
+  if (!present(site.about?.title) || !present(site.about?.experienceTitle) || !present(site.contact?.email) || !present(site.contact?.phone)) throw new Error("About title, experience title, contact email, and contact phone are required");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(site.contact.email)) throw new Error("Contact email must be a valid email address");
+  if (site.contact.phone.replace(/\D/g, "").length < 8) throw new Error("Contact phone must be a valid phone number");
   if (!Array.isArray(site.about.experience) || site.about.experience.length < 1) throw new Error("At least one experience item is required");
   if (!Array.isArray(site.projects) || site.projects.length < 1) throw new Error("At least one project is required");
   if (!Array.isArray(site.nav) || site.nav.length < 1) throw new Error("At least one nav item is required");
   const slugs = new Set();
   validateImage(site.hero.image);
   if (site.hero.detailImage) validateImage(site.hero.detailImage);
+  if (site.about.portrait) validateImage(site.about.portrait);
   for (const project of site.projects) {
     if (!present(project.title) || !present(project.image)) throw new Error("Every project needs a title and image");
     if (!present(project.slug) || !present(project.summary) || !present(project.detailImage)) throw new Error("Every project needs a slug, summary, and detail image");
     if (!present(project.materials) || !Array.isArray(project.notes) || project.notes.length < 3 || project.notes.some(note => !present(note))) throw new Error("Every project needs materials and at least three detail notes");
-    if (!Array.isArray(project.views) || project.views.length !== 4) throw new Error("Every project needs three cropped views and one in situ view");
+    if (!Array.isArray(project.views) || project.views.length !== 8) throw new Error("Every project page needs one main image, four cropped views, and four in situ views");
     validateImage(project.image);
+    if (project.cardImage) validateImage(project.cardImage);
     validateImage(project.detailImage);
     for (const view of project.views) {
       if (!present(view.label) || !present(view.image)) throw new Error("Every project image study needs a label and image");
       if (!["crop", "insitu"].includes(view.type)) throw new Error("Project image studies must be crop or insitu");
       validateImage(view.image);
     }
-    if (project.views.filter(view => view.type === "crop").length !== 3 || project.views.filter(view => view.type === "insitu").length !== 1) {
-      throw new Error("Every project needs three cropped views and one in situ view");
+    const renderedImages = [project.cardImage || project.image, ...project.views.map(view => view.image)].filter(Boolean);
+    if (new Set(renderedImages).size !== renderedImages.length) throw new Error("Project page image paths must be unique");
+    if (project.views.filter(view => view.type === "crop").length !== 4 || project.views.filter(view => view.type === "insitu").length !== 4) {
+      throw new Error("Every project page needs one main image, four cropped views, and four in situ views");
     }
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(project.slug)) throw new Error("Project slugs must be lowercase words separated by hyphens");
     if (slugs.has(project.slug)) throw new Error("Project slugs must be unique");

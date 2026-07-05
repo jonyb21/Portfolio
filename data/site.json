@@ -16,11 +16,11 @@
   ],
   "hero": {
     "title": "Designing furniture with clarity, character, and longevity.",
-    "body": "I'm Jon Brooks, an industrial designer creating considered furniture and objects with quiet silhouettes, honest materials, and details built to age well.",
+    "body": "I'm Jon Brooks, an industrial designer creating considered furniture and products with quiet silhouettes, honest materials, and details built to age well.",
     "cta": "View selected work",
     "ctaHref": "/work",
-    "image": "/assets/furniture/hero-lounge-chair.png",
-    "detailImage": "/assets/furniture/hero-lounge-chair-detail.png"
+    "image": "/assets/furniture/hero-lounge-chair.webp",
+    "detailImage": "/assets/furniture/hero-lounge-chair-detail.webp"
   },
   "workTitle": "Selected Work",
   "workIntro": "A focused selection of furniture studies balancing softened forms, durable joinery, and materials that invite touch.",
@@ -32,8 +32,9 @@
       "year": "2026",
       "type": "Lounge chair",
       "materials": "Dark olive upholstery, sculpted walnut frame, recessed support rails",
-      "image": "/assets/furniture/hero-lounge-chair.png",
-      "detailImage": "/assets/furniture/hero-lounge-chair-detail.png",
+      "image": "/assets/furniture/hero-lounge-chair.webp",
+      "cardImage": "/assets/furniture/contour-lounge-chair-card-motion.webp",
+      "detailImage": "/assets/furniture/hero-lounge-chair-detail.webp",
       "href": "/work/contour-lounge-chair",
       "summary": "A low lounge chair study with a broad upholstered seat held inside a continuous timber frame. The side profile is the main gesture: quiet, reclined, and shaped to feel substantial without looking heavy.",
       "notes": [
@@ -44,22 +45,42 @@
       "views": [
         {
           "label": "Upholstery edge",
-          "image": "/assets/furniture/contour-lounge-chair-crop-1.png",
+          "image": "/assets/furniture/contour-lounge-chair-crop-1.webp",
           "type": "crop"
         },
         {
-          "label": "Swept walnut joint",
-          "image": "/assets/furniture/contour-lounge-chair-crop-2.png",
+          "label": "Rear frame joint",
+          "image": "/assets/furniture/contour-lounge-chair-rear-frame-crop.webp",
           "type": "crop"
         },
         {
           "label": "Side profile study",
-          "image": "/assets/furniture/contour-lounge-chair-crop-3.png",
+          "image": "/assets/furniture/contour-lounge-chair-crop-3.webp",
           "type": "crop"
         },
         {
-          "label": "In situ",
-          "image": "/assets/furniture/contour-lounge-chair-insitu.png",
+          "label": "Underside support detail",
+          "image": "/assets/furniture/contour-lounge-chair-crop-4-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "In situ 1",
+          "image": "/assets/furniture/contour-lounge-chair-insitu-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 2",
+          "image": "/assets/furniture/contour-lounge-chair-insitu-v3.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 3",
+          "image": "/assets/furniture/contour-lounge-chair-insitu-v4.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 4",
+          "image": "/assets/furniture/contour-lounge-chair-insitu-v5.webp",
           "type": "insitu"
         }
       ]
@@ -70,8 +91,9 @@
       "year": "2026",
       "type": "Soft seating",
       "materials": "Olive boucle upholstery, hardwood frame, blackened stone table",
-      "image": "/assets/furniture/silhouette-sofa.png",
-      "detailImage": "/assets/furniture/silhouette-sofa-detail.png",
+      "image": "/assets/furniture/silhouette-sofa.webp",
+      "cardImage": "/assets/furniture/silhouette-sofa-card-motion.webp",
+      "detailImage": "/assets/furniture/silhouette-sofa-detail.webp",
       "href": "/work/silhouette-sofa",
       "summary": "A low, rounded sofa study designed around a single continuous gesture. The back, arms, and seat read as one softened volume while the foreground table gives the piece a grounded architectural counterpoint.",
       "notes": [
@@ -82,22 +104,42 @@
       "views": [
         {
           "label": "Boucle radius",
-          "image": "/assets/furniture/silhouette-sofa-crop-1.png",
+          "image": "/assets/furniture/silhouette-sofa-crop-1.webp",
           "type": "crop"
         },
         {
           "label": "Low table relationship",
-          "image": "/assets/furniture/silhouette-sofa-crop-2.png",
+          "image": "/assets/furniture/silhouette-sofa-crop-2.webp",
           "type": "crop"
         },
         {
           "label": "Wraparound profile",
-          "image": "/assets/furniture/silhouette-sofa-crop-3.png",
+          "image": "/assets/furniture/silhouette-sofa-crop-3.webp",
           "type": "crop"
         },
         {
-          "label": "In situ",
-          "image": "/assets/furniture/silhouette-sofa-insitu.png",
+          "label": "Upholstery and form detail",
+          "image": "/assets/furniture/silhouette-sofa-detail.webp",
+          "type": "crop"
+        },
+        {
+          "label": "In situ 1",
+          "image": "/assets/furniture/silhouette-sofa-insitu-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 2",
+          "image": "/assets/furniture/silhouette-sofa-insitu-v3.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 3",
+          "image": "/assets/furniture/silhouette-sofa-insitu-v4.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 4",
+          "image": "/assets/furniture/silhouette-sofa-insitu-v5.webp",
           "type": "insitu"
         }
       ]
@@ -108,8 +150,9 @@
       "year": "2026",
       "type": "Lounge chair",
       "materials": "Cream boucle, sculpted walnut, concealed webbing",
-      "image": "/assets/furniture/arc-lounge-chair.png",
-      "detailImage": "/assets/furniture/arc-lounge-chair-detail.png",
+      "image": "/assets/furniture/arc-lounge-chair.webp",
+      "cardImage": "/assets/furniture/arc-lounge-chair-card-motion.webp",
+      "detailImage": "/assets/furniture/arc-lounge-chair-detail.webp",
       "href": "/work/arc-lounge-chair",
       "summary": "A compact chair built around a continuous walnut arm rail. The cream upholstered forms sit inside the frame rather than on top of it, making the construction feel light without becoming fragile.",
       "notes": [
@@ -120,22 +163,42 @@
       "views": [
         {
           "label": "Cream boucle edge",
-          "image": "/assets/furniture/arc-lounge-chair-crop-1.png",
+          "image": "/assets/furniture/arc-lounge-chair-crop-1.webp",
           "type": "crop"
         },
         {
           "label": "Walnut arm transition",
-          "image": "/assets/furniture/arc-lounge-chair-crop-2.png",
+          "image": "/assets/furniture/arc-lounge-chair-crop-2.webp",
           "type": "crop"
         },
         {
           "label": "Frame and cushion study",
-          "image": "/assets/furniture/arc-lounge-chair-crop-3.png",
+          "image": "/assets/furniture/arc-lounge-chair-crop-3.webp",
           "type": "crop"
         },
         {
-          "label": "In situ",
-          "image": "/assets/furniture/arc-lounge-chair-insitu.png",
+          "label": "Arm and cushion detail",
+          "image": "/assets/furniture/arc-lounge-chair-detail.webp",
+          "type": "crop"
+        },
+        {
+          "label": "In situ 1",
+          "image": "/assets/furniture/arc-lounge-chair-insitu-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 2",
+          "image": "/assets/furniture/arc-lounge-chair-insitu-v3.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 3",
+          "image": "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 4",
+          "image": "/assets/furniture/arc-lounge-chair-insitu-v5.webp",
           "type": "insitu"
         }
       ]
@@ -146,8 +209,9 @@
       "year": "2026",
       "type": "Storage",
       "materials": "Ribbed walnut, satin finish, slim timber legs",
-      "image": "/assets/furniture/foundry-sideboard.png",
-      "detailImage": "/assets/furniture/foundry-sideboard-detail.png",
+      "image": "/assets/furniture/foundry-sideboard.webp",
+      "cardImage": "/assets/furniture/foundry-sideboard-card-motion.webp",
+      "detailImage": "/assets/furniture/foundry-sideboard-detail.webp",
       "href": "/work/foundry-sideboard",
       "summary": "A long storage piece with a precise ribbed front and restrained styling surface. The rhythm of the vertical fluting adds depth while keeping the cabinet quiet enough for living spaces.",
       "notes": [
@@ -158,22 +222,42 @@
       "views": [
         {
           "label": "Ribbed walnut face",
-          "image": "/assets/furniture/foundry-sideboard-crop-1.png",
+          "image": "/assets/furniture/foundry-sideboard-crop-1.webp",
           "type": "crop"
         },
         {
           "label": "Floating leg detail",
-          "image": "/assets/furniture/foundry-sideboard-crop-2.png",
+          "image": "/assets/furniture/foundry-sideboard-crop-2.webp",
           "type": "crop"
         },
         {
           "label": "Styled top edge",
-          "image": "/assets/furniture/foundry-sideboard-crop-3.png",
+          "image": "/assets/furniture/foundry-sideboard-crop-3.webp",
           "type": "crop"
         },
         {
-          "label": "In situ",
-          "image": "/assets/furniture/foundry-sideboard-insitu.png",
+          "label": "Surface and joinery detail",
+          "image": "/assets/furniture/foundry-sideboard-detail.webp",
+          "type": "crop"
+        },
+        {
+          "label": "In situ 1",
+          "image": "/assets/furniture/foundry-sideboard-insitu-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 2",
+          "image": "/assets/furniture/foundry-sideboard-insitu-v3.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 3",
+          "image": "/assets/furniture/foundry-sideboard-insitu-v4.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 4",
+          "image": "/assets/furniture/foundry-sideboard-insitu-v5.webp",
           "type": "insitu"
         }
       ]
@@ -181,39 +265,41 @@
   ],
   "about": {
     "title": "About",
-    "body": "Jon Brooks is a furniture and object designer working across seating, storage, and interior objects. The work is shaped by a practical industrial-design background: concept development, material decisions, prototyping, and the small construction details that make a piece feel resolved in daily use.",
+    "body": "Jon Brooks is a furniture and product designer with broad experience across design development, AI-assisted image generation, cross-platform coding, and custom tools. The work combines practical industrial-design thinking with an ability to think outside the box, using technology to test ideas faster and make each design direction more resolved.",
+    "portrait": "/assets/portrait.webp",
     "experienceTitle": "Relevant Experience",
-    "experienceIntro": "Past work that supports the furniture practice, from early concept and product development through hands-on prototyping, fabrication, and client presentation.",
+    "experienceIntro": "Overall experience that supports the furniture practice, from physical product thinking through AI visual workflows, coding, custom app development, and practical design problem-solving.",
     "experience": [
       {
-        "role": "Furniture and object design",
-        "company": "Independent practice",
-        "period": "Current",
-        "description": "Creating seating, storage, and interior objects with a focus on proportion, material character, presentation imagery, and build-ready design intent."
+        "role": "Furniture and product design",
+        "company": "Independent design practice",
+        "period": "Design",
+        "description": "Developing seating, storage, and interior products with a focus on proportion, material character, presentation imagery, and build-ready design intent."
       },
       {
-        "role": "Industrial design",
-        "company": "Product and studio work",
-        "period": "Previous",
-        "description": "Developed product concepts, refined forms, compared materials, and prepared visual direction for design reviews and client decisions."
+        "role": "AI image generation",
+        "company": "Concept and visual workflow",
+        "period": "AI",
+        "description": "Extensive experience using AI image generation to explore form, material mood, lighting, room context, and high-end presentation directions before committing to a final design path."
       },
       {
-        "role": "Prototyping and fabrication",
-        "company": "Workshop-led work",
-        "period": "Previous",
-        "description": "Worked through mockups, joinery decisions, finish samples, and prototype iterations so furniture details could be tested before final build."
+        "role": "Coding and custom tools",
+        "company": "Multi-platform app development",
+        "period": "Tools",
+        "description": "Building custom apps and tools across multiple platforms to support design work, speed up repeated tasks, organize ideas, and connect visual exploration with practical project decisions."
       },
       {
-        "role": "Client-led interior pieces",
-        "company": "Commission and collaboration work",
-        "period": "Previous",
-        "description": "Translated room context, use requirements, and material preferences into clear furniture directions for bespoke and small-batch pieces."
+        "role": "Creative problem-solving",
+        "company": "Design systems and workflows",
+        "period": "Approach",
+        "description": "Combining hands-on design judgment with outside-the-box thinking, technical curiosity, and practical workflow building so ideas can move from early concept to clear, usable design outcomes."
       }
     ]
   },
   "contact": {
     "title": "Contact",
     "body": "For commissions, collaborations, and project inquiries, send a note with the scope, timeline, room context, and materials you have in mind.",
-    "email": "jon@jonllm.xyz"
+    "email": "jonbrooks35@gmail.com",
+    "phone": "0412 218 673"
   }
 }

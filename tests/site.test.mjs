@@ -15,16 +15,26 @@ validateSite(validSite);
 assert.throws(() => validateSite({ projects: [] }), /Brand/);
 assert.throws(() => validateSite({ ...validSite, brand: "   " }), /Brand/);
 assert.throws(() => validateSite({ ...validSite, contact: { ...validSite.contact, email: "not-email" } }), /valid email/);
+assert.throws(() => validateSite({ ...validSite, contact: { ...validSite.contact, phone: "12" } }), /valid phone/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], href: "/work/wrong" }] }), /links/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0] }, { ...validSite.projects[0] }] }), /unique/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], slug: "Bad Slug", href: "/work/Bad Slug" }] }), /lowercase/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], materials: "" }] }), /materials/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], notes: ["Only one"] }] }), /detail notes/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], notes: ["One", "Two", "   "] }] }), /detail notes/);
-assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], views: validSite.projects[0].views.slice(0, 3) }] }), /cropped views/);
-assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], views: validSite.projects[0].views.map(view => ({ ...view, type: "crop" })) }] }), /in situ view/);
-assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], views: [{ ...validSite.projects[0].views[0], image: "/assets/furniture/missing-view.png" }, ...validSite.projects[0].views.slice(1)] }] }), /does not exist/);
-assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], image: "/assets/furniture/missing.png" }] }), /does not exist/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], views: validSite.projects[0].views.slice(0, 7) }] }), /one main image, four cropped views, and four in situ views/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], views: validSite.projects[0].views.map(view => ({ ...view, type: "crop" })) }] }), /one main image, four cropped views, and four in situ views/);
+assert.throws(() => validateSite({
+  ...validSite,
+  projects: [{
+    ...validSite.projects[0],
+    views: [{ ...validSite.projects[0].views[0], image: validSite.projects[0].cardImage }, ...validSite.projects[0].views.slice(1)]
+  }]
+}), /unique/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], views: [{ ...validSite.projects[0].views[0], image: "/assets/furniture/missing-view.webp" }, ...validSite.projects[0].views.slice(1)] }] }), /does not exist/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], image: "/assets/furniture/missing.webp" }] }), /does not exist/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], cardImage: "/assets/furniture/missing-card.webp" }] }), /does not exist/);
+assert.throws(() => validateSite({ ...validSite, about: { ...validSite.about, portrait: "/assets/missing-portrait.webp" } }), /does not exist/);
 validateSite({ ...validSite, projects: [{ ...validSite.projects[0], image: "https://example.com/chair.png" }] });
 assert.throws(() => validateSite({ ...validSite, nav: [{ label: "Work", href: "#work" }] }), /separate page paths/);
 assert.throws(() => validateSite({ ...validSite, nav: [{ label: "Missing", href: "/missing" }] }), /missing page/);
@@ -45,13 +55,25 @@ try {
   assert.equal(site.brand, "Jon Brooks");
   assert.equal(site.nav[0].href, "/work");
   assert.equal(site.projects[0].slug, "contour-lounge-chair");
+  assert.equal(site.projects[0].cardImage, "/assets/furniture/contour-lounge-chair-card-motion.webp");
   assert.match(site.projects[0].summary, /continuous timber frame/);
-  assert.equal(site.projects[0].views.length, 4);
-  assert.equal(site.projects[0].views.filter(view => view.type === "crop").length, 3);
-  assert.equal(site.projects[0].views.filter(view => view.type === "insitu").length, 1);
+  assert.equal(site.projects[0].views.length, 8);
+  assert.equal(site.projects[0].views.filter(view => view.type === "crop").length, 4);
+  assert.equal(site.projects[0].views.filter(view => view.type === "insitu").length, 4);
+  assert.equal([site.projects[0].cardImage, ...site.projects[0].views.map(view => view.image)].length, 9);
+  assert(site.projects.every(project => {
+    const images = [project.cardImage, project.image, ...project.views.map(view => view.image)].filter(Boolean);
+    return new Set(images).size === images.length;
+  }));
+  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-insitu-v(?:[2-5]|4-fixed)\.webp$/.test(view.image))));
+  assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"));
   assert.equal(site.about.experienceTitle, "Relevant Experience");
-  assert.equal(site.about.experience[0].role, "Furniture and object design");
-  assert.match(site.about.experience.at(-1).description, /bespoke and small-batch pieces/);
+  assert.equal(site.about.portrait, "/assets/portrait.webp");
+  assert.equal(site.about.experience[0].role, "Furniture and product design");
+  assert.equal(site.about.experience[1].role, "AI image generation");
+  assert.match(site.about.experience.at(-1).description, /outside-the-box thinking/);
+  assert.equal(site.contact.email, "jonbrooks35@gmail.com");
+  assert.equal(site.contact.phone, "0412 218 673");
 
   const workPage = await fetch(`${base}/work`);
   assert.equal(workPage.status, 200);

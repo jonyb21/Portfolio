@@ -67,11 +67,13 @@ function fillForm() {
     "workCta",
     "about.title",
     "about.body",
+    "about.portrait",
     "about.experienceTitle",
     "about.experienceIntro",
     "contact.title",
     "contact.body",
-    "contact.email"
+    "contact.email",
+    "contact.phone"
   ].forEach(name => {
     if (field(name)) field(name).value = get(name);
   });
@@ -97,10 +99,11 @@ function projectRow(project, index) {
     <label>Type <input data-project="${index}" data-key="type"></label>
     <label>Materials <input data-project="${index}" data-key="materials"></label>
     <label>Image URL <input data-project="${index}" data-key="image" required></label>
+    <label>Card motion image URL <input data-project="${index}" data-key="cardImage"></label>
     <label>Detail image URL <input data-project="${index}" data-key="detailImage"></label>
     <label>Summary <textarea data-project="${index}" data-key="summary" rows="4"></textarea></label>
     <label>Notes <textarea data-project="${index}" data-key="notesText" rows="4" placeholder="One note per line"></textarea></label>
-    <label>Image studies <textarea data-project="${index}" data-key="viewsText" rows="5" placeholder="Label | Image URL | crop or insitu"></textarea></label>
+    <label>Image studies <textarea data-project="${index}" data-key="viewsText" rows="8" placeholder="Use 4 crop rows and 4 insitu rows. Label | Image URL | crop or insitu"></textarea></label>
   `;
   row.querySelector('[data-key="title"]').value = project.title || "";
   row.querySelector('[data-key="slug"]').value = project.slug || "";
@@ -108,6 +111,7 @@ function projectRow(project, index) {
   row.querySelector('[data-key="type"]').value = project.type || "";
   row.querySelector('[data-key="materials"]').value = project.materials || "";
   row.querySelector('[data-key="image"]').value = project.image || "";
+  row.querySelector('[data-key="cardImage"]').value = project.cardImage || "";
   row.querySelector('[data-key="detailImage"]').value = project.detailImage || "";
   row.querySelector('[data-key="summary"]').value = project.summary || "";
   row.querySelector('[data-key="notesText"]').value = (project.notes || []).join("\n");
@@ -155,11 +159,13 @@ function collect() {
     "workCta",
     "about.title",
     "about.body",
+    "about.portrait",
     "about.experienceTitle",
     "about.experienceIntro",
     "contact.title",
     "contact.body",
-    "contact.email"
+    "contact.email",
+    "contact.phone"
   ].forEach(name => set(name, field(name).value.trim()));
 
   site.projects = Array.from(projectsEditor.querySelectorAll(".editor-card")).map(row => {
@@ -172,6 +178,7 @@ function collect() {
       type: row.querySelector('[data-key="type"]').value.trim(),
       materials: row.querySelector('[data-key="materials"]').value.trim(),
       image: row.querySelector('[data-key="image"]').value.trim(),
+      cardImage: row.querySelector('[data-key="cardImage"]').value.trim(),
       detailImage: row.querySelector('[data-key="detailImage"]').value.trim(),
       href: `/work/${slug}`,
       summary: row.querySelector('[data-key="summary"]').value.trim(),
@@ -233,8 +240,9 @@ document.getElementById("add-project").addEventListener("click", () => {
     year: "2026",
     type: "Furniture",
     materials: "Materials to be confirmed",
-    image: "/assets/furniture/hero-lounge-chair.png",
-    detailImage: "/assets/furniture/hero-lounge-chair-detail.png",
+    image: "/assets/furniture/arc-lounge-chair.webp",
+    cardImage: "/assets/furniture/hero-lounge-chair.webp",
+    detailImage: "/assets/furniture/hero-lounge-chair-detail.webp",
     href: `/work/${slug}`,
     summary: "A new furniture project ready for images, materials, and final portfolio notes.",
     notes: [
@@ -243,10 +251,14 @@ document.getElementById("add-project").addEventListener("click", () => {
       "Add the final use case or room context."
     ],
     views: [
-      { label: "Material detail", image: "/assets/furniture/hero-lounge-chair-detail.png", type: "crop" },
-      { label: "Frame detail", image: "/assets/furniture/hero-lounge-chair-detail.png", type: "crop" },
-      { label: "Profile study", image: "/assets/furniture/hero-lounge-chair.png", type: "crop" },
-      { label: "In situ", image: "/assets/furniture/hero-lounge-chair.png", type: "insitu" }
+      { label: "Material detail", image: "/assets/furniture/hero-lounge-chair-detail.webp", type: "crop" },
+      { label: "Frame detail", image: "/assets/furniture/contour-lounge-chair-crop-1.webp", type: "crop" },
+      { label: "Profile study", image: "/assets/furniture/contour-lounge-chair-crop-2.webp", type: "crop" },
+      { label: "Joinery detail", image: "/assets/furniture/contour-lounge-chair-crop-3.webp", type: "crop" },
+      { label: "In situ 1", image: "/assets/furniture/contour-lounge-chair-insitu-v2.webp", type: "insitu" },
+      { label: "In situ 2", image: "/assets/furniture/contour-lounge-chair-insitu-v3.webp", type: "insitu" },
+      { label: "In situ 3", image: "/assets/furniture/contour-lounge-chair-insitu-v4.webp", type: "insitu" },
+      { label: "In situ 4", image: "/assets/furniture/contour-lounge-chair-insitu-v5.webp", type: "insitu" }
     ]
   });
   renderProjects();
