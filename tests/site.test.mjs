@@ -13,6 +13,7 @@ const { createServer, validateSite } = await import("../server.js");
 const validSite = JSON.parse(fs.readFileSync(process.env.PORTFOLIO_DATA_PATH, "utf8"));
 validateSite(validSite);
 assert.throws(() => validateSite({ projects: [] }), /Brand/);
+assert.throws(() => validateSite({ ...validSite, contact: { ...validSite.contact, email: "not-email" } }), /valid email/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], href: "/work/wrong" }] }), /links/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0] }, { ...validSite.projects[0] }] }), /unique/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], slug: "Bad Slug", href: "/work/Bad Slug" }] }), /lowercase/);

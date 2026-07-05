@@ -79,6 +79,7 @@ function validateSite(site) {
   if (!site.brand || !site.hero?.title || !site.hero?.image) throw new Error("Brand, hero title, and hero image are required");
   if (!site.workTitle || !site.workIntro) throw new Error("Work title and intro are required");
   if (!site.about?.title || !site.about?.experienceTitle || !site.contact?.email) throw new Error("About title, experience title, and contact email are required");
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(site.contact.email)) throw new Error("Contact email must be a valid email address");
   if (!Array.isArray(site.about.experience) || site.about.experience.length < 1) throw new Error("At least one experience item is required");
   if (!Array.isArray(site.projects) || site.projects.length < 1) throw new Error("At least one project is required");
   if (!Array.isArray(site.nav) || site.nav.length < 1) throw new Error("At least one nav item is required");
