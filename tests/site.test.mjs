@@ -25,6 +25,8 @@ try {
   const site = await fetch(`${base}/api/site`).then(response => response.json());
   assert.equal(site.brand, "Jon Brooks");
   assert.equal(site.nav[0].href, "/work");
+  assert.equal(site.projects[0].slug, "silhouette-sofa");
+  assert.match(site.projects[0].summary, /single continuous gesture/);
 
   const workPage = await fetch(`${base}/work`);
   assert.equal(workPage.status, 200);

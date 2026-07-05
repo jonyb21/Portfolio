@@ -9,7 +9,7 @@ const css = fs.readFileSync("public/styles.css", "utf8");
 const admin = fs.readFileSync("public/admin.html", "utf8");
 const site = JSON.parse(fs.readFileSync("data/site.json", "utf8"));
 
-assert(!/[—–]/.test(index + work + about + contact + css + admin), "No em dash or en dash in shipped UI");
+assert(!/[—–]/.test(index + work + about + contact + css + admin + JSON.stringify(site)), "No em dash or en dash in shipped UI");
 assert(!index.includes('id="work"'), "Home page is landing hero only");
 assert(work.includes('body data-page="work"'), "Work tab is a separate page");
 assert(about.includes('body data-page="about"'), "About tab is a separate page");
@@ -22,6 +22,10 @@ assert(site.projects.length === 3, "Reference screen has three selected work car
 assert(site.nav.every(item => item.href.startsWith("/")), "Top nav uses page URLs, not anchors");
 assert(site.hero.image === "/assets/furniture/hero-lounge-chair.png", "Hero uses generated furniture image");
 assert(site.projects.every(project => project.image.startsWith("/assets/furniture/")), "Project images use generated furniture assets");
+assert(site.hero.detailImage === "/assets/furniture/hero-lounge-chair-detail.png", "Hero has generated detail image");
+assert(site.projects.every(project => project.detailImage?.startsWith("/assets/furniture/")), "Projects use generated detail crop assets");
+assert(site.projects.every(project => project.summary && project.notes?.length >= 3), "Projects have finished portfolio copy");
+assert(work.includes('id="project-details"'), "Work page renders project detail sections");
 assert(!admin.includes("Site JSON"), "Admin UI does not expose raw JSON editing");
 assert(admin.includes('data-tab="home"'), "Admin UI has interactive section tabs");
 assert(admin.includes('id="projects-editor"'), "Admin UI has project form editing");

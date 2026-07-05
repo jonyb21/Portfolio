@@ -175,6 +175,14 @@ h2 {
   line-height: 1.02;
 }
 
+.page-intro {
+  max-width: 620px;
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.5;
+}
+
 .compact {
   margin-bottom: 4px;
 }
@@ -183,6 +191,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+  margin-bottom: 86px;
 }
 
 .project-card {
@@ -226,6 +235,99 @@ h2 {
   font-family: Georgia, serif;
   font-size: 1.55rem;
   font-weight: 400;
+}
+
+.project-details {
+  display: grid;
+  gap: 72px;
+}
+
+.project-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
+  gap: 42px;
+  align-items: center;
+  scroll-margin-top: 32px;
+}
+
+.project-detail:nth-child(even) .detail-copy {
+  order: 2;
+}
+
+.project-detail:nth-child(even) .detail-image {
+  order: 1;
+}
+
+.detail-copy {
+  display: grid;
+  gap: 22px;
+}
+
+.project-meta {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.detail-copy h2 {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+}
+
+.detail-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.detail-copy dl {
+  margin: 0;
+}
+
+.detail-copy dt {
+  color: var(--accent);
+  font-size: 0.82rem;
+  margin-bottom: 6px;
+}
+
+.detail-copy dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.detail-copy ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  color: var(--muted);
+  list-style: none;
+}
+
+.detail-copy li {
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.45;
+}
+
+.detail-copy li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.detail-image {
+  aspect-ratio: 1.2;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
 }
 
 .about {
@@ -312,5 +414,16 @@ h2 {
 
   .project-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project-detail,
+  .project-detail:nth-child(even) .detail-copy,
+  .project-detail:nth-child(even) .detail-image {
+    grid-template-columns: 1fr;
+    order: initial;
+  }
+
+  .detail-image {
+    aspect-ratio: 0.92;
   }
 }

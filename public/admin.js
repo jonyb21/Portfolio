@@ -50,7 +50,9 @@ function fillForm() {
     "hero.cta",
     "hero.ctaHref",
     "hero.image",
+    "hero.detailImage",
     "workTitle",
+    "workIntro",
     "workCta",
     "about.title",
     "about.body",
@@ -74,12 +76,26 @@ function projectRow(project, index) {
       <button type="button" data-remove-project="${index}">Remove</button>
     </div>
     <label>Title <input data-project="${index}" data-key="title" required></label>
+    <label>Slug <input data-project="${index}" data-key="slug" required></label>
+    <label>Year <input data-project="${index}" data-key="year"></label>
+    <label>Type <input data-project="${index}" data-key="type"></label>
+    <label>Materials <input data-project="${index}" data-key="materials"></label>
     <label>Image URL <input data-project="${index}" data-key="image" required></label>
+    <label>Detail image URL <input data-project="${index}" data-key="detailImage"></label>
     <label>Link <input data-project="${index}" data-key="href"></label>
+    <label>Summary <textarea data-project="${index}" data-key="summary" rows="4"></textarea></label>
+    <label>Notes <textarea data-project="${index}" data-key="notesText" rows="4" placeholder="One note per line"></textarea></label>
   `;
   row.querySelector('[data-key="title"]').value = project.title || "";
+  row.querySelector('[data-key="slug"]').value = project.slug || "";
+  row.querySelector('[data-key="year"]').value = project.year || "";
+  row.querySelector('[data-key="type"]').value = project.type || "";
+  row.querySelector('[data-key="materials"]').value = project.materials || "";
   row.querySelector('[data-key="image"]').value = project.image || "";
+  row.querySelector('[data-key="detailImage"]').value = project.detailImage || "";
   row.querySelector('[data-key="href"]').value = project.href || "#";
+  row.querySelector('[data-key="summary"]').value = project.summary || "";
+  row.querySelector('[data-key="notesText"]').value = (project.notes || []).join("\n");
   return row;
 }
 
@@ -115,7 +131,9 @@ function collect() {
     "hero.cta",
     "hero.ctaHref",
     "hero.image",
+    "hero.detailImage",
     "workTitle",
+    "workIntro",
     "workCta",
     "about.title",
     "about.body",
@@ -126,8 +144,15 @@ function collect() {
 
   site.projects = Array.from(projectsEditor.querySelectorAll(".editor-card")).map(row => ({
     title: row.querySelector('[data-key="title"]').value.trim(),
+    slug: row.querySelector('[data-key="slug"]').value.trim(),
+    year: row.querySelector('[data-key="year"]').value.trim(),
+    type: row.querySelector('[data-key="type"]').value.trim(),
+    materials: row.querySelector('[data-key="materials"]').value.trim(),
     image: row.querySelector('[data-key="image"]').value.trim(),
-    href: row.querySelector('[data-key="href"]').value.trim() || "#"
+    detailImage: row.querySelector('[data-key="detailImage"]').value.trim(),
+    href: row.querySelector('[data-key="href"]').value.trim() || "#",
+    summary: row.querySelector('[data-key="summary"]').value.trim(),
+    notes: row.querySelector('[data-key="notesText"]').value.split("\n").map(note => note.trim()).filter(Boolean)
   }));
 
   site.nav = Array.from(navEditor.querySelectorAll(".editor-card")).map(row => ({
@@ -166,7 +191,18 @@ document.querySelectorAll(".tab").forEach(tab => {
 
 document.getElementById("add-project").addEventListener("click", () => {
   collect();
-  site.projects.push({ title: "New Project", image: "/assets/sofa.svg", href: "#" });
+  site.projects.push({
+    title: "New Project",
+    slug: "new-project",
+    year: "2026",
+    type: "Furniture",
+    materials: "",
+    image: "/assets/furniture/hero-lounge-chair.png",
+    detailImage: "/assets/furniture/hero-lounge-chair-detail.png",
+    href: "#new-project",
+    summary: "",
+    notes: []
+  });
   renderProjects();
 });
 

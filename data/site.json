@@ -16,37 +16,72 @@
   ],
   "hero": {
     "title": "Designing furniture with clarity, character, and longevity.",
-    "body": "I'm Jon Brooks, an industrial designer creating considered furniture and objects. This portfolio is a selection of projects shaped by craftsmanship, material sensitivity, and purposeful design.",
+    "body": "I'm Jon Brooks, an industrial designer creating considered furniture and objects with quiet silhouettes, honest materials, and details built to age well.",
     "cta": "View selected work",
     "ctaHref": "/work",
-    "image": "/assets/furniture/hero-lounge-chair.png"
+    "image": "/assets/furniture/hero-lounge-chair.png",
+    "detailImage": "/assets/furniture/hero-lounge-chair-detail.png"
   },
   "workTitle": "Selected Work",
-  "workCta": "View all projects",
+  "workIntro": "A focused selection of furniture studies balancing softened forms, durable joinery, and materials that invite touch.",
+  "workCta": "Start a commission",
   "projects": [
     {
+      "slug": "silhouette-sofa",
       "title": "Silhouette Sofa",
+      "year": "2026",
+      "type": "Soft seating",
+      "materials": "Olive boucle upholstery, hardwood frame, blackened stone table",
       "image": "/assets/furniture/silhouette-sofa.png",
-      "href": "#"
+      "detailImage": "/assets/furniture/silhouette-sofa-detail.png",
+      "href": "#silhouette-sofa",
+      "summary": "A low, rounded sofa study designed around a single continuous gesture. The back, arms, and seat read as one softened volume while the foreground table gives the piece a grounded architectural counterpoint.",
+      "notes": [
+        "Continuous wraparound back for a calm profile from every angle.",
+        "Dense upholstery texture chosen to hold shadow and soften wear.",
+        "Low table pairing reinforces the sofa's horizontal silhouette."
+      ]
     },
     {
+      "slug": "arc-lounge-chair",
       "title": "Arc Lounge Chair",
+      "year": "2026",
+      "type": "Lounge chair",
+      "materials": "Cream boucle, sculpted walnut, concealed webbing",
       "image": "/assets/furniture/arc-lounge-chair.png",
-      "href": "#"
+      "detailImage": "/assets/furniture/arc-lounge-chair-detail.png",
+      "href": "#arc-lounge-chair",
+      "summary": "A compact chair built around a continuous walnut arm rail. The cream upholstered forms sit inside the frame rather than on top of it, making the construction feel light without becoming fragile.",
+      "notes": [
+        "Rounded walnut transitions remove hard stops at the arm and front leg.",
+        "Generous cushion radius gives the chair a softer domestic posture.",
+        "Contrasting upholstery and timber make the frame legible at a glance."
+      ]
     },
     {
+      "slug": "foundry-sideboard",
       "title": "Foundry Sideboard",
+      "year": "2026",
+      "type": "Storage",
+      "materials": "Ribbed walnut, satin finish, slim timber legs",
       "image": "/assets/furniture/foundry-sideboard.png",
-      "href": "#"
+      "detailImage": "/assets/furniture/foundry-sideboard-detail.png",
+      "href": "#foundry-sideboard",
+      "summary": "A long storage piece with a precise ribbed front and restrained styling surface. The rhythm of the vertical fluting adds depth while keeping the cabinet quiet enough for living spaces.",
+      "notes": [
+        "Vertical ribbing breaks up the broad face without visual noise.",
+        "Inset legs keep the cabinet mass floating just above the floor.",
+        "Satin walnut finish holds detail in low light and avoids glare."
+      ]
     }
   ],
   "about": {
     "title": "About",
-    "body": "A quiet practice focused on proportion, material honesty, and useful objects built to last."
+    "body": "Jon Brooks is a furniture and object designer working across seating, storage, and small interior pieces. The practice is built around restraint: clear proportions, tactile materials, and construction details that stay useful after the first impression fades."
   },
   "contact": {
     "title": "Contact",
-    "body": "For commissions, collaborations, and project inquiries, send a note with the scope, timeline, and materials you have in mind.",
-    "email": "jon@example.com"
+    "body": "For commissions, collaborations, and project inquiries, send a note with the scope, timeline, room context, and materials you have in mind.",
+    "email": "jon@jonllm.xyz"
   }
 }
