@@ -18,6 +18,8 @@ assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.proje
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], slug: "Bad Slug", href: "/work/Bad Slug" }] }), /lowercase/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], materials: "" }] }), /materials/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], notes: ["Only one"] }] }), /detail notes/);
+assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], image: "/assets/furniture/missing.png" }] }), /does not exist/);
+validateSite({ ...validSite, projects: [{ ...validSite.projects[0], image: "https://example.com/chair.png" }] });
 assert.throws(() => validateSite({ ...validSite, nav: [{ label: "Work", href: "#work" }] }), /separate page paths/);
 
 const server = createServer();

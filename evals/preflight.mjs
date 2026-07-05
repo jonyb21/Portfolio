@@ -32,6 +32,7 @@ assert(site.projects.every(project => project.image.startsWith("/assets/furnitur
 assert(site.projects.every(project => project.href === `/work/${project.slug}`), "Each project links to its own page");
 assert(fs.readFileSync("server.js", "utf8").includes("Project slugs must be unique"), "Server rejects duplicate project slugs");
 assert(fs.readFileSync("server.js", "utf8").includes("at least three detail notes"), "Server keeps product pages detailed enough");
+assert(fs.readFileSync("server.js", "utf8").includes("Image path does not exist"), "Server rejects broken local image paths");
 assert(fs.readFileSync("server.js", "utf8").includes("Nav links must use separate page paths"), "Server keeps top nav on separate pages");
 assert(adminJs.includes("href: `/work/${slug}`"), "Admin keeps project links tied to slugs");
 assert(!adminJs.includes('data-project="${index}" data-key="href"'), "Project URLs are generated, not manually edited");

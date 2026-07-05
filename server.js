@@ -59,6 +59,12 @@ function saveSite(site) {
   fs.writeFileSync(dataPath, `${JSON.stringify(site, null, 2)}\n`);
 }
 
+function validateImage(value) {
+  if (/^https?:\/\//.test(value)) return;
+  if (!value.startsWith("/") || value.includes("..")) throw new Error("Image URLs must be public paths or http URLs");
+  if (!fs.existsSync(path.join(publicDir, value))) throw new Error(`Image path does not exist: ${value}`);
+}
+
 function validateSite(site) {
   if (!site || typeof site !== "object") throw new Error("Site payload must be an object");
   if (!site.brand || !site.hero?.title || !site.hero?.image) throw new Error("Brand, hero title, and hero image are required");
@@ -68,10 +74,14 @@ function validateSite(site) {
   if (!Array.isArray(site.projects) || site.projects.length < 1) throw new Error("At least one project is required");
   if (!Array.isArray(site.nav) || site.nav.length < 1) throw new Error("At least one nav item is required");
   const slugs = new Set();
+  validateImage(site.hero.image);
+  if (site.hero.detailImage) validateImage(site.hero.detailImage);
   for (const project of site.projects) {
     if (!project.title || !project.image) throw new Error("Every project needs a title and image");
     if (!project.slug || !project.summary || !project.detailImage) throw new Error("Every project needs a slug, summary, and detail image");
     if (!project.materials || !Array.isArray(project.notes) || project.notes.length < 3) throw new Error("Every project needs materials and at least three detail notes");
+    validateImage(project.image);
+    validateImage(project.detailImage);
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(project.slug)) throw new Error("Project slugs must be lowercase words separated by hyphens");
     if (slugs.has(project.slug)) throw new Error("Project slugs must be unique");
     slugs.add(project.slug);
