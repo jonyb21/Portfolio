@@ -78,6 +78,7 @@ function validateSite(site) {
   }
   for (const item of site.nav) {
     if (!item.label || !item.href) throw new Error("Every nav item needs a label and URL");
+    if (!item.href.startsWith("/") || item.href.includes("#")) throw new Error("Nav links must use separate page paths");
   }
   for (const item of site.about.experience) {
     if (!item.role || !item.company) throw new Error("Every experience item needs a role and company");

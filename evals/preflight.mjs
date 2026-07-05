@@ -31,6 +31,7 @@ assert(!/[→←]|-&gt;/.test(index + work + product + about + contact + fs.read
 assert(site.projects.every(project => project.image.startsWith("/assets/furniture/")), "Project images use generated furniture assets");
 assert(site.projects.every(project => project.href === `/work/${project.slug}`), "Each project links to its own page");
 assert(fs.readFileSync("server.js", "utf8").includes("Project slugs must be unique"), "Server rejects duplicate project slugs");
+assert(fs.readFileSync("server.js", "utf8").includes("Nav links must use separate page paths"), "Server keeps top nav on separate pages");
 assert(adminJs.includes("href: `/work/${slug}`"), "Admin keeps project links tied to slugs");
 assert(!adminJs.includes('data-project="${index}" data-key="href"'), "Project URLs are generated, not manually edited");
 assert(adminJs.includes("(await response.json()).error"), "Admin shows server validation errors");
