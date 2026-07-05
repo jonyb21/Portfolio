@@ -24,6 +24,11 @@ try {
 
   const site = await fetch(`${base}/api/site`).then(response => response.json());
   assert.equal(site.brand, "Jon Brooks");
+  assert.equal(site.nav[0].href, "/work");
+
+  const workPage = await fetch(`${base}/work`);
+  assert.equal(workPage.status, 200);
+  assert.match(await workPage.text(), /Selected Work/);
 
   const denied = await fetch(`${base}/api/site`, {
     method: "PUT",

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1080" role="img" aria-label="Dark sideboard placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#23201b"/>
+      <stop offset="1" stop-color="#070807"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" x2="1">
+      <stop offset="0" stop-color="#5b3e2a"/>
+      <stop offset="1" stop-color="#20140f"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1080" fill="url(#bg)"/>
+  <ellipse cx="452" cy="835" rx="340" ry="54" fill="#050505" opacity=".6"/>
+  <rect x="162" y="565" width="576" height="210" rx="18" fill="url(#wood)"/>
+  <g opacity=".65" stroke="#987457" stroke-width="8">
+    <path d="M210 585v172M255 585v172M300 585v172M345 585v172M390 585v172M435 585v172M480 585v172M525 585v172M570 585v172M615 585v172M660 585v172"/>
+  </g>
+  <rect x="190" y="775" width="58" height="86" rx="10" fill="#160f0b"/>
+  <rect x="650" y="775" width="58" height="86" rx="10" fill="#160f0b"/>
+  <rect x="565" y="475" width="92" height="90" rx="42" fill="#111"/>
+  <path d="M610 470 C585 415 598 365 570 315 M620 468 C650 420 665 382 690 335" stroke="#8b6b38" stroke-width="7" fill="none" opacity=".7"/>
+</svg>

@@ -75,7 +75,8 @@ function authed(req) {
 }
 
 function staticFile(urlPath, res) {
-  const clean = urlPath === "/" ? "/index.html" : decodeURIComponent(urlPath);
+  let clean = urlPath === "/" ? "/index.html" : decodeURIComponent(urlPath);
+  if (!path.extname(clean)) clean += ".html";
   const filePath = path.normalize(path.join(publicDir, clean));
   if (!filePath.startsWith(publicDir)) return send(res, 403, "Forbidden", "text/plain; charset=utf-8");
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) return send(res, 404, "Not found", "text/plain; charset=utf-8");

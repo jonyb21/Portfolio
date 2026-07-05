@@ -7,7 +7,7 @@
     <title>Jon Brooks Portfolio</title>
     <link rel="stylesheet" href="/styles.css">
   </head>
-  <body>
+  <body data-page="home">
     <header class="site-header">
       <a class="brand" href="/" data-field="brand">Jon Brooks</a>
       <nav id="nav"></nav>
@@ -18,25 +18,13 @@
         <div class="hero-copy">
           <h1 data-field="hero.title">Designing furniture with clarity, character, and longevity.</h1>
           <p data-field="hero.body">I’m Jon Brooks, an industrial designer creating considered furniture and objects. This portfolio is a selection of projects shaped by craftsmanship, material sensitivity, and purposeful design.</p>
-          <a class="text-link" href="#work"><span data-field="hero.cta">View selected work</span><span aria-hidden="true">→</span></a>
+          <a class="text-link" data-field-href="hero.ctaHref" href="/work"><span data-field="hero.cta">View selected work</span><span aria-hidden="true">→</span></a>
         </div>
         <figure class="hero-image">
           <img data-field="hero.image" src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=1200&q=80" alt="Featured furniture piece">
         </figure>
       </section>
 
-      <section class="work" id="work">
-        <div class="section-head">
-          <h2 data-field="workTitle">Selected Work</h2>
-          <a class="text-link compact" href="#work"><span data-field="workCta">View all projects</span><span aria-hidden="true">→</span></a>
-        </div>
-        <div class="project-grid" id="projects"></div>
-      </section>
-
-      <section class="about" id="about">
-        <h2 data-field="about.title">About</h2>
-        <p data-field="about.body">A quiet practice focused on proportion, material honesty, and useful objects built to last.</p>
-      </section>
     </main>
 
     <script src="/app.js" defer></script>

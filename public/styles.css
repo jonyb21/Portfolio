@@ -65,6 +65,11 @@ nav {
 }
 
 nav a:last-child {
+  color: var(--muted);
+}
+
+nav a.is-active,
+body[data-page="home"] nav a:last-child {
   color: var(--accent);
 }
 
@@ -132,8 +137,14 @@ img {
   filter: saturate(0.72) brightness(0.52) contrast(1.08);
 }
 
+.project-card img {
+  object-position: center bottom;
+  filter: saturate(0.74) brightness(0.66) contrast(1.06);
+}
+
 .work,
-.about {
+.about,
+.contact {
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 52px;
@@ -153,6 +164,17 @@ h2 {
   line-height: 1;
 }
 
+.page-section {
+  padding-top: 86px;
+  padding-bottom: 96px;
+}
+
+.page-section h1 {
+  margin: 0;
+  font-size: clamp(3.4rem, 7vw, 6.5rem);
+  line-height: 1.02;
+}
+
 .compact {
   margin-bottom: 4px;
 }
@@ -166,6 +188,11 @@ h2 {
 .project-card {
   aspect-ratio: 0.83;
   transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.project-card img {
+  position: absolute;
+  inset: 0;
 }
 
 .project-card:hover {
@@ -205,15 +232,20 @@ h2 {
   display: grid;
   grid-template-columns: 0.7fr 1fr;
   gap: 40px;
-  padding-top: 92px;
-  padding-bottom: 76px;
 }
 
-.about p {
+.about p,
+.contact p {
   margin: 0;
   color: var(--muted);
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   line-height: 1.5;
+}
+
+.contact {
+  display: grid;
+  gap: 28px;
+  max-width: 820px;
 }
 
 .load-error::before {
@@ -259,7 +291,8 @@ h2 {
 
   .hero,
   .work,
-  .about {
+  .about,
+  .contact {
     padding-left: 22px;
     padding-right: 22px;
   }

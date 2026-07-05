@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1080" role="img" aria-label="Dark chair placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#20201d"/>
+      <stop offset="1" stop-color="#070807"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" x2="1">
+      <stop offset="0" stop-color="#4c3526"/>
+      <stop offset="1" stop-color="#1d130e"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1080" fill="url(#bg)"/>
+  <ellipse cx="455" cy="835" rx="250" ry="52" fill="#050505" opacity=".6"/>
+  <path d="M280 770 C300 610 355 505 450 500 C550 500 610 615 630 770" fill="none" stroke="url(#wood)" stroke-width="42" stroke-linecap="round"/>
+  <rect x="315" y="485" width="270" height="230" rx="120" fill="#c9c3b5" opacity=".82"/>
+  <rect x="292" y="665" width="316" height="96" rx="48" fill="#d4cfc2" opacity=".84"/>
+  <path d="M323 732 L285 890 M575 732 L620 890" stroke="url(#wood)" stroke-width="32" stroke-linecap="round"/>
+</svg>
