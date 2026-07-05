@@ -28,6 +28,13 @@ function slugify(value) {
   return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "new-project";
 }
 
+function nextProjectSlug() {
+  const slugs = new Set(site.projects.map(project => project.slug));
+  let index = site.projects.length + 1;
+  while (slugs.has(`new-project-${index}`)) index += 1;
+  return `new-project-${index}`;
+}
+
 function toast(message, type = "success") {
   status.value = message;
   const existing = document.querySelector(".toast");
@@ -151,7 +158,7 @@ function collect() {
     "contact.email"
   ].forEach(name => set(name, field(name).value.trim()));
 
-  site.projects = Array.from(projectsEditor.querySelectorAll(".editor-card")).map(row => ({
+  site.projects = Array.from(projectsEditor.querySelectorAll(".editor-card")).map(row => {
     const title = row.querySelector('[data-key="title"]').value.trim();
     const slug = slugify(row.querySelector('[data-key="slug"]').value || title);
     return {
@@ -210,7 +217,7 @@ document.querySelectorAll(".tab").forEach(tab => {
 
 document.getElementById("add-project").addEventListener("click", () => {
   collect();
-  const slug = `new-project-${site.projects.length + 1}`;
+  const slug = nextProjectSlug();
   site.projects.push({
     title: "New Project",
     slug,

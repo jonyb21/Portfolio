@@ -8,7 +8,9 @@ const about = fs.readFileSync("public/about.html", "utf8");
 const contact = fs.readFileSync("public/contact.html", "utf8");
 const css = fs.readFileSync("public/styles.css", "utf8");
 const admin = fs.readFileSync("public/admin.html", "utf8");
+const adminJs = fs.readFileSync("public/admin.js", "utf8");
 const site = JSON.parse(fs.readFileSync("data/site.json", "utf8"));
+new Function(adminJs);
 
 assert(!/[—–]/.test(index + work + product + about + contact + css + admin + JSON.stringify(site)), "No em dash or en dash in shipped UI");
 assert(!index.includes('id="work"'), "Home page is landing hero only");
@@ -29,9 +31,9 @@ assert(!/[→←]|-&gt;/.test(index + work + product + about + contact + fs.read
 assert(site.projects.every(project => project.image.startsWith("/assets/furniture/")), "Project images use generated furniture assets");
 assert(site.projects.every(project => project.href === `/work/${project.slug}`), "Each project links to its own page");
 assert(fs.readFileSync("server.js", "utf8").includes("Project slugs must be unique"), "Server rejects duplicate project slugs");
-assert(fs.readFileSync("public/admin.js", "utf8").includes("href: `/work/${slug}`"), "Admin keeps project links tied to slugs");
-assert(!fs.readFileSync("public/admin.js", "utf8").includes('data-project="${index}" data-key="href"'), "Project URLs are generated, not manually edited");
-assert(fs.readFileSync("public/admin.js", "utf8").includes("(await response.json()).error"), "Admin shows server validation errors");
+assert(adminJs.includes("href: `/work/${slug}`"), "Admin keeps project links tied to slugs");
+assert(!adminJs.includes('data-project="${index}" data-key="href"'), "Project URLs are generated, not manually edited");
+assert(adminJs.includes("(await response.json()).error"), "Admin shows server validation errors");
 assert(site.hero.detailImage === "/assets/furniture/hero-lounge-chair-detail.png", "Hero has generated detail image");
 assert(site.projects.every(project => project.detailImage?.startsWith("/assets/furniture/")), "Projects use generated detail crop assets");
 assert(site.projects.every(project => project.summary && project.notes?.length >= 3), "Projects have finished portfolio copy");
@@ -45,6 +47,7 @@ assert(!admin.includes("Site JSON"), "Admin UI does not expose raw JSON editing"
 assert(admin.includes('data-tab="home"'), "Admin UI has interactive section tabs");
 assert(admin.includes('id="projects-editor"'), "Admin UI has project form editing");
 assert(fs.readFileSync("public/app.js", "utf8").includes('page === "product" ? "work" : page'), "Product pages keep Work nav active");
-assert(fs.readFileSync("public/admin.js", "utf8").includes("const slug = `new-project-${site.projects.length + 1}`"), "New admin projects get unique default slugs");
-assert(fs.readFileSync("public/admin.js", "utf8").includes("href: `/work/${slug}`"), "New admin projects default to product pages");
-assert(fs.readFileSync("public/admin.js", "utf8").includes("Add the key material or construction detail."), "New admin projects start with useful detail notes");
+assert(adminJs.includes("function nextProjectSlug()"), "New admin projects get duplicate-safe default slugs");
+assert(adminJs.includes("const slug = nextProjectSlug()"), "New admin projects use the duplicate-safe slug helper");
+assert(adminJs.includes("href: `/work/${slug}`"), "New admin projects default to product pages");
+assert(adminJs.includes("Add the key material or construction detail."), "New admin projects start with useful detail notes");
