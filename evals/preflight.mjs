@@ -9,6 +9,7 @@ const contact = fs.readFileSync("public/contact.html", "utf8");
 const css = fs.readFileSync("public/styles.css", "utf8");
 const admin = fs.readFileSync("public/admin.html", "utf8");
 const adminJs = fs.readFileSync("public/admin.js", "utf8");
+const readme = fs.readFileSync("README.md", "utf8");
 const site = JSON.parse(fs.readFileSync("data/site.json", "utf8"));
 new Function(adminJs);
 
@@ -59,3 +60,5 @@ assert(adminJs.includes("function nextProjectSlug()"), "New admin projects get d
 assert(adminJs.includes("const slug = nextProjectSlug()"), "New admin projects use the duplicate-safe slug helper");
 assert(adminJs.includes("href: `/work/${slug}`"), "New admin projects default to product pages");
 assert(adminJs.includes("Add the key material or construction detail."), "New admin projects start with useful detail notes");
+assert(readme.includes("Each project needs materials and at least three notes"), "README documents project detail requirements");
+assert(readme.includes("Role | Company | Period | Description"), "README documents experience row format");

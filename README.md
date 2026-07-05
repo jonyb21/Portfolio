@@ -15,9 +15,17 @@ Open `http://127.0.0.1:8788`.
 
 ## Admin
 
-Set `ADMIN_PASSWORD` in `.env`, then open `http://127.0.0.1:8788/admin.html`.
+Set `ADMIN_PASSWORD` in `.env`, then open `http://127.0.0.1:8788/admin`.
 
 The admin saves `data/site.json`. Docker mounts `./data` so edits survive container rebuilds.
+
+Project images can use existing `/assets/...` files or full `https://` URLs. Each project needs materials and at least three notes so its detail page renders cleanly.
+
+Experience rows use:
+
+```text
+Role | Company | Period | Description
+```
 
 ## Docker
 
