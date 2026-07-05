@@ -91,7 +91,6 @@ function projectRow(project, index) {
     <label>Materials <input data-project="${index}" data-key="materials"></label>
     <label>Image URL <input data-project="${index}" data-key="image" required></label>
     <label>Detail image URL <input data-project="${index}" data-key="detailImage"></label>
-    <label>Link <input data-project="${index}" data-key="href"></label>
     <label>Summary <textarea data-project="${index}" data-key="summary" rows="4"></textarea></label>
     <label>Notes <textarea data-project="${index}" data-key="notesText" rows="4" placeholder="One note per line"></textarea></label>
   `;
@@ -102,7 +101,6 @@ function projectRow(project, index) {
   row.querySelector('[data-key="materials"]').value = project.materials || "";
   row.querySelector('[data-key="image"]').value = project.image || "";
   row.querySelector('[data-key="detailImage"]').value = project.detailImage || "";
-  row.querySelector('[data-key="href"]').value = project.href || "#";
   row.querySelector('[data-key="summary"]').value = project.summary || "";
   row.querySelector('[data-key="notesText"]').value = (project.notes || []).join("\n");
   return row;
