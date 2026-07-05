@@ -31,6 +31,7 @@ assert(site.projects.every(project => project.href === `/work/${project.slug}`),
 assert(fs.readFileSync("server.js", "utf8").includes("Project slugs must be unique"), "Server rejects duplicate project slugs");
 assert(fs.readFileSync("public/admin.js", "utf8").includes("href: `/work/${slug}`"), "Admin keeps project links tied to slugs");
 assert(!fs.readFileSync("public/admin.js", "utf8").includes('data-project="${index}" data-key="href"'), "Project URLs are generated, not manually edited");
+assert(fs.readFileSync("public/admin.js", "utf8").includes("(await response.json()).error"), "Admin shows server validation errors");
 assert(site.hero.detailImage === "/assets/furniture/hero-lounge-chair-detail.png", "Hero has generated detail image");
 assert(site.projects.every(project => project.detailImage?.startsWith("/assets/furniture/")), "Projects use generated detail crop assets");
 assert(site.projects.every(project => project.summary && project.notes?.length >= 3), "Projects have finished portfolio copy");

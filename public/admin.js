@@ -264,7 +264,11 @@ form.addEventListener("submit", async event => {
   });
 
   if (!response.ok) {
-    toast(`Save failed: ${response.status}`, "error");
+    let message = `Save failed: ${response.status}`;
+    try {
+      message = (await response.json()).error || message;
+    } catch {}
+    toast(message, "error");
     return;
   }
 

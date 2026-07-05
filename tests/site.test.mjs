@@ -66,6 +66,18 @@ try {
   });
   assert.equal(authOk.status, 200);
 
+  const invalidSite = { ...site, projects: [{ ...site.projects[0], href: "/work/wrong" }] };
+  const invalidSave = await fetch(`${base}/api/site`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+      "x-admin-password": "secret"
+    },
+    body: JSON.stringify(invalidSite)
+  });
+  assert.equal(invalidSave.status, 400);
+  assert.match((await invalidSave.json()).error, /links/);
+
   site.brand = "Updated Brand";
   const saved = await fetch(`${base}/api/site`, {
     method: "PUT",
