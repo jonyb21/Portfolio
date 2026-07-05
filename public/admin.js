@@ -210,17 +210,22 @@ document.querySelectorAll(".tab").forEach(tab => {
 
 document.getElementById("add-project").addEventListener("click", () => {
   collect();
+  const slug = `new-project-${site.projects.length + 1}`;
   site.projects.push({
     title: "New Project",
-    slug: "new-project",
+    slug,
     year: "2026",
     type: "Furniture",
-    materials: "",
+    materials: "Materials to be confirmed",
     image: "/assets/furniture/hero-lounge-chair.png",
     detailImage: "/assets/furniture/hero-lounge-chair-detail.png",
-    href: "/work/new-project",
-    summary: "",
-    notes: []
+    href: `/work/${slug}`,
+    summary: "A new furniture project ready for images, materials, and final portfolio notes.",
+    notes: [
+      "Add the main design intent.",
+      "Add the key material or construction detail.",
+      "Add the final use case or room context."
+    ]
   });
   renderProjects();
 });

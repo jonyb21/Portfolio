@@ -45,4 +45,6 @@ assert(!admin.includes("Site JSON"), "Admin UI does not expose raw JSON editing"
 assert(admin.includes('data-tab="home"'), "Admin UI has interactive section tabs");
 assert(admin.includes('id="projects-editor"'), "Admin UI has project form editing");
 assert(fs.readFileSync("public/app.js", "utf8").includes('page === "product" ? "work" : page'), "Product pages keep Work nav active");
-assert(fs.readFileSync("public/admin.js", "utf8").includes('href: "/work/new-project"'), "New admin projects default to product pages");
+assert(fs.readFileSync("public/admin.js", "utf8").includes("const slug = `new-project-${site.projects.length + 1}`"), "New admin projects get unique default slugs");
+assert(fs.readFileSync("public/admin.js", "utf8").includes("href: `/work/${slug}`"), "New admin projects default to product pages");
+assert(fs.readFileSync("public/admin.js", "utf8").includes("Add the key material or construction detail."), "New admin projects start with useful detail notes");
