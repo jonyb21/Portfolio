@@ -35,6 +35,8 @@ assert(site.hero.detailImage === "/assets/furniture/hero-lounge-chair-detail.png
 assert(site.projects.every(project => project.detailImage?.startsWith("/assets/furniture/")), "Projects use generated detail crop assets");
 assert(site.projects.every(project => project.summary && project.notes?.length >= 3), "Projects have finished portfolio copy");
 assert(site.about.experience.length >= 3, "About page has relevant experience entries");
+assert(site.about.experienceTitle === "Relevant Experience", "About page frames work history as relevant experience");
+assert(site.about.experience.some(item => /Prototyping/.test(item.role)), "About page includes hands-on prototyping experience");
 assert(about.includes('id="experience-list"'), "About page renders experience list");
 assert(!work.includes('id="project-details"'), "Work page lists projects without inline detail sections");
 assert(product.includes('id="product-page"'), "Project template renders project detail pages");

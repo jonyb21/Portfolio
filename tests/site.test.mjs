@@ -31,7 +31,9 @@ try {
   assert.equal(site.nav[0].href, "/work");
   assert.equal(site.projects[0].slug, "silhouette-sofa");
   assert.match(site.projects[0].summary, /single continuous gesture/);
-  assert.equal(site.about.experience[0].role, "Furniture and object designer");
+  assert.equal(site.about.experienceTitle, "Relevant Experience");
+  assert.equal(site.about.experience[0].role, "Furniture and object design");
+  assert.match(site.about.experience.at(-1).description, /bespoke and small-batch pieces/);
 
   const workPage = await fetch(`${base}/work`);
   assert.equal(workPage.status, 200);

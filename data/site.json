@@ -77,27 +77,33 @@
   ],
   "about": {
     "title": "About",
-    "body": "Jon Brooks is a furniture and object designer working across seating, storage, and small interior pieces. The practice is built around restraint: clear proportions, tactile materials, and construction details that stay useful after the first impression fades.",
-    "experienceTitle": "Experience",
-    "experienceIntro": "Relevant work across furniture design, product development, fabrication, and client-led interior pieces.",
+    "body": "Jon Brooks is a furniture and object designer working across seating, storage, and interior objects. The work is shaped by a practical industrial-design background: concept development, material decisions, prototyping, and the small construction details that make a piece feel resolved in daily use.",
+    "experienceTitle": "Relevant Experience",
+    "experienceIntro": "Past work that supports the furniture practice, from early concept and product development through hands-on prototyping, fabrication, and client presentation.",
     "experience": [
       {
-        "role": "Furniture and object designer",
+        "role": "Furniture and object design",
         "company": "Independent practice",
         "period": "Current",
-        "description": "Designing seating, storage, and interior objects from concept through visual direction, materials, and build-ready detail."
+        "description": "Creating seating, storage, and interior objects with a focus on proportion, material character, presentation imagery, and build-ready design intent."
       },
       {
-        "role": "Industrial design and product development",
-        "company": "Studio and client projects",
+        "role": "Industrial design",
+        "company": "Product and studio work",
         "period": "Previous",
-        "description": "Developed product concepts, refined proportions, selected materials, and prepared presentation assets for design reviews."
+        "description": "Developed product concepts, refined forms, compared materials, and prepared visual direction for design reviews and client decisions."
       },
       {
-        "role": "Fabrication and prototyping",
-        "company": "Workshop-led projects",
+        "role": "Prototyping and fabrication",
+        "company": "Workshop-led work",
         "period": "Previous",
-        "description": "Worked through mockups, joinery decisions, finish samples, and prototype iterations to connect design intent with production reality."
+        "description": "Worked through mockups, joinery decisions, finish samples, and prototype iterations so furniture details could be tested before final build."
+      },
+      {
+        "role": "Client-led interior pieces",
+        "company": "Commission and collaboration work",
+        "period": "Previous",
+        "description": "Translated room context, use requirements, and material preferences into clear furniture directions for bespoke and small-batch pieces."
       }
     ]
   },
