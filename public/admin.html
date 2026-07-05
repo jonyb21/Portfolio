@@ -16,21 +16,111 @@
         <a href="/">View site</a>
       </section>
 
-      <form id="admin-form">
-        <label>
-          Admin password
-          <input id="password" type="password" autocomplete="current-password" required>
-        </label>
-        <label>
-          Site JSON
-          <textarea id="payload" spellcheck="false"></textarea>
-        </label>
-        <div class="actions">
-          <button type="button" id="reload">Reload</button>
-          <button type="submit">Save</button>
-        </div>
-        <output id="status">Loading content…</output>
-      </form>
+      <section class="login-panel" id="login-panel">
+        <form id="login-form">
+          <label>
+            Admin password
+            <input id="password" type="password" inputmode="numeric" autocomplete="current-password" required>
+          </label>
+          <button type="submit">Unlock editor</button>
+          <output id="login-status">Enter the admin password to edit the site.</output>
+        </form>
+      </section>
+
+      <section class="editor-panel" id="editor-panel" hidden>
+        <nav class="tabs" aria-label="Admin sections">
+          <button type="button" class="tab active" data-tab="home">Home</button>
+          <button type="button" class="tab" data-tab="work">Work</button>
+          <button type="button" class="tab" data-tab="about">About</button>
+          <button type="button" class="tab" data-tab="contact">Contact</button>
+          <button type="button" class="tab" data-tab="nav">Nav</button>
+        </nav>
+
+        <form id="admin-form">
+          <section class="panel active" data-panel="home">
+            <label>
+              Brand
+              <input name="brand" required>
+            </label>
+            <label>
+              Hero title
+              <textarea name="hero.title" rows="3" required></textarea>
+            </label>
+            <label>
+              Hero body
+              <textarea name="hero.body" rows="4" required></textarea>
+            </label>
+            <label>
+              Hero button label
+              <input name="hero.cta" required>
+            </label>
+            <label>
+              Hero button link
+              <input name="hero.ctaHref" required>
+            </label>
+            <label>
+              Hero image URL
+              <input name="hero.image" required>
+            </label>
+          </section>
+
+          <section class="panel" data-panel="work">
+            <label>
+              Work page title
+              <input name="workTitle" required>
+            </label>
+            <label>
+              Work action label
+              <input name="workCta" required>
+            </label>
+            <div class="list-head">
+              <span>Projects</span>
+              <button type="button" id="add-project">Add project</button>
+            </div>
+            <div id="projects-editor" class="stack"></div>
+          </section>
+
+          <section class="panel" data-panel="about">
+            <label>
+              About page title
+              <input name="about.title" required>
+            </label>
+            <label>
+              About body
+              <textarea name="about.body" rows="5" required></textarea>
+            </label>
+          </section>
+
+          <section class="panel" data-panel="contact">
+            <label>
+              Contact page title
+              <input name="contact.title" required>
+            </label>
+            <label>
+              Contact body
+              <textarea name="contact.body" rows="5" required></textarea>
+            </label>
+            <label>
+              Contact email
+              <input name="contact.email" type="email" required>
+            </label>
+          </section>
+
+          <section class="panel" data-panel="nav">
+            <div class="list-head">
+              <span>Top navigation</span>
+              <button type="button" id="add-nav">Add link</button>
+            </div>
+            <div id="nav-editor" class="stack"></div>
+          </section>
+
+          <div class="actions">
+            <button type="button" id="reload">Reload</button>
+            <button type="submit">Save changes</button>
+          </div>
+          <output id="status">Loading content...</output>
+        </form>
+      </section>
     </main>
     <script src="/admin.js" defer></script>
   </body>

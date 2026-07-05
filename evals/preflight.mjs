@@ -22,4 +22,6 @@ assert(site.projects.length === 3, "Reference screen has three selected work car
 assert(site.nav.every(item => item.href.startsWith("/")), "Top nav uses page URLs, not anchors");
 assert(site.hero.image.startsWith("https://images.unsplash.com/"), "Hero uses a furniture-like placeholder image URL");
 assert(site.projects.every(project => project.image.startsWith("/assets/")), "Project images use stable local placeholder assets");
-assert(admin.includes("textarea"), "Admin UI exposes editable backend content");
+assert(!admin.includes("Site JSON"), "Admin UI does not expose raw JSON editing");
+assert(admin.includes('data-tab="home"'), "Admin UI has interactive section tabs");
+assert(admin.includes('id="projects-editor"'), "Admin UI has project form editing");

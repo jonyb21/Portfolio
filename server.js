@@ -61,9 +61,14 @@ function saveSite(site) {
 function validateSite(site) {
   if (!site || typeof site !== "object") throw new Error("Site payload must be an object");
   if (!site.brand || !site.hero?.title || !site.hero?.image) throw new Error("Brand, hero title, and hero image are required");
+  if (!site.about?.title || !site.contact?.email) throw new Error("About title and contact email are required");
   if (!Array.isArray(site.projects) || site.projects.length < 1) throw new Error("At least one project is required");
+  if (!Array.isArray(site.nav) || site.nav.length < 1) throw new Error("At least one nav item is required");
   for (const project of site.projects) {
     if (!project.title || !project.image) throw new Error("Every project needs a title and image");
+  }
+  for (const item of site.nav) {
+    if (!item.label || !item.href) throw new Error("Every nav item needs a label and URL");
   }
 }
 
@@ -94,6 +99,10 @@ function createServer() {
 
       if (req.method === "GET" && url.pathname === "/api/site") {
         return send(res, 200, JSON.stringify(loadSite()));
+      }
+
+      if (req.method === "POST" && url.pathname === "/api/auth/check") {
+        return send(res, authed(req) ? 200 : 401, JSON.stringify({ ok: authed(req) }));
       }
 
       if (req.method === "PUT" && url.pathname === "/api/site") {

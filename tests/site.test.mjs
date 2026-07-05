@@ -37,6 +37,15 @@ try {
   });
   assert.equal(denied.status, 401);
 
+  const authDenied = await fetch(`${base}/api/auth/check`, { method: "POST" });
+  assert.equal(authDenied.status, 401);
+
+  const authOk = await fetch(`${base}/api/auth/check`, {
+    method: "POST",
+    headers: { "x-admin-password": "secret" }
+  });
+  assert.equal(authOk.status, 200);
+
   site.brand = "Updated Brand";
   const saved = await fetch(`${base}/api/site`, {
     method: "PUT",
