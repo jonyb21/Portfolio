@@ -41,8 +41,8 @@ try {
   const site = await fetch(`${base}/api/site`).then(response => response.json());
   assert.equal(site.brand, "Jon Brooks");
   assert.equal(site.nav[0].href, "/work");
-  assert.equal(site.projects[0].slug, "silhouette-sofa");
-  assert.match(site.projects[0].summary, /single continuous gesture/);
+  assert.equal(site.projects[0].slug, "contour-lounge-chair");
+  assert.match(site.projects[0].summary, /continuous timber frame/);
   assert.equal(site.about.experienceTitle, "Relevant Experience");
   assert.equal(site.about.experience[0].role, "Furniture and object design");
   assert.match(site.about.experience.at(-1).description, /bespoke and small-batch pieces/);
@@ -54,6 +54,9 @@ try {
   const productPage = await fetch(`${base}/work/silhouette-sofa`);
   assert.equal(productPage.status, 200);
   assert.match(await productPage.text(), /product-page/);
+
+  const heroChairPage = await fetch(`${base}/work/contour-lounge-chair`);
+  assert.equal(heroChairPage.status, 200);
 
   const missingProduct = await fetch(`${base}/work/not-a-project`);
   assert.equal(missingProduct.status, 404);

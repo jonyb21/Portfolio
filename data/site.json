@@ -27,6 +27,22 @@
   "workCta": "Start a commission",
   "projects": [
     {
+      "slug": "contour-lounge-chair",
+      "title": "Contour Lounge Chair",
+      "year": "2026",
+      "type": "Lounge chair",
+      "materials": "Dark olive upholstery, sculpted walnut frame, recessed support rails",
+      "image": "/assets/furniture/hero-lounge-chair.png",
+      "detailImage": "/assets/furniture/hero-lounge-chair-detail.png",
+      "href": "/work/contour-lounge-chair",
+      "summary": "A low lounge chair study with a broad upholstered seat held inside a continuous timber frame. The side profile is the main gesture: quiet, reclined, and shaped to feel substantial without looking heavy.",
+      "notes": [
+        "Swept rear frame creates a clear silhouette from the side.",
+        "Dark upholstery lets the cushion read as one calm volume.",
+        "Low seat angle gives the chair a relaxed lounge posture."
+      ]
+    },
+    {
       "slug": "silhouette-sofa",
       "title": "Silhouette Sofa",
       "year": "2026",
