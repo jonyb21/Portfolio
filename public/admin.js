@@ -212,7 +212,7 @@ document.getElementById("add-project").addEventListener("click", () => {
     materials: "",
     image: "/assets/furniture/hero-lounge-chair.png",
     detailImage: "/assets/furniture/hero-lounge-chair-detail.png",
-    href: "#new-project",
+    href: "/work/new-project",
     summary: "",
     notes: []
   });

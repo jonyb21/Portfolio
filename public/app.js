@@ -57,9 +57,11 @@ function render(site) {
   if (heroImage) heroImage.src = safeUrl(site.hero.image, "/assets/furniture/hero-lounge-chair.png");
 
   const page = document.body.dataset.page;
+  const activePage = page === "product" ? "work" : page;
   document.getElementById("nav").innerHTML = site.nav.map(item => {
-    const active = item.href === `/${page}` ? ' class="is-active"' : "";
-    return `<a${active} href="${item.href}">${item.label}</a>`;
+    const href = safeUrl(item.href, "/");
+    const active = href === `/${activePage}` ? ' class="is-active"' : "";
+    return `<a${active} href="${escapeHtml(href)}">${escapeHtml(item.label)}</a>`;
   }).join("");
 
   const projects = document.getElementById("projects");
