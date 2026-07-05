@@ -19,24 +19,24 @@
     "body": "I'm Jon Brooks, an industrial designer creating considered furniture and objects. This portfolio is a selection of projects shaped by craftsmanship, material sensitivity, and purposeful design.",
     "cta": "View selected work",
     "ctaHref": "/work",
-    "image": "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=1200&q=80"
+    "image": "/assets/furniture/hero-lounge-chair.png"
   },
   "workTitle": "Selected Work",
   "workCta": "View all projects",
   "projects": [
     {
       "title": "Silhouette Sofa",
-      "image": "/assets/sofa.svg",
+      "image": "/assets/furniture/silhouette-sofa.png",
       "href": "#"
     },
     {
       "title": "Arc Lounge Chair",
-      "image": "/assets/chair.svg",
+      "image": "/assets/furniture/arc-lounge-chair.png",
       "href": "#"
     },
     {
       "title": "Foundry Sideboard",
-      "image": "/assets/sideboard.svg",
+      "image": "/assets/furniture/foundry-sideboard.png",
       "href": "#"
     }
   ],
