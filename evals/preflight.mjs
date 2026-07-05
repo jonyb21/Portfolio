@@ -35,6 +35,7 @@ assert(fs.readFileSync("server.js", "utf8").includes("at least three detail note
 assert(fs.readFileSync("server.js", "utf8").includes("Image path does not exist"), "Server rejects broken local image paths");
 assert(fs.readFileSync("server.js", "utf8").includes("Nav links") && fs.readFileSync("server.js", "utf8").includes("separate page paths"), "Server keeps top nav on separate pages");
 assert(fs.readFileSync("server.js", "utf8").includes("points to a missing page"), "Server rejects dead internal page links");
+assert(fs.readFileSync("server.js", "utf8").includes("is required"), "Server gives useful errors for blank page links");
 assert(adminJs.includes("href: `/work/${slug}`"), "Admin keeps project links tied to slugs");
 assert(!adminJs.includes('data-project="${index}" data-key="href"'), "Project URLs are generated, not manually edited");
 assert(adminJs.includes("(await response.json()).error"), "Admin shows server validation errors");

@@ -66,6 +66,7 @@ function validateImage(value) {
 }
 
 function validatePagePath(value, slugs, label) {
+  if (typeof value !== "string" || !value) throw new Error(`${label} is required`);
   if (!value.startsWith("/") || value.includes("#") || value.includes("..")) throw new Error(`${label} must use separate page paths`);
   if (value === "/" || fs.existsSync(path.join(publicDir, `${value.slice(1)}.html`))) return;
   const productMatch = value.match(/^\/work\/([^/]+)$/);
