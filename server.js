@@ -74,11 +74,15 @@ function validatePagePath(value, slugs, label) {
   throw new Error(`${label} points to a missing page`);
 }
 
+function present(value) {
+  return typeof value === "string" && value.trim();
+}
+
 function validateSite(site) {
   if (!site || typeof site !== "object") throw new Error("Site payload must be an object");
-  if (!site.brand || !site.hero?.title || !site.hero?.image) throw new Error("Brand, hero title, and hero image are required");
-  if (!site.workTitle || !site.workIntro) throw new Error("Work title and intro are required");
-  if (!site.about?.title || !site.about?.experienceTitle || !site.contact?.email) throw new Error("About title, experience title, and contact email are required");
+  if (!present(site.brand) || !present(site.hero?.title) || !present(site.hero?.image)) throw new Error("Brand, hero title, and hero image are required");
+  if (!present(site.workTitle) || !present(site.workIntro)) throw new Error("Work title and intro are required");
+  if (!present(site.about?.title) || !present(site.about?.experienceTitle) || !present(site.contact?.email)) throw new Error("About title, experience title, and contact email are required");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(site.contact.email)) throw new Error("Contact email must be a valid email address");
   if (!Array.isArray(site.about.experience) || site.about.experience.length < 1) throw new Error("At least one experience item is required");
   if (!Array.isArray(site.projects) || site.projects.length < 1) throw new Error("At least one project is required");
@@ -87,9 +91,9 @@ function validateSite(site) {
   validateImage(site.hero.image);
   if (site.hero.detailImage) validateImage(site.hero.detailImage);
   for (const project of site.projects) {
-    if (!project.title || !project.image) throw new Error("Every project needs a title and image");
-    if (!project.slug || !project.summary || !project.detailImage) throw new Error("Every project needs a slug, summary, and detail image");
-    if (!project.materials || !Array.isArray(project.notes) || project.notes.length < 3) throw new Error("Every project needs materials and at least three detail notes");
+    if (!present(project.title) || !present(project.image)) throw new Error("Every project needs a title and image");
+    if (!present(project.slug) || !present(project.summary) || !present(project.detailImage)) throw new Error("Every project needs a slug, summary, and detail image");
+    if (!present(project.materials) || !Array.isArray(project.notes) || project.notes.length < 3 || project.notes.some(note => !present(note))) throw new Error("Every project needs materials and at least three detail notes");
     validateImage(project.image);
     validateImage(project.detailImage);
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(project.slug)) throw new Error("Project slugs must be lowercase words separated by hyphens");
@@ -99,11 +103,11 @@ function validateSite(site) {
   }
   validatePagePath(site.hero.ctaHref, slugs, "Hero CTA");
   for (const item of site.nav) {
-    if (!item.label || !item.href) throw new Error("Every nav item needs a label and URL");
+    if (!present(item.label) || !present(item.href)) throw new Error("Every nav item needs a label and URL");
     validatePagePath(item.href, slugs, "Nav links");
   }
   for (const item of site.about.experience) {
-    if (!item.role || !item.company || !item.period || !item.description) throw new Error("Every experience item needs role, company, period, and description");
+    if (!present(item.role) || !present(item.company) || !present(item.period) || !present(item.description)) throw new Error("Every experience item needs role, company, period, and description");
   }
 }
 
