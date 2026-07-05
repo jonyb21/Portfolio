@@ -100,9 +100,9 @@ assert(adminJs.includes('"about.portrait"'), "Admin UI edits the portrait image 
 assert(adminJs.includes('"contact.phone"'), "Admin UI edits the contact phone number");
 assert(index.includes('/favicon.svg?v=20260705-4') && fs.existsSync("public/favicon.svg"), "Browser tab uses the JB favicon");
 assert(site.about.experienceTitle === "Relevant Experience", "About page frames work history as relevant experience");
-assert(site.about.body.includes("makes it his mission to learn it deeply"), "About page describes investigative learning mindset");
-assert(site.about.body.includes("everyone has their own way of working"), "About page describes openness to different working methods");
-assert(site.about.body.includes("trying as many AI tools"), "About page mentions hands-on AI exploration");
+assert(site.about.body.includes("learn from others"), "About page uses a humble learning tone");
+assert(site.about.body.includes("open mind to different ways of working"), "About page describes openness to different working methods");
+assert(site.about.body.includes("new AI tools and workflows"), "About page mentions hands-on AI exploration");
 assert(site.about.experience.some(item => /AI and image generation/.test(item.role)), "About page includes AI and image generation experience");
 assert(site.about.experience.some(item => /Coding and custom tools/.test(item.role)), "About page includes coding and custom tool experience");
 assert(site.about.experience.some(item => /outside-the-box/.test(item.description)), "About page includes outside-the-box design thinking");
