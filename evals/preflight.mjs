@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
 import fs from "node:fs";
 
 const index = fs.readFileSync("public/index.html", "utf8");
@@ -13,6 +14,10 @@ const readme = fs.readFileSync("README.md", "utf8");
 const site = JSON.parse(fs.readFileSync("data/site.json", "utf8"));
 const app = fs.readFileSync("public/app.js", "utf8");
 new Function(adminJs);
+
+function localAssetHash(image) {
+  return crypto.createHash("sha256").update(fs.readFileSync(`public${image}`)).digest("hex");
+}
 
 assert(!/[—–]/.test(index + work + product + about + contact + css + admin + JSON.stringify(site)), "No em dash or en dash in shipped UI");
 assert(!index.includes('id="work"'), "Home page is landing hero only");
@@ -69,8 +74,11 @@ assert(site.projects.every(project => project.views.filter(view => view.type ===
 assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").length === 4), "Each project has four in situ views");
 assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-insitu-v(?:[1-5]|4-fixed)\.webp$/.test(view.image))), "Each project uses four optimized generated in-situ assets");
 assert(site.projects.some(project => project.slug === "dining-table" && project.title === "Ridge Dining Table"), "Renamed dining table project is included");
-assert(site.projects.find(project => project.slug === "dining-table").cardImage === "/assets/furniture/cove-dining-table-main.webp", "Ridge dining table uses the user-approved reference image");
-assert(site.projects.find(project => project.slug === "dining-table").views.every(view => view.image.includes("/cove-dining-table-")), "Ridge dining table views all come from the same source product image");
+const ridgeProject = site.projects.find(project => project.slug === "dining-table");
+assert(ridgeProject.cardImage === "/assets/furniture/ridge-dining-table-main.webp", "Ridge dining table uses the taller user-approved design render");
+assert(ridgeProject.views.filter(view => view.type === "crop").every(view => view.image.includes("/ridge-dining-table-crop-")), "Ridge dining table crops use the same taller product design");
+assert(ridgeProject.views.filter(view => view.type === "insitu").every(view => view.image.includes("/ridge-dining-table-insitu-")), "Ridge dining table uses matching taller in-situ room images");
+assert(new Set([ridgeProject.cardImage, ...ridgeProject.views.map(view => view.image)].map(localAssetHash)).size === 9, "Ridge dining table image files are not repeated");
 assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"), "Arc chair uses the corrected back-view in-situ image");
 assert(site.projects.every(project => {
   const images = [project.cardImage || project.image, ...project.views.map(view => view.image)].filter(Boolean);
