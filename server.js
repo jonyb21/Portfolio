@@ -71,6 +71,7 @@ function validateSite(site) {
   for (const project of site.projects) {
     if (!project.title || !project.image) throw new Error("Every project needs a title and image");
     if (!project.slug || !project.summary || !project.detailImage) throw new Error("Every project needs a slug, summary, and detail image");
+    if (!project.materials || !Array.isArray(project.notes) || project.notes.length < 3) throw new Error("Every project needs materials and at least three detail notes");
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(project.slug)) throw new Error("Project slugs must be lowercase words separated by hyphens");
     if (slugs.has(project.slug)) throw new Error("Project slugs must be unique");
     slugs.add(project.slug);
