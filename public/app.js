@@ -36,6 +36,32 @@ function imageUrl(value, fallback = "/assets/furniture/hero-lounge-chair.webp") 
   return `${url}?v=20260705-4`;
 }
 
+function shuffled(values) {
+  const items = [...values];
+  for (let index = items.length - 1; index > 0; index -= 1) {
+    const swap = Math.floor(Math.random() * (index + 1));
+    [items[index], items[swap]] = [items[swap], items[index]];
+  }
+  return items;
+}
+
+function startHeroSlideshow(images) {
+  const slides = [...document.querySelectorAll(".hero-image img")];
+  if (slides.length < 2) return;
+  const indexes = images.map((_, index) => index);
+  let recent = [];
+  let active = shuffled(indexes)[0];
+  slides[active].classList.add("is-active");
+  setInterval(() => {
+    const choices = indexes.filter(index => !recent.includes(index) && index !== active);
+    const next = shuffled(choices.length ? choices : indexes.filter(index => index !== active))[0];
+    slides[active].classList.remove("is-active");
+    recent = [active, ...recent].slice(0, 2);
+    active = next;
+    slides[active].classList.add("is-active");
+  }, 5000);
+}
+
 function projectUrl(project) {
   return safeUrl(project.href || `/work/${project.slug}`);
 }
@@ -131,13 +157,12 @@ function render(site) {
 
   const heroImage = document.querySelector('[data-field="hero.image"]');
   if (heroImage) {
-    const images = [
-      site.hero.image,
-      ...(Array.isArray(site.projects) ? site.projects.map(project => project.cardImage || project.image) : [])
-    ].filter(Boolean);
-    heroImage.closest(".hero-image").innerHTML = [...new Set(images)].map((image, index) => `
-      <img data-field="${index === 0 ? "hero.image" : ""}" src="${escapeHtml(imageUrl(image))}" alt="${index === 0 ? "Featured furniture piece" : ""}" style="--i: ${index}">
+    const images = Array.isArray(site.projects) ? site.projects.map(project => project.cardImage || project.image).filter(Boolean) : [site.hero.image];
+    const uniqueImages = [...new Set(images)];
+    heroImage.closest(".hero-image").innerHTML = uniqueImages.map((image, index) => `
+      <img data-field="${index === 0 ? "hero.image" : ""}" src="${escapeHtml(imageUrl(image))}" alt="${index === 0 ? "Featured furniture piece" : ""}">
     `).join("");
+    startHeroSlideshow(uniqueImages);
   }
 
   const portrait = document.querySelector('[data-field="about.portrait"]');

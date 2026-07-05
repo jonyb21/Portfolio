@@ -261,6 +261,65 @@
           "type": "insitu"
         }
       ]
+    },
+    {
+      "slug": "dining-table",
+      "title": "Ridge Dining Table",
+      "year": "2026",
+      "type": "Dining table",
+      "materials": "Dark walnut, satin finish, twin cove-cut pedestal bases, rounded bullnose top",
+      "image": "/assets/furniture/cove-dining-table-main.webp",
+      "cardImage": "/assets/furniture/cove-dining-table-main.webp",
+      "detailImage": "/assets/furniture/cove-dining-table-crop-1.webp",
+      "href": "/work/dining-table",
+      "summary": "A dining table study built around a softened rounded-rectangle top and two arch-cut pedestal bases. Every view uses the same walnut table design: a thick bullnose edge, block bases, and repeated arched openings.",
+      "notes": [
+        "Rounded ends and a beveled underside soften the long table volume.",
+        "Twin pedestal bases create a stable stance without crowding the corners.",
+        "Satin walnut finish keeps the grain visible in low, warm interior light."
+      ],
+      "views": [
+        {
+          "label": "Rounded tabletop edge",
+          "image": "/assets/furniture/cove-dining-table-crop-1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Front cove-cut base",
+          "image": "/assets/furniture/cove-dining-table-crop-2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Rear matching base",
+          "image": "/assets/furniture/cove-dining-table-crop-3.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Twin base rhythm",
+          "image": "/assets/furniture/cove-dining-table-crop-4.webp",
+          "type": "crop"
+        },
+        {
+          "label": "In situ 1",
+          "image": "/assets/furniture/cove-dining-table-insitu-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 2",
+          "image": "/assets/furniture/cove-dining-table-insitu-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 3",
+          "image": "/assets/furniture/cove-dining-table-insitu-v3.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "In situ 4",
+          "image": "/assets/furniture/cove-dining-table-insitu-v4.webp",
+          "type": "insitu"
+        }
+      ]
     }
   ],
   "about": {

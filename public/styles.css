@@ -5,7 +5,7 @@
   --line: #2b2b28;
   --text: #f0eee8;
   --muted: #b7b4ad;
-  --accent: #c6d875;
+  --accent: #adbd68;
   --radius: 28px;
 }
 
@@ -125,21 +125,21 @@ body[data-page="home"] nav a:last-child {
   background: currentColor;
   -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M126 74c20-20 52-20 72 0l146 146c20 20 20 52 0 72L198 438c-20 20-52 20-72 0s-20-52 0-72l110-110L126 146c-20-20-20-52 0-72z'/%3E%3C/svg%3E") center / contain no-repeat;
   mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M126 74c20-20 52-20 72 0l146 146c20 20 20 52 0 72L198 438c-20 20-52 20-72 0s-20-52 0-72l110-110L126 146c-20-20-20-52 0-72z'/%3E%3C/svg%3E") center / contain no-repeat;
-  transform: scale(0.92);
+  transform: scale(0.64);
   transform-origin: center;
   transition: transform 160ms ease;
 }
 
 .arrow-left {
-  transform: scale(0.92) rotate(180deg);
+  transform: scale(0.64) rotate(180deg);
 }
 
 .text-link:hover .arrow-mark {
-  transform: translateX(6px) scale(0.92);
+  transform: translateX(6px) scale(0.64);
 }
 
 .text-link:hover .arrow-left {
-  transform: translateX(-6px) scale(0.92) rotate(180deg);
+  transform: translateX(-6px) scale(0.64) rotate(180deg);
 }
 
 .hero-image,
@@ -161,13 +161,15 @@ body[data-page="home"] nav a:last-child {
   inset: 0;
   opacity: 0;
   filter: saturate(0.84) brightness(0.78) contrast(1.03);
-  animation: heroImageFade 25s infinite ease-in-out;
-  animation-delay: calc(var(--i) * 5s);
+  transition: opacity 2200ms ease-in-out, transform 5200ms ease;
+  transform: scale(1.02);
+  object-fit: contain;
   will-change: opacity, transform;
 }
 
-.hero-image img:first-child {
+.hero-image img.is-active {
   opacity: 1;
+  transform: scale(1);
 }
 
 img {
@@ -278,25 +280,6 @@ h2 {
   95% {
     opacity: 0;
     transform: scale(1.025);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes heroImageFade {
-  0%,
-  16% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  22%,
-  94% {
-    opacity: 0;
-    transform: scale(1.02);
   }
 
   100% {

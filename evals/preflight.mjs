@@ -20,15 +20,18 @@ assert(about.includes('body data-page="about"'), "About tab is a separate page")
 assert(contact.includes('body data-page="contact"'), "Contact tab is a separate page");
 assert(index.includes("min-h") === false, "Viewport height is owned by CSS");
 assert(css.includes("min-height: 100dvh"), "Uses stable dynamic viewport height");
-assert(css.includes("--accent: #c6d875"), "Olive accent matches the reference");
+assert(css.includes("--accent: #adbd68"), "Olive accent is muted");
 assert(css.includes("grid-template-columns: repeat(3"), "Selected work uses a three-card desktop grid");
-assert(site.projects.length === 4, "Work page includes the hero chair plus three selected work cards");
+assert(site.projects.length === 5, "Work page includes five selected work projects");
 assert(site.nav.every(item => item.href.startsWith("/")), "Top nav uses page URLs, not anchors");
 assert(site.hero.image === "/assets/furniture/hero-lounge-chair.webp", "Hero uses generated furniture image");
 assert(site.projects.some(project => project.image === site.hero.image), "Hero chair image is also listed as a work project");
-assert(fs.readFileSync("public/app.js", "utf8").includes("heroImageFade") || css.includes("@keyframes heroImageFade"), "Hero image rotates without changing the rest of the site");
-assert(css.includes("animation: heroImageFade 25s") && css.includes("calc(var(--i) * 5s)"), "Hero image uses a five-second fade cadence");
+assert(fs.readFileSync("public/app.js", "utf8").includes("function shuffled") && fs.readFileSync("public/app.js", "utf8").includes("startHeroSlideshow"), "Hero image rotates in randomized order");
+assert(fs.readFileSync("public/app.js", "utf8").includes("recent.includes") && fs.readFileSync("public/app.js", "utf8").includes("slice(0, 2)"), "Hero image rotation avoids immediate A-B-A repeats");
+assert(!fs.readFileSync("public/app.js", "utf8").includes("[\n      site.hero.image,"), "Hero carousel uses one image per project instead of duplicating the featured product");
+assert(css.includes("transition: opacity 2200ms ease-in-out"), "Hero image uses a slow fade transition");
 assert(css.includes(".hero-image img") && css.includes("position: absolute"), "Hero carousel images are stacked in the visible frame");
+assert(css.includes(".hero-image img") && css.includes("object-fit: contain"), "Hero carousel shows the full product image");
 assert(css.includes("brightness(0.78)"), "Hero image is brightened without changing global image treatment");
 assert(fs.readFileSync("public/app.js", "utf8").includes("function imageUrl") && fs.readFileSync("public/app.js", "utf8").includes("?v=20260705-4"), "Local images use cache-busted URLs for instant reloads");
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");
@@ -40,7 +43,7 @@ assert(fs.readFileSync("server.js", "utf8").includes("valid phone number"), "Ser
 assert(fs.readFileSync("server.js", "utf8").includes("function present(value)"), "Server rejects whitespace-only content fields");
 assert(!/[→←]|-&gt;/.test(index + work + product + about + contact + fs.readFileSync("public/app.js", "utf8")), "Arrows use the shared CSS chevron instead of text glyphs");
 assert(site.projects.every(project => project.image.startsWith("/assets/furniture/")), "Project images use generated furniture assets");
-assert(site.projects.every(project => project.cardImage?.endsWith("-card-motion.webp")), "Projects use optimized generated card motion assets");
+assert(site.projects.every(project => project.cardImage?.startsWith("/assets/furniture/") && project.cardImage.endsWith(".webp")), "Projects use optimized local card assets");
 assert(site.projects.every(project => project.href === `/work/${project.slug}`), "Each project links to its own page");
 assert(fs.readFileSync("server.js", "utf8").includes("Project slugs must be unique"), "Server rejects duplicate project slugs");
 assert(fs.readFileSync("server.js", "utf8").includes("at least three detail notes"), "Server keeps product pages detailed enough");
@@ -59,10 +62,13 @@ assert(site.projects.every(project => project.views?.length === 8), "Each projec
 assert(site.projects.every(project => [project.cardImage, ...project.views.map(view => view.image)].filter(Boolean).length === 9), "Each project page has one main image, four crops, and four in-situ images");
 assert(site.projects.every(project => project.views.filter(view => view.type === "crop").length === 4), "Each project has four cropped product studies");
 assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").length === 4), "Each project has four in situ views");
-assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-insitu-v(?:[2-5]|4-fixed)\.webp$/.test(view.image))), "Each project uses the four optimized generated in-situ assets");
+assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-insitu-v(?:[1-5]|4-fixed)\.webp$/.test(view.image))), "Each project uses four optimized generated in-situ assets");
+assert(site.projects.some(project => project.slug === "dining-table" && project.title === "Ridge Dining Table"), "Renamed dining table project is included");
+assert(site.projects.find(project => project.slug === "dining-table").cardImage === "/assets/furniture/cove-dining-table-main.webp", "Ridge dining table uses the user-approved reference image");
+assert(site.projects.find(project => project.slug === "dining-table").views.every(view => view.image.includes("/cove-dining-table-")), "Ridge dining table views all come from the same source product image");
 assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"), "Arc chair uses the corrected back-view in-situ image");
 assert(site.projects.every(project => {
-  const images = [project.cardImage, project.image, ...project.views.map(view => view.image)].filter(Boolean);
+  const images = [project.cardImage || project.image, ...project.views.map(view => view.image)].filter(Boolean);
   return new Set(images).size === images.length;
 }), "Project image paths are unique per product story");
 assert(site.projects.every(project => project.views.every(view => view.image.startsWith("/assets/furniture/"))), "Product image studies use local furniture assets");
@@ -80,6 +86,7 @@ assert(fs.readFileSync("public/app.js", "utf8").includes("project-title"), "Work
 assert(!fs.readFileSync("public/app.js", "utf8").includes("<figcaption>"), "Product gallery images do not show text captions");
 assert(css.includes("@keyframes projectCardFade"), "Work card image transitions use a slow fade");
 assert(css.includes(".arrow-mark") && css.includes("-webkit-mask") && css.includes("width: 34px") && css.includes("background: currentColor"), "Visible arrows use the shared large filled green chevron mark");
+assert(css.includes("scale(0.64)"), "Chevron arrows are reduced to roughly 70 percent of the previous size");
 assert(css.includes("font-size: clamp(1.12rem"), "CTA text is scaled to match the large chevron");
 assert(css.includes("prefers-reduced-motion") && css.includes("animation: none"), "Work card motion respects reduced-motion settings");
 assert(adminJs.includes('data-key="viewsText"'), "Admin UI edits product image studies without raw JSON");
@@ -88,6 +95,7 @@ assert(site.about.portrait === "/assets/portrait.webp", "About page uses the sup
 assert(about.includes('data-field="about.portrait"'), "About page renders the portrait image");
 assert(adminJs.includes('"about.portrait"'), "Admin UI edits the portrait image URL");
 assert(adminJs.includes('"contact.phone"'), "Admin UI edits the contact phone number");
+assert(index.includes('/favicon.svg?v=20260705-4') && fs.existsSync("public/favicon.svg"), "Browser tab uses the JB favicon");
 assert(site.about.experienceTitle === "Relevant Experience", "About page frames work history as relevant experience");
 assert(site.about.experience.some(item => /AI image generation/.test(item.role)), "About page includes AI image generation experience");
 assert(site.about.experience.some(item => /Coding and custom tools/.test(item.role)), "About page includes coding and custom tool experience");

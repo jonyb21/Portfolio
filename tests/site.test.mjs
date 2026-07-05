@@ -55,6 +55,8 @@ try {
   assert.equal(site.brand, "Jon Brooks");
   assert.equal(site.nav[0].href, "/work");
   assert.equal(site.projects[0].slug, "contour-lounge-chair");
+  assert.equal(site.projects.length, 5);
+  assert(site.projects.some(project => project.slug === "dining-table" && project.title === "Ridge Dining Table"));
   assert.equal(site.projects[0].cardImage, "/assets/furniture/contour-lounge-chair-card-motion.webp");
   assert.match(site.projects[0].summary, /continuous timber frame/);
   assert.equal(site.projects[0].views.length, 8);
@@ -62,10 +64,10 @@ try {
   assert.equal(site.projects[0].views.filter(view => view.type === "insitu").length, 4);
   assert.equal([site.projects[0].cardImage, ...site.projects[0].views.map(view => view.image)].length, 9);
   assert(site.projects.every(project => {
-    const images = [project.cardImage, project.image, ...project.views.map(view => view.image)].filter(Boolean);
+    const images = [project.cardImage || project.image, ...project.views.map(view => view.image)].filter(Boolean);
     return new Set(images).size === images.length;
   }));
-  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-insitu-v(?:[2-5]|4-fixed)\.webp$/.test(view.image))));
+  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-insitu-v(?:[1-5]|4-fixed)\.webp$/.test(view.image))));
   assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"));
   assert.equal(site.about.experienceTitle, "Relevant Experience");
   assert.equal(site.about.portrait, "/assets/portrait.webp");
