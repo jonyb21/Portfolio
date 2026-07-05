@@ -69,7 +69,7 @@ function render(site) {
     <a class="project-card" href="${escapeHtml(projectUrl(project))}">
       <img src="${escapeHtml(safeUrl(project.image, "/assets/furniture/hero-lounge-chair.png"))}" alt="${escapeHtml(project.title)}">
       <span>${escapeHtml(project.title)}</span>
-      <b aria-hidden="true">→</b>
+      <b aria-hidden="true">&rarr;</b>
     </a>
   `).join("");
 
@@ -93,7 +93,7 @@ function render(site) {
     }
     document.title = `${project.title} | ${site.brand}`;
     productPage.innerHTML = `
-      <a class="text-link back-link" href="/work"><span aria-hidden="true">←</span><span>Back to work</span></a>
+      <a class="text-link back-link" href="/work"><span aria-hidden="true">&larr;</span><span>Back to work</span></a>
       <article class="project-detail single" id="${escapeHtml(project.slug)}">
       <div class="detail-copy">
         <p class="project-meta">${escapeHtml(project.type || "Furniture")} / ${escapeHtml(project.year || "")}</p>

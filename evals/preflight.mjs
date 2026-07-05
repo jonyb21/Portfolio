@@ -25,6 +25,7 @@ assert(site.hero.image === "/assets/furniture/hero-lounge-chair.png", "Hero uses
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");
 assert(work.includes(`<span data-field="workCta">${site.workCta}</span>`), "Work fallback CTA matches site data");
 assert(contact.includes(`mailto:${site.contact.email}`), "Contact fallback email matches site data");
+assert(!/[→←]|-&gt;/.test(index + work + product + about + contact + fs.readFileSync("public/app.js", "utf8")), "Arrows use HTML entities for stable rendering");
 assert(site.projects.every(project => project.image.startsWith("/assets/furniture/")), "Project images use generated furniture assets");
 assert(site.projects.every(project => project.href === `/work/${project.slug}`), "Each project links to its own page");
 assert(site.hero.detailImage === "/assets/furniture/hero-lounge-chair-detail.png", "Hero has generated detail image");
