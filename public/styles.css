@@ -161,6 +161,26 @@ img {
   filter: saturate(0.78) brightness(1.12) contrast(1.04);
 }
 
+a.project-card[href="/work/contour-lounge-chair"] img {
+  transform: scale(1.22);
+  object-position: 50% 80%;
+}
+
+a.project-card[href="/work/silhouette-sofa"] img {
+  transform: scale(1.12);
+  object-position: 45% 70%;
+}
+
+a.project-card[href="/work/foundry-sideboard"] img {
+  transform: scale(1.1);
+  object-position: 50% 80%;
+}
+
+a.project-card[href="/work/dining-table"] img {
+  transform: scale(1.08);
+  object-position: 50% 85%;
+}
+
 .work,
 .about,
 .experience,
