@@ -171,14 +171,22 @@ a.project-card[href="/work/silhouette-sofa"] img {
   object-position: 45% 70%;
 }
 
+a.project-card[href="/work/foundry-sideboard"] {
+  grid-column: span 3;
+  aspect-ratio: 1.2;
+}
+
 a.project-card[href="/work/foundry-sideboard"] img {
-  transform: scale(1.1);
-  object-position: 50% 80%;
+  object-position: 50% 65%;
+}
+
+a.project-card[href="/work/dining-table"] {
+  grid-column: span 3;
+  aspect-ratio: 1.2;
 }
 
 a.project-card[href="/work/dining-table"] img {
-  transform: scale(1.08);
-  object-position: 50% 85%;
+  object-position: 50% 55%;
 }
 
 .work,
@@ -230,11 +238,12 @@ h2 {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 16px;
 }
 
 .project-card {
+  grid-column: span 2;
   aspect-ratio: 0.83;
   transition: transform 180ms ease, border-color 180ms ease;
 }
