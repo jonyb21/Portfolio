@@ -126,7 +126,7 @@ function renderProjectViews(project) {
             return `
             <figure class="detail-image gallery-image ${type}">
               <button class="image-preview-trigger" type="button" data-preview-src="${escapeHtml(imageUrl(image))}" data-preview-alt="${escapeHtml(alt)}">
-                <img src="${escapeHtml(imageUrl(image))}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">
+                <img src="${escapeHtml(imageUrl(image))}" alt="${escapeHtml(alt)}" loading="eager" decoding="async">
               </button>
             </figure>`;
           }).join("")}
@@ -230,10 +230,10 @@ function render(site) {
 
   const projects = document.getElementById("projects");
   if (projects) {
-    projects.innerHTML = site.projects.map((project, index) => `
+    projects.innerHTML = site.projects.map(project => `
       <a class="project-card" href="${escapeHtml(projectUrl(project))}">
         <span class="project-card-images" aria-hidden="true">
-          <img src="${escapeHtml(imageUrl(project.cardImage || project.image))}" alt="" ${index < 3 ? 'loading="eager"' : 'loading="lazy"'} decoding="async">
+          <img src="${escapeHtml(imageUrl(project.cardImage || project.image))}" alt="" loading="eager" decoding="async">
         </span>
         <span class="sr-only">${escapeHtml(project.title)}</span>
         <span class="project-title">${escapeHtml(project.title)}</span>

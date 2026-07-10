@@ -21,6 +21,8 @@ The admin saves `data/site.json`. Docker mounts `./data` so edits survive contai
 
 Project images can use existing `/assets/...` files or full `https://` URLs. Each project page needs one main image, materials, at least three notes, four cropped image studies, and four in situ images so the detail page renders as a complete nine-image product story.
 
+Public photos are presented in consistent 4:3 frames with `object-fit: contain`, so source images keep their full composition without cropping.
+
 The admin uses a structured editor: expand a project to edit its details and eight image-study rows, then use the About tab to manage individual experience entries. The server rejects missing, repeated, or invalid product-page image paths before saving.
 
 ## Docker

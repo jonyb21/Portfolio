@@ -12,12 +12,25 @@ const { createServer, validateSite } = await import("../server.js");
 
 const validSite = JSON.parse(fs.readFileSync(process.env.PORTFOLIO_DATA_PATH, "utf8"));
 const adminCss = fs.readFileSync("public/admin.css", "utf8");
+const adminHtml = fs.readFileSync("public/admin.html", "utf8");
+const css = fs.readFileSync("public/styles.css", "utf8");
+const index = fs.readFileSync("public/index.html", "utf8");
 const app = fs.readFileSync("public/app.js", "utf8");
 const admin = fs.readFileSync("public/admin.js", "utf8");
 validateSite(validSite);
 assert(adminCss.includes("--text: #e6e2d8"));
 assert(adminCss.includes("--accent: #adbd68"));
 assert(adminCss.includes("border-radius: var(--radius)"));
+assert(!css.includes("animation-timeline: view(block)"), "Below-fold content remains visible without scroll-timeline support");
+assert(!css.includes("13vw"), "Mobile hero typography stays proportionate to the viewport");
+assert(css.includes("letter-spacing: 0"), "Display typography does not use compressed negative tracking");
+assert(css.includes("--media-ratio: 4 / 3"), "All public image containers share one 4:3 ratio");
+assert(css.includes("object-fit: contain"), "Public images remain fully visible without cropping");
+for (const page of ["index", "work", "product", "about", "contact"]) {
+  assert(fs.readFileSync(`public/${page}.html`, "utf8").includes("/styles.css?v=20260710-5"), `${page} loads the current uncropped image styles`);
+}
+assert(!app.includes('loading="lazy"'), "Public project imagery loads immediately rather than waiting for scroll position");
+assert(adminHtml.includes('/favicon.svg?v=20260705-4'), "Admin uses the same JB browser icon as the public site");
 assert.throws(() => validateSite({ projects: [] }), /Brand/);
 assert.throws(() => validateSite({ ...validSite, brand: "   " }), /Brand/);
 assert.throws(() => validateSite({ ...validSite, contact: { ...validSite.contact, email: "not-email" } }), /valid email/);
@@ -80,6 +93,8 @@ try {
   assert.equal(site.about.experienceTitle, "Relevant Experience");
   assert.equal(site.about.portrait, "/assets/portrait.webp");
   assert.equal(site.hero.title, "Designing products with clarity, character, and longevity.");
+  assert(site.hero.body.trim().split(/\s+/).length <= 20, "Hero introduction remains concise");
+  assert(index.includes(site.hero.body), "Home fallback copy matches site data");
   assert.match(site.about.body, /strong interest in furniture and practical product outcomes/);
   assert.match(site.about.body, /learn from others/);
   assert.equal(site.about.experience[0].role, "Product and furniture design");

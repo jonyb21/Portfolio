@@ -8,6 +8,7 @@
   --accent: #adbd68;
   --radius: 28px;
   --radius-small: 14px;
+  --media-ratio: 4 / 3;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --speed-fast: 180ms;
   --speed-base: 420ms;
@@ -93,7 +94,7 @@ h2,
 .project-title {
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
 }
 
 .brand {
@@ -148,18 +149,20 @@ nav a.is-active::after {
 }
 
 .hero h1 {
-  max-width: 560px;
-  margin: 0 0 30px;
-  font-size: clamp(3.15rem, 4.6vw, 4.8rem);
-  line-height: 1.15;
+  max-width: 610px;
+  margin: 0 0 26px;
+  font-size: clamp(3.05rem, 4.25vw, 4.45rem);
+  line-height: 1.08;
+  text-wrap: balance;
 }
 
 .hero p {
   max-width: 520px;
-  margin: 0 0 34px;
+  margin: 0 0 30px;
   color: var(--muted);
   font-size: clamp(1.05rem, 1.6vw, 1.32rem);
   line-height: 1.55;
+  text-wrap: pretty;
 }
 
 .text-link {
@@ -181,7 +184,7 @@ nav a.is-active::after {
 }
 
 .hero-image {
-  aspect-ratio: 0.92;
+  aspect-ratio: var(--media-ratio);
   margin: 0;
 }
 
@@ -190,19 +193,16 @@ nav a.is-active::after {
   inset: 0;
   opacity: 0;
   filter: saturate(0.84) brightness(1.12) contrast(1.03);
-  transition: opacity 2200ms ease-in-out, transform 5200ms ease;
-  transform: scale(1.02);
+  transition: opacity 2200ms ease-in-out;
   pointer-events: none;
 }
 
 .hero-slide img {
   filter: inherit;
-  object-fit: cover;
 }
 
 .hero-slide.is-active {
   opacity: 1;
-  transform: scale(1);
   pointer-events: auto;
 }
 
@@ -214,7 +214,7 @@ img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   filter: saturate(0.72) brightness(1.12) contrast(1.08);
 }
 
@@ -223,19 +223,9 @@ img {
   filter: saturate(0.78) brightness(1.12) contrast(1.04);
 }
 
-a.project-card[href="/work/contour-lounge-chair"] img {
-  transform: scale(1.22);
-  object-position: 50% 80%;
-}
-
-a.project-card[href="/work/silhouette-sofa"] img {
-  transform: scale(1.12);
-  object-position: 45% 70%;
-}
-
 a.project-card[href="/work/foundry-sideboard"] {
   grid-column: span 3;
-  aspect-ratio: 1.2;
+  aspect-ratio: var(--media-ratio);
 }
 
 a.project-card[href="/work/foundry-sideboard"] img {
@@ -244,7 +234,7 @@ a.project-card[href="/work/foundry-sideboard"] img {
 
 a.project-card[href="/work/dining-table"] {
   grid-column: span 3;
-  aspect-ratio: 1.2;
+  aspect-ratio: var(--media-ratio);
 }
 
 a.project-card[href="/work/dining-table"] img {
@@ -306,7 +296,7 @@ h2 {
 
 .project-card {
   grid-column: span 2;
-  aspect-ratio: 0.83;
+  aspect-ratio: var(--media-ratio);
   transition: translate var(--speed-base) var(--ease-out), border-color var(--speed-fast) ease;
 }
 
@@ -397,19 +387,19 @@ h2 {
   grid-column: 1 / -1;
   grid-row: 2;
   width: 100%;
-  aspect-ratio: 5 / 4;
+  aspect-ratio: var(--media-ratio);
 }
 
 #silhouette-sofa > .lead-image,
 #arc-lounge-chair > .lead-image,
 #foundry-sideboard > .lead-image {
   width: min(760px, 100%);
-  aspect-ratio: 5 / 6;
+  aspect-ratio: var(--media-ratio);
   justify-self: center;
 }
 
 #dining-table > .lead-image {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: var(--media-ratio);
 }
 
 .project-detail.single .detail-facts {
@@ -502,7 +492,7 @@ h2 {
 }
 
 .detail-image {
-  aspect-ratio: 1.2;
+  aspect-ratio: var(--media-ratio);
   margin: 0;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -525,12 +515,11 @@ h2 {
 }
 
 .image-preview-trigger img {
-  transition: transform 700ms var(--ease-out), filter var(--speed-base) ease;
+  transition: filter var(--speed-base) ease;
 }
 
 .gallery-image:hover .image-preview-trigger img,
 .gallery-image:focus-within .image-preview-trigger img {
-  transform: scale(1.035);
   filter: saturate(0.94) brightness(1.16) contrast(1.04);
 }
 
@@ -562,7 +551,7 @@ h2 {
 
 .gallery-image {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: var(--media-ratio);
 }
 
 .gallery-image img {
@@ -607,7 +596,7 @@ h2 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.6rem, 3vw, 2.7rem);
   font-weight: 400;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
   transition: color var(--speed-fast) ease;
 }
 
@@ -701,7 +690,7 @@ body.preview-open {
 }
 
 .portrait-slot {
-  aspect-ratio: 1.14;
+  aspect-ratio: var(--media-ratio);
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -718,7 +707,7 @@ body.preview-open {
 .portrait-slot img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   filter: saturate(0.68) brightness(1.12) contrast(1.12);
 }
 
@@ -889,15 +878,6 @@ body.preview-open {
     animation: preview-frame-in 260ms var(--ease-out) both;
   }
 
-  @supports (animation-timeline: view()) {
-    .project-card,
-    .gallery-image,
-    .experience-item {
-      animation: enter-up 1ms linear both;
-      animation-timeline: view(block);
-      animation-range: entry 0% entry 28%;
-    }
-  }
 }
 
 @keyframes preview-frame-in {
@@ -943,9 +923,9 @@ body.preview-open {
   }
 
   .hero {
-    gap: 32px;
-    margin-top: 30px;
-    margin-bottom: 54px;
+    gap: 28px;
+    margin-top: 22px;
+    margin-bottom: 48px;
   }
 
   .hero,
@@ -959,11 +939,11 @@ body.preview-open {
   }
 
   .hero h1 {
-    font-size: clamp(3rem, 13vw, 4.5rem);
+    font-size: clamp(2.65rem, 11vw, 3.8rem);
   }
 
   .hero-image {
-    aspect-ratio: 1;
+    aspect-ratio: var(--media-ratio);
   }
 
   .section-head {
@@ -980,7 +960,7 @@ body.preview-open {
   a.project-card[href="/work/dining-table"] {
     grid-column: 1 / -1;
     width: 100%;
-    aspect-ratio: 0.88;
+    aspect-ratio: var(--media-ratio);
   }
 
   .project-detail,
@@ -999,11 +979,11 @@ body.preview-open {
   }
 
   .detail-image {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: var(--media-ratio);
   }
 
   .project-detail.single > .lead-image {
-    aspect-ratio: 5 / 4;
+    aspect-ratio: var(--media-ratio);
   }
 
   .project-gallery {
@@ -1016,7 +996,7 @@ body.preview-open {
 
   .gallery-image,
   .gallery-image.insitu {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: var(--media-ratio);
   }
 
   .project-end-nav {
@@ -1043,12 +1023,12 @@ body.preview-open {
   .project-card,
   a.project-card[href="/work/foundry-sideboard"] {
     grid-column: auto;
-    aspect-ratio: 0.88;
+    aspect-ratio: var(--media-ratio);
   }
 
   a.project-card[href="/work/dining-table"] {
     grid-column: 1 / -1;
-    aspect-ratio: 1.8;
+    aspect-ratio: var(--media-ratio);
   }
 
   .project-gallery,
