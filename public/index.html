@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Jon Brooks portfolio of considered product and furniture design.">
     <link rel="icon" href="/favicon.svg?v=20260705-4" type="image/svg+xml">
+    <link rel="preload" as="image" href="/assets/furniture/hero-lounge-chair.webp?v=20260710-1" fetchpriority="high">
     <title>Jon Brooks Portfolio</title>
-    <link rel="stylesheet" href="/styles.css?v=20260705-7">
+    <link rel="stylesheet" href="/styles.css?v=20260710-1">
   </head>
   <body data-page="home">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <a class="brand" href="/" data-field="brand">Jon Brooks</a>
-      <nav id="nav"></nav>
+      <nav id="nav" aria-label="Primary navigation"></nav>
     </header>
 
-    <main>
+    <main id="main-content">
       <section class="hero">
         <div class="hero-copy">
           <h1 data-field="hero.title">Designing products with clarity, character, and longevity.</h1>
@@ -22,11 +24,13 @@
           <a class="text-link" data-field-href="hero.ctaHref" href="/work"><span data-field="hero.cta">View selected work</span></a>
         </div>
         <figure class="hero-image">
-          <img data-field="hero.image" src="/assets/furniture/hero-lounge-chair.webp?v=20260705-4" alt="Featured furniture piece">
+          <a class="hero-slide is-active" href="/work/contour-lounge-chair" aria-label="View Contour Lounge Chair">
+            <img data-field="hero.image" src="/assets/furniture/hero-lounge-chair.webp?v=20260710-1" alt="" fetchpriority="high" decoding="async">
+          </a>
         </figure>
       </section>
     </main>
 
-    <script src="/app.js?v=20260705-7" defer></script>
+    <script src="/app.js?v=20260710-1" defer></script>
   </body>
 </html>

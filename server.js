@@ -106,7 +106,8 @@ function validateSite(site) {
       if (!["crop", "insitu"].includes(view.type)) throw new Error("Project image studies must be crop or insitu");
       validateImage(view.image);
     }
-    const renderedImages = [project.cardImage || project.image, ...project.views.map(view => view.image)].filter(Boolean);
+    // The product page renders `image` as its lead view; cardImage only appears on Work.
+    const renderedImages = [project.image, ...project.views.map(view => view.image)].filter(Boolean);
     if (new Set(renderedImages).size !== renderedImages.length) throw new Error("Project page image paths must be unique");
     if (project.views.filter(view => view.type === "crop").length !== 4 || project.views.filter(view => view.type === "insitu").length !== 4) {
       throw new Error("Every project page needs one main image, four cropped views, and four in situ views");

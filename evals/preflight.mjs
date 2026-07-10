@@ -35,7 +35,7 @@ assert(adminCss.includes("--text: #e6e2d8") && adminCss.includes("--accent: #adb
 assert(adminCss.includes("radial-gradient(circle at 22% 12%") && adminCss.includes("background-size: auto, 5px 5px, auto"), "Admin form uses the same dark editorial background");
 assert(adminCss.includes("border-radius: var(--radius)"), "Admin form follows the same rounded panel system");
 assert(site.workCta === "Get in contact", "Work CTA uses the requested contact wording");
-assert(css.includes("grid-template-columns: repeat(3"), "Selected work uses a three-card desktop grid");
+assert(css.includes("grid-template-columns: repeat(6, minmax(0, 1fr))") && css.includes("grid-column: span 2"), "Selected work uses a balanced six-column editorial grid");
 assert(site.projects.length === 5, "Work page includes five selected work projects");
 assert(site.nav.every(item => item.href.startsWith("/")), "Top nav uses page URLs, not anchors");
 assert(site.hero.image === "/assets/furniture/hero-lounge-chair.webp", "Hero uses generated furniture image");
@@ -46,10 +46,10 @@ assert(app.includes("function shuffled") && app.includes("startHeroSlideshow"), 
 assert(app.includes("recent.includes") && app.includes("slice(0, 2)"), "Hero image rotation avoids immediate A-B-A repeats");
 assert(!app.includes("[\n      site.hero.image,"), "Hero carousel uses one image per project instead of duplicating the featured product");
 assert(css.includes("transition: opacity 2200ms ease-in-out"), "Hero image uses a slow fade transition");
-assert(css.includes(".hero-image img") && css.includes("position: absolute"), "Hero carousel images are stacked in the visible frame");
-assert(css.includes(".hero-image img") && css.includes("object-fit: cover"), "Hero carousel images fill the tile without side bars");
-assert(css.includes("brightness(0.78)"), "Hero image is brightened without changing global image treatment");
-assert(app.includes("function imageUrl") && app.includes("?v=20260705-4"), "Local images use cache-busted URLs for instant reloads");
+assert(css.includes(".hero-slide") && css.includes("position: absolute"), "Hero carousel images are stacked in the visible frame");
+assert(css.includes(".hero-slide img") && css.includes("object-fit: cover"), "Hero carousel images fill the tile without side bars");
+assert(css.includes("brightness(1.12)"), "Hero images are lifted above the dark page treatment");
+assert(app.includes("function imageUrl") && app.includes("?v=20260710-1"), "Local images use cache-busted URLs for instant reloads");
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");
 assert(work.includes(`<span data-field="workCta">${site.workCta}</span>`), "Work fallback CTA matches site data");
 assert(contact.includes(`mailto:${site.contact.email}`), "Contact fallback email matches site data");
@@ -87,14 +87,14 @@ assert(ridgeProject.views.filter(view => view.type === "insitu").every(view => v
 assert(new Set([ridgeProject.cardImage, ...ridgeProject.views.map(view => view.image)].map(localAssetHash)).size === 9, "Ridge dining table image files are not repeated");
 assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"), "Arc chair uses the corrected back-view in-situ image");
 assert(site.projects.every(project => {
-  const images = [project.cardImage || project.image, ...project.views.map(view => view.image)].filter(Boolean);
+  const images = [project.image, ...project.views.map(view => view.image)].filter(Boolean);
   return new Set(images).size === images.length;
 }), "Project image paths are unique per product story");
 assert(site.projects.every(project => project.views.every(view => view.image.startsWith("/assets/furniture/"))), "Product image studies use local furniture assets");
 assert(app.includes("project-gallery"), "Product pages render the image study gallery");
-assert(app.includes("project.cardImage || project.image"), "Product pages use imported card images as the lead view");
+assert(app.includes("project.image || project.cardImage"), "Product pages use the full project image as the lead view");
 assert(app.includes("image-preview-trigger"), "Product images open an image preview");
-assert(app.includes("preview-backdrop"), "Image preview can close by tapping the backdrop");
+assert(app.includes("lightbox.showModal()") && app.includes("previewTrigger?.focus()"), "Image preview uses a native dialog and restores keyboard focus");
 assert(css.includes(".preview-frame") && css.includes("border-radius: 28px"), "Image preview uses rounded corners");
 assert(css.includes(".preview-frame img") && css.includes("brightness(1.08)"), "Image preview does not inherit the dark page image treatment");
 assert(!app.includes('alt="${escapeHtml(project.title)} detail view"'), "Product pages do not duplicate the detail crop before the gallery");
@@ -106,7 +106,7 @@ assert(!app.includes("<figcaption>"), "Product gallery images do not show text c
 assert(!css.includes("@keyframes projectCardFade"), "Work card image transitions are removed outside the homepage slideshow");
 assert(css.includes("font-size: clamp(1.12rem"), "CTA text keeps the established scale");
 assert(css.includes("prefers-reduced-motion") && css.includes("animation: none"), "Motion respects reduced-motion settings");
-assert(adminJs.includes('data-key="viewsText"'), "Admin UI edits product image studies without raw JSON");
+assert(admin.includes('role="tablist"') && adminJs.includes('data-view-key="image"') && adminJs.includes("function renderExperience"), "Admin uses accessible tabs and structured project and experience fields");
 assert(site.about.experience.length >= 3, "About page has relevant experience entries");
 assert(site.about.portrait === "/assets/portrait.webp", "About page uses the supplied portrait image");
 assert(about.includes('data-field="about.portrait"'), "About page renders the portrait image");
@@ -133,5 +133,4 @@ assert(adminJs.includes("const slug = nextProjectSlug()"), "New admin projects u
 assert(adminJs.includes("href: `/work/${slug}`"), "New admin projects default to product pages");
 assert(adminJs.includes("Add the key material or construction detail."), "New admin projects start with useful detail notes");
 assert(readme.includes("one main image") && readme.includes("four cropped image studies") && readme.includes("four in situ images"), "README documents the nine-image product page requirement");
-assert(readme.includes("Label | Image URL | crop or insitu"), "README documents product image study rows");
-assert(readme.includes("Role | Company | Period | Description"), "README documents experience row format");
+assert(readme.includes("structured editor") && readme.includes("image-study rows"), "README documents the structured project and experience editors");

@@ -6,23 +6,32 @@
     <meta name="description" content="Contact Jon Brooks for design inquiries.">
     <link rel="icon" href="/favicon.svg?v=20260705-4" type="image/svg+xml">
     <title>Contact | Jon Brooks</title>
-    <link rel="stylesheet" href="/styles.css?v=20260705-7">
+    <link rel="stylesheet" href="/styles.css?v=20260710-1">
   </head>
   <body data-page="contact">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <a class="brand" href="/" data-field="brand">Jon Brooks</a>
-      <nav id="nav"></nav>
+      <nav id="nav" aria-label="Primary navigation"></nav>
     </header>
 
-    <main>
+    <main id="main-content">
       <section class="contact page-section">
         <h1 data-field="contact.title">Contact</h1>
         <p data-field="contact.body">For commissions, collaborations, and project inquiries, send a note with the scope, timeline, room context, and materials you have in mind.</p>
-        <a class="text-link" data-field-href="contact.emailHref" href="mailto:jonbrooks35@gmail.com"><span data-field="contact.email">jonbrooks35@gmail.com</span></a>
-        <a class="text-link" data-field-href="contact.phoneHref" href="tel:0412218673"><span data-field="contact.phone">0412 218 673</span></a>
+        <div class="contact-methods">
+          <a data-field-href="contact.emailHref" href="mailto:jonbrooks35@gmail.com">
+            <span>Email</span>
+            <strong data-field="contact.email">jonbrooks35@gmail.com</strong>
+          </a>
+          <a data-field-href="contact.phoneHref" href="tel:0412218673">
+            <span>Phone</span>
+            <strong data-field="contact.phone">0412 218 673</strong>
+          </a>
+        </div>
       </section>
     </main>
 
-    <script src="/app.js?v=20260705-7" defer></script>
+    <script src="/app.js?v=20260710-1" defer></script>
   </body>
 </html>

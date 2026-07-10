@@ -6,15 +6,16 @@
     <meta name="description" content="About Jon Brooks and the studio approach.">
     <link rel="icon" href="/favicon.svg?v=20260705-4" type="image/svg+xml">
     <title>About | Jon Brooks</title>
-    <link rel="stylesheet" href="/styles.css?v=20260705-7">
+    <link rel="stylesheet" href="/styles.css?v=20260710-1">
   </head>
   <body data-page="about">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <a class="brand" href="/" data-field="brand">Jon Brooks</a>
-      <nav id="nav"></nav>
+      <nav id="nav" aria-label="Primary navigation"></nav>
     </header>
 
-    <main>
+    <main id="main-content">
       <section class="about page-section" id="about">
         <h1 data-field="about.title">About</h1>
         <div class="about-copy">
@@ -28,14 +29,14 @@
       <section class="experience page-section">
         <div class="section-head">
           <div>
-            <h2 data-field="about.experienceTitle">Experience</h2>
+            <h2 data-field="about.experienceTitle">Relevant Experience</h2>
             <p class="page-intro" data-field="about.experienceIntro">Overall experience that supports product design work, from furniture and physical product thinking through AI visual workflows, coding, custom app development, and practical design problem-solving.</p>
           </div>
         </div>
-        <div class="experience-list" id="experience-list"></div>
+        <div class="experience-list" id="experience-list" aria-busy="true"></div>
       </section>
     </main>
 
-    <script src="/app.js?v=20260705-7" defer></script>
+    <script src="/app.js?v=20260710-1" defer></script>
   </body>
 </html>

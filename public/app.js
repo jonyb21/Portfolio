@@ -23,7 +23,7 @@ function safeUrl(value, fallback = "#") {
   if (url.startsWith("/") || url.startsWith("#")) return url;
   try {
     const parsed = new URL(url);
-    if (["https:", "http:", "mailto:"].includes(parsed.protocol)) return url;
+    if (["https:", "http:", "mailto:", "tel:"].includes(parsed.protocol)) return url;
   } catch {
     return fallback;
   }
@@ -33,7 +33,7 @@ function safeUrl(value, fallback = "#") {
 function imageUrl(value, fallback = "/assets/furniture/hero-lounge-chair.webp") {
   const url = safeUrl(value, fallback);
   if (!url.startsWith("/assets/") || url.includes("?")) return url;
-  return `${url}?v=20260705-4`;
+  return `${url}?v=20260710-1`;
 }
 
 function shuffled(values) {
@@ -45,21 +45,53 @@ function shuffled(values) {
   return items;
 }
 
-function startHeroSlideshow(images) {
-  const slides = [...document.querySelectorAll(".hero-image img")];
-  if (slides.length < 2) return;
-  const indexes = images.map((_, index) => index);
+function startHeroSlideshow(projects) {
+  const frame = document.querySelector(".hero-image");
+  const slides = [...document.querySelectorAll(".hero-slide")];
+  if (!frame || !slides.length) return;
+
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const indexes = projects.map((_, index) => index);
   let recent = [];
-  let active = shuffled(indexes)[0];
-  slides[active].classList.add("is-active");
-  setInterval(() => {
+  let active = 0;
+  let timer;
+
+  function show(index) {
+    slides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === index;
+      slide.classList.toggle("is-active", isActive);
+      slide.setAttribute("aria-hidden", String(!isActive));
+      slide.tabIndex = isActive ? 0 : -1;
+    });
+  }
+
+  function pause() {
+    clearTimeout(timer);
+  }
+
+  function schedule() {
+    pause();
+    if (document.hidden || reducedMotion.matches || slides.length < 2) return;
+    timer = setTimeout(advance, 5000);
+  }
+
+  function advance() {
     const choices = indexes.filter(index => !recent.includes(index) && index !== active);
     const next = shuffled(choices.length ? choices : indexes.filter(index => index !== active))[0];
-    slides[active].classList.remove("is-active");
     recent = [active, ...recent].slice(0, 2);
     active = next;
-    slides[active].classList.add("is-active");
-  }, 5000);
+    show(active);
+    schedule();
+  }
+
+  show(active);
+  frame.addEventListener("mouseenter", pause);
+  frame.addEventListener("mouseleave", schedule);
+  frame.addEventListener("focusin", pause);
+  frame.addEventListener("focusout", schedule);
+  document.addEventListener("visibilitychange", schedule);
+  reducedMotion.addEventListener("change", schedule);
+  schedule();
 }
 
 function projectUrl(project) {
@@ -74,22 +106,36 @@ function phoneUrl(value) {
 function renderProjectViews(project) {
   const views = Array.isArray(project.views) ? project.views : [];
   if (!views.length) return "";
-  return `
-      <div class="project-gallery" aria-label="${escapeHtml(project.title)} image studies">
-        ${views.map(view => {
-          const type = view.type === "insitu" ? "insitu" : "crop";
-          const fallback = type === "insitu" ? project.image : project.detailImage || project.image;
-          const image = safeUrl(view.image, fallback);
-          const alt = view.alt || `${project.title} ${view.label || "view"}`;
-          return `
-        <figure class="detail-image gallery-image ${type}">
-          <button class="image-preview-trigger" type="button" data-preview-src="${escapeHtml(imageUrl(image))}" data-preview-alt="${escapeHtml(alt)}">
-            <img src="${escapeHtml(imageUrl(image))}" alt="${escapeHtml(alt)}">
-          </button>
-        </figure>`;
-        }).join("")}
-      </div>`;
+
+  return [
+    { type: "crop", title: "Design details" },
+    { type: "insitu", title: "In context" }
+  ].map(group => {
+    const groupViews = views.filter(view => view.type === group.type);
+    if (!groupViews.length) return "";
+    const headingId = `${project.slug}-${group.type}`;
+    return `
+      <section class="project-media-group ${group.type}" aria-labelledby="${escapeHtml(headingId)}">
+        <h2 id="${escapeHtml(headingId)}">${group.title}</h2>
+        <div class="project-gallery">
+          ${groupViews.map(view => {
+            const type = view.type === "insitu" ? "insitu" : "crop";
+            const fallback = type === "insitu" ? project.image : project.detailImage || project.image;
+            const image = safeUrl(view.image, fallback);
+            const alt = view.alt || `${project.title} ${view.label || "view"}`;
+            return `
+            <figure class="detail-image gallery-image ${type}">
+              <button class="image-preview-trigger" type="button" data-preview-src="${escapeHtml(imageUrl(image))}" data-preview-alt="${escapeHtml(alt)}">
+                <img src="${escapeHtml(imageUrl(image))}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">
+              </button>
+            </figure>`;
+          }).join("")}
+        </div>
+      </section>`;
+  }).join("");
 }
+
+let previewTrigger;
 
 function openImagePreview(src, alt) {
   const lightbox = document.getElementById("image-preview");
@@ -97,36 +143,39 @@ function openImagePreview(src, alt) {
   const image = lightbox.querySelector("img");
   image.src = src;
   image.alt = alt || "Project image preview";
-  lightbox.hidden = false;
   document.body.classList.add("preview-open");
+  lightbox.showModal();
   lightbox.querySelector(".preview-close").focus();
 }
 
 function closeImagePreview() {
   const lightbox = document.getElementById("image-preview");
-  if (!lightbox || lightbox.hidden) return;
-  lightbox.hidden = true;
-  lightbox.querySelector("img").removeAttribute("src");
-  document.body.classList.remove("preview-open");
+  if (lightbox?.open) lightbox.close();
 }
 
 function ensureImagePreview() {
   if (document.getElementById("image-preview")) return;
   document.body.insertAdjacentHTML("beforeend", `
-    <div class="image-preview" id="image-preview" hidden>
-      <button class="preview-backdrop" type="button" aria-label="Close image preview"></button>
+    <dialog class="image-preview" id="image-preview" aria-label="Project image preview">
       <figure class="preview-frame">
-        <button class="preview-close" type="button" aria-label="Close image preview">×</button>
+        <button class="preview-close" type="button" aria-label="Close image preview">&#215;</button>
         <img alt="">
       </figure>
-    </div>
+    </dialog>
   `);
+  document.getElementById("image-preview").addEventListener("close", event => {
+    event.currentTarget.querySelector("img").removeAttribute("src");
+    document.body.classList.remove("preview-open");
+    previewTrigger?.focus();
+    previewTrigger = null;
+  });
 }
 
 function render(site) {
   ensureImagePreview();
-  site.contact.emailHref = `mailto:${site.contact.email}`;
-  site.contact.phoneHref = phoneUrl(site.contact.phone);
+  const emailHref = `mailto:${site.contact.email}`;
+  const contactPhoneHref = phoneUrl(site.contact.phone);
+
   setText('[data-field="brand"]', site.brand);
   setText('[data-field="hero.title"]', site.hero.title);
   setText('[data-field="hero.body"]', site.hero.body);
@@ -143,17 +192,26 @@ function render(site) {
   setText('[data-field="contact.email"]', site.contact.email);
   setText('[data-field="contact.phone"]', site.contact.phone);
   setHref('[data-field-href="hero.ctaHref"]', site.hero.ctaHref);
-  setHref('[data-field-href="contact.emailHref"]', site.contact.emailHref);
-  setHref('[data-field-href="contact.phoneHref"]', site.contact.phoneHref);
+  setHref('[data-field-href="contact.emailHref"]', emailHref);
+  setHref('[data-field-href="contact.phoneHref"]', contactPhoneHref);
 
   const heroImage = document.querySelector('[data-field="hero.image"]');
   if (heroImage) {
-    const images = Array.isArray(site.projects) ? site.projects.map(project => project.cardImage || project.image).filter(Boolean) : [site.hero.image];
-    const uniqueImages = [...new Set(images)];
-    heroImage.closest(".hero-image").innerHTML = uniqueImages.map((image, index) => `
-      <img data-field="${index === 0 ? "hero.image" : ""}" src="${escapeHtml(imageUrl(image))}" alt="${index === 0 ? "Featured furniture piece" : ""}">
+    const seenImages = new Set();
+    const heroProjects = (Array.isArray(site.projects) ? site.projects : []).filter(project => {
+      const image = project.image || project.cardImage;
+      if (!image || seenImages.has(image)) return false;
+      seenImages.add(image);
+      return true;
+    });
+    const featuredIndex = heroProjects.findIndex(project => (project.image || project.cardImage) === site.hero.image);
+    if (featuredIndex > 0) heroProjects.unshift(heroProjects.splice(featuredIndex, 1)[0]);
+    heroImage.closest(".hero-image").innerHTML = heroProjects.map((project, index) => `
+      <a class="hero-slide${index === 0 ? " is-active" : ""}" href="${escapeHtml(projectUrl(project))}" aria-label="View ${escapeHtml(project.title)}" aria-hidden="${index !== 0}" tabindex="${index === 0 ? "0" : "-1"}">
+        <img data-field="${index === 0 ? "hero.image" : ""}" src="${escapeHtml(imageUrl(project.image || project.cardImage))}" alt="" ${index === 0 ? 'fetchpriority="high"' : 'fetchpriority="low"'} decoding="async">
+      </a>
     `).join("");
-    startHeroSlideshow(uniqueImages);
+    startHeroSlideshow(heroProjects);
   }
 
   const portrait = document.querySelector('[data-field="about.portrait"]');
@@ -166,30 +224,36 @@ function render(site) {
   const activePage = page === "product" ? "work" : page;
   document.getElementById("nav").innerHTML = site.nav.map(item => {
     const href = safeUrl(item.href, "/");
-    const active = href === `/${activePage}` ? ' class="is-active"' : "";
-    return `<a${active} href="${escapeHtml(href)}">${escapeHtml(item.label)}</a>`;
+    const isActive = href === `/${activePage}`;
+    return `<a${isActive ? ' class="is-active" aria-current="page"' : ""} href="${escapeHtml(href)}">${escapeHtml(item.label)}</a>`;
   }).join("");
 
   const projects = document.getElementById("projects");
-  if (projects) projects.innerHTML = site.projects.map(project => `
-    <a class="project-card" href="${escapeHtml(projectUrl(project))}">
-      <span class="project-card-images" aria-hidden="true">
-        <img src="${escapeHtml(imageUrl(project.cardImage || project.image))}" alt="">
-      </span>
-      <span class="sr-only">${escapeHtml(project.title)}</span>
-      <span class="project-title">${escapeHtml(project.title)}</span>
-    </a>
-  `).join("");
+  if (projects) {
+    projects.innerHTML = site.projects.map((project, index) => `
+      <a class="project-card" href="${escapeHtml(projectUrl(project))}">
+        <span class="project-card-images" aria-hidden="true">
+          <img src="${escapeHtml(imageUrl(project.cardImage || project.image))}" alt="" ${index < 3 ? 'loading="eager"' : 'loading="lazy"'} decoding="async">
+        </span>
+        <span class="sr-only">${escapeHtml(project.title)}</span>
+        <span class="project-title">${escapeHtml(project.title)}</span>
+      </a>
+    `).join("");
+    projects.setAttribute("aria-busy", "false");
+  }
 
   const experience = document.getElementById("experience-list");
-  if (experience) experience.innerHTML = (site.about.experience || []).map(item => `
-    <article class="experience-item">
-      <p>${escapeHtml(item.period)}</p>
-      <h3>${escapeHtml(item.role)}</h3>
-      <strong>${escapeHtml(item.company)}</strong>
-      <span>${escapeHtml(item.description)}</span>
-    </article>
-  `).join("");
+  if (experience) {
+    experience.innerHTML = (site.about.experience || []).map(item => `
+      <article class="experience-item">
+        <p>${escapeHtml(item.period)}</p>
+        <h3>${escapeHtml(item.role)}</h3>
+        <strong>${escapeHtml(item.company)}</strong>
+        <span>${escapeHtml(item.description)}</span>
+      </article>
+    `).join("");
+    experience.setAttribute("aria-busy", "false");
+  }
 
   const productPage = document.getElementById("product-page");
   if (productPage) {
@@ -199,52 +263,67 @@ function render(site) {
       productPage.innerHTML = '<p class="page-intro">Project not found.</p>';
       return;
     }
+    const projectIndex = site.projects.indexOf(project);
+    const nextProject = site.projects[(projectIndex + 1) % site.projects.length];
     document.title = `${project.title} | ${site.brand}`;
     productPage.innerHTML = `
       <a class="text-link back-link" href="/work"><span>Back to work</span></a>
       <article class="project-detail single" id="${escapeHtml(project.slug)}">
-      <div class="detail-copy">
-        <p class="project-meta">${escapeHtml(project.type || "Furniture")} / ${escapeHtml(project.year || "")}</p>
-        <h2>${escapeHtml(project.title)}</h2>
-        <p>${escapeHtml(project.summary || "")}</p>
-        <dl>
-          <div>
-            <dt>Materials</dt>
-            <dd>${escapeHtml(project.materials || "")}</dd>
-          </div>
-        </dl>
-        <ul>
-          ${(project.notes || []).map(note => `<li>${escapeHtml(note)}</li>`).join("")}
-        </ul>
-      </div>
-      <figure class="detail-image wide">
-        <button class="image-preview-trigger" type="button" data-preview-src="${escapeHtml(imageUrl(project.cardImage || project.image))}" data-preview-alt="${escapeHtml(`${project.title} full view`)}">
-          <img src="${escapeHtml(imageUrl(project.cardImage || project.image))}" alt="${escapeHtml(project.title)} full view">
-        </button>
-      </figure>
-      ${renderProjectViews(project)}
-    </article>`;
+        <header class="detail-copy">
+          <p class="project-meta">${escapeHtml(project.type || "Furniture")} / ${escapeHtml(project.year || "")}</p>
+          <h1>${escapeHtml(project.title)}</h1>
+          <p>${escapeHtml(project.summary || "")}</p>
+        </header>
+        <figure class="detail-image wide lead-image">
+          <button class="image-preview-trigger" type="button" data-preview-src="${escapeHtml(imageUrl(project.image || project.cardImage))}" data-preview-alt="${escapeHtml(`${project.title} full view`)}">
+            <img src="${escapeHtml(imageUrl(project.image || project.cardImage))}" alt="${escapeHtml(project.title)} full view" fetchpriority="high" decoding="async">
+          </button>
+        </figure>
+        <div class="detail-facts">
+          <dl>
+            <div>
+              <dt>Materials</dt>
+              <dd>${escapeHtml(project.materials || "")}</dd>
+            </div>
+          </dl>
+          <ul>
+            ${(project.notes || []).map(note => `<li>${escapeHtml(note)}</li>`).join("")}
+          </ul>
+        </div>
+        ${renderProjectViews(project)}
+        <nav class="project-end-nav" aria-label="Project navigation">
+          <a href="${escapeHtml(projectUrl(nextProject))}">
+            <span>Next project</span>
+            <strong>${escapeHtml(nextProject.title)}</strong>
+          </a>
+          <a class="text-link" href="/contact"><span>Get in contact</span></a>
+        </nav>
+      </article>`;
+    productPage.setAttribute("aria-busy", "false");
   }
 }
 
 document.addEventListener("click", event => {
   const trigger = event.target.closest(".image-preview-trigger");
   if (trigger) {
+    previewTrigger = trigger;
     openImagePreview(trigger.dataset.previewSrc, trigger.dataset.previewAlt);
     return;
   }
-  if (event.target.closest(".preview-close") || event.target.closest(".preview-backdrop")) {
-    closeImagePreview();
-  }
-});
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeImagePreview();
+  const lightbox = document.getElementById("image-preview");
+  if (event.target.closest(".preview-close") || event.target === lightbox) closeImagePreview();
 });
 
 fetch("/api/site")
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) throw new Error(`Site content failed: ${response.status}`);
+    return response.json();
+  })
   .then(render)
   .catch(() => {
     document.body.classList.add("load-error");
+    const projects = document.getElementById("projects");
+    const product = document.getElementById("product-page");
+    if (projects) projects.innerHTML = '<p class="inline-error">Projects could not load. Please refresh the page.</p>';
+    if (product) product.innerHTML = '<p class="inline-error">This project could not load. Please return to Work and try again.</p>';
   });

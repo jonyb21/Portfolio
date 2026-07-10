@@ -12,6 +12,8 @@ const { createServer, validateSite } = await import("../server.js");
 
 const validSite = JSON.parse(fs.readFileSync(process.env.PORTFOLIO_DATA_PATH, "utf8"));
 const adminCss = fs.readFileSync("public/admin.css", "utf8");
+const app = fs.readFileSync("public/app.js", "utf8");
+const admin = fs.readFileSync("public/admin.js", "utf8");
 validateSite(validSite);
 assert(adminCss.includes("--text: #e6e2d8"));
 assert(adminCss.includes("--accent: #adbd68"));
@@ -32,7 +34,7 @@ assert.throws(() => validateSite({
   ...validSite,
   projects: [{
     ...validSite.projects[0],
-    views: [{ ...validSite.projects[0].views[0], image: validSite.projects[0].cardImage }, ...validSite.projects[0].views.slice(1)]
+    views: [{ ...validSite.projects[0].views[0], image: validSite.projects[0].image }, ...validSite.projects[0].views.slice(1)]
   }]
 }), /unique/);
 assert.throws(() => validateSite({ ...validSite, projects: [{ ...validSite.projects[0], views: [{ ...validSite.projects[0].views[0], image: "/assets/furniture/missing-view.webp" }, ...validSite.projects[0].views.slice(1)] }] }), /does not exist/);
@@ -69,7 +71,7 @@ try {
   assert.equal(site.projects[0].views.filter(view => view.type === "insitu").length, 4);
   assert.equal([site.projects[0].cardImage, ...site.projects[0].views.map(view => view.image)].length, 9);
   assert(site.projects.every(project => {
-    const images = [project.cardImage || project.image, ...project.views.map(view => view.image)].filter(Boolean);
+    const images = [project.image, ...project.views.map(view => view.image)].filter(Boolean);
     return new Set(images).size === images.length;
   }));
   assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-insitu-v(?:[1-5]|4-fixed)\.webp$/.test(view.image))));
@@ -86,6 +88,9 @@ try {
   assert.match(site.about.experience.at(-1).description, /outside-the-box thinking/);
   assert.equal(site.contact.email, "jonbrooks35@gmail.com");
   assert.equal(site.contact.phone, "0412 218 673");
+  assert(app.includes('"mailto:", "tel:"'), "Public links safely retain phone links");
+  assert(app.includes("lightbox.showModal()") && app.includes("previewTrigger?.focus()"), "Image preview uses the native dialog with focus restoration");
+  assert(admin.includes('data-view-key="image"') && admin.includes("function renderExperience"), "Admin edits image studies and experience as structured fields");
 
   const workPage = await fetch(`${base}/work`);
   assert.equal(workPage.status, 200);

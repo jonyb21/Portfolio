@@ -97,15 +97,25 @@ label {
 
 input,
 textarea,
+select,
 button {
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--bg);
   color: var(--text);
   font: inherit;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease, transform 100ms ease;
 }
 
-input {
+input,
+textarea,
+select {
+  width: 100%;
+  min-width: 0;
+}
+
+input,
+select {
   min-height: 44px;
   padding: 0 12px;
 }
@@ -114,12 +124,6 @@ textarea {
   padding: 14px;
   line-height: 1.5;
   resize: vertical;
-}
-
-.actions {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
 }
 
 button {
@@ -133,6 +137,38 @@ button[type="submit"],
   border-color: var(--accent);
   background: var(--accent);
   color: #171911;
+}
+
+button:not(:disabled):hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+button[type="submit"]:hover,
+.tab.active:hover {
+  background: #c3d17c;
+  color: #171911;
+}
+
+button:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+input:hover,
+textarea:hover,
+select:hover,
+.project-summary:hover {
+  border-color: #484940;
+}
+
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .list-head,
@@ -149,6 +185,28 @@ button[type="submit"],
   gap: 14px;
 }
 
+.action-bar {
+  position: sticky;
+  z-index: 2;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgb(24 24 22 / 0.94);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.28);
+  backdrop-filter: blur(12px);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
 .editor-card {
   display: grid;
   gap: 12px;
@@ -156,6 +214,130 @@ button[type="submit"],
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: rgb(255 255 255 / 0.025);
+}
+
+.project-editor {
+  display: block;
+  padding: 0;
+  overflow: clip;
+}
+
+.project-summary {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.project-summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-summary::marker {
+  content: "";
+}
+
+.project-summary:hover {
+  background: rgb(255 255 255 / 0.035);
+}
+
+.project-summary:focus-visible {
+  outline-offset: -4px;
+}
+
+.project-editor[open] > .project-summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.disclosure {
+  display: grid;
+  width: 32px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.disclosure::before {
+  content: "+";
+}
+
+.project-editor[open] .disclosure::before {
+  content: "-";
+}
+
+.project-heading {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.project-heading span {
+  overflow: hidden;
+  color: var(--muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.editor-card-body {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+}
+
+.views-editor {
+  min-width: 0;
+  margin: 6px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.views-editor legend {
+  margin-bottom: 10px;
+  color: var(--muted);
+}
+
+.view-row {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.view-thumbnail {
+  width: 112px;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg);
+  object-fit: cover;
+}
+
+.view-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) 120px;
+  gap: 12px;
+  align-items: end;
+}
+
+.experience-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.8fr;
+  gap: 12px;
+}
+
+.experience-description {
+  grid-column: 1 / -1;
 }
 
 .editor-card button,
@@ -171,7 +353,7 @@ output {
 .toast {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 88px;
   padding: 12px 14px;
   border: 1px solid rgb(173 189 104 / 0.4);
   border-radius: 14px;
@@ -191,11 +373,55 @@ output {
     flex-direction: column;
   }
 
+  .admin-shell {
+    width: min(100% - 20px, 980px);
+    margin: 20px auto;
+  }
+
+  form {
+    padding: 16px;
+  }
+
+  .project-heading {
+    display: grid;
+    gap: 4px;
+  }
+
+  .view-row {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .view-thumbnail {
+    width: 80px;
+  }
+
+  .view-fields,
+  .experience-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-description {
+    grid-column: auto;
+  }
+
+  .action-bar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .actions {
     justify-content: stretch;
   }
 
   .actions button {
     flex: 1;
+  }
+
+  .toast {
+    right: 10px;
+    bottom: 112px;
+    left: 10px;
   }
 }
