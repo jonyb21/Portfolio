@@ -524,6 +524,16 @@ h2 {
   cursor: zoom-in;
 }
 
+.image-preview-trigger img {
+  transition: transform 700ms var(--ease-out), filter var(--speed-base) ease;
+}
+
+.gallery-image:hover .image-preview-trigger img,
+.gallery-image:focus-within .image-preview-trigger img {
+  transform: scale(1.035);
+  filter: saturate(0.94) brightness(1.16) contrast(1.04);
+}
+
 .image-preview-trigger:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: -8px;
@@ -577,6 +587,15 @@ h2 {
 .project-end-nav > a:first-child {
   display: grid;
   gap: 8px;
+}
+
+.project-end-nav > a {
+  transition: translate var(--speed-base) var(--ease-out);
+}
+
+.project-end-nav > a:hover,
+.project-end-nav > a:focus-visible {
+  translate: 0 -3px;
 }
 
 .project-end-nav > a:first-child span {
@@ -852,6 +871,24 @@ body.preview-open {
     animation-delay: 230ms;
   }
 
+  .project-detail.single .detail-copy,
+  .project-detail.single .detail-facts,
+  .project-detail.single > .lead-image {
+    animation: enter-up 720ms var(--ease-out) both;
+  }
+
+  .project-detail.single .detail-facts {
+    animation-delay: 120ms;
+  }
+
+  .project-detail.single > .lead-image {
+    animation-delay: 180ms;
+  }
+
+  .image-preview[open] .preview-frame {
+    animation: preview-frame-in 260ms var(--ease-out) both;
+  }
+
   @supports (animation-timeline: view()) {
     .project-card,
     .gallery-image,
@@ -860,6 +897,18 @@ body.preview-open {
       animation-timeline: view(block);
       animation-range: entry 0% entry 28%;
     }
+  }
+}
+
+@keyframes preview-frame-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 

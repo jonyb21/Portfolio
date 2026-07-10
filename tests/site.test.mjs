@@ -76,7 +76,7 @@ try {
   }));
   assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-insitu-v(?:[1-5]|4-fixed)\.webp$/.test(view.image))));
   assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"));
-  assert(site.projects.find(project => project.slug === "dining-table").views.filter(view => view.type === "insitu").every(view => view.image.includes("/ridge-dining-table-insitu-")));
+  assert(site.projects.find(project => project.slug === "dining-table").views.filter(view => view.type === "insitu").every(view => view.image.includes("/ridge-four-leg-insitu-")));
   assert.equal(site.about.experienceTitle, "Relevant Experience");
   assert.equal(site.about.portrait, "/assets/portrait.webp");
   assert.equal(site.hero.title, "Designing products with clarity, character, and longevity.");
