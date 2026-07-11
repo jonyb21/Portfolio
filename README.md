@@ -22,11 +22,11 @@ The admin saves `data/site.json`. Docker mounts `./data` so edits survive contai
 
 The Work page uses `?category=furniture`, `?category=homewares`, or `?category=lighting`. Each category contains exactly five projects, enforced by the server, tests, and preflight eval.
 
-Project images can use existing `/assets/...` files or full `https://` URLs. Each project page needs one main image, materials, at least three notes, four cropped image studies, and four in situ images so the detail page renders as a complete nine-image product story. Every Homewares project includes at least one `-in-use-` scene showing a person or hand operating the product.
+Project images use local `/assets/...` WebP files. Each project page needs one main image, materials, at least three notes, four studio/detail studies, and four context images so the detail page renders as a complete nine-image product story. Every Homewares and Lighting project includes a final use scene showing the product being operated or illuminated in context.
 
-Homepage slides, work cards, and project leads use native 4:3 image assets, so the frames fill edge to edge without side bands or product cropping. Detail-study tiles fill their frames and retain the uncropped source in the click-to-preview view.
+Homepage slides, work cards, project leads, and gallery images use native 4:3 assets, so every frame fills edge to edge without side bands or blur fills. Homewares and Lighting media uses the `-vibrant-v1.webp` image set and keeps nine unique files per product story.
 
-Run `powershell -ExecutionPolicy Bypass -File scripts/normalize-media.ps1` after replacing local project images. It pads the uncropped source over a blurred 4:3 fill and skips assets that are already native 4:3.
+Prepare replacement media at a native 4:3 ratio before adding it to the project. Extend or recompose the source image when required; do not use letterboxing or blurred edge fills.
 
 The admin uses a structured editor: expand a project to edit its details and eight image-study rows, then use the About tab to manage individual experience entries. The server rejects missing, repeated, or invalid product-page image paths before saving.
 

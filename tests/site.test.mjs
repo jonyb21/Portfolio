@@ -49,7 +49,9 @@ for (const page of ["index", "work", "product", "about", "contact"]) {
 }
 assert(app.includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Browser-rendered images use the current media revision");
 assert(fs.readFileSync("server.js", "utf8").includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Server-rendered cards use the same media revision");
-assert(css.includes("bottom: 22px") && css.includes("font-size: clamp(1.1rem, 1.45vw, 1.4rem)"), "Work card titles sit lower at the reduced scale");
+assert(css.includes("bottom: 16px") && css.includes("font-size: clamp(1rem, 1.15vw, 1.15rem)"), "Work card titles sit low at a compact scale");
+assert(css.includes("rgb(0 0 0 / 0.68)") && css.includes("text-shadow: 0 1px 8px"), "Work card labels remain readable without covering the product");
+assert(fs.readFileSync("public/product.html", "utf8").includes('content="Industrial design project by Jon Brooks."'), "Project metadata covers the complete industrial-design portfolio");
 for (const image of new Set([validSite.hero.image, validSite.about.portrait, ...validSite.projects.flatMap(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)])])) {
   const { width, height } = webpDimensions(image);
   assert.equal(width * 3, height * 4, `${image} is a native 4:3 asset`);
@@ -107,6 +109,7 @@ try {
   assert.equal(site.brand, "Jon Brooks");
   assert.equal(site.nav[0].href, "/work");
   assert.equal(site.workCta, "Get in contact");
+  assert.match(site.workIntro, /furniture, homewares, and lighting/);
   assert.equal(site.projects[0].slug, "contour-lounge-chair");
   assert.equal(site.projects.length, 15);
   assert.deepEqual(Object.fromEntries(PROJECT_CATEGORIES.map(category => [category, site.projects.filter(project => project.category === category).length])), {
@@ -125,8 +128,10 @@ try {
     const images = [project.image, ...project.views.map(view => view.image)].filter(Boolean);
     return new Set(images).size === images.length;
   }));
-  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1)\.webp$/.test(view.image))));
-  assert(site.projects.filter(project => project.category === "homewares").every(project => project.views.some(view => view.type === "insitu" && view.image.includes("-in-use-"))), "Every Homewares project includes a human in-use scene");
+  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-vibrant-v1)\.webp$/.test(view.image))));
+  assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.some(view => view.type === "insitu" && view.image.endsWith("-context-use-vibrant-v1.webp"))), "Every Homewares and Lighting project includes a use scene");
+  assert(site.projects.filter(project => project.category !== "furniture").every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => image.includes("-vibrant-v1.webp"))), "Homewares and Lighting use the final vibrant image system");
+  assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Vibrant galleries keep four studio studies followed by four context views");
   assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"));
   assert(site.projects.find(project => project.slug === "dining-table").views.filter(view => view.type === "insitu").every(view => view.image.includes("/ridge-four-leg-insitu-")));
   assert.equal(site.about.experienceTitle, "Relevant Experience");
@@ -160,12 +165,12 @@ try {
   assert.equal(workPage.status, 200);
   const furnitureWork = await workPage.text();
   assert.match(furnitureWork, /Contour Lounge Chair/);
-  assert.doesNotMatch(furnitureWork, /Axis Kettle/);
+  assert.doesNotMatch(furnitureWork, /Flux Kettle/);
 
   const homewaresWork = await fetch(`${base}/work?category=homewares`);
   assert.equal(homewaresWork.status, 200);
   const homewaresHtml = await homewaresWork.text();
-  assert.match(homewaresHtml, /Axis Kettle/);
+  assert.match(homewaresHtml, /Flux Kettle/);
   assert.doesNotMatch(homewaresHtml, /Contour Lounge Chair/);
   assert.match(homewaresHtml, /data-work-category="homewares"[^>]+aria-selected="true"/);
 

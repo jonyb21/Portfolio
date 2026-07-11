@@ -23,7 +23,7 @@
     "detailImage": "/assets/furniture/hero-lounge-chair-detail.webp"
   },
   "workTitle": "Selected Work",
-  "workIntro": "A furniture-led selection showing a broad industrial design approach across form, function, materials, visualisation, and practical problem-solving.",
+  "workIntro": "Industrial design work across furniture, homewares, and lighting, shaped through form, function, materials, visualisation, and practical problem-solving.",
   "workCta": "Get in contact",
   "projects": [
     {
@@ -328,600 +328,600 @@
     },
     {
       "slug": "axis-kettle",
-      "title": "Axis Kettle",
+      "title": "Flux Kettle",
       "category": "homewares",
       "year": "2026",
       "type": "Kitchen appliance",
-      "materials": "Brushed aluminium, glass-filled nylon, concealed stainless heating plate",
-      "image": "/assets/homewares/axis-kettle-lead-4x3.webp",
-      "cardImage": "/assets/homewares/axis-kettle-card-4x3.webp",
-      "detailImage": "/assets/homewares/axis-kettle-crop-1.webp",
+      "materials": "Cobalt enamelled steel, brushed stainless steel, vermilion glass-filled nylon, concealed stainless heating plate",
+      "image": "/assets/homewares/axis-kettle-lead-vibrant-v1.webp",
+      "cardImage": "/assets/homewares/axis-kettle-lead-vibrant-v1.webp",
+      "detailImage": "/assets/homewares/axis-kettle-detail-primary-vibrant-v1.webp",
       "href": "/work/axis-kettle",
-      "summary": "A compact electric kettle reduced to a clear cylindrical volume, a controlled pour, and one legible status light. The design keeps the water path, grip, and cleaning surfaces direct and durable.",
+      "summary": "A compact electric kettle that uses colour to explain its assembly: a cobalt enamelled body, vermilion grip and base, and stainless pour surfaces. The part breaks make heat, handling, and service zones immediately legible.",
       "notes": [
-        "The short spout controls flow without adding a separate decorative form.",
-        "A broad loop handle keeps the hot body clear of the hand.",
-        "Flush lid geometry and a concealed heating plate make routine cleaning straightforward."
+        "The short stainless spout controls flow while remaining visually separate from the hot enamelled body.",
+        "A broad vermilion loop handle keeps the hand clear and makes the grip zone unmistakable.",
+        "The detachable red base carries the chartreuse status light and keeps electrical servicing outside the water vessel."
       ],
       "views": [
         {
-          "label": "Spout and lid junction",
-          "image": "/assets/homewares/axis-kettle-crop-1.webp",
+          "label": "Front three-quarter",
+          "image": "/assets/homewares/axis-kettle-angle-front-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Handle attachment",
-          "image": "/assets/homewares/axis-kettle-crop-2.webp",
+          "label": "Rear handle profile",
+          "image": "/assets/homewares/axis-kettle-angle-rear-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Status light detail",
-          "image": "/assets/homewares/axis-kettle-crop-3.webp",
+          "label": "Lid and pour control",
+          "image": "/assets/homewares/axis-kettle-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Base and body seam",
-          "image": "/assets/homewares/axis-kettle-crop-4.webp",
+          "label": "Enamel and base seam",
+          "image": "/assets/homewares/axis-kettle-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
         {
           "label": "Kitchen worktop",
-          "image": "/assets/homewares/axis-kettle-insitu-v1.webp",
+          "image": "/assets/homewares/axis-kettle-context-wide-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Morning preparation",
-          "image": "/assets/homewares/axis-kettle-insitu-v2.webp",
+          "label": "Tea preparation overhead",
+          "image": "/assets/homewares/axis-kettle-context-alt-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Material study in use",
-          "image": "/assets/homewares/axis-kettle-insitu-v3.webp",
+          "label": "Pouring profile",
+          "image": "/assets/homewares/axis-kettle-context-active-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Pouring in use",
-          "image": "/assets/homewares/axis-kettle-in-use-v1.webp",
+          "label": "Filling in use",
+          "image": "/assets/homewares/axis-kettle-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
       ]
     },
     {
       "slug": "tempo-clock",
-      "title": "Tempo Clock",
+      "title": "Morrow Clock",
       "category": "homewares",
       "year": "2026",
       "type": "Timepiece",
-      "materials": "Off-white polymer, mineral glass, anodised aluminium, charcoal dial",
-      "image": "/assets/homewares/tempo-clock-lead-4x3.webp",
-      "cardImage": "/assets/homewares/tempo-clock-card-4x3.webp",
-      "detailImage": "/assets/homewares/tempo-clock-crop-1.webp",
+      "materials": "Translucent tangerine recycled polycarbonate, mineral glass, plum dial, mint hands, cobalt anodised aluminium",
+      "image": "/assets/homewares/tempo-clock-lead-vibrant-v1.webp",
+      "cardImage": "/assets/homewares/tempo-clock-lead-vibrant-v1.webp",
+      "detailImage": "/assets/homewares/tempo-clock-detail-primary-vibrant-v1.webp",
       "href": "/work/tempo-clock",
-      "summary": "A quiet analogue clock for the bedside or desk. Sparse markers, high-contrast hands, and a single control crown make the time readable without turning the object into a display.",
+      "summary": "A tactile analogue clock built around a thick translucent shell, a deeply recessed dial, and one direct control. Tangerine, plum, mint, and cobalt turn the layers of the assembly into a readable visual system.",
       "notes": [
-        "Minute markers are precise while the face remains free of numerals.",
-        "The recessed dial protects the glass edge and reduces reflections.",
-        "One aluminium crown combines time setting and alarm control."
+        "The translucent shell reveals case depth and protects the mineral-glass edge without a heavy bezel.",
+        "Mint hands and markers stay legible against the matte plum dial without relying on numerals.",
+        "One cobalt crown combines time and alarm adjustment while the warm-yellow indicator confirms state."
       ],
       "views": [
         {
+          "label": "Front three-quarter",
+          "image": "/assets/homewares/tempo-clock-angle-front-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Rear control profile",
+          "image": "/assets/homewares/tempo-clock-angle-rear-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
           "label": "Dial and hand stack",
-          "image": "/assets/homewares/tempo-clock-crop-1.webp",
+          "image": "/assets/homewares/tempo-clock-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Control crown",
-          "image": "/assets/homewares/tempo-clock-crop-2.webp",
-          "type": "crop"
-        },
-        {
-          "label": "Recessed glass edge",
-          "image": "/assets/homewares/tempo-clock-crop-3.webp",
-          "type": "crop"
-        },
-        {
-          "label": "Foot and case detail",
-          "image": "/assets/homewares/tempo-clock-crop-4.webp",
+          "label": "Translucent shell edge",
+          "image": "/assets/homewares/tempo-clock-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
         {
           "label": "Bedside setting",
-          "image": "/assets/homewares/tempo-clock-insitu-v1.webp",
+          "image": "/assets/homewares/tempo-clock-context-wide-vibrant-v1.webp",
           "type": "insitu"
         },
         {
           "label": "Desk placement",
-          "image": "/assets/homewares/tempo-clock-insitu-v2.webp",
+          "image": "/assets/homewares/tempo-clock-context-alt-vibrant-v1.webp",
           "type": "insitu"
         },
         {
           "label": "Morning light",
-          "image": "/assets/homewares/tempo-clock-insitu-v3.webp",
+          "image": "/assets/homewares/tempo-clock-context-active-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Setting the time",
-          "image": "/assets/homewares/tempo-clock-in-use-v1.webp",
+          "label": "Setting the alarm",
+          "image": "/assets/homewares/tempo-clock-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
       ]
     },
     {
       "slug": "grid-tray-system",
-      "title": "Grid Tray System",
+      "title": "Tessera Tray System",
       "category": "homewares",
       "year": "2026",
       "type": "Home organisation",
-      "materials": "Off-white recycled polymer, anodised aluminium rails, charcoal removable tray",
-      "image": "/assets/homewares/grid-tray-system-lead-4x3.webp",
-      "cardImage": "/assets/homewares/grid-tray-system-card-4x3.webp",
-      "detailImage": "/assets/homewares/grid-tray-system-crop-1.webp",
+      "materials": "Sunflower, vermilion, and sky-blue recycled polymer, anodised aluminium rails, charcoal removable tray",
+      "image": "/assets/homewares/grid-tray-system-lead-vibrant-v1.webp",
+      "cardImage": "/assets/homewares/grid-tray-system-lead-vibrant-v1.webp",
+      "detailImage": "/assets/homewares/grid-tray-system-detail-primary-vibrant-v1.webp",
       "href": "/work/grid-tray-system",
-      "summary": "A stackable tray family that brings order to papers and small objects without prescribing one fixed use. Repeated proportions and visible rails make every layer easy to understand and rearrange.",
+      "summary": "A modular organisation system that makes each replaceable layer visible through colour. Yellow, vermilion, and blue trays lock to exposed aluminium rails around a removable charcoal insert.",
       "notes": [
-        "Shared dimensions let trays stack in any order.",
-        "Aluminium rails carry the load and create a clear visual datum.",
-        "The removable charcoal insert separates small tools without permanent dividers."
+        "Colour separates the stack into independent modules while shared dimensions keep every level interchangeable.",
+        "Exposed aluminium rails carry the load and create a consistent datum through the warm-yellow, red, and blue parts.",
+        "The charcoal insert slides out independently for small tools, papers, or loose objects."
       ],
       "views": [
         {
-          "label": "Interlocking corner",
-          "image": "/assets/homewares/grid-tray-system-crop-1.webp",
+          "label": "Stacked front view",
+          "image": "/assets/homewares/grid-tray-system-angle-front-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Aluminium rail",
-          "image": "/assets/homewares/grid-tray-system-crop-2.webp",
+          "label": "Exploded rear profile",
+          "image": "/assets/homewares/grid-tray-system-angle-rear-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Removable insert",
-          "image": "/assets/homewares/grid-tray-system-crop-3.webp",
+          "label": "Rail and tray junction",
+          "image": "/assets/homewares/grid-tray-system-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Stacked side profile",
-          "image": "/assets/homewares/grid-tray-system-crop-4.webp",
+          "label": "Removable insert detail",
+          "image": "/assets/homewares/grid-tray-system-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
         {
           "label": "Home office desk",
-          "image": "/assets/homewares/grid-tray-system-insitu-v1.webp",
+          "image": "/assets/homewares/grid-tray-system-context-wide-vibrant-v1.webp",
           "type": "insitu"
         },
         {
           "label": "Entry console",
-          "image": "/assets/homewares/grid-tray-system-insitu-v2.webp",
+          "image": "/assets/homewares/grid-tray-system-context-alt-vibrant-v1.webp",
           "type": "insitu"
         },
         {
           "label": "Creative workspace",
-          "image": "/assets/homewares/grid-tray-system-insitu-v3.webp",
+          "image": "/assets/homewares/grid-tray-system-context-active-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Organising documents",
-          "image": "/assets/homewares/grid-tray-system-in-use-v1.webp",
+          "label": "Sorting documents",
+          "image": "/assets/homewares/grid-tray-system-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
       ]
     },
     {
       "slug": "signal-radio",
-      "title": "Signal Radio",
+      "title": "Relay Radio",
       "category": "homewares",
       "year": "2026",
       "type": "Tabletop audio",
-      "materials": "Powder-coated aluminium, perforated steel, stainless antenna, tactile polymer controls",
-      "image": "/assets/homewares/signal-radio-lead-4x3.webp",
-      "cardImage": "/assets/homewares/signal-radio-card-4x3.webp",
-      "detailImage": "/assets/homewares/signal-radio-crop-1.webp",
+      "materials": "Forest-green powder-coated aluminium, off-white perforated steel, orange anodised aluminium, stainless antenna",
+      "image": "/assets/homewares/signal-radio-lead-vibrant-v1.webp",
+      "cardImage": "/assets/homewares/signal-radio-lead-vibrant-v1.webp",
+      "detailImage": "/assets/homewares/signal-radio-detail-primary-vibrant-v1.webp",
       "href": "/work/signal-radio",
-      "summary": "A compact radio organised around the speaker, the tuning control, and a clear antenna. The physical interface is deliberately limited so the object remains useful without menus or a screen.",
+      "summary": "A compact analogue radio with a forest-green shell, warm perforated grille, and two oversized orange controls. The design makes tuning, volume, and antenna storage obvious through touch and colour.",
       "notes": [
-        "The perforated speaker field occupies the visual centre of gravity.",
-        "Two differently sized controls distinguish tuning from volume by touch.",
-        "A small olive marker gives tuning feedback without a bright display."
+        "The off-white perforated grille is a replaceable front component rather than a visual texture applied to the shell.",
+        "Two knurled orange controls use scale as well as colour to distinguish tuning from volume.",
+        "The stainless antenna folds into a recessed top channel while the chartreuse marker gives quiet analogue feedback."
       ],
       "views": [
         {
-          "label": "Speaker perforation",
-          "image": "/assets/homewares/signal-radio-crop-1.webp",
+          "label": "Front three-quarter",
+          "image": "/assets/homewares/signal-radio-angle-front-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Primary tuning control",
-          "image": "/assets/homewares/signal-radio-crop-2.webp",
+          "label": "Rear antenna profile",
+          "image": "/assets/homewares/signal-radio-angle-rear-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Secondary control",
-          "image": "/assets/homewares/signal-radio-crop-3.webp",
+          "label": "Tuning controls",
+          "image": "/assets/homewares/signal-radio-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Antenna hinge",
-          "image": "/assets/homewares/signal-radio-crop-4.webp",
+          "label": "Perforated grille detail",
+          "image": "/assets/homewares/signal-radio-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
         {
           "label": "Living room shelf",
-          "image": "/assets/homewares/signal-radio-insitu-v1.webp",
+          "image": "/assets/homewares/signal-radio-context-wide-vibrant-v1.webp",
           "type": "insitu"
         },
         {
           "label": "Kitchen listening",
-          "image": "/assets/homewares/signal-radio-insitu-v2.webp",
+          "image": "/assets/homewares/signal-radio-context-alt-vibrant-v1.webp",
           "type": "insitu"
         },
         {
           "label": "Bedside radio",
-          "image": "/assets/homewares/signal-radio-insitu-v3.webp",
+          "image": "/assets/homewares/signal-radio-context-active-vibrant-v1.webp",
           "type": "insitu"
         },
         {
           "label": "Tuning in use",
-          "image": "/assets/homewares/signal-radio-in-use-v1.webp",
+          "image": "/assets/homewares/signal-radio-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
       ]
     },
     {
       "slug": "ratio-coffee-mill",
-      "title": "Ratio Coffee Mill",
+      "title": "Torque Coffee Mill",
       "category": "homewares",
       "year": "2026",
       "type": "Coffee preparation",
-      "materials": "Brushed aluminium, stainless steel burrs, ribbed charcoal grip, ceramic handle",
-      "image": "/assets/homewares/ratio-coffee-mill-lead-4x3.webp",
-      "cardImage": "/assets/homewares/ratio-coffee-mill-card-4x3.webp",
-      "detailImage": "/assets/homewares/ratio-coffee-mill-crop-1.webp",
+      "materials": "Deep-teal anodised aluminium, stainless burrs and crank, burgundy ribbed elastomer, mint glazed ceramic",
+      "image": "/assets/homewares/ratio-coffee-mill-lead-vibrant-v1.webp",
+      "cardImage": "/assets/homewares/ratio-coffee-mill-lead-vibrant-v1.webp",
+      "detailImage": "/assets/homewares/ratio-coffee-mill-detail-primary-vibrant-v1.webp",
       "href": "/work/ratio-coffee-mill",
-      "summary": "A manual coffee mill built around stable grinding, comfortable torque, and easy disassembly. Each material marks a different point of contact, from the cool body to the ribbed grip and ceramic crank handle.",
+      "summary": "A manual coffee mill that combines a teal anodised body, burgundy grip, and mint ceramic crank knob with a clearly serviceable burr assembly. Colour identifies where to hold, turn, and adjust.",
       "notes": [
-        "A flared base widens the stance without adding a separate stand.",
-        "The ribbed central band improves grip while the crank is loaded.",
-        "The burr set releases from below for cleaning and calibration."
+        "The flared teal base widens the stance and separates as the removable grounds cup.",
+        "A broad burgundy ribbed band supports grip while the crank is under load.",
+        "The stainless adjustment ring exposes calibration marks, with a small warm-yellow index for repeatable settings."
       ],
       "views": [
         {
+          "label": "Front three-quarter",
+          "image": "/assets/homewares/ratio-coffee-mill-angle-front-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Rear crank profile",
+          "image": "/assets/homewares/ratio-coffee-mill-angle-rear-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
           "label": "Crank pivot",
-          "image": "/assets/homewares/ratio-coffee-mill-crop-1.webp",
-          "type": "crop"
-        },
-        {
-          "label": "Ribbed grip",
-          "image": "/assets/homewares/ratio-coffee-mill-crop-2.webp",
-          "type": "crop"
-        },
-        {
-          "label": "Flared base",
-          "image": "/assets/homewares/ratio-coffee-mill-crop-3.webp",
+          "image": "/assets/homewares/ratio-coffee-mill-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
           "label": "Adjustment collar",
-          "image": "/assets/homewares/ratio-coffee-mill-crop-4.webp",
+          "image": "/assets/homewares/ratio-coffee-mill-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
         {
           "label": "Kitchen counter",
-          "image": "/assets/homewares/ratio-coffee-mill-insitu-v1.webp",
+          "image": "/assets/homewares/ratio-coffee-mill-context-wide-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Coffee preparation",
-          "image": "/assets/homewares/ratio-coffee-mill-insitu-v2.webp",
+          "label": "Brewing overhead",
+          "image": "/assets/homewares/ratio-coffee-mill-context-alt-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Morning routine",
-          "image": "/assets/homewares/ratio-coffee-mill-insitu-v3.webp",
+          "label": "Fresh grounds",
+          "image": "/assets/homewares/ratio-coffee-mill-context-active-vibrant-v1.webp",
           "type": "insitu"
         },
         {
           "label": "Grinding in use",
-          "image": "/assets/homewares/ratio-coffee-mill-in-use-v1.webp",
+          "image": "/assets/homewares/ratio-coffee-mill-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
       ]
     },
     {
       "slug": "column-table-lamp",
-      "title": "Column Table Lamp",
+      "title": "Cairn Table Lamp",
       "category": "lighting",
       "year": "2026",
       "type": "Table lamp",
-      "materials": "Brushed aluminium, powder-coated steel, opal diffuser, tactile rotary dimmer",
-      "image": "/assets/lighting/column-table-lamp-lead-4x3.webp",
-      "cardImage": "/assets/lighting/column-table-lamp-card-4x3.webp",
-      "detailImage": "/assets/lighting/column-table-lamp-crop-1.webp",
+      "materials": "Mouth-blown cobalt glass, amber cast glass, opal glass diffuser, brushed stainless dimmer",
+      "image": "/assets/lighting/column-table-lamp-lead-vibrant-v1.webp",
+      "cardImage": "/assets/lighting/column-table-lamp-lead-vibrant-v1.webp",
+      "detailImage": "/assets/lighting/column-table-lamp-detail-primary-vibrant-v1.webp",
       "href": "/work/column-table-lamp",
-      "summary": "A compact table lamp that separates weight, support, and light into three readable elements. The broad shade gives an even pool of warm light while the base keeps the control close at hand.",
+      "summary": "A sculptural table lamp built as a small cairn of mouth-blown glass. Cobalt, amber, and opal volumes stack without an exposed stem, turning the light source and dimmer into part of the composition.",
       "notes": [
-        "The cylindrical base provides stability without an oversized footprint.",
-        "An opal diffuser softens the source across the full shade.",
-        "The olive rotary control gives direct, tactile dimming."
+        "The thick cobalt base provides optical weight and a stable low centre of gravity.",
+        "An amber middle volume reveals the warm light source and carries a small side-mounted dimmer.",
+        "The broad opal dome diffuses light across the table while completing the balanced three-part stack."
       ],
       "views": [
         {
-          "label": "Rotary dimmer",
-          "image": "/assets/lighting/column-table-lamp-crop-1.webp",
+          "label": "Front three-quarter",
+          "image": "/assets/lighting/column-table-lamp-angle-front-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Shade diffuser edge",
-          "image": "/assets/lighting/column-table-lamp-crop-2.webp",
+          "label": "Rear glass profile",
+          "image": "/assets/lighting/column-table-lamp-angle-rear-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Stem and base junction",
-          "image": "/assets/lighting/column-table-lamp-crop-3.webp",
+          "label": "Light source and dimmer",
+          "image": "/assets/lighting/column-table-lamp-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Weighted base detail",
-          "image": "/assets/lighting/column-table-lamp-crop-4.webp",
+          "label": "Stacked glass junction",
+          "image": "/assets/lighting/column-table-lamp-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Reading side table",
-          "image": "/assets/lighting/column-table-lamp-insitu-v1.webp",
+          "label": "Living room side table",
+          "image": "/assets/lighting/column-table-lamp-context-wide-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Bedside lighting",
-          "image": "/assets/lighting/column-table-lamp-insitu-v2.webp",
+          "label": "Bedside overhead",
+          "image": "/assets/lighting/column-table-lamp-context-alt-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Desk ambience",
-          "image": "/assets/lighting/column-table-lamp-insitu-v3.webp",
+          "label": "Dusk shelf",
+          "image": "/assets/lighting/column-table-lamp-context-active-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Evening interior",
-          "image": "/assets/lighting/column-table-lamp-insitu-v4.webp",
+          "label": "Dimming in use",
+          "image": "/assets/lighting/column-table-lamp-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
       ]
     },
     {
       "slug": "rail-task-light",
-      "title": "Rail Task Light",
+      "title": "Vector Task Light",
       "category": "lighting",
       "year": "2026",
       "type": "Task light",
-      "materials": "Anodised aluminium, powder-coated steel arms, opal lens, cast weighted base",
-      "image": "/assets/lighting/rail-task-light-lead-4x3.webp",
-      "cardImage": "/assets/lighting/rail-task-light-card-4x3.webp",
-      "detailImage": "/assets/lighting/rail-task-light-crop-1.webp",
+      "materials": "Laminated ash, vermilion powder-coated aluminium, ultramarine recycled terrazzo, stainless pivots, opal lens",
+      "image": "/assets/lighting/rail-task-light-lead-vibrant-v1.webp",
+      "cardImage": "/assets/lighting/rail-task-light-lead-vibrant-v1.webp",
+      "detailImage": "/assets/lighting/rail-task-light-detail-primary-vibrant-v1.webp",
       "href": "/work/rail-task-light",
-      "summary": "A task light with a long, even source and a compact articulated structure. The mechanism keeps its joints visible and serviceable while directing light across drawings, books, or detailed work.",
+      "summary": "An adjustable task light that makes its mechanics explicit through laminated ash arms, stainless pivots, a vermilion light bar, and an ultramarine terrazzo base.",
       "notes": [
-        "Two parallel arms hold the head level through a useful working range.",
-        "The long opal lens produces an even strip of task light.",
-        "Exposed pivot discs make adjustment and maintenance understandable."
+        "Parallel laminated-ash members keep the head controlled while adding warmth to the visible mechanism.",
+        "Large stainless pivot discs make the three adjustment points understandable and serviceable.",
+        "The terrazzo base counters the long red head and houses a direct metal control without visual clutter."
       ],
       "views": [
         {
-          "label": "Head and lens",
-          "image": "/assets/lighting/rail-task-light-crop-1.webp",
+          "label": "Extended profile",
+          "image": "/assets/lighting/rail-task-light-angle-front-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Upper pivot",
-          "image": "/assets/lighting/rail-task-light-crop-2.webp",
+          "label": "Folded working position",
+          "image": "/assets/lighting/rail-task-light-angle-rear-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Lower pivot",
-          "image": "/assets/lighting/rail-task-light-crop-3.webp",
+          "label": "Laminated pivot",
+          "image": "/assets/lighting/rail-task-light-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Base controls",
-          "image": "/assets/lighting/rail-task-light-crop-4.webp",
+          "label": "Head and base controls",
+          "image": "/assets/lighting/rail-task-light-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Architect desk",
-          "image": "/assets/lighting/rail-task-light-insitu-v1.webp",
+          "label": "Design studio desk",
+          "image": "/assets/lighting/rail-task-light-context-wide-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Reading desk",
-          "image": "/assets/lighting/rail-task-light-insitu-v2.webp",
+          "label": "Drawing overhead",
+          "image": "/assets/lighting/rail-task-light-context-alt-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Workshop bench",
-          "image": "/assets/lighting/rail-task-light-insitu-v3.webp",
+          "label": "Model-making task",
+          "image": "/assets/lighting/rail-task-light-context-active-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Focused evening task",
-          "image": "/assets/lighting/rail-task-light-insitu-v4.webp",
+          "label": "Adjusting in use",
+          "image": "/assets/lighting/rail-task-light-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
       ]
     },
     {
       "slug": "halo-pendant",
-      "title": "Halo Pendant",
+      "title": "Aperture Pendant",
       "category": "lighting",
       "year": "2026",
       "type": "Pendant light",
-      "materials": "Powder-coated aluminium ring, opal silicone diffuser, stainless suspension wires",
-      "image": "/assets/lighting/halo-pendant-lead-4x3.webp",
-      "cardImage": "/assets/lighting/halo-pendant-card-4x3.webp",
-      "detailImage": "/assets/lighting/halo-pendant-crop-1.webp",
+      "materials": "Translucent chartreuse recycled acrylic, opal silicone diffuser, braided vermilion textile, violet powder-coated aluminium",
+      "image": "/assets/lighting/halo-pendant-lead-vibrant-v1.webp",
+      "cardImage": "/assets/lighting/halo-pendant-lead-vibrant-v1.webp",
+      "detailImage": "/assets/lighting/halo-pendant-detail-primary-vibrant-v1.webp",
       "href": "/work/halo-pendant",
-      "summary": "A circular pendant designed to light a table evenly while keeping the centre open. The thin ring, three-point suspension, and compact canopy make the construction legible from across the room.",
+      "summary": "A thick translucent pendant that treats suspension as part of the colour composition. A chartreuse acrylic ring hangs from three vermilion textile cords beneath a compact violet canopy.",
       "notes": [
-        "Indirect inward light reduces glare at seated eye level.",
-        "Three fine suspension wires keep the ring level with minimal visual weight.",
-        "The LED and driver are replaceable through a removable inner diffuser."
+        "The faceted recycled-acrylic ring gives the pendant visible thickness and refracts the inner light path.",
+        "Three braided cords provide stable suspension while carrying power without invisible secondary wires.",
+        "A removable opal inner diffuser softens the source and allows the LED assembly to be serviced."
       ],
       "views": [
         {
-          "label": "Opal inner diffuser",
-          "image": "/assets/lighting/halo-pendant-crop-1.webp",
+          "label": "Front suspension view",
+          "image": "/assets/lighting/halo-pendant-angle-front-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Suspension junction",
-          "image": "/assets/lighting/halo-pendant-crop-2.webp",
+          "label": "Underside profile",
+          "image": "/assets/lighting/halo-pendant-angle-rear-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Ring profile",
-          "image": "/assets/lighting/halo-pendant-crop-3.webp",
+          "label": "Acrylic and diffuser",
+          "image": "/assets/lighting/halo-pendant-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Ceiling canopy",
-          "image": "/assets/lighting/halo-pendant-crop-4.webp",
+          "label": "Cord and canopy junction",
+          "image": "/assets/lighting/halo-pendant-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Dining table",
-          "image": "/assets/lighting/halo-pendant-insitu-v1.webp",
+          "label": "Dining room",
+          "image": "/assets/lighting/halo-pendant-context-wide-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Upward suspension view",
+          "image": "/assets/lighting/halo-pendant-context-alt-vibrant-v1.webp",
           "type": "insitu"
         },
         {
           "label": "Kitchen island",
-          "image": "/assets/lighting/halo-pendant-insitu-v2.webp",
+          "image": "/assets/lighting/halo-pendant-context-active-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Meeting table",
-          "image": "/assets/lighting/halo-pendant-insitu-v3.webp",
-          "type": "insitu"
-        },
-        {
-          "label": "Open living space",
-          "image": "/assets/lighting/halo-pendant-insitu-v4.webp",
+          "label": "Dinner in use",
+          "image": "/assets/lighting/halo-pendant-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
       ]
     },
     {
       "slug": "plane-wall-light",
-      "title": "Plane Wall Light",
+      "title": "Fold Wall Light",
       "category": "lighting",
       "year": "2026",
       "type": "Wall light",
-      "materials": "Folded aluminium, charcoal steel bracket, warm LED modules, opal edge diffusers",
-      "image": "/assets/lighting/plane-wall-light-lead-4x3.webp",
-      "cardImage": "/assets/lighting/plane-wall-light-card-4x3.webp",
-      "detailImage": "/assets/lighting/plane-wall-light-crop-1.webp",
+      "materials": "Cobalt and coral glazed ceramic, opal glass light channel, concealed dark stainless bracket",
+      "image": "/assets/lighting/plane-wall-light-lead-vibrant-v1.webp",
+      "cardImage": "/assets/lighting/plane-wall-light-lead-vibrant-v1.webp",
+      "detailImage": "/assets/lighting/plane-wall-light-detail-primary-vibrant-v1.webp",
       "href": "/work/plane-wall-light",
-      "summary": "A wall light formed from two offset planes that hide the source and reveal the light. The front remains visually quiet while warm illumination washes both the wall and the space below.",
+      "summary": "A folded ceramic wall light that uses a cobalt outer wing and coral inner reflector to shape warm indirect light. The fixture reads as one glazed object rather than a plain metal panel.",
       "notes": [
-        "The forward plane shields the source from direct view.",
-        "A narrow rear bracket creates separate upward and downward light paths.",
-        "The front panel lifts away for driver and LED service."
+        "The asymmetric cobalt shell shields the LEDs and throws light above, below, and softly to one side.",
+        "A coral inner reflector adds depth in daylight and warms the visible edge when illuminated.",
+        "The ceramic body lifts from a concealed steel bracket for driver and light-channel servicing."
       ],
       "views": [
         {
-          "label": "Folded front edge",
-          "image": "/assets/lighting/plane-wall-light-crop-1.webp",
+          "label": "Front three-quarter",
+          "image": "/assets/lighting/plane-wall-light-angle-front-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Rear mounting bracket",
-          "image": "/assets/lighting/plane-wall-light-crop-2.webp",
+          "label": "Opposite side profile",
+          "image": "/assets/lighting/plane-wall-light-angle-rear-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Upward light gap",
-          "image": "/assets/lighting/plane-wall-light-crop-3.webp",
+          "label": "Ceramic light channel",
+          "image": "/assets/lighting/plane-wall-light-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Lower diffuser",
-          "image": "/assets/lighting/plane-wall-light-crop-4.webp",
+          "label": "Glaze and wall spacing",
+          "image": "/assets/lighting/plane-wall-light-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
         {
           "label": "Hallway wall",
-          "image": "/assets/lighting/plane-wall-light-insitu-v1.webp",
+          "image": "/assets/lighting/plane-wall-light-context-wide-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Bedside wall",
-          "image": "/assets/lighting/plane-wall-light-insitu-v2.webp",
+          "label": "Tiled entry",
+          "image": "/assets/lighting/plane-wall-light-context-alt-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Entry corridor",
-          "image": "/assets/lighting/plane-wall-light-insitu-v3.webp",
+          "label": "Paired installation",
+          "image": "/assets/lighting/plane-wall-light-context-active-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Quiet hospitality setting",
-          "image": "/assets/lighting/plane-wall-light-insitu-v4.webp",
+          "label": "Corridor in use",
+          "image": "/assets/lighting/plane-wall-light-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
       ]
     },
     {
       "slug": "line-floor-lamp",
-      "title": "Line Floor Lamp",
+      "title": "Trace Floor Lamp",
       "category": "lighting",
       "year": "2026",
       "type": "Floor lamp",
-      "materials": "Powder-coated steel mast, anodised aluminium head, cast base, opal diffuser",
-      "image": "/assets/lighting/line-floor-lamp-lead-4x3.webp",
-      "cardImage": "/assets/lighting/line-floor-lamp-card-4x3.webp",
-      "detailImage": "/assets/lighting/line-floor-lamp-crop-1.webp",
+      "materials": "Vermilion powder-coated tubular steel, cobalt perforated aluminium, recycled terrazzo, opal diffuser",
+      "image": "/assets/lighting/line-floor-lamp-lead-vibrant-v1.webp",
+      "cardImage": "/assets/lighting/line-floor-lamp-lead-vibrant-v1.webp",
+      "detailImage": "/assets/lighting/line-floor-lamp-detail-primary-vibrant-v1.webp",
       "href": "/work/line-floor-lamp",
-      "summary": "A floor lamp reduced to a vertical mast and one adjustable line of light. Its small base slips beside seating while the long head delivers useful illumination without a large shade.",
+      "summary": "A graphic reading lamp drawn as one continuous vermilion line from a terrazzo counterweight to a cobalt perforated shade. The broad arc places light over a chair without a heavy visual frame.",
       "notes": [
-        "The pivot places the full head over the reading position.",
-        "A narrow mast keeps the floor footprint visually and physically light.",
-        "The opal diffuser controls glare along the complete aluminium head."
+        "The continuous tubular arc provides the structure and cable path in one readable gesture.",
+        "A compact terrazzo base counters the long reach while keeping the floor footprint small.",
+        "The cobalt half-cylinder shade pivots at a warm-yellow joint and controls glare through an opal underside lens."
       ],
       "views": [
         {
-          "label": "Head pivot",
-          "image": "/assets/lighting/line-floor-lamp-crop-1.webp",
+          "label": "Front arc profile",
+          "image": "/assets/lighting/line-floor-lamp-angle-front-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Linear diffuser",
-          "image": "/assets/lighting/line-floor-lamp-crop-2.webp",
+          "label": "Rear arc profile",
+          "image": "/assets/lighting/line-floor-lamp-angle-rear-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Mast connection",
-          "image": "/assets/lighting/line-floor-lamp-crop-3.webp",
+          "label": "Perforated hood",
+          "image": "/assets/lighting/line-floor-lamp-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Compact base",
-          "image": "/assets/lighting/line-floor-lamp-crop-4.webp",
+          "label": "Terrazzo base control",
+          "image": "/assets/lighting/line-floor-lamp-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Reading chair",
-          "image": "/assets/lighting/line-floor-lamp-insitu-v1.webp",
+          "label": "Reading corner",
+          "image": "/assets/lighting/line-floor-lamp-context-wide-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Sofa corner",
-          "image": "/assets/lighting/line-floor-lamp-insitu-v2.webp",
+          "label": "Sofa side profile",
+          "image": "/assets/lighting/line-floor-lamp-context-alt-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Studio lounge",
-          "image": "/assets/lighting/line-floor-lamp-insitu-v3.webp",
+          "label": "Light pool overhead",
+          "image": "/assets/lighting/line-floor-lamp-context-active-vibrant-v1.webp",
           "type": "insitu"
         },
         {
-          "label": "Evening living room",
-          "image": "/assets/lighting/line-floor-lamp-insitu-v4.webp",
+          "label": "Reading in use",
+          "image": "/assets/lighting/line-floor-lamp-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
       ]

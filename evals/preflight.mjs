@@ -43,6 +43,7 @@ assert(site.workCta === "Get in contact", "Work CTA uses the requested contact w
 assert(css.includes("grid-template-columns: repeat(6, minmax(0, 1fr))") && css.includes("grid-column: span 2"), "Selected work uses a balanced six-column editorial grid");
 assert(site.projects.length === 15, "Work page includes fifteen projects across three categories");
 assert(PROJECT_CATEGORIES.every(category => site.projects.filter(project => project.category === category).length === 5), "Each work category contains exactly five projects");
+assert.deepEqual(site.projects.filter(project => project.category !== "furniture").map(project => project.title), ["Flux Kettle", "Morrow Clock", "Tessera Tray System", "Relay Radio", "Torque Coffee Mill", "Cairn Table Lamp", "Vector Task Light", "Aperture Pendant", "Fold Wall Light", "Trace Floor Lamp"], "Homewares and Lighting use the approved distinct product names");
 assert(site.nav.every(item => item.href.startsWith("/")), "Top nav uses page URLs, not anchors");
 assert(site.hero.image === "/assets/furniture/contour-lounge-chair-lead-4x3.webp", "Hero uses the outpainted 4:3 furniture image");
 assert(site.hero.title.includes("Industrial design"), "Hero identifies Jon's industrial design discipline");
@@ -72,9 +73,12 @@ assert(css.includes(".hero-slide img") && css.includes("object-fit: contain"), "
 assert(css.includes("brightness(1.12)"), "Hero images are lifted above the dark page treatment");
 assert(app.includes("function imageUrl") && app.includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Local images use the current cache-busted revision for instant reloads");
 assert(fs.readFileSync("server.js", "utf8").includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Server-rendered cards use the same media revision as the browser app");
-assert(css.includes("bottom: 22px") && css.includes("font-size: clamp(1.1rem, 1.45vw, 1.4rem)"), "Work card titles sit lower and use a smaller scale");
+assert(css.includes("bottom: 16px") && css.includes("font-size: clamp(1rem, 1.15vw, 1.15rem)"), "Work card titles sit low and use a compact scale");
+assert(css.includes("rgb(0 0 0 / 0.68)") && css.includes("text-shadow: 0 1px 8px"), "Work card labels remain readable without covering the product");
+assert(product.includes('content="Industrial design project by Jon Brooks."'), "Project metadata covers the complete industrial-design portfolio");
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");
 assert(work.includes(`<span data-field="workCta">${site.workCta}</span>`), "Work fallback CTA matches site data");
+assert(site.workIntro.includes("furniture, homewares, and lighting") && work.includes(site.workIntro), "Work copy describes the complete industrial-design range");
 assert(contact.includes(`mailto:${site.contact.email}`), "Contact fallback email matches site data");
 assert(contact.includes(`tel:${site.contact.phone.replace(/\D/g, "")}`), "Contact fallback phone matches site data");
 assert(fs.readFileSync("server.js", "utf8").includes("valid email address"), "Server rejects invalid contact emails");
@@ -103,8 +107,13 @@ assert(site.projects.every(project => [project.cardImage, ...project.views.map(v
 assert(site.projects.every(project => project.views.filter(view => view.type === "crop").length === 4), "Each project has four cropped product studies");
 assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").length === 4), "Each project has four in situ views");
 assert(css.includes(".project-card:nth-child(4)") && css.includes(".project-card:nth-child(5)"), "Each category copies the balanced five-card furniture layout");
-assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1)\.webp$/.test(view.image))), "Each project uses four optimized generated in-situ assets");
-assert(site.projects.filter(project => project.category === "homewares").every(project => project.views.some(view => view.type === "insitu" && view.image.includes("-in-use-"))), "Every Homewares project includes a human in-use scene");
+assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-vibrant-v1)\.webp$/.test(view.image))), "Each project uses four optimized generated in-situ assets");
+const vibrantProjects = site.projects.filter(project => project.category !== "furniture");
+assert(vibrantProjects.every(project => project.views.some(view => view.type === "insitu" && view.image.endsWith("-context-use-vibrant-v1.webp"))), "Every Homewares and Lighting project includes a use scene");
+assert(vibrantProjects.every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => image.includes("-vibrant-v1.webp"))), "Homewares and Lighting use the final vibrant image system");
+assert(vibrantProjects.every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Vibrant galleries contain four studio studies followed by four context views");
+assert(vibrantProjects.every(project => new Set([project.image, ...project.views.map(view => view.image)].map(localAssetHash)).size === 9), "Every vibrant product story uses nine distinct image files");
+assert(vibrantProjects.every(project => /(cobalt|tangerine|sunflower|vermilion|green|teal|chartreuse|coral|ultramarine)/i.test(`${project.materials} ${project.summary}`)), "Every vibrant project defines a deliberate colour identity");
 assert(site.projects.some(project => project.slug === "dining-table" && project.title === "Ridge Dining Table"), "Renamed dining table project is included");
 const ridgeProject = site.projects.find(project => project.slug === "dining-table");
 assert(ridgeProject.cardImage === "/assets/furniture/ridge-dining-table-lead-4x3.webp", "Ridge dining table uses the 4:3 four-legged product render");
@@ -138,6 +147,7 @@ assert(fs.readFileSync("server.js", "utf8").includes("renderWorkFallback"), "Wor
 assert(css.includes('.work-category-tabs [role="tab"][aria-selected="true"]') && css.includes("border-bottom-color: var(--accent)"), "Work category tabs use the specified active underline treatment");
 assert(!app.includes("<figcaption>"), "Product gallery images do not show text captions");
 assert(!css.includes("@keyframes projectCardFade"), "Work card image transitions are removed outside the homepage slideshow");
+assert(!readme.includes("pads the uncropped source over a blurred 4:3 fill") && readme.includes("do not use letterboxing or blurred edge fills"), "Media documentation bans blurred edge bands");
 assert(css.includes("font-size: clamp(1.12rem"), "CTA text keeps the established scale");
 assert(css.includes("prefers-reduced-motion") && css.includes("animation: none"), "Motion respects reduced-motion settings");
 assert(css.includes("preview-frame-in") && css.includes(".gallery-image:hover .image-preview-trigger img"), "Product image inspection has restrained preview and hover motion");
@@ -169,5 +179,5 @@ assert(app.includes('page === "product" ? "work" : page'), "Product pages keep W
 assert(!admin.includes("Add project") && !adminJs.includes("Remove project"), "Admin keeps the fixed five-project category sets intact");
 assert(PROJECT_CATEGORIES.every(category => site.projects.filter(project => project.category === category).length === 5), "Every admin category contains exactly five projects");
 assert(fs.readFileSync("server.js", "utf8").includes("Project images must use a native 4:3 ratio"), "Server enforces native 4:3 project media on save");
-assert(readme.includes("one main image") && readme.includes("four cropped image studies") && readme.includes("four in situ images"), "README documents the nine-image product page requirement");
+assert(readme.includes("one main image") && readme.includes("four studio/detail studies") && readme.includes("four context images"), "README documents the nine-image product page requirement");
 assert(readme.includes("structured editor") && readme.includes("image-study rows"), "README documents the structured project and experience editors");

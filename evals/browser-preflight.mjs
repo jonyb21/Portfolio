@@ -54,6 +54,7 @@ try {
     assert.equal(await page.locator(`[data-work-category="${category}"]`).getAttribute("aria-selected"), "true");
     assert.equal(await page.locator("#work-category-heading").textContent(), `${category[0].toUpperCase()}${category.slice(1)}`);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), true, `${category} does not overflow horizontally`);
+    assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0)), true, `${category} card images finish loading before scroll`);
     await assertMobileBounds(page, ".project-card", `${category} cards`);
     await assertImagesRender(page, ".project-card img", `${category} card`);
     assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.currentSrc.includes("v=20260711-1"))), true, `${category} cards load media revision ${MEDIA_REVISION}`);
@@ -68,6 +69,7 @@ try {
 
   for (const project of site.projects) {
     await page.goto(`${origin}${project.href}`, { waitUntil: "networkidle" });
+    assert.equal(await page.locator(".lead-image img, .project-gallery img").evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0)), true, `${project.title} loads all project images before scroll`);
     await assertImagesRender(page, ".lead-image img, .project-gallery img", project.title);
     assert.equal(await page.locator(".lead-image img, .project-gallery img").count(), 9, `${project.title} renders its lead and eight study images`);
     assert.equal(await page.locator('.back-link').getAttribute("href"), `/work?category=${project.category}`);
