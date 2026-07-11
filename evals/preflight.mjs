@@ -29,7 +29,7 @@ assert(about.includes('body data-page="about"'), "About tab is a separate page")
 assert(contact.includes('body data-page="contact"'), "Contact tab is a separate page");
 assert(index.includes("min-h") === false, "Viewport height is owned by CSS");
 assert(css.includes("min-height: 100dvh"), "Uses stable dynamic viewport height");
-assert(css.includes("overflow-x: hidden"), "Mobile product pages cannot drift sideways");
+assert(!css.includes("overflow-x: hidden"), "Mobile overflow is fixed at component level rather than clipped globally");
 assert(css.includes("overflow-wrap: break-word"), "Product copy wraps inside narrow mobile viewports");
 assert(css.includes("--text: #e6e2d8"), "Main text uses a softened off-white token");
 assert(css.includes("--accent: #adbd68"), "Olive accent is muted");

@@ -131,9 +131,9 @@ function projectRow(project, index) {
       <label>Year <input data-project="${index}" data-key="year"></label>
       <label>Type <input data-project="${index}" data-key="type"></label>
       <label>Materials <input data-project="${index}" data-key="materials"></label>
-      <label>Image URL <input data-project="${index}" data-key="image" required></label>
-      <label>Card image URL <input data-project="${index}" data-key="cardImage"></label>
-      <label>Detail image URL <input data-project="${index}" data-key="detailImage"></label>
+      <label>Main WebP path <input data-project="${index}" data-key="image" placeholder="/assets/furniture/project-lead-4x3.webp" required></label>
+      <label>Card WebP path <input data-project="${index}" data-key="cardImage" placeholder="/assets/furniture/project-card-4x3.webp"></label>
+      <label>Detail WebP path <input data-project="${index}" data-key="detailImage" placeholder="/assets/furniture/project-detail.webp"></label>
       <label>Summary <textarea data-project="${index}" data-key="summary" rows="4"></textarea></label>
       <label>Notes <textarea data-project="${index}" data-key="notesText" rows="4" placeholder="One note per line"></textarea></label>
       <fieldset class="views-editor">

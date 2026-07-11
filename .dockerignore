@@ -3,3 +3,7 @@
 node_modules
 npm-debug.log*
 coverage
+.claude
+.playwright-cli
+public/**/*.png
+public/assets/furniture/dining-table-consistent-*.webp

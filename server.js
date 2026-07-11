@@ -64,8 +64,7 @@ function saveSite(site) {
 
 function validateImage(value) {
   if (/^https?:\/\//.test(value)) {
-    if (!new URL(value).pathname.toLowerCase().endsWith(".webp")) throw new Error("Remote image URLs must point to WebP files");
-    return;
+    throw new Error("Remote images are not supported; use a local public WebP path");
   }
   if (!value.startsWith("/") || value.includes("..")) throw new Error("Image URLs must be public paths or http URLs");
   const filePath = path.join(publicDir, value);

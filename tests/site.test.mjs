@@ -75,8 +75,8 @@ assert.throws(() => validateSite(withProject(0, { views: [{ ...validSite.project
 assert.throws(() => validateSite(withProject(0, { image: "/assets/furniture/missing.webp" })), /does not exist/);
 assert.throws(() => validateSite(withProject(0, { cardImage: "/assets/furniture/missing-card.webp" })), /does not exist/);
 assert.throws(() => validateSite({ ...validSite, about: { ...validSite.about, portrait: "/assets/missing-portrait.webp" } }), /does not exist/);
-assert.throws(() => validateSite(withProject(0, { image: "https://example.com/chair.png" })), /WebP/);
-validateSite(withProject(0, { image: "https://example.com/chair.webp" }));
+assert.throws(() => validateSite(withProject(0, { image: "https://example.com/chair.png" })), /Remote images are not supported/);
+assert.throws(() => validateSite(withProject(0, { image: "https://example.com/chair.webp" })), /Remote images are not supported/);
 assert.throws(() => validateSite(withProject(0, { image: "/favicon.svg" })), /WebP/);
 assert.throws(() => validateSite(withProject(0, { image: "/assets/furniture/arc-lounge-chair-card-motion.webp" })), /native 4:3/);
 assert.throws(() => validateSite({ ...validSite, nav: [{ label: "Work", href: "#work" }] }), /separate page paths/);
