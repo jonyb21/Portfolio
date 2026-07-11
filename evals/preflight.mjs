@@ -16,6 +16,8 @@ const readme = fs.readFileSync("README.md", "utf8");
 const site = JSON.parse(fs.readFileSync("data/site.json", "utf8"));
 const app = fs.readFileSync("public/app.js", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
+const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
+const MEDIA_REVISION = "20260711-1";
 new Function(adminJs);
 
 function localAssetHash(image) {
@@ -53,6 +55,7 @@ assert(!app.includes('loading="lazy"'), "Work cards and product studies begin lo
 assert(css.includes("--media-ratio: 4 / 3") && css.includes("object-fit: contain"), "Lead product photos use one uncropped 4:3 presentation");
 assert(css.includes(".gallery-image img {\n  object-fit: cover;"), "Detail-study tiles fill their frames without side bands");
 assert([index, work, product, about, contact].every(page => page.includes("/styles.css?v=20260710-8")), "Every public page loads the current media framing styles");
+assert([index, work, product, about, contact].every(page => page.includes(`/app.js?v=${appRevision}`)), "Every public page loads the current app.js content revision");
 for (const image of new Set([site.hero.image, site.about.portrait, ...site.projects.flatMap(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)])])) {
   const { width, height } = webpDimensions(image);
   assert(width * 3 === height * 4, `${image} is a native 4:3 asset`);
@@ -66,7 +69,8 @@ assert(app.includes("show(-1)") && app.includes("const fadeDuration = 900"), "He
 assert(css.includes(".hero-slide") && css.includes("position: absolute"), "Hero carousel images are stacked in the visible frame");
 assert(css.includes(".hero-slide img") && css.includes("object-fit: contain"), "Hero carousel images remain fully visible in the shared frame");
 assert(css.includes("brightness(1.12)"), "Hero images are lifted above the dark page treatment");
-assert(app.includes("function imageUrl") && app.includes("?v=20260710-5"), "Local images use cache-busted URLs for instant reloads");
+assert(app.includes("function imageUrl") && app.includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Local images use the current cache-busted revision for instant reloads");
+assert(fs.readFileSync("server.js", "utf8").includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Server-rendered cards use the same media revision as the browser app");
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");
 assert(work.includes(`<span data-field="workCta">${site.workCta}</span>`), "Work fallback CTA matches site data");
 assert(contact.includes(`mailto:${site.contact.email}`), "Contact fallback email matches site data");
@@ -97,7 +101,8 @@ assert(site.projects.every(project => [project.cardImage, ...project.views.map(v
 assert(site.projects.every(project => project.views.filter(view => view.type === "crop").length === 4), "Each project has four cropped product studies");
 assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").length === 4), "Each project has four in situ views");
 assert(css.includes(".project-card:nth-child(4)") && css.includes(".project-card:nth-child(5)"), "Each category copies the balanced five-card furniture layout");
-assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-insitu-v(?:[1-5]|4-fixed)\.webp$/.test(view.image))), "Each project uses four optimized generated in-situ assets");
+assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1)\.webp$/.test(view.image))), "Each project uses four optimized generated in-situ assets");
+assert(site.projects.filter(project => project.category === "homewares").every(project => project.views.some(view => view.type === "insitu" && view.image.includes("-in-use-"))), "Every Homewares project includes a human in-use scene");
 assert(site.projects.some(project => project.slug === "dining-table" && project.title === "Ridge Dining Table"), "Renamed dining table project is included");
 const ridgeProject = site.projects.find(project => project.slug === "dining-table");
 assert(ridgeProject.cardImage === "/assets/furniture/ridge-dining-table-lead-4x3.webp", "Ridge dining table uses the 4:3 four-legged product render");

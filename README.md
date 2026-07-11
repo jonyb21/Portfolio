@@ -22,7 +22,7 @@ The admin saves `data/site.json`. Docker mounts `./data` so edits survive contai
 
 The Work page uses `?category=furniture`, `?category=homewares`, or `?category=lighting`. Each category contains exactly five projects, enforced by the server, tests, and preflight eval.
 
-Project images can use existing `/assets/...` files or full `https://` URLs. Each project page needs one main image, materials, at least three notes, four cropped image studies, and four in situ images so the detail page renders as a complete nine-image product story.
+Project images can use existing `/assets/...` files or full `https://` URLs. Each project page needs one main image, materials, at least three notes, four cropped image studies, and four in situ images so the detail page renders as a complete nine-image product story. Every Homewares project includes at least one `-in-use-` scene showing a person or hand operating the product.
 
 Homepage slides, work cards, and project leads use native 4:3 image assets, so the frames fill edge to edge without side bands or product cropping. Detail-study tiles fill their frames and retain the uncropped source in the click-to-preview view.
 

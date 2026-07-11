@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -20,6 +21,8 @@ const app = fs.readFileSync("public/app.js", "utf8");
 const admin = fs.readFileSync("public/admin.js", "utf8");
 const work = fs.readFileSync("public/work.html", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
+const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
+const MEDIA_REVISION = "20260711-1";
 validateSite(validSite);
 
 function withProject(index, changes) {
@@ -39,8 +42,12 @@ assert(css.includes("object-fit: contain"), "Public images remain fully visible 
 assert(css.includes(".gallery-image img {\n  object-fit: cover;"), "Detail-study tiles fill their frames without side bands");
 assert(css.includes(".portrait-slot img") && css.includes("object-fit: cover"), "The portrait fills its frame without side bands");
 for (const page of ["index", "work", "product", "about", "contact"]) {
-  assert(fs.readFileSync(`public/${page}.html`, "utf8").includes("/styles.css?v=20260710-8"), `${page} loads the current full-frame image styles`);
+  const html = fs.readFileSync(`public/${page}.html`, "utf8");
+  assert(html.includes("/styles.css?v=20260710-8"), `${page} loads the current full-frame image styles`);
+  assert(html.includes(`/app.js?v=${appRevision}`), `${page} loads app.js through its current content revision`);
 }
+assert(app.includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Browser-rendered images use the current media revision");
+assert(fs.readFileSync("server.js", "utf8").includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Server-rendered cards use the same media revision");
 for (const image of new Set([validSite.hero.image, validSite.about.portrait, ...validSite.projects.flatMap(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)])])) {
   const { width, height } = webpDimensions(image);
   assert.equal(width * 3, height * 4, `${image} is a native 4:3 asset`);
@@ -116,7 +123,8 @@ try {
     const images = [project.image, ...project.views.map(view => view.image)].filter(Boolean);
     return new Set(images).size === images.length;
   }));
-  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-insitu-v(?:[1-5]|4-fixed)\.webp$/.test(view.image))));
+  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1)\.webp$/.test(view.image))));
+  assert(site.projects.filter(project => project.category === "homewares").every(project => project.views.some(view => view.type === "insitu" && view.image.includes("-in-use-"))), "Every Homewares project includes a human in-use scene");
   assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"));
   assert(site.projects.find(project => project.slug === "dining-table").views.filter(view => view.type === "insitu").every(view => view.image.includes("/ridge-four-leg-insitu-")));
   assert.equal(site.about.experienceTitle, "Relevant Experience");

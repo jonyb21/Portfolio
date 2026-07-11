@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
+import fs from "node:fs";
 import { chromium } from "playwright";
 import serverModule from "../server.js";
 
@@ -7,6 +9,8 @@ const server = createServer();
 await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
 const port = server.address().port;
 const origin = `http://127.0.0.1:${port}`;
+const appRevision = crypto.createHash("sha256").update(fs.readFileSync("public/app.js")).digest("hex").slice(0, 12);
+const MEDIA_REVISION = "20260711-1";
 
 async function assertImagesRender(page, selector, label) {
   const images = page.locator(selector);
@@ -43,12 +47,14 @@ try {
   const categories = ["furniture", "homewares", "lighting"];
   for (const category of categories) {
     await page.goto(`${origin}/work?category=${category}`, { waitUntil: "networkidle" });
+    assert.equal(await page.locator('script[src^="/app.js"]').getAttribute("src"), `/app.js?v=${appRevision}`, `${category} loads the current app.js revision`);
     assert.equal(await page.locator(".project-card").count(), 5, `${category} renders five cards`);
     assert.equal(await page.locator(`[data-work-category="${category}"]`).getAttribute("aria-selected"), "true");
     assert.equal(await page.locator("#work-category-heading").textContent(), `${category[0].toUpperCase()}${category.slice(1)}`);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), true, `${category} does not overflow horizontally`);
     await assertMobileBounds(page, ".project-card", `${category} cards`);
     await assertImagesRender(page, ".project-card img", `${category} card`);
+    assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.currentSrc.includes("v=20260711-1"))), true, `${category} cards load media revision ${MEDIA_REVISION}`);
   }
 
   await page.goto(`${origin}/work?category=homewares`, { waitUntil: "networkidle" });

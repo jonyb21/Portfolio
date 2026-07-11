@@ -1,3 +1,5 @@
+const MEDIA_REVISION = "20260711-1";
+
 function setText(selector, value) {
   const node = document.querySelector(selector);
   if (node) node.textContent = value;
@@ -33,7 +35,7 @@ function safeUrl(value, fallback = "#") {
 function imageUrl(value, fallback = "/assets/furniture/contour-lounge-chair-lead-4x3.webp") {
   const url = safeUrl(value, fallback);
   if (!url.startsWith("/assets/") || url.includes("?")) return url;
-  return `${url}?v=20260710-5`;
+  return `${url}?v=${MEDIA_REVISION}`;
 }
 
 function shuffled(values) {

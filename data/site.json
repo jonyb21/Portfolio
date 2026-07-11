@@ -380,8 +380,8 @@
           "type": "insitu"
         },
         {
-          "label": "Compact kitchen setting",
-          "image": "/assets/homewares/axis-kettle-insitu-v4.webp",
+          "label": "Pouring in use",
+          "image": "/assets/homewares/axis-kettle-in-use-v1.webp",
           "type": "insitu"
         }
       ]
@@ -440,8 +440,8 @@
           "type": "insitu"
         },
         {
-          "label": "Quiet room context",
-          "image": "/assets/homewares/tempo-clock-insitu-v4.webp",
+          "label": "Setting the time",
+          "image": "/assets/homewares/tempo-clock-in-use-v1.webp",
           "type": "insitu"
         }
       ]
@@ -500,8 +500,8 @@
           "type": "insitu"
         },
         {
-          "label": "Shelf organisation",
-          "image": "/assets/homewares/grid-tray-system-insitu-v4.webp",
+          "label": "Organising documents",
+          "image": "/assets/homewares/grid-tray-system-in-use-v1.webp",
           "type": "insitu"
         }
       ]
@@ -560,8 +560,8 @@
           "type": "insitu"
         },
         {
-          "label": "Workshop context",
-          "image": "/assets/homewares/signal-radio-insitu-v4.webp",
+          "label": "Tuning in use",
+          "image": "/assets/homewares/signal-radio-in-use-v1.webp",
           "type": "insitu"
         }
       ]
@@ -620,8 +620,8 @@
           "type": "insitu"
         },
         {
-          "label": "Small kitchen setting",
-          "image": "/assets/homewares/ratio-coffee-mill-insitu-v4.webp",
+          "label": "Grinding in use",
+          "image": "/assets/homewares/ratio-coffee-mill-in-use-v1.webp",
           "type": "insitu"
         }
       ]
