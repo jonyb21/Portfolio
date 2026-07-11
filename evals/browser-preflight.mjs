@@ -21,6 +21,20 @@ async function waitForServer() {
   throw new Error("Portfolio test server did not start");
 }
 
+async function assertImagesRender(page, selector, label) {
+  const images = page.locator(selector);
+  for (let index = 0; index < await images.count(); index += 1) {
+    const image = images.nth(index);
+    await image.scrollIntoViewIfNeeded();
+    const state = await image.evaluate(element => {
+      const style = getComputedStyle(element);
+      const rect = element.getBoundingClientRect();
+      return { complete: element.complete, width: element.naturalWidth, opacity: Number(style.opacity), renderedWidth: rect.width, renderedHeight: rect.height };
+    });
+    assert(state.complete && state.width > 0 && state.opacity > 0 && state.renderedWidth > 0 && state.renderedHeight > 0, `${label} image ${index + 1} is visibly rendered`);
+  }
+}
+
 let browser;
 try {
   await waitForServer();
@@ -36,7 +50,7 @@ try {
   assert.equal(await page.locator('[data-work-category="homewares"]').getAttribute("aria-selected"), "true");
   assert.equal(await page.locator("#work-category-heading").textContent(), "Homewares");
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), true, "Mobile Work does not overflow horizontally");
-  assert.equal(await page.locator("img[src]").evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0)), true, "All sourced Work images load");
+  await assertImagesRender(page, ".project-card img", "Work card");
 
   await page.locator('[data-work-category="lighting"]').click();
   await page.waitForURL(/category=lighting/);
@@ -46,7 +60,7 @@ try {
 
   await page.locator('.project-card[href="/work/axis-kettle"]').click();
   await page.waitForLoadState("networkidle");
-  assert.equal(await page.locator(".project-gallery img").evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0)), true, "Every product image loads");
+  await assertImagesRender(page, ".project-gallery img", "Product gallery");
   assert.equal(await page.locator('.back-link').getAttribute("href"), "/work?category=homewares");
   assert.equal(await page.locator('.project-end-nav a').count(), 3, "Product navigation includes previous, next, and contact links");
   assert.match(await page.locator('.project-end-nav a').nth(0).getAttribute("href"), /^\/work\//);
