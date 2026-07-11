@@ -1,4 +1,4 @@
-const MEDIA_REVISION = "20260711-1";
+const MEDIA_REVISION = "20260711-2";
 
 function setText(selector, value) {
   const node = document.querySelector(selector);
@@ -274,14 +274,12 @@ function render(site) {
   const heroImage = document.querySelector('[data-field="hero.image"]');
   if (heroImage) {
     const seenImages = new Set();
-    const heroProjects = (Array.isArray(site.projects) ? site.projects : []).filter(project => {
+    const heroProjects = shuffled((Array.isArray(site.projects) ? site.projects : []).filter(project => {
       const image = project.image || project.cardImage;
       if (!image || seenImages.has(image)) return false;
       seenImages.add(image);
       return true;
-    });
-    const featuredIndex = heroProjects.findIndex(project => (project.image || project.cardImage) === site.hero.image);
-    if (featuredIndex > 0) heroProjects.unshift(heroProjects.splice(featuredIndex, 1)[0]);
+    }));
     heroImage.closest(".hero-image").innerHTML = heroProjects.map((project, index) => `
       <a class="hero-slide${index === 0 ? " is-active" : ""}" href="${escapeHtml(projectUrl(project))}" aria-label="View ${escapeHtml(project.title)}" aria-hidden="${index !== 0}" tabindex="${index === 0 ? "0" : "-1"}">
         <img data-field="${index === 0 ? "hero.image" : ""}" src="${escapeHtml(imageUrl(project.image || project.cardImage))}" alt="" ${index === 0 ? 'fetchpriority="high"' : 'fetchpriority="low"'} decoding="async">

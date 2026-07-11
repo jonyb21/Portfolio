@@ -10,7 +10,7 @@ const dataPath = process.env.PORTFOLIO_DATA_PATH || path.join(root, "data", "sit
 const port = Number(process.env.PORT || 8788);
 const adminPassword = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "admin");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
-const MEDIA_REVISION = "20260711-1";
+const MEDIA_REVISION = "20260711-2";
 
 if (process.env.NODE_ENV === "production" && !adminPassword) {
   throw new Error("ADMIN_PASSWORD is required in production");

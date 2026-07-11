@@ -18,7 +18,7 @@ const app = fs.readFileSync("public/app.js", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260711-1";
+const MEDIA_REVISION = "20260711-2";
 new Function(adminJs);
 
 function localAssetHash(image) {
@@ -64,6 +64,7 @@ for (const image of new Set([site.hero.image, site.about.portrait, ...site.proje
 }
 assert(site.projects.some(project => project.image === site.hero.image), "Hero chair image is also listed as a work project");
 assert(app.includes("function shuffled") && app.includes("startHeroSlideshow"), "Hero image rotates in randomized order");
+assert(app.includes("const heroProjects = shuffled(") && !app.includes("featuredIndex"), "Homepage starts with a random designed piece on every visit");
 assert(app.includes("recent.includes") && app.includes("slice(0, 2)"), "Hero image rotation avoids immediate A-B-A repeats");
 assert(!app.includes("[\n      site.hero.image,"), "Hero carousel uses one image per project instead of duplicating the featured product");
 assert(css.includes("transition: opacity 900ms ease-in-out"), "Hero image uses a restrained fade transition");
@@ -114,6 +115,7 @@ assert(vibrantProjects.every(project => [project.image, project.cardImage, proje
 assert(vibrantProjects.every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Vibrant galleries contain four studio studies followed by four context views");
 assert(vibrantProjects.every(project => new Set([project.image, ...project.views.map(view => view.image)].map(localAssetHash)).size === 9), "Every vibrant product story uses nine distinct image files");
 assert(vibrantProjects.every(project => /(cobalt|tangerine|sunflower|vermilion|green|teal|chartreuse|coral|ultramarine)/i.test(`${project.materials} ${project.summary}`)), "Every vibrant project defines a deliberate colour identity");
+assert(localAssetHash("/assets/lighting/rail-task-light-angle-rear-vibrant-v1.webp") === "d8d0a1cc9b40ff4b105567d5c8ad0ece8835ec7618dd0ea3cbb7f568f19d968c", "Vector folded view uses the approved fully connected render");
 assert(site.projects.some(project => project.slug === "dining-table" && project.title === "Ridge Dining Table"), "Renamed dining table project is included");
 const ridgeProject = site.projects.find(project => project.slug === "dining-table");
 assert(ridgeProject.cardImage === "/assets/furniture/ridge-dining-table-lead-4x3.webp", "Ridge dining table uses the 4:3 four-legged product render");
@@ -159,15 +161,15 @@ assert(adminJs.includes('"about.portrait"'), "Admin UI edits the portrait image 
 assert(adminJs.includes('"contact.phone"'), "Admin UI edits the contact phone number");
 assert(index.includes('/favicon.svg?v=20260705-4') && admin.includes('/favicon.svg?v=20260705-4') && fs.existsSync("public/favicon.svg"), "Public and admin browser tabs use the JB favicon");
 assert(site.about.experienceTitle === "Relevant Experience", "About page frames work history as relevant experience");
-assert(site.about.body.includes("learns from others"), "About page uses a humble learning tone");
-assert(site.about.body.includes("genuine love of design"), "About page presents Jon as someone who loves design");
-assert(site.about.body.includes("Self-taught in graphic design") && site.about.body.includes("catalogue design and supporting marketing work"), "About page includes self-taught graphic, catalogue, and marketing experience");
-assert(site.about.body.includes("stays open to different ways of working"), "About page describes openness to different working methods");
-assert(site.about.body.includes("strong hands-on AI experience") && site.about.body.includes("passion for image generation"), "About page states strong AI experience and image-generation passion");
+assert(site.about.body.includes("value other people's experience"), "About page uses a humble learning tone");
+assert(site.about.body.includes("genuinely enjoys shaping"), "About page presents Jon as someone who loves design");
+assert(/self-taught in graphic design/i.test(site.about.body) && site.about.body.includes("catalogues, production artwork, and supporting marketing material"), "About page includes self-taught graphic, catalogue, and marketing experience");
+assert(site.about.body.includes("learn, upskill, and improve"), "About page describes continuous learning and improvement");
+assert(site.about.body.includes("strong hands-on experience with AI and image generation"), "About page states strong AI and image-generation experience in natural language");
 assert(site.about.experience.some(item => /AI and image generation/.test(item.role)), "About page includes AI and image generation experience");
 assert(site.about.experience.some(item => /Graphic design and catalogues/.test(item.role)), "About page includes graphic and catalogue design experience");
-assert(site.about.experience.some(item => /Coding and custom tools/.test(item.role)), "About page includes coding and custom tool experience");
-assert(site.about.experience.some(item => /looking beyond obvious answers/.test(item.description)), "About page includes open-minded design thinking");
+assert(site.about.experience[1].role === "Graphic design and catalogues", "Graphic design follows the main Design row");
+assert(site.about.experience.some(item => item.period === "Personality" && /learn, upskill, and improve/.test(item.description)), "About page promotes an open, improvement-focused personality");
 assert(fs.readFileSync("server.js", "utf8").includes("role, company, period, and description"), "Server keeps about experience rows complete");
 assert(about.includes('id="experience-list"'), "About page renders experience list");
 assert(!work.includes('id="project-details"'), "Work page lists projects without inline detail sections");

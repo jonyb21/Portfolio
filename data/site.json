@@ -929,40 +929,40 @@
   ],
   "about": {
     "title": "About",
-    "body": "Jon Brooks is an industrial designer and design all-rounder with a genuine love of design. His work spans products, furniture, graphic design, coding, and custom tools, supported by strong hands-on AI experience and a passion for image generation. Self-taught in graphic design, he has experience in catalogue design and supporting marketing work. Curious by nature, he investigates unfamiliar problems, learns from others, and stays open to different ways of working.",
+    "body": "I'm an industrial designer and design all-rounder who genuinely enjoys shaping products, furniture, graphics, and digital tools. I'm self-taught in graphic design, with experience creating catalogues, production artwork, and supporting marketing material. I also have strong hands-on experience with AI and image generation, using it as one part of a wider design process. I value other people's experience, ask questions, and make a steady effort to learn, upskill, and improve my work.",
     "portrait": "/assets/portrait-sharp-4x3.webp",
     "experienceTitle": "Relevant Experience",
-    "experienceIntro": "Experience across industrial design, furniture, graphic and catalogue design, AI image generation, coding, custom tools, and supporting marketing work.",
+    "experienceIntro": "A practical mix of industrial design, furniture, graphic communication, image-making, and the curiosity to keep learning.",
     "experience": [
       {
         "role": "Industrial design and product development",
         "company": "Independent design practice",
         "period": "Design",
-        "description": "Developing physical products and furniture from early form and function through materials, visualisation, detailing, and build-ready design intent."
-      },
-      {
-        "role": "AI and image generation",
-        "company": "Concept and visual workflow",
-        "period": "AI",
-        "description": "Strong hands-on experience and a genuine passion for AI and image generation, continually exploring new tools to test form, materials, lighting, context, and presentation directions before committing to a design path."
+        "description": "Taking products and furniture from early ideas through CAD, materials, visualisation, detailing, and production-ready outcomes."
       },
       {
         "role": "Graphic design and catalogues",
-        "company": "Self-taught visual communication",
+        "company": "Self-taught visual practice",
         "period": "Graphic",
-        "description": "A self-taught graphic design practice with experience in catalogue layout, visual hierarchy, production-ready artwork, and supporting marketing material."
+        "description": "Creating catalogues, layouts, production artwork, and supporting marketing material with a clear eye for hierarchy and consistency."
       },
       {
-        "role": "Coding and custom tools",
-        "company": "Multi-platform app development",
-        "period": "Tools",
-        "description": "Building cross-platform apps and custom tools that reduce repeated work, organise ideas, and connect visual exploration with practical industrial design decisions."
+        "role": "AI and image generation",
+        "company": "Visual exploration",
+        "period": "AI",
+        "description": "Using AI image generation as a practical part of concept development to explore form, colour, materials, and context while keeping design judgement at the centre."
+      },
+      {
+        "role": "Curious and always learning",
+        "company": "Continuous improvement",
+        "period": "Personality",
+        "description": "I value the experience and perspective of other people. I ask questions, stay open to better ways of working, and put in the time to learn, upskill, and improve wherever a project asks more of me."
       },
       {
         "role": "Creative problem-solving",
-        "company": "Design systems and workflows",
+        "company": "Across disciplines",
         "period": "Approach",
-        "description": "Approaching unfamiliar problems with curiosity, looking beyond obvious answers, learning from others, and staying open to better ways of working."
+        "description": "I enjoy unfamiliar problems and practical constraints, and work to find clear solutions without losing the character of the original idea."
       }
     ]
   },

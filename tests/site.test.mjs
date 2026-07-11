@@ -23,7 +23,7 @@ const work = fs.readFileSync("public/work.html", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260711-1";
+const MEDIA_REVISION = "20260711-2";
 validateSite(validSite);
 
 function withProject(index, changes) {
@@ -58,6 +58,7 @@ for (const image of new Set([validSite.hero.image, validSite.about.portrait, ...
 }
 assert(!app.includes('loading="lazy"'), "Public project imagery loads immediately rather than waiting for scroll position");
 assert(app.includes("show(-1)") && app.includes("const fadeDuration = 900"), "Hero slideshow removes the current product before revealing the next one");
+assert(app.includes("const heroProjects = shuffled(") && !app.includes("featuredIndex"), "Homepage starts with a random designed piece on every visit");
 assert(css.includes(".project-card:nth-child(4)") && css.includes(".project-card:nth-child(5)"), "Every category uses the same balanced five-card layout");
 assert(adminHtml.includes('/favicon.svg?v=20260705-4'), "Admin uses the same JB browser icon as the public site");
 assert.throws(() => validateSite({ projects: [] }), /Brand/);
@@ -132,6 +133,7 @@ try {
   assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.some(view => view.type === "insitu" && view.image.endsWith("-context-use-vibrant-v1.webp"))), "Every Homewares and Lighting project includes a use scene");
   assert(site.projects.filter(project => project.category !== "furniture").every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => image.includes("-vibrant-v1.webp"))), "Homewares and Lighting use the final vibrant image system");
   assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Vibrant galleries keep four studio studies followed by four context views");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/rail-task-light-angle-rear-vibrant-v1.webp")).digest("hex"), "d8d0a1cc9b40ff4b105567d5c8ad0ece8835ec7618dd0ea3cbb7f568f19d968c", "Vector folded view uses the approved fully connected render");
   assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"));
   assert(site.projects.find(project => project.slug === "dining-table").views.filter(view => view.type === "insitu").every(view => view.image.includes("/ridge-four-leg-insitu-")));
   assert.equal(site.about.experienceTitle, "Relevant Experience");
@@ -140,15 +142,16 @@ try {
   assert(site.hero.body.trim().split(/\s+/).length <= 20, "Hero introduction remains concise");
   assert(index.includes(site.hero.body), "Home fallback copy matches site data");
   assert.match(site.about.body, /industrial designer and design all-rounder/);
-  assert.match(site.about.body, /genuine love of design/);
-  assert.match(site.about.body, /learns from others/);
+  assert.match(site.about.body, /genuinely enjoys shaping/);
+  assert.match(site.about.body, /value other people's experience/);
   assert.equal(site.about.experience[0].role, "Industrial design and product development");
-  assert.equal(site.about.experience[1].role, "AI and image generation");
-  assert.match(site.about.experience[1].description, /strong hands-on experience and a genuine passion for AI and image generation/i);
-  assert(site.about.experience.some(item => item.role === "Graphic design and catalogues"));
-  assert.match(site.about.body, /Self-taught in graphic design/);
-  assert.match(site.about.body, /catalogue design and supporting marketing work/);
-  assert.match(site.about.experience.at(-1).description, /looking beyond obvious answers/);
+  assert.equal(site.about.experience[1].role, "Graphic design and catalogues");
+  assert.equal(site.about.experience[2].role, "AI and image generation");
+  assert.match(site.about.body, /strong hands-on experience with AI and image generation/i);
+  assert.match(site.about.body, /self-taught in graphic design/i);
+  assert.match(site.about.body, /catalogues, production artwork, and supporting marketing material/);
+  assert(site.about.experience.some(item => item.period === "Personality" && item.role === "Curious and always learning"));
+  assert.match(site.about.experience.find(item => item.period === "Personality").description, /learn, upskill, and improve/);
   assert.equal(site.contact.email, "jonbrooks35@gmail.com");
   assert.equal(site.contact.phone, "0412 218 673");
   assert(app.includes('"mailto:", "tel:"'), "Public links safely retain phone links");

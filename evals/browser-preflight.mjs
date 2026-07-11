@@ -11,7 +11,7 @@ const port = server.address().port;
 const origin = `http://127.0.0.1:${port}`;
 const appRevision = crypto.createHash("sha256").update(fs.readFileSync("public/app.js")).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(fs.readFileSync("public/styles.css")).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260711-1";
+const MEDIA_REVISION = "20260711-2";
 
 async function assertImagesRender(page, selector, label) {
   const images = page.locator(selector);
@@ -57,7 +57,7 @@ try {
     assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0)), true, `${category} card images finish loading before scroll`);
     await assertMobileBounds(page, ".project-card", `${category} cards`);
     await assertImagesRender(page, ".project-card img", `${category} card`);
-    assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.currentSrc.includes("v=20260711-1"))), true, `${category} cards load media revision ${MEDIA_REVISION}`);
+    assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.currentSrc.includes("v=20260711-2"))), true, `${category} cards load media revision ${MEDIA_REVISION}`);
   }
 
   await page.goto(`${origin}/work?category=homewares`, { waitUntil: "networkidle" });
@@ -66,6 +66,14 @@ try {
   assert.equal(await page.locator(".project-card").count(), 5, "Lighting renders five cards");
   await page.goBack();
   assert.equal(await page.locator('[data-work-category="homewares"]').getAttribute("aria-selected"), "true", "Browser history restores the selected category");
+
+  const randomHeroPage = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  await randomHeroPage.addInitScript(() => { Math.random = () => 0; });
+  await randomHeroPage.goto(origin, { waitUntil: "networkidle" });
+  const firstHeroHref = await randomHeroPage.locator(".hero-slide.is-active").getAttribute("href");
+  assert.notEqual(firstHeroHref, site.projects[0].href, "Homepage first image is selected by the randomized project order");
+  assert(site.projects.some(project => project.href === firstHeroHref), "Random homepage image links to a designed project");
+  await randomHeroPage.close();
 
   for (const project of site.projects) {
     await page.goto(`${origin}${project.href}`, { waitUntil: "networkidle" });
