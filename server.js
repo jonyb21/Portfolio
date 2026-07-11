@@ -2,12 +2,14 @@ const http = require("node:http");
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
+const { webpDimensions } = require("./media-dimensions");
 
 const root = __dirname;
 const publicDir = path.join(root, "public");
 const dataPath = process.env.PORTFOLIO_DATA_PATH || path.join(root, "data", "site.json");
 const port = Number(process.env.PORT || 8788);
 const adminPassword = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "admin");
+const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 
 if (process.env.NODE_ENV === "production" && !adminPassword) {
   throw new Error("ADMIN_PASSWORD is required in production");
@@ -61,9 +63,38 @@ function saveSite(site) {
 }
 
 function validateImage(value) {
-  if (/^https?:\/\//.test(value)) return;
+  if (/^https?:\/\//.test(value)) {
+    if (!new URL(value).pathname.toLowerCase().endsWith(".webp")) throw new Error("Remote image URLs must point to WebP files");
+    return;
+  }
   if (!value.startsWith("/") || value.includes("..")) throw new Error("Image URLs must be public paths or http URLs");
-  if (!fs.existsSync(path.join(publicDir, value))) throw new Error(`Image path does not exist: ${value}`);
+  const filePath = path.join(publicDir, value);
+  if (!fs.existsSync(filePath)) throw new Error(`Image path does not exist: ${value}`);
+  if (path.extname(filePath).toLowerCase() !== ".webp") throw new Error("Local project images must be WebP files");
+  const { width, height } = webpDimensions(filePath);
+  if (width * 3 !== height * 4) throw new Error("Project images must use a native 4:3 ratio");
+}
+
+function escapeHtml(value) {
+  return String(value || "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
+}
+
+function renderWorkFallback(html, site, requestedCategory) {
+  const category = PROJECT_CATEGORIES.includes(requestedCategory) ? requestedCategory : PROJECT_CATEGORIES[0];
+  const cards = site.projects.filter(project => project.category === category).map(project => `
+          <a class="project-card" href="${escapeHtml(project.href)}">
+            <span class="project-card-images" aria-hidden="true"><img src="${escapeHtml(project.cardImage || project.image)}?v=20260710-5" alt="" loading="eager" decoding="async"></span>
+            <span class="sr-only">${escapeHtml(project.title)}</span>
+            <span class="project-title">${escapeHtml(project.title)}</span>
+          </a>`).join("");
+  let output = html.replace('<h2 class="sr-only" id="work-category-heading">Furniture</h2>', `<h2 class="sr-only" id="work-category-heading">${category[0].toUpperCase()}${category.slice(1)}</h2>`);
+  output = output.replace('<div class="project-grid" id="projects" role="tabpanel" aria-labelledby="work-tab-furniture" aria-busy="true"></div>', `<div class="project-grid" id="projects" role="tabpanel" aria-labelledby="work-tab-${category}" aria-busy="false">${cards}\n        </div>`);
+  for (const item of PROJECT_CATEGORIES) {
+    const active = item === category;
+    const tab = new RegExp(`(<a[^>]+data-work-category="${item}"[^>]*)(>)`);
+    output = output.replace(tab, (_, attributes, end) => `${attributes.replace(/ aria-selected="[^"]*"/g, "").replace(/ tabindex="-1"/g, "")} aria-selected="${active}"${active ? "" : ' tabindex="-1"'}${end}`);
+  }
+  return output;
 }
 
 function validatePagePath(value, slugs, label) {
@@ -90,10 +121,15 @@ function validateSite(site) {
   if (!Array.isArray(site.projects) || site.projects.length < 1) throw new Error("At least one project is required");
   if (!Array.isArray(site.nav) || site.nav.length < 1) throw new Error("At least one nav item is required");
   const slugs = new Set();
+  const categoryCounts = Object.fromEntries(PROJECT_CATEGORIES.map(category => [category, 0]));
   validateImage(site.hero.image);
   if (site.hero.detailImage) validateImage(site.hero.detailImage);
   if (site.about.portrait) validateImage(site.about.portrait);
   for (const project of site.projects) {
+    if (!present(project.category) || !PROJECT_CATEGORIES.includes(project.category)) {
+      throw new Error(`Every project category must be one of: ${PROJECT_CATEGORIES.join(", ")}`);
+    }
+    categoryCounts[project.category] += 1;
     if (!present(project.title) || !present(project.image)) throw new Error("Every project needs a title and image");
     if (!present(project.slug) || !present(project.summary) || !present(project.detailImage)) throw new Error("Every project needs a slug, summary, and detail image");
     if (!present(project.materials) || !Array.isArray(project.notes) || project.notes.length < 3 || project.notes.some(note => !present(note))) throw new Error("Every project needs materials and at least three detail notes");
@@ -117,6 +153,9 @@ function validateSite(site) {
     slugs.add(project.slug);
     if (project.href !== `/work/${project.slug}`) throw new Error("Project links must match their product page slug");
   }
+  for (const category of PROJECT_CATEGORIES) {
+    if (categoryCounts[category] !== 5) throw new Error(`Category ${category} must contain exactly five projects`);
+  }
   validatePagePath(site.hero.ctaHref, slugs, "Hero CTA");
   for (const item of site.nav) {
     if (!present(item.label) || !present(item.href)) throw new Error("Every nav item needs a label and URL");
@@ -134,7 +173,7 @@ function authed(req) {
   return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 
-function staticFile(urlPath, res) {
+function staticFile(urlPath, res, category) {
   let clean = urlPath === "/" ? "/index.html" : decodeURIComponent(urlPath);
   const productMatch = clean.match(/^\/work\/([^/]+)$/);
   if (productMatch) {
@@ -148,7 +187,8 @@ function staticFile(urlPath, res) {
   const filePath = path.normalize(path.join(publicDir, clean));
   if (!filePath.startsWith(publicDir)) return send(res, 403, "Forbidden", "text/plain; charset=utf-8");
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) return send(res, 404, "Not found", "text/plain; charset=utf-8");
-  send(res, 200, fs.readFileSync(filePath), types[path.extname(filePath)] || "application/octet-stream");
+  const body = clean === "/work.html" ? renderWorkFallback(fs.readFileSync(filePath, "utf8"), loadSite(), category) : fs.readFileSync(filePath);
+  send(res, 200, body, types[path.extname(filePath)] || "application/octet-stream");
 }
 
 function createServer() {
@@ -175,7 +215,7 @@ function createServer() {
         return send(res, 200, JSON.stringify({ ok: true }));
       }
 
-      if (req.method === "GET" || req.method === "HEAD") return staticFile(url.pathname, res);
+      if (req.method === "GET" || req.method === "HEAD") return staticFile(url.pathname, res, url.searchParams.get("category"));
       send(res, 405, "Method not allowed", "text/plain; charset=utf-8");
     } catch (error) {
       send(res, 400, JSON.stringify({ error: error.message }));

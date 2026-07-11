@@ -8,6 +8,7 @@ const projectsEditor = document.getElementById("projects-editor");
 const experienceEditor = document.getElementById("experience-editor");
 const navEditor = document.getElementById("nav-editor");
 const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 
 let site;
 
@@ -28,13 +29,6 @@ function set(path, value) {
 
 function slugify(value) {
   return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "new-project";
-}
-
-function nextProjectSlug() {
-  const slugs = new Set(site.projects.map(project => project.slug));
-  let index = site.projects.length + 1;
-  while (slugs.has(`new-project-${index}`)) index += 1;
-  return `new-project-${index}`;
 }
 
 function toast(message, type = "success") {
@@ -126,9 +120,13 @@ function projectRow(project, index) {
     <div class="editor-card-body">
       <div class="card-title">
         <span>Project details</span>
-        <button type="button" data-remove-project="${index}">Remove project</button>
       </div>
       <label>Title <input data-project="${index}" data-key="title" required></label>
+      <label>Category
+        <select data-project="${index}" data-key="category" required>
+          ${PROJECT_CATEGORIES.map(category => `<option value="${category}">${category[0].toUpperCase()}${category.slice(1)}</option>`).join("")}
+        </select>
+      </label>
       <label>Slug <input data-project="${index}" data-key="slug" required></label>
       <label>Year <input data-project="${index}" data-key="year"></label>
       <label>Type <input data-project="${index}" data-key="type"></label>
@@ -146,6 +144,7 @@ function projectRow(project, index) {
   `;
   row.querySelector("[data-project-summary-title]").textContent = project.title || "Untitled project";
   row.querySelector('[data-key="title"]').value = project.title || "";
+  row.querySelector('[data-key="category"]').value = PROJECT_CATEGORIES.includes(project.category) ? project.category : "furniture";
   row.querySelector('[data-key="slug"]').value = project.slug || "";
   row.querySelector('[data-key="year"]').value = project.year || "";
   row.querySelector('[data-key="type"]').value = project.type || "";
@@ -243,6 +242,7 @@ function collect() {
     return {
       title,
       slug,
+      category: row.querySelector('[data-key="category"]').value,
       year: row.querySelector('[data-key="year"]').value.trim(),
       type: row.querySelector('[data-key="type"]').value.trim(),
       materials: row.querySelector('[data-key="materials"]').value.trim(),
@@ -322,47 +322,6 @@ tabs.forEach(tab => {
     event.preventDefault();
     activateTab(next, true);
   });
-});
-
-document.getElementById("add-project").addEventListener("click", () => {
-  collect();
-  const slug = nextProjectSlug();
-  site.projects.push({
-    title: "New Project",
-    slug,
-    year: "2026",
-    type: "Furniture",
-    materials: "Materials to be confirmed",
-    image: "/assets/furniture/arc-lounge-chair.webp",
-    cardImage: "/assets/furniture/hero-lounge-chair.webp",
-    detailImage: "/assets/furniture/hero-lounge-chair-detail.webp",
-    href: `/work/${slug}`,
-    summary: "A new furniture project ready for images, materials, and final portfolio notes.",
-    notes: [
-      "Add the main design intent.",
-      "Add the key material or construction detail.",
-      "Add the final use case or room context."
-    ],
-    views: [
-      { label: "Material detail", image: "/assets/furniture/hero-lounge-chair-detail.webp", type: "crop" },
-      { label: "Frame detail", image: "/assets/furniture/contour-lounge-chair-crop-1.webp", type: "crop" },
-      { label: "Profile study", image: "/assets/furniture/contour-lounge-chair-crop-2.webp", type: "crop" },
-      { label: "Joinery detail", image: "/assets/furniture/contour-lounge-chair-crop-3.webp", type: "crop" },
-      { label: "In situ 1", image: "/assets/furniture/contour-lounge-chair-insitu-v2.webp", type: "insitu" },
-      { label: "In situ 2", image: "/assets/furniture/contour-lounge-chair-insitu-v3.webp", type: "insitu" },
-      { label: "In situ 3", image: "/assets/furniture/contour-lounge-chair-insitu-v4.webp", type: "insitu" },
-      { label: "In situ 4", image: "/assets/furniture/contour-lounge-chair-insitu-v5.webp", type: "insitu" }
-    ]
-  });
-  renderProjects();
-});
-
-projectsEditor.addEventListener("click", event => {
-  const index = event.target.dataset.removeProject;
-  if (index === undefined) return;
-  collect();
-  site.projects.splice(Number(index), 1);
-  renderProjects();
 });
 
 projectsEditor.addEventListener("input", event => {

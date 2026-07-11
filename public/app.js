@@ -30,10 +30,10 @@ function safeUrl(value, fallback = "#") {
   return fallback;
 }
 
-function imageUrl(value, fallback = "/assets/furniture/hero-lounge-chair.webp") {
+function imageUrl(value, fallback = "/assets/furniture/contour-lounge-chair-lead-4x3.webp") {
   const url = safeUrl(value, fallback);
   if (!url.startsWith("/assets/") || url.includes("?")) return url;
-  return `${url}?v=20260710-1`;
+  return `${url}?v=20260710-5`;
 }
 
 function shuffled(values) {
@@ -55,6 +55,8 @@ function startHeroSlideshow(projects) {
   let recent = [];
   let active = 0;
   let timer;
+  let transitionTimer;
+  const fadeDuration = 900;
 
   function show(index) {
     slides.forEach((slide, slideIndex) => {
@@ -71,17 +73,22 @@ function startHeroSlideshow(projects) {
 
   function schedule() {
     pause();
-    if (document.hidden || reducedMotion.matches || slides.length < 2) return;
+    if (document.hidden || reducedMotion.matches || slides.length < 2 || frame.matches(":hover") || frame.contains(document.activeElement)) return;
     timer = setTimeout(advance, 5000);
   }
 
   function advance() {
+    if (transitionTimer) return;
     const choices = indexes.filter(index => !recent.includes(index) && index !== active);
     const next = shuffled(choices.length ? choices : indexes.filter(index => index !== active))[0];
     recent = [active, ...recent].slice(0, 2);
-    active = next;
-    show(active);
-    schedule();
+    show(-1);
+    transitionTimer = setTimeout(() => {
+      active = next;
+      show(active);
+      transitionTimer = undefined;
+      schedule();
+    }, fadeDuration);
   }
 
   show(active);
@@ -96,6 +103,73 @@ function startHeroSlideshow(projects) {
 
 function projectUrl(project) {
   return safeUrl(project.href || `/work/${project.slug}`);
+}
+
+const WORK_CATEGORIES = ["furniture", "homewares", "lighting"];
+
+function workCategory() {
+  const category = new URLSearchParams(location.search).get("category");
+  return WORK_CATEGORIES.includes(category) ? category : WORK_CATEGORIES[0];
+}
+
+function projectCard(project) {
+  return `
+    <a class="project-card" href="${escapeHtml(projectUrl(project))}">
+      <span class="project-card-images" aria-hidden="true">
+        <img src="${escapeHtml(imageUrl(project.cardImage || project.image))}" alt="" loading="eager" decoding="async">
+      </span>
+      <span class="sr-only">${escapeHtml(project.title)}</span>
+      <span class="project-title">${escapeHtml(project.title)}</span>
+    </a>`;
+}
+
+function renderWorkProjects(projects, category) {
+  const grid = document.getElementById("projects");
+  if (!grid) return;
+  grid.setAttribute("aria-busy", "true");
+  grid.innerHTML = projects.filter(project => project.category === category).map(projectCard).join("");
+  setText("#work-category-heading", `${category[0].toUpperCase()}${category.slice(1)}`);
+  grid.setAttribute("aria-busy", "false");
+}
+
+function selectWorkCategory(category, projects, { focus = false, historyMode = "push" } = {}) {
+  const selected = WORK_CATEGORIES.includes(category) ? category : WORK_CATEGORIES[0];
+  const tabs = [...document.querySelectorAll("[data-work-category]")];
+  const activeTab = tabs.find(tab => tab.dataset.workCategory === selected);
+  tabs.forEach(tab => {
+    const active = tab === activeTab;
+    tab.setAttribute("aria-selected", String(active));
+    tab.tabIndex = active ? 0 : -1;
+  });
+  document.getElementById("projects")?.setAttribute("aria-labelledby", activeTab?.id || "work-tab-furniture");
+  renderWorkProjects(projects, selected);
+  const url = new URL(location.href);
+  url.searchParams.set("category", selected);
+  history[`${historyMode}State`](null, "", url);
+  if (focus) activeTab?.focus();
+}
+
+function bindWorkCategories(projects) {
+  const tabs = [...document.querySelectorAll("[data-work-category]")];
+  if (!tabs.length) return;
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", event => {
+      event.preventDefault();
+      selectWorkCategory(tab.dataset.workCategory, projects);
+    });
+    tab.addEventListener("keydown", event => {
+      let targetIndex;
+      if (event.key === "ArrowRight") targetIndex = (index + 1) % tabs.length;
+      if (event.key === "ArrowLeft") targetIndex = (index - 1 + tabs.length) % tabs.length;
+      if (event.key === "Home") targetIndex = 0;
+      if (event.key === "End") targetIndex = tabs.length - 1;
+      if (targetIndex === undefined) return;
+      event.preventDefault();
+      selectWorkCategory(tabs[targetIndex].dataset.workCategory, projects, { focus: true });
+    });
+  });
+  addEventListener("popstate", () => selectWorkCategory(workCategory(), projects, { historyMode: "replace" }));
+  selectWorkCategory(workCategory(), projects, { historyMode: "replace" });
 }
 
 function phoneUrl(value) {
@@ -216,7 +290,7 @@ function render(site) {
 
   const portrait = document.querySelector('[data-field="about.portrait"]');
   if (portrait) {
-    portrait.src = imageUrl(site.about.portrait, "/assets/portrait.webp");
+    portrait.src = imageUrl(site.about.portrait, "/assets/portrait-sharp-4x3.webp");
     portrait.parentElement.classList.toggle("has-portrait", Boolean(site.about.portrait));
   }
 
@@ -230,16 +304,7 @@ function render(site) {
 
   const projects = document.getElementById("projects");
   if (projects) {
-    projects.innerHTML = site.projects.map(project => `
-      <a class="project-card" href="${escapeHtml(projectUrl(project))}">
-        <span class="project-card-images" aria-hidden="true">
-          <img src="${escapeHtml(imageUrl(project.cardImage || project.image))}" alt="" loading="eager" decoding="async">
-        </span>
-        <span class="sr-only">${escapeHtml(project.title)}</span>
-        <span class="project-title">${escapeHtml(project.title)}</span>
-      </a>
-    `).join("");
-    projects.setAttribute("aria-busy", "false");
+    bindWorkCategories(site.projects);
   }
 
   const experience = document.getElementById("experience-list");
@@ -263,11 +328,13 @@ function render(site) {
       productPage.innerHTML = '<p class="page-intro">Project not found.</p>';
       return;
     }
-    const projectIndex = site.projects.indexOf(project);
-    const nextProject = site.projects[(projectIndex + 1) % site.projects.length];
+    const categoryProjects = site.projects.filter(item => item.category === project.category);
+    const projectIndex = categoryProjects.indexOf(project);
+    const previousProject = categoryProjects[(projectIndex - 1 + categoryProjects.length) % categoryProjects.length];
+    const nextProject = categoryProjects[(projectIndex + 1) % categoryProjects.length];
     document.title = `${project.title} | ${site.brand}`;
     productPage.innerHTML = `
-      <a class="text-link back-link" href="/work"><span>Back to work</span></a>
+      <a class="text-link back-link" href="/work?category=${escapeHtml(project.category)}"><span>Back to work</span></a>
       <article class="project-detail single" id="${escapeHtml(project.slug)}">
         <header class="detail-copy">
           <p class="project-meta">${escapeHtml(project.type || "Furniture")} / ${escapeHtml(project.year || "")}</p>
@@ -292,6 +359,10 @@ function render(site) {
         </div>
         ${renderProjectViews(project)}
         <nav class="project-end-nav" aria-label="Project navigation">
+          <a href="${escapeHtml(projectUrl(previousProject))}">
+            <span>Previous project</span>
+            <strong>${escapeHtml(previousProject.title)}</strong>
+          </a>
           <a href="${escapeHtml(projectUrl(nextProject))}">
             <span>Next project</span>
             <strong>${escapeHtml(nextProject.title)}</strong>
