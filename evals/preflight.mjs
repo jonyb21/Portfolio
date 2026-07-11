@@ -17,6 +17,7 @@ const site = JSON.parse(fs.readFileSync("data/site.json", "utf8"));
 const app = fs.readFileSync("public/app.js", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
+const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
 const MEDIA_REVISION = "20260711-1";
 new Function(adminJs);
 
@@ -54,7 +55,7 @@ assert(!css.includes("13vw"), "Mobile hero type avoids an oversized viewport-rel
 assert(!app.includes('loading="lazy"'), "Work cards and product studies begin loading immediately");
 assert(css.includes("--media-ratio: 4 / 3") && css.includes("object-fit: contain"), "Lead product photos use one uncropped 4:3 presentation");
 assert(css.includes(".gallery-image img {\n  object-fit: cover;"), "Detail-study tiles fill their frames without side bands");
-assert([index, work, product, about, contact].every(page => page.includes("/styles.css?v=20260710-8")), "Every public page loads the current media framing styles");
+assert([index, work, product, about, contact].every(page => page.includes(`/styles.css?v=${styleRevision}`)), "Every public page loads the current styles.css content revision");
 assert([index, work, product, about, contact].every(page => page.includes(`/app.js?v=${appRevision}`)), "Every public page loads the current app.js content revision");
 for (const image of new Set([site.hero.image, site.about.portrait, ...site.projects.flatMap(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)])])) {
   const { width, height } = webpDimensions(image);
@@ -71,6 +72,7 @@ assert(css.includes(".hero-slide img") && css.includes("object-fit: contain"), "
 assert(css.includes("brightness(1.12)"), "Hero images are lifted above the dark page treatment");
 assert(app.includes("function imageUrl") && app.includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Local images use the current cache-busted revision for instant reloads");
 assert(fs.readFileSync("server.js", "utf8").includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Server-rendered cards use the same media revision as the browser app");
+assert(css.includes("bottom: 22px") && css.includes("font-size: clamp(1.1rem, 1.45vw, 1.4rem)"), "Work card titles sit lower and use a smaller scale");
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");
 assert(work.includes(`<span data-field="workCta">${site.workCta}</span>`), "Work fallback CTA matches site data");
 assert(contact.includes(`mailto:${site.contact.email}`), "Contact fallback email matches site data");

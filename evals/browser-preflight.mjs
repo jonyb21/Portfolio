@@ -10,6 +10,7 @@ await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
 const port = server.address().port;
 const origin = `http://127.0.0.1:${port}`;
 const appRevision = crypto.createHash("sha256").update(fs.readFileSync("public/app.js")).digest("hex").slice(0, 12);
+const styleRevision = crypto.createHash("sha256").update(fs.readFileSync("public/styles.css")).digest("hex").slice(0, 12);
 const MEDIA_REVISION = "20260711-1";
 
 async function assertImagesRender(page, selector, label) {
@@ -48,6 +49,7 @@ try {
   for (const category of categories) {
     await page.goto(`${origin}/work?category=${category}`, { waitUntil: "networkidle" });
     assert.equal(await page.locator('script[src^="/app.js"]').getAttribute("src"), `/app.js?v=${appRevision}`, `${category} loads the current app.js revision`);
+    assert.equal(await page.locator('link[href^="/styles.css"]').getAttribute("href"), `/styles.css?v=${styleRevision}`, `${category} loads the current styles.css revision`);
     assert.equal(await page.locator(".project-card").count(), 5, `${category} renders five cards`);
     assert.equal(await page.locator(`[data-work-category="${category}"]`).getAttribute("aria-selected"), "true");
     assert.equal(await page.locator("#work-category-heading").textContent(), `${category[0].toUpperCase()}${category.slice(1)}`);

@@ -374,13 +374,14 @@ h2 {
 .project-title {
   position: absolute;
   z-index: 1;
-  bottom: 30px;
+  bottom: 22px;
 }
 
 .project-title {
-  left: 30px;
-  max-width: calc(100% - 60px);
-  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  left: 24px;
+  max-width: calc(100% - 48px);
+  font-size: clamp(1.1rem, 1.45vw, 1.4rem);
+  line-height: 1.15;
   transition: color var(--speed-fast) ease;
 }
 

@@ -22,6 +22,7 @@ const admin = fs.readFileSync("public/admin.js", "utf8");
 const work = fs.readFileSync("public/work.html", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
+const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
 const MEDIA_REVISION = "20260711-1";
 validateSite(validSite);
 
@@ -43,11 +44,12 @@ assert(css.includes(".gallery-image img {\n  object-fit: cover;"), "Detail-study
 assert(css.includes(".portrait-slot img") && css.includes("object-fit: cover"), "The portrait fills its frame without side bands");
 for (const page of ["index", "work", "product", "about", "contact"]) {
   const html = fs.readFileSync(`public/${page}.html`, "utf8");
-  assert(html.includes("/styles.css?v=20260710-8"), `${page} loads the current full-frame image styles`);
+  assert(html.includes(`/styles.css?v=${styleRevision}`), `${page} loads styles.css through its current content revision`);
   assert(html.includes(`/app.js?v=${appRevision}`), `${page} loads app.js through its current content revision`);
 }
 assert(app.includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Browser-rendered images use the current media revision");
 assert(fs.readFileSync("server.js", "utf8").includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Server-rendered cards use the same media revision");
+assert(css.includes("bottom: 22px") && css.includes("font-size: clamp(1.1rem, 1.45vw, 1.4rem)"), "Work card titles sit lower at the reduced scale");
 for (const image of new Set([validSite.hero.image, validSite.about.portrait, ...validSite.projects.flatMap(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)])])) {
   const { width, height } = webpDimensions(image);
   assert.equal(width * 3, height * 4, `${image} is a native 4:3 asset`);
