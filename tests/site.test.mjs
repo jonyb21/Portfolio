@@ -23,7 +23,7 @@ const work = fs.readFileSync("public/work.html", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260711-2";
+const MEDIA_REVISION = "20260711-3";
 validateSite(validSite);
 
 function withProject(index, changes) {
@@ -51,10 +51,14 @@ assert(app.includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Browser-rend
 assert(fs.readFileSync("server.js", "utf8").includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Server-rendered cards use the same media revision");
 assert(css.includes("bottom: 16px") && css.includes("font-size: clamp(1rem, 1.15vw, 1.15rem)"), "Work card titles sit low at a compact scale");
 assert(css.includes("rgb(0 0 0 / 0.68)") && css.includes("text-shadow: 0 1px 8px"), "Work card labels remain readable without covering the product");
+assert(app.includes("light-switch-card") && app.includes("light-state-off") && app.includes("light-state-on"), "Lighting cards render distinct switched-off and illuminated states");
+assert(css.includes("transition: opacity 650ms ease-in-out") && css.includes(".light-switch-card:hover .light-state-on"), "Lighting cards crossfade on hover without changing product layout");
+assert(css.includes("grid-template-columns: repeat(2, minmax(0, 1fr))") && css.includes(".project-end-nav .project-contact"), "Project navigation uses a balanced two-column editorial layout");
 assert(fs.readFileSync("public/product.html", "utf8").includes('content="Industrial design project by Jon Brooks."'), "Project metadata covers the complete industrial-design portfolio");
 for (const image of new Set([validSite.hero.image, validSite.about.portrait, ...validSite.projects.flatMap(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)])])) {
   const { width, height } = webpDimensions(image);
   assert.equal(width * 3, height * 4, `${image} is a native 4:3 asset`);
+  assert(width >= 1200 && height >= 900, `${image} is large enough to render crisply`);
 }
 assert(!app.includes('loading="lazy"'), "Public project imagery loads immediately rather than waiting for scroll position");
 assert(app.includes("show(-1)") && app.includes("const fadeDuration = 900"), "Hero slideshow removes the current product before revealing the next one");
@@ -132,8 +136,15 @@ try {
   assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-vibrant-v1)\.webp$/.test(view.image))));
   assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.some(view => view.type === "insitu" && view.image.endsWith("-context-use-vibrant-v1.webp"))), "Every Homewares and Lighting project includes a use scene");
   assert(site.projects.filter(project => project.category !== "furniture").every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => image.includes("-vibrant-v1.webp"))), "Homewares and Lighting use the final vibrant image system");
+  assert(site.projects.filter(project => project.category === "lighting").every(project => project.cardImage.endsWith("-card-off-vibrant-v1.webp") && project.cardImage !== project.image), "Every lighting card has a separate switched-off render");
   assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Vibrant galleries keep four studio studies followed by four context views");
   assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/rail-task-light-angle-rear-vibrant-v1.webp")).digest("hex"), "d8d0a1cc9b40ff4b105567d5c8ad0ece8835ec7618dd0ea3cbb7f568f19d968c", "Vector folded view uses the approved fully connected render");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/halo-pendant-card-off-vibrant-v1.webp")).digest("hex"), "93659eb2b16d4e0d9aae054473cd9eec574c2c990625aa56afe59abc98cc9a52", "Aperture card uses the approved symmetric switched-off render");
+  assert.equal(site.projects.find(project => project.slug === "plane-wall-light").title, "Rill Wall Light");
+  assert.match(site.projects.find(project => project.slug === "plane-wall-light").summary, /pivot.*tilt/i);
+  assert.match(site.projects.find(project => project.slug === "ratio-coffee-mill").materials, /stainless steel/i);
+  assert.match(site.projects.find(project => project.slug === "axis-kettle").materials, /mirror-gloss/i);
+  assert(site.projects.find(project => project.slug === "grid-tray-system").views.some(view => view.label === "Separated desk modules"));
   assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"));
   assert(site.projects.find(project => project.slug === "dining-table").views.filter(view => view.type === "insitu").every(view => view.image.includes("/ridge-four-leg-insitu-")));
   assert.equal(site.about.experienceTitle, "Relevant Experience");

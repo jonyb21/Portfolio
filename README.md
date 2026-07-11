@@ -26,6 +26,8 @@ Project images use local `/assets/...` WebP files. Each project page needs one m
 
 Homepage slides, work cards, project leads, and gallery images use native 4:3 assets, so every frame fills edge to edge without side bands or blur fills. Homewares and Lighting media uses the `-vibrant-v1.webp` image set and keeps nine unique files per product story.
 
+Lighting cards use `cardImage` for the switched-off state and `image` for the illuminated hover and keyboard-focus state. Both files must use the same product, framing, and 4:3 geometry so the 650 ms crossfade reads as the light switching on rather than a scene change.
+
 Prepare replacement media at a native 4:3 ratio before adding it to the project. Extend or recompose the source image when required; do not use letterboxing or blurred edge fills.
 
 The admin uses a structured editor: expand a project to edit its details and eight image-study rows, then use the About tab to manage individual experience entries. The server rejects missing, repeated, or invalid product-page image paths before saving.

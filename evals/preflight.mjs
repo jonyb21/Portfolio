@@ -18,7 +18,7 @@ const app = fs.readFileSync("public/app.js", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260711-2";
+const MEDIA_REVISION = "20260711-3";
 new Function(adminJs);
 
 function localAssetHash(image) {
@@ -43,7 +43,7 @@ assert(site.workCta === "Get in contact", "Work CTA uses the requested contact w
 assert(css.includes("grid-template-columns: repeat(6, minmax(0, 1fr))") && css.includes("grid-column: span 2"), "Selected work uses a balanced six-column editorial grid");
 assert(site.projects.length === 15, "Work page includes fifteen projects across three categories");
 assert(PROJECT_CATEGORIES.every(category => site.projects.filter(project => project.category === category).length === 5), "Each work category contains exactly five projects");
-assert.deepEqual(site.projects.filter(project => project.category !== "furniture").map(project => project.title), ["Flux Kettle", "Morrow Clock", "Tessera Tray System", "Relay Radio", "Torque Coffee Mill", "Cairn Table Lamp", "Vector Task Light", "Aperture Pendant", "Fold Wall Light", "Trace Floor Lamp"], "Homewares and Lighting use the approved distinct product names");
+assert.deepEqual(site.projects.filter(project => project.category !== "furniture").map(project => project.title), ["Flux Kettle", "Morrow Clock", "Tessera Tray System", "Relay Radio", "Torque Coffee Mill", "Cairn Table Lamp", "Vector Task Light", "Aperture Pendant", "Rill Wall Light", "Trace Floor Lamp"], "Homewares and Lighting use the approved distinct product names");
 assert(site.nav.every(item => item.href.startsWith("/")), "Top nav uses page URLs, not anchors");
 assert(site.hero.image === "/assets/furniture/contour-lounge-chair-lead-4x3.webp", "Hero uses the outpainted 4:3 furniture image");
 assert(site.hero.title.includes("Industrial design"), "Hero identifies Jon's industrial design discipline");
@@ -61,6 +61,7 @@ assert([index, work, product, about, contact].every(page => page.includes(`/app.
 for (const image of new Set([site.hero.image, site.about.portrait, ...site.projects.flatMap(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)])])) {
   const { width, height } = webpDimensions(image);
   assert(width * 3 === height * 4, `${image} is a native 4:3 asset`);
+  assert(width >= 1200 && height >= 900, `${image} is large enough to render crisply`);
 }
 assert(site.projects.some(project => project.image === site.hero.image), "Hero chair image is also listed as a work project");
 assert(app.includes("function shuffled") && app.includes("startHeroSlideshow"), "Hero image rotates in randomized order");
@@ -76,6 +77,13 @@ assert(app.includes("function imageUrl") && app.includes(`const MEDIA_REVISION =
 assert(fs.readFileSync("server.js", "utf8").includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Server-rendered cards use the same media revision as the browser app");
 assert(css.includes("bottom: 16px") && css.includes("font-size: clamp(1rem, 1.15vw, 1.15rem)"), "Work card titles sit low and use a compact scale");
 assert(css.includes("rgb(0 0 0 / 0.68)") && css.includes("text-shadow: 0 1px 8px"), "Work card labels remain readable without covering the product");
+assert(site.projects.filter(project => project.category === "lighting").every(project => project.cardImage.endsWith("-card-off-vibrant-v1.webp") && project.cardImage !== project.image), "Lighting cards pair an off render with the illuminated project image");
+assert(app.includes("light-state-off") && app.includes("light-state-on") && css.includes("transition: opacity 650ms ease-in-out"), "Lighting cards switch on with an image crossfade");
+assert(css.includes(".project-nav-link.next") && css.includes(".project-end-nav .project-contact"), "Project navigation has aligned previous, next, and contact regions");
+assert(site.projects.find(project => project.slug === "plane-wall-light").title === "Rill Wall Light" && /pivot.*tilt/i.test(site.projects.find(project => project.slug === "plane-wall-light").summary), "Wall light copy matches the rounded directional design");
+assert(/stainless steel/i.test(site.projects.find(project => project.slug === "ratio-coffee-mill").materials), "Coffee mill is specified entirely in stainless steel");
+assert(/mirror-gloss/i.test(site.projects.find(project => project.slug === "axis-kettle").materials), "Kettle copy specifies its reflective finish");
+assert(site.projects.find(project => project.slug === "grid-tray-system").views.some(view => view.label === "Separated desk modules"), "Tray gallery includes separated desk use");
 assert(product.includes('content="Industrial design project by Jon Brooks."'), "Project metadata covers the complete industrial-design portfolio");
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");
 assert(work.includes(`<span data-field="workCta">${site.workCta}</span>`), "Work fallback CTA matches site data");
@@ -114,8 +122,9 @@ assert(vibrantProjects.every(project => project.views.some(view => view.type ===
 assert(vibrantProjects.every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => image.includes("-vibrant-v1.webp"))), "Homewares and Lighting use the final vibrant image system");
 assert(vibrantProjects.every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Vibrant galleries contain four studio studies followed by four context views");
 assert(vibrantProjects.every(project => new Set([project.image, ...project.views.map(view => view.image)].map(localAssetHash)).size === 9), "Every vibrant product story uses nine distinct image files");
-assert(vibrantProjects.every(project => /(cobalt|tangerine|sunflower|vermilion|green|teal|chartreuse|coral|ultramarine)/i.test(`${project.materials} ${project.summary}`)), "Every vibrant project defines a deliberate colour identity");
+assert(vibrantProjects.every(project => /(cobalt|tangerine|sunflower|vermilion|green|teal|chartreuse|coral|ultramarine|stainless steel)/i.test(`${project.materials} ${project.summary}`)), "Every vibrant project defines a deliberate colour or material identity");
 assert(localAssetHash("/assets/lighting/rail-task-light-angle-rear-vibrant-v1.webp") === "d8d0a1cc9b40ff4b105567d5c8ad0ece8835ec7618dd0ea3cbb7f568f19d968c", "Vector folded view uses the approved fully connected render");
+assert(localAssetHash("/assets/lighting/halo-pendant-card-off-vibrant-v1.webp") === "93659eb2b16d4e0d9aae054473cd9eec574c2c990625aa56afe59abc98cc9a52", "Aperture card uses the approved symmetric switched-off render");
 assert(site.projects.some(project => project.slug === "dining-table" && project.title === "Ridge Dining Table"), "Renamed dining table project is included");
 const ridgeProject = site.projects.find(project => project.slug === "dining-table");
 assert(ridgeProject.cardImage === "/assets/furniture/ridge-dining-table-lead-4x3.webp", "Ridge dining table uses the 4:3 four-legged product render");
@@ -137,7 +146,7 @@ assert(css.includes(".preview-frame") && css.includes("border-radius: 28px"), "I
 assert(css.includes(".preview-frame img") && css.includes("brightness(1.08)"), "Image preview does not inherit the dark page image treatment");
 assert(!app.includes('alt="${escapeHtml(project.title)} detail view"'), "Product pages do not duplicate the detail crop before the gallery");
 assert(!app.includes("projectCardImages"), "Work cards are static outside the homepage slideshow");
-assert(app.includes('<a class="project-card" href="${escapeHtml(projectUrl(project))}">'), "Work card images remain clickable links to project pages");
+assert(app.includes('<a class="project-card${switchesOn ? " light-switch-card" : ""}" href="${escapeHtml(projectUrl(project))}">'), "Work card images remain clickable links to project pages");
 assert(app.includes("sr-only"), "Work cards keep accessible project names");
 assert(app.includes("project-title"), "Work cards keep the original visible title overlay");
 assert(work.includes('role="tablist"') && PROJECT_CATEGORIES.every(category => work.includes(`data-work-category="${category}"`)), "Work page has Furniture, Homewares, and Lighting tabs");

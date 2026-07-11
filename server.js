@@ -10,7 +10,7 @@ const dataPath = process.env.PORTFOLIO_DATA_PATH || path.join(root, "data", "sit
 const port = Number(process.env.PORT || 8788);
 const adminPassword = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "admin");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
-const MEDIA_REVISION = "20260711-2";
+const MEDIA_REVISION = "20260711-3";
 
 if (process.env.NODE_ENV === "production" && !adminPassword) {
   throw new Error("ADMIN_PASSWORD is required in production");
@@ -81,12 +81,15 @@ function escapeHtml(value) {
 
 function renderWorkFallback(html, site, requestedCategory) {
   const category = PROJECT_CATEGORIES.includes(requestedCategory) ? requestedCategory : PROJECT_CATEGORIES[0];
-  const cards = site.projects.filter(project => project.category === category).map(project => `
-          <a class="project-card" href="${escapeHtml(project.href)}">
-            <span class="project-card-images" aria-hidden="true"><img src="${escapeHtml(project.cardImage || project.image)}?v=${MEDIA_REVISION}" alt="" loading="eager" decoding="async"></span>
+  const cards = site.projects.filter(project => project.category === category).map(project => {
+    const switchesOn = project.category === "lighting" && project.cardImage && project.cardImage !== project.image;
+    return `
+          <a class="project-card${switchesOn ? " light-switch-card" : ""}" href="${escapeHtml(project.href)}">
+            <span class="project-card-images" aria-hidden="true"><img${switchesOn ? ' class="light-state-off"' : ""} src="${escapeHtml(project.cardImage || project.image)}?v=${MEDIA_REVISION}" alt="" loading="eager" decoding="async">${switchesOn ? `<img class="light-state-on" src="${escapeHtml(project.image)}?v=${MEDIA_REVISION}" alt="" loading="eager" decoding="async">` : ""}</span>
             <span class="sr-only">${escapeHtml(project.title)}</span>
             <span class="project-title">${escapeHtml(project.title)}</span>
-          </a>`).join("");
+          </a>`;
+  }).join("");
   let output = html.replace('<h2 class="sr-only" id="work-category-heading">Furniture</h2>', `<h2 class="sr-only" id="work-category-heading">${category[0].toUpperCase()}${category.slice(1)}</h2>`);
   output = output.replace('<div class="project-grid" id="projects" role="tabpanel" aria-labelledby="work-tab-furniture" aria-busy="true"></div>', `<div class="project-grid" id="projects" role="tabpanel" aria-labelledby="work-tab-${category}" aria-busy="false">${cards}\n        </div>`);
   for (const item of PROJECT_CATEGORIES) {

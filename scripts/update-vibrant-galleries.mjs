@@ -14,7 +14,7 @@ const labelsBySlug = {
   ],
   "grid-tray-system": [
     "Stacked front view", "Exploded rear profile", "Rail and tray junction", "Removable insert detail",
-    "Home office desk", "Entry console", "Creative workspace", "Sorting documents",
+    "Separated desk modules", "Entry console", "Independent creative trays", "Sorting documents",
   ],
   "signal-radio": [
     "Front three-quarter", "Rear antenna profile", "Tuning controls", "Perforated grille detail",
@@ -37,7 +37,7 @@ const labelsBySlug = {
     "Dining room", "Upward suspension view", "Kitchen island", "Dinner in use",
   ],
   "plane-wall-light": [
-    "Front three-quarter", "Opposite side profile", "Ceramic light channel", "Glaze and wall spacing",
+    "Directed front view", "Pivot side profile", "Coral pivot joint", "Ribbed shade and globe",
     "Hallway wall", "Tiled entry", "Paired installation", "Corridor in use",
   ],
   "line-floor-lamp": [

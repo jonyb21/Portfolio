@@ -11,7 +11,7 @@ const port = server.address().port;
 const origin = `http://127.0.0.1:${port}`;
 const appRevision = crypto.createHash("sha256").update(fs.readFileSync("public/app.js")).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(fs.readFileSync("public/styles.css")).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260711-2";
+const MEDIA_REVISION = "20260711-3";
 
 async function assertImagesRender(page, selector, label) {
   const images = page.locator(selector);
@@ -56,8 +56,16 @@ try {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), true, `${category} does not overflow horizontally`);
     assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0)), true, `${category} card images finish loading before scroll`);
     await assertMobileBounds(page, ".project-card", `${category} cards`);
-    await assertImagesRender(page, ".project-card img", `${category} card`);
-    assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.currentSrc.includes("v=20260711-2"))), true, `${category} cards load media revision ${MEDIA_REVISION}`);
+    if (category === "lighting") {
+      assert.equal(await page.locator(".light-switch-card").count(), 5, "Every lighting card has off and on states");
+      assert.equal(await page.locator(".light-switch-card").evaluateAll(cards => cards.every(card => {
+        const images = [...card.querySelectorAll("img")];
+        return images.length === 2 && images.every(image => image.complete && image.naturalWidth > 0) && images.filter(image => Number(getComputedStyle(image).opacity) > 0).length === 1;
+      })), true, "Lighting cards preload both states while showing only the switched-off render");
+    } else {
+      await assertImagesRender(page, ".project-card img", `${category} card`);
+    }
+    assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.currentSrc.includes(`v=${MEDIA_REVISION}`))), true, `${category} cards load media revision ${MEDIA_REVISION}`);
   }
 
   await page.goto(`${origin}/work?category=homewares`, { waitUntil: "networkidle" });
@@ -66,6 +74,15 @@ try {
   assert.equal(await page.locator(".project-card").count(), 5, "Lighting renders five cards");
   await page.goBack();
   assert.equal(await page.locator('[data-work-category="homewares"]').getAttribute("aria-selected"), "true", "Browser history restores the selected category");
+
+  const hoverPage = await browser.newPage({ viewport: { width: 1100, height: 800 } });
+  await hoverPage.goto(`${origin}/work?category=lighting`, { waitUntil: "networkidle" });
+  const hoverCard = hoverPage.locator(".light-switch-card").first();
+  assert.deepEqual(await hoverCard.locator("img").evaluateAll(images => images.map(image => Number(getComputedStyle(image).opacity))), [1, 0], "Lighting card starts switched off");
+  await hoverCard.hover();
+  await hoverPage.waitForTimeout(700);
+  assert.deepEqual(await hoverCard.locator("img").evaluateAll(images => images.map(image => Number(getComputedStyle(image).opacity))), [0, 1], "Hover switches the lighting card on");
+  await hoverPage.close();
 
   const randomHeroPage = await browser.newPage({ viewport: { width: 390, height: 844 } });
   await randomHeroPage.addInitScript(() => { Math.random = () => 0; });
@@ -82,6 +99,7 @@ try {
     assert.equal(await page.locator(".lead-image img, .project-gallery img").count(), 9, `${project.title} renders its lead and eight study images`);
     assert.equal(await page.locator('.back-link').getAttribute("href"), `/work?category=${project.category}`);
     assert.equal(await page.locator('.project-end-nav a').count(), 3, `${project.title} includes previous, next, and contact links`);
+    assert.equal(await page.locator('.project-end-nav').evaluate(nav => getComputedStyle(nav).display), "grid", `${project.title} uses the project navigation grid`);
     await assertMobileBounds(page, ".project-detail.single, .lead-image, .gallery-image, .project-end-nav", project.title);
   }
   assert.deepEqual(consoleErrors, [], "Browser console remains clean");

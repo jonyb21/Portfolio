@@ -332,16 +332,16 @@
       "category": "homewares",
       "year": "2026",
       "type": "Kitchen appliance",
-      "materials": "Cobalt enamelled steel, brushed stainless steel, vermilion glass-filled nylon, concealed stainless heating plate",
+      "materials": "Mirror-gloss cobalt and vermilion vitreous enamel, polished stainless steel, concealed stainless heating plate",
       "image": "/assets/homewares/axis-kettle-lead-vibrant-v1.webp",
       "cardImage": "/assets/homewares/axis-kettle-lead-vibrant-v1.webp",
       "detailImage": "/assets/homewares/axis-kettle-detail-primary-vibrant-v1.webp",
       "href": "/work/axis-kettle",
-      "summary": "A compact electric kettle that uses colour to explain its assembly: a cobalt enamelled body, vermilion grip and base, and stainless pour surfaces. The part breaks make heat, handling, and service zones immediately legible.",
+      "summary": "A compact electric kettle whose cobalt body, vermilion grip, and base are finished in deep mirror-gloss enamel. Polished stainless pour surfaces sharpen the colour breaks while keeping heat, handling, and service zones immediately legible.",
       "notes": [
-        "The short stainless spout controls flow while remaining visually separate from the hot enamelled body.",
-        "A broad vermilion loop handle keeps the hand clear and makes the grip zone unmistakable.",
-        "The detachable red base carries the chartreuse status light and keeps electrical servicing outside the water vessel."
+        "The short polished stainless spout controls flow while remaining visually separate from the hot enamelled body.",
+        "A broad mirror-gloss vermilion loop keeps the hand clear and makes the grip zone unmistakable.",
+        "The detachable glossy red base carries the chartreuse status light and keeps electrical servicing outside the water vessel."
       ],
       "views": [
         {
@@ -457,11 +457,11 @@
       "cardImage": "/assets/homewares/grid-tray-system-lead-vibrant-v1.webp",
       "detailImage": "/assets/homewares/grid-tray-system-detail-primary-vibrant-v1.webp",
       "href": "/work/grid-tray-system",
-      "summary": "A modular organisation system that makes each replaceable layer visible through colour. Yellow, vermilion, and blue trays lock to exposed aluminium rails around a removable charcoal insert.",
+      "summary": "A modular organisation system whose yellow, vermilion, charcoal, and blue components work as one stack or as separate item trays across a desk.",
       "notes": [
-        "Colour separates the stack into independent modules while shared dimensions keep every level interchangeable.",
-        "Exposed aluminium rails carry the load and create a consistent datum through the warm-yellow, red, and blue parts.",
-        "The charcoal insert slides out independently for small tools, papers, or loose objects."
+        "Shared dimensions let every coloured module stack, separate, and move independently as work changes.",
+        "Exposed aluminium rails carry the load and create a consistent datum through the yellow, red, and blue parts.",
+        "The charcoal insert slides out as its own small-item tray for tools, stationery, or loose objects."
       ],
       "views": [
         {
@@ -485,7 +485,7 @@
           "type": "crop"
         },
         {
-          "label": "Home office desk",
+          "label": "Separated desk modules",
           "image": "/assets/homewares/grid-tray-system-context-wide-vibrant-v1.webp",
           "type": "insitu"
         },
@@ -495,7 +495,7 @@
           "type": "insitu"
         },
         {
-          "label": "Creative workspace",
+          "label": "Independent creative trays",
           "image": "/assets/homewares/grid-tray-system-context-active-vibrant-v1.webp",
           "type": "insitu"
         },
@@ -572,16 +572,16 @@
       "category": "homewares",
       "year": "2026",
       "type": "Coffee preparation",
-      "materials": "Deep-teal anodised aluminium, stainless burrs and crank, burgundy ribbed elastomer, mint glazed ceramic",
+      "materials": "Brushed, knurled, polished, and satin food-grade stainless steel",
       "image": "/assets/homewares/ratio-coffee-mill-lead-vibrant-v1.webp",
       "cardImage": "/assets/homewares/ratio-coffee-mill-lead-vibrant-v1.webp",
       "detailImage": "/assets/homewares/ratio-coffee-mill-detail-primary-vibrant-v1.webp",
       "href": "/work/ratio-coffee-mill",
-      "summary": "A manual coffee mill that combines a teal anodised body, burgundy grip, and mint ceramic crank knob with a clearly serviceable burr assembly. Colour identifies where to hold, turn, and adjust.",
+      "summary": "A manual coffee mill resolved entirely in stainless steel. Brushed bodies, a knurled grip, polished controls, and a satin faceted knob separate each interaction without relying on colour.",
       "notes": [
-        "The flared teal base widens the stance and separates as the removable grounds cup.",
-        "A broad burgundy ribbed band supports grip while the crank is under load.",
-        "The stainless adjustment ring exposes calibration marks, with a small warm-yellow index for repeatable settings."
+        "The flared brushed-steel base widens the stance and separates as the removable grounds cup.",
+        "A broad knurled stainless band provides secure grip while the crank is under load.",
+        "The polished adjustment ring exposes calibration marks for repeatable settings and simple servicing."
       ],
       "views": [
         {
@@ -634,7 +634,7 @@
       "type": "Table lamp",
       "materials": "Mouth-blown cobalt glass, amber cast glass, opal glass diffuser, brushed stainless dimmer",
       "image": "/assets/lighting/column-table-lamp-lead-vibrant-v1.webp",
-      "cardImage": "/assets/lighting/column-table-lamp-lead-vibrant-v1.webp",
+      "cardImage": "/assets/lighting/column-table-lamp-card-off-vibrant-v1.webp",
       "detailImage": "/assets/lighting/column-table-lamp-detail-primary-vibrant-v1.webp",
       "href": "/work/column-table-lamp",
       "summary": "A sculptural table lamp built as a small cairn of mouth-blown glass. Cobalt, amber, and opal volumes stack without an exposed stem, turning the light source and dimmer into part of the composition.",
@@ -694,7 +694,7 @@
       "type": "Task light",
       "materials": "Laminated ash, vermilion powder-coated aluminium, ultramarine recycled terrazzo, stainless pivots, opal lens",
       "image": "/assets/lighting/rail-task-light-lead-vibrant-v1.webp",
-      "cardImage": "/assets/lighting/rail-task-light-lead-vibrant-v1.webp",
+      "cardImage": "/assets/lighting/rail-task-light-card-off-vibrant-v1.webp",
       "detailImage": "/assets/lighting/rail-task-light-detail-primary-vibrant-v1.webp",
       "href": "/work/rail-task-light",
       "summary": "An adjustable task light that makes its mechanics explicit through laminated ash arms, stainless pivots, a vermilion light bar, and an ultramarine terrazzo base.",
@@ -754,7 +754,7 @@
       "type": "Pendant light",
       "materials": "Translucent chartreuse recycled acrylic, opal silicone diffuser, braided vermilion textile, violet powder-coated aluminium",
       "image": "/assets/lighting/halo-pendant-lead-vibrant-v1.webp",
-      "cardImage": "/assets/lighting/halo-pendant-lead-vibrant-v1.webp",
+      "cardImage": "/assets/lighting/halo-pendant-card-off-vibrant-v1.webp",
       "detailImage": "/assets/lighting/halo-pendant-detail-primary-vibrant-v1.webp",
       "href": "/work/halo-pendant",
       "summary": "A thick translucent pendant that treats suspension as part of the colour composition. A chartreuse acrylic ring hangs from three vermilion textile cords beneath a compact violet canopy.",
@@ -808,39 +808,39 @@
     },
     {
       "slug": "plane-wall-light",
-      "title": "Fold Wall Light",
+      "title": "Rill Wall Light",
       "category": "lighting",
       "year": "2026",
       "type": "Wall light",
-      "materials": "Cobalt and coral glazed ceramic, opal glass light channel, concealed dark stainless bracket",
+      "materials": "Translucent cobalt recycled biopolymer, opal blown glass, coral anodised aluminium, brushed stainless steel",
       "image": "/assets/lighting/plane-wall-light-lead-vibrant-v1.webp",
-      "cardImage": "/assets/lighting/plane-wall-light-lead-vibrant-v1.webp",
+      "cardImage": "/assets/lighting/plane-wall-light-card-off-vibrant-v1.webp",
       "detailImage": "/assets/lighting/plane-wall-light-detail-primary-vibrant-v1.webp",
       "href": "/work/plane-wall-light",
-      "summary": "A folded ceramic wall light that uses a cobalt outer wing and coral inner reflector to shape warm indirect light. The fixture reads as one glazed object rather than a plain metal panel.",
+      "summary": "A rounded directional wall light that pairs a ribbed cobalt disc with an opal globe. A visible coral pivot lets the complete light tilt to cast a broad warm wash where it is needed.",
       "notes": [
-        "The asymmetric cobalt shell shields the LEDs and throws light above, below, and softly to one side.",
-        "A coral inner reflector adds depth in daylight and warms the visible edge when illuminated.",
-        "The ceramic body lifts from a concealed steel bracket for driver and light-channel servicing."
+        "The concave translucent disc catches and softens light through a fine radial rib pattern.",
+        "A short coral pivot makes the aiming action visible and holds the shade securely at the chosen angle.",
+        "The opal globe lifts from the front for lamp access while the wall plate conceals wiring and fixings."
       ],
       "views": [
         {
-          "label": "Front three-quarter",
+          "label": "Directed front view",
           "image": "/assets/lighting/plane-wall-light-angle-front-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Opposite side profile",
+          "label": "Pivot side profile",
           "image": "/assets/lighting/plane-wall-light-angle-rear-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Ceramic light channel",
+          "label": "Coral pivot joint",
           "image": "/assets/lighting/plane-wall-light-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Glaze and wall spacing",
+          "label": "Ribbed shade and globe",
           "image": "/assets/lighting/plane-wall-light-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
@@ -874,7 +874,7 @@
       "type": "Floor lamp",
       "materials": "Vermilion powder-coated tubular steel, cobalt perforated aluminium, recycled terrazzo, opal diffuser",
       "image": "/assets/lighting/line-floor-lamp-lead-vibrant-v1.webp",
-      "cardImage": "/assets/lighting/line-floor-lamp-lead-vibrant-v1.webp",
+      "cardImage": "/assets/lighting/line-floor-lamp-card-off-vibrant-v1.webp",
       "detailImage": "/assets/lighting/line-floor-lamp-detail-primary-vibrant-v1.webp",
       "href": "/work/line-floor-lamp",
       "summary": "A graphic reading lamp drawn as one continuous vermilion line from a terrazzo counterweight to a cobalt perforated shade. The broad arc places light over a chair without a heavy visual frame.",

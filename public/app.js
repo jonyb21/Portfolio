@@ -1,4 +1,4 @@
-const MEDIA_REVISION = "20260711-2";
+const MEDIA_REVISION = "20260711-3";
 
 function setText(selector, value) {
   const node = document.querySelector(selector);
@@ -115,10 +115,12 @@ function workCategory() {
 }
 
 function projectCard(project) {
+  const switchesOn = project.category === "lighting" && project.cardImage && project.cardImage !== project.image;
   return `
-    <a class="project-card" href="${escapeHtml(projectUrl(project))}">
+    <a class="project-card${switchesOn ? " light-switch-card" : ""}" href="${escapeHtml(projectUrl(project))}">
       <span class="project-card-images" aria-hidden="true">
-        <img src="${escapeHtml(imageUrl(project.cardImage || project.image))}" alt="" loading="eager" decoding="async">
+        <img${switchesOn ? ' class="light-state-off"' : ""} src="${escapeHtml(imageUrl(project.cardImage || project.image))}" alt="" loading="eager" decoding="async">
+        ${switchesOn ? `<img class="light-state-on" src="${escapeHtml(imageUrl(project.image))}" alt="" loading="eager" decoding="async">` : ""}
       </span>
       <span class="sr-only">${escapeHtml(project.title)}</span>
       <span class="project-title">${escapeHtml(project.title)}</span>
@@ -359,15 +361,15 @@ function render(site) {
         </div>
         ${renderProjectViews(project)}
         <nav class="project-end-nav" aria-label="Project navigation">
-          <a href="${escapeHtml(projectUrl(previousProject))}">
+          <a class="project-nav-link previous" href="${escapeHtml(projectUrl(previousProject))}">
             <span>Previous project</span>
             <strong>${escapeHtml(previousProject.title)}</strong>
           </a>
-          <a href="${escapeHtml(projectUrl(nextProject))}">
+          <a class="project-nav-link next" href="${escapeHtml(projectUrl(nextProject))}">
             <span>Next project</span>
             <strong>${escapeHtml(nextProject.title)}</strong>
           </a>
-          <a class="text-link" href="/contact"><span>Get in contact</span></a>
+          <a class="text-link project-contact" href="/contact"><span>Get in contact</span></a>
         </nav>
       </article>`;
     productPage.setAttribute("aria-busy", "false");
