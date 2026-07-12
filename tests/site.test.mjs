@@ -23,7 +23,7 @@ const work = fs.readFileSync("public/work.html", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260711-3";
+const MEDIA_REVISION = "20260712-1";
 validateSite(validSite);
 
 function withProject(index, changes) {
@@ -144,6 +144,8 @@ try {
   assert.match(site.projects.find(project => project.slug === "plane-wall-light").summary, /pivot.*tilt/i);
   assert.match(site.projects.find(project => project.slug === "ratio-coffee-mill").materials, /stainless steel/i);
   assert.match(site.projects.find(project => project.slug === "axis-kettle").materials, /mirror-gloss/i);
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/homewares/axis-kettle-context-active-vibrant-v1.webp")).digest("hex"), "03c6aea96e2fd6004d675b76511c1218b4ca00dca56c18694e2766e518948fa7", "Flux pouring render uses the approved glossy-body and closed-lid image");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/homewares/axis-kettle-context-use-vibrant-v1.webp")).digest("hex"), "7dfffd8da802eb16bf1b4b39a4e102f8a75ec4e59232ea3d87383a45623f6b61", "Flux filling render uses the approved hinged-lid image");
   assert(site.projects.find(project => project.slug === "grid-tray-system").views.some(view => view.label === "Separated desk modules"));
   assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"));
   assert(site.projects.find(project => project.slug === "dining-table").views.filter(view => view.type === "insitu").every(view => view.image.includes("/ridge-four-leg-insitu-")));
