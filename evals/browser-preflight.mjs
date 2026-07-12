@@ -75,6 +75,17 @@ try {
   await page.goBack();
   assert.equal(await page.locator('[data-work-category="homewares"]').getAttribute("aria-selected"), "true", "Browser history restores the selected category");
 
+  const tilePage = await browser.newPage({ viewport: { width: 1100, height: 800 } });
+  for (const category of categories) {
+    await tilePage.goto(`${origin}/work?category=${category}`, { waitUntil: "networkidle" });
+    const tileSizes = await tilePage.locator(".project-card").evaluateAll(cards => cards.map(card => {
+      const { width, height } = card.getBoundingClientRect();
+      return `${Math.round(width)}x${Math.round(height)}`;
+    }));
+    assert.equal(new Set(tileSizes).size, 1, `${category} uses one default product tile size`);
+  }
+  await tilePage.close();
+
   const hoverPage = await browser.newPage({ viewport: { width: 1100, height: 800 } });
   await hoverPage.goto(`${origin}/work?category=lighting`, { waitUntil: "networkidle" });
   const hoverCard = hoverPage.locator(".light-switch-card").first();

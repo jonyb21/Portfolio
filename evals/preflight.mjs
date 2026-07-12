@@ -115,7 +115,7 @@ assert(site.projects.every(project => project.views?.length === 8), "Each projec
 assert(site.projects.every(project => [project.cardImage, ...project.views.map(view => view.image)].filter(Boolean).length === 9), "Each project page has one main image, four crops, and four in-situ images");
 assert(site.projects.every(project => project.views.filter(view => view.type === "crop").length === 4), "Each project has four cropped product studies");
 assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").length === 4), "Each project has four in situ views");
-assert(css.includes(".project-card:nth-child(4)") && css.includes(".project-card:nth-child(5)"), "Each category copies the balanced five-card furniture layout");
+assert(!/\.project-card:nth-child\(|a\.project-card\[href="\/work\/dining-table"\]\s*\{\s*grid-column:/.test(css), "Each category uses the shared default tile size");
 assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-vibrant-v1)\.webp$/.test(view.image))), "Each project uses four optimized generated in-situ assets");
 const vibrantProjects = site.projects.filter(project => project.category !== "furniture");
 assert(vibrantProjects.every(project => project.views.some(view => view.type === "insitu" && view.image.endsWith("-context-use-vibrant-v1.webp"))), "Every Homewares and Lighting project includes a use scene");

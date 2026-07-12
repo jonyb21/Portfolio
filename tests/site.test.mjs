@@ -63,7 +63,7 @@ for (const image of new Set([validSite.hero.image, validSite.about.portrait, ...
 assert(!app.includes('loading="lazy"'), "Public project imagery loads immediately rather than waiting for scroll position");
 assert(app.includes("show(-1)") && app.includes("const fadeDuration = 900"), "Hero slideshow removes the current product before revealing the next one");
 assert(app.includes("const heroProjects = shuffled(") && !app.includes("featuredIndex"), "Homepage starts with a random designed piece on every visit");
-assert(css.includes(".project-card:nth-child(4)") && css.includes(".project-card:nth-child(5)"), "Every category uses the same balanced five-card layout");
+assert(!/\.project-card:nth-child\(|a\.project-card\[href="\/work\/dining-table"\]\s*\{\s*grid-column:/.test(css), "All product cards use the shared default tile size");
 assert(adminHtml.includes('/favicon.svg?v=20260705-4'), "Admin uses the same JB browser icon as the public site");
 assert.throws(() => validateSite({ projects: [] }), /Brand/);
 assert.throws(() => validateSite({ ...validSite, brand: "   " }), /Brand/);

@@ -222,19 +222,8 @@ img {
   filter: saturate(0.78) brightness(1.12) contrast(1.04);
 }
 
-.project-card:nth-child(4),
-.project-card:nth-child(5) {
-  grid-column: span 3;
-  aspect-ratio: var(--media-ratio);
-}
-
 a.project-card[href="/work/foundry-sideboard"] img {
   object-position: 50% 65%;
-}
-
-a.project-card[href="/work/dining-table"] {
-  grid-column: span 3;
-  aspect-ratio: var(--media-ratio);
 }
 
 a.project-card[href="/work/dining-table"] img {
@@ -1035,9 +1024,7 @@ body.preview-open {
     grid-template-columns: 1fr;
   }
 
-  .project-card,
-  .project-card:nth-child(4),
-  .project-card:nth-child(5) {
+  .project-card {
     grid-column: 1 / -1;
     width: 100%;
     aspect-ratio: var(--media-ratio);
@@ -1118,14 +1105,8 @@ body.preview-open {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .project-card,
-  .project-card:nth-child(4) {
+  .project-card {
     grid-column: auto;
-    aspect-ratio: var(--media-ratio);
-  }
-
-  .project-card:nth-child(5) {
-    grid-column: 1 / -1;
     aspect-ratio: var(--media-ratio);
   }
 
