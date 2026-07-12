@@ -18,7 +18,7 @@ const app = fs.readFileSync("public/app.js", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260712-1";
+const MEDIA_REVISION = "20260712-2";
 new Function(adminJs);
 
 function localAssetHash(image) {
@@ -83,8 +83,8 @@ assert(css.includes(".project-nav-link.next") && css.includes(".project-end-nav 
 assert(site.projects.find(project => project.slug === "plane-wall-light").title === "Rill Wall Light" && /pivot.*tilt/i.test(site.projects.find(project => project.slug === "plane-wall-light").summary), "Wall light copy matches the rounded directional design");
 assert(/stainless steel/i.test(site.projects.find(project => project.slug === "ratio-coffee-mill").materials), "Coffee mill is specified entirely in stainless steel");
 assert(/mirror-gloss/i.test(site.projects.find(project => project.slug === "axis-kettle").materials), "Kettle copy specifies its reflective finish");
-assert(localAssetHash("/assets/homewares/axis-kettle-context-active-vibrant-v1.webp") === "03c6aea96e2fd6004d675b76511c1218b4ca00dca56c18694e2766e518948fa7", "Flux pouring render uses the approved glossy-body and closed-lid image");
-assert(localAssetHash("/assets/homewares/axis-kettle-context-use-vibrant-v1.webp") === "7dfffd8da802eb16bf1b4b39a4e102f8a75ec4e59232ea3d87383a45623f6b61", "Flux filling render uses the approved hinged-lid image");
+assert(localAssetHash("/assets/homewares/axis-kettle-context-active-vibrant-v1.webp") === "9d66d5a8600011d47cb362c87e3bbc6a5fb8a2d78ad9d4df6a3bdae379677012", "Flux pouring render uses the approved silver lid-release image");
+assert(localAssetHash("/assets/homewares/axis-kettle-context-use-vibrant-v1.webp") === "5cda444c1a20cd9284d022fbd2705c7dfb9053eef8fd599d28ba0b351dbb2345", "Flux filling render uses the approved silver lid-release image");
 assert(site.projects.find(project => project.slug === "grid-tray-system").views.some(view => view.label === "Separated desk modules"), "Tray gallery includes separated desk use");
 assert(product.includes('content="Industrial design project by Jon Brooks."'), "Project metadata covers the complete industrial-design portfolio");
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");
