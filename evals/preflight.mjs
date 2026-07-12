@@ -18,7 +18,7 @@ const app = fs.readFileSync("public/app.js", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260712-2";
+const MEDIA_REVISION = "20260712-3";
 new Function(adminJs);
 
 function localAssetHash(image) {
@@ -81,10 +81,13 @@ assert(site.projects.filter(project => project.category === "lighting").every(pr
 assert(app.includes("light-state-off") && app.includes("light-state-on") && css.includes("transition: opacity 650ms ease-in-out"), "Lighting cards switch on with an image crossfade");
 assert(css.includes(".project-nav-link.next") && css.includes(".project-end-nav .project-contact"), "Project navigation has aligned previous, next, and contact regions");
 assert(site.projects.find(project => project.slug === "plane-wall-light").title === "Rill Wall Light" && /pivot.*tilt/i.test(site.projects.find(project => project.slug === "plane-wall-light").summary), "Wall light copy matches the rounded directional design");
+assert(localAssetHash("/assets/lighting/plane-wall-light-lead-vibrant-v1.webp") === "fca17e78379ffb726db158e5b81eae22a8587127f82b335f4d086af33d10dff8", "Rill lead uses the approved connected light assembly");
+assert(localAssetHash("/assets/lighting/plane-wall-light-angle-rear-vibrant-v1.webp") === "9db71b38cc9cf146aa798cca3db2e61cee52138047cbfeaaae620a5bf3d594e8", "Rill side view proves the pivot and head connection");
+assert(localAssetHash("/assets/lighting/plane-wall-light-card-off-vibrant-v1.webp") === "7587eb207409248d7ab316694de743465b2b2757483cad89a72354b6a868e37b", "Rill card uses the matching switched-off assembly");
 assert(/stainless steel/i.test(site.projects.find(project => project.slug === "ratio-coffee-mill").materials), "Coffee mill is specified entirely in stainless steel");
 assert(/mirror-gloss/i.test(site.projects.find(project => project.slug === "axis-kettle").materials), "Kettle copy specifies its reflective finish");
-assert(localAssetHash("/assets/homewares/axis-kettle-context-active-vibrant-v1.webp") === "9d66d5a8600011d47cb362c87e3bbc6a5fb8a2d78ad9d4df6a3bdae379677012", "Flux pouring render uses the approved silver lid-release image");
-assert(localAssetHash("/assets/homewares/axis-kettle-context-use-vibrant-v1.webp") === "5cda444c1a20cd9284d022fbd2705c7dfb9053eef8fd599d28ba0b351dbb2345", "Flux filling render uses the approved silver lid-release image");
+assert(localAssetHash("/assets/homewares/axis-kettle-context-active-vibrant-v1.webp") === "b4d00d5d68d3e0f136f571c1b3f6d1ff94f629957a925b1acaa7da32f69da192", "Flux pouring render uses the approved connected kettle assembly");
+assert(localAssetHash("/assets/homewares/axis-kettle-context-use-vibrant-v1.webp") === "dba8934aa3e4808921071f0b59e5be25a2e007bfaa8d93af69261a221150eb2e", "Flux filling render proves the lid hinge and release action");
 assert(site.projects.find(project => project.slug === "grid-tray-system").views.some(view => view.label === "Separated desk modules"), "Tray gallery includes separated desk use");
 assert(product.includes('content="Industrial design project by Jon Brooks."'), "Project metadata covers the complete industrial-design portfolio");
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");

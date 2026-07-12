@@ -23,7 +23,7 @@ const work = fs.readFileSync("public/work.html", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260712-2";
+const MEDIA_REVISION = "20260712-3";
 validateSite(validSite);
 
 function withProject(index, changes) {
@@ -142,10 +142,13 @@ try {
   assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/halo-pendant-card-off-vibrant-v1.webp")).digest("hex"), "93659eb2b16d4e0d9aae054473cd9eec574c2c990625aa56afe59abc98cc9a52", "Aperture card uses the approved symmetric switched-off render");
   assert.equal(site.projects.find(project => project.slug === "plane-wall-light").title, "Rill Wall Light");
   assert.match(site.projects.find(project => project.slug === "plane-wall-light").summary, /pivot.*tilt/i);
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/plane-wall-light-lead-vibrant-v1.webp")).digest("hex"), "fca17e78379ffb726db158e5b81eae22a8587127f82b335f4d086af33d10dff8", "Rill lead uses the approved connected light assembly");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/plane-wall-light-angle-rear-vibrant-v1.webp")).digest("hex"), "9db71b38cc9cf146aa798cca3db2e61cee52138047cbfeaaae620a5bf3d594e8", "Rill side view proves the pivot and head connection");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/plane-wall-light-card-off-vibrant-v1.webp")).digest("hex"), "7587eb207409248d7ab316694de743465b2b2757483cad89a72354b6a868e37b", "Rill card uses the matching switched-off assembly");
   assert.match(site.projects.find(project => project.slug === "ratio-coffee-mill").materials, /stainless steel/i);
   assert.match(site.projects.find(project => project.slug === "axis-kettle").materials, /mirror-gloss/i);
-  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/homewares/axis-kettle-context-active-vibrant-v1.webp")).digest("hex"), "9d66d5a8600011d47cb362c87e3bbc6a5fb8a2d78ad9d4df6a3bdae379677012", "Flux pouring render uses the approved silver lid-release image");
-  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/homewares/axis-kettle-context-use-vibrant-v1.webp")).digest("hex"), "5cda444c1a20cd9284d022fbd2705c7dfb9053eef8fd599d28ba0b351dbb2345", "Flux filling render uses the approved silver lid-release image");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/homewares/axis-kettle-context-active-vibrant-v1.webp")).digest("hex"), "b4d00d5d68d3e0f136f571c1b3f6d1ff94f629957a925b1acaa7da32f69da192", "Flux pouring render uses the approved connected kettle assembly");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/homewares/axis-kettle-context-use-vibrant-v1.webp")).digest("hex"), "dba8934aa3e4808921071f0b59e5be25a2e007bfaa8d93af69261a221150eb2e", "Flux filling render proves the lid hinge and release action");
   assert(site.projects.find(project => project.slug === "grid-tray-system").views.some(view => view.label === "Separated desk modules"));
   assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"));
   assert(site.projects.find(project => project.slug === "dining-table").views.filter(view => view.type === "insitu").every(view => view.image.includes("/ridge-four-leg-insitu-")));

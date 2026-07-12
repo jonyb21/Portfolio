@@ -1,4 +1,4 @@
-const MEDIA_REVISION = "20260712-2";
+const MEDIA_REVISION = "20260712-3";
 
 function setText(selector, value) {
   const node = document.querySelector(selector);
