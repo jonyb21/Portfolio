@@ -6,10 +6,11 @@ Replace the inconsistent Flux Kettle render set with nine native 4:3 WebP assets
 
 ## Direction
 
-- Preserve the approved Flux identity: cobalt enamel body, vermilion heat-safe handle and base, brushed stainless lid and short spout, chartreuse status light.
+- Preserve the approved Flux identity: tall cobalt enamel body, vermilion heat-safe handle and base, brushed stainless hinged lid with a visible round release button, short spout, and chartreuse status light.
 - Use one generated lead render as the visual reference for every other image so the body proportions, handle, lid, spout, base, finish, and indicator stay fixed.
 - Keep the first four gallery views as neutral studio/editorial studies: front three-quarter, rear handle profile, lid/spout interaction detail, and base/enamel material detail.
 - Use the last four views as believable kitchen context: worktop rest, overhead tea-prep composition, pouring into a cup, and filling at a sink with the lid open.
+- In the sink-fill view, show one horizontal rear hinge barrel aligned parallel with the handle's top segment and the lid-release button, so the lid-opening mechanism reads as one coherent assembly.
 - Keep all assets native 4:3, with no text, logos, invented product variants, or unrelated appliances competing with the kettle.
 
 ## File and data changes

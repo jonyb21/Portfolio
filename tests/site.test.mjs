@@ -147,8 +147,8 @@ try {
   assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/plane-wall-light-card-off-vibrant-v1.webp")).digest("hex"), "7587eb207409248d7ab316694de743465b2b2757483cad89a72354b6a868e37b", "Rill card uses the matching switched-off assembly");
   assert.match(site.projects.find(project => project.slug === "ratio-coffee-mill").materials, /stainless steel/i);
   assert.match(site.projects.find(project => project.slug === "axis-kettle").materials, /mirror-gloss/i);
-  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/homewares/axis-kettle-context-active-vibrant-v1.webp")).digest("hex"), "b4d00d5d68d3e0f136f571c1b3f6d1ff94f629957a925b1acaa7da32f69da192", "Flux pouring render uses the approved connected kettle assembly");
-  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/homewares/axis-kettle-context-use-vibrant-v1.webp")).digest("hex"), "dba8934aa3e4808921071f0b59e5be25a2e007bfaa8d93af69261a221150eb2e", "Flux filling render proves the lid hinge and release action");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/homewares/axis-kettle-context-active-vibrant-v1.webp")).digest("hex"), "36eaf26ac35c36d64772207a78cecd32e1f2409b8a50b619185148574bf42034", "Flux pouring render uses the approved connected kettle assembly");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/homewares/axis-kettle-context-use-vibrant-v1.webp")).digest("hex"), "2c95388d44840fdd774276439dd695c6c0cf13eba530ef8300808198d4630be9", "Flux filling render proves the lid hinge and release action");
   assert(site.projects.find(project => project.slug === "grid-tray-system").views.some(view => view.label === "Separated desk modules"));
   assert(site.projects.find(project => project.slug === "arc-lounge-chair").views.some(view => view.image === "/assets/furniture/arc-lounge-chair-insitu-v4-fixed.webp"));
   assert(site.projects.find(project => project.slug === "dining-table").views.filter(view => view.type === "insitu").every(view => view.image.includes("/ridge-four-leg-insitu-")));
