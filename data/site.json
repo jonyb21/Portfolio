@@ -812,35 +812,35 @@
       "category": "lighting",
       "year": "2026",
       "type": "Wall light",
-      "materials": "Translucent cobalt recycled biopolymer, opal blown glass, coral anodised aluminium, brushed stainless steel",
+      "materials": "Warm-grey powder-coated aluminium, brushed aluminium pivots, graphite controls, opal diffuser",
       "image": "/assets/lighting/plane-wall-light-lead-vibrant-v1.webp",
       "cardImage": "/assets/lighting/plane-wall-light-card-off-vibrant-v1.webp",
       "detailImage": "/assets/lighting/plane-wall-light-detail-primary-vibrant-v1.webp",
       "href": "/work/plane-wall-light",
-      "summary": "A rounded directional wall light that pairs a ribbed cobalt disc with an opal globe. A visible coral pivot lets the complete light tilt to cast a broad warm wash where it is needed.",
+      "summary": "A compact wall light built around a rotating cylindrical light engine. Turning the body redirects its recessed linear beam while the shallow hardwired plate keeps the mechanism close to the wall.",
       "notes": [
-        "The concave translucent disc catches and softens light through a fine radial rib pattern.",
-        "A short coral pivot makes the aiming action visible and holds the shade securely at the chosen angle.",
-        "The opal globe lifts from the front for lamp access while the wall plate conceals wiring and fixings."
+        "The warm-grey extruded aluminium cylinder rotates between two compact machined pivots to aim the light up or down.",
+        "A recessed linear opal diffuser controls glare and disappears into the cylindrical body when the lamp is switched off.",
+        "The shallow rounded backplate conceals wiring and fixings, with a single flush graphite dimmer centred below the light."
       ],
       "views": [
         {
-          "label": "Directed front view",
+          "label": "Rotating cylinder front view",
           "image": "/assets/lighting/plane-wall-light-angle-front-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Pivot side profile",
+          "label": "Rear mounting profile",
           "image": "/assets/lighting/plane-wall-light-angle-rear-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Coral pivot joint",
+          "label": "Machined pivot detail",
           "image": "/assets/lighting/plane-wall-light-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Ribbed shade and globe",
+          "label": "Recessed diffuser detail",
           "image": "/assets/lighting/plane-wall-light-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
@@ -850,7 +850,7 @@
           "type": "insitu"
         },
         {
-          "label": "Tiled entry",
+          "label": "Bedroom wall",
           "image": "/assets/lighting/plane-wall-light-context-alt-vibrant-v1.webp",
           "type": "insitu"
         },
@@ -860,7 +860,7 @@
           "type": "insitu"
         },
         {
-          "label": "Corridor in use",
+          "label": "Beam adjustment in use",
           "image": "/assets/lighting/plane-wall-light-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
@@ -872,35 +872,35 @@
       "category": "lighting",
       "year": "2026",
       "type": "Floor lamp",
-      "materials": "Vermilion powder-coated tubular steel, cobalt perforated aluminium, recycled terrazzo, opal diffuser",
+      "materials": "Warm-grey powder-coated aluminium, weighted steel, graphite polymer, brushed aluminium, opal diffuser",
       "image": "/assets/lighting/line-floor-lamp-lead-vibrant-v1.webp",
       "cardImage": "/assets/lighting/line-floor-lamp-card-off-vibrant-v1.webp",
       "detailImage": "/assets/lighting/line-floor-lamp-detail-primary-vibrant-v1.webp",
       "href": "/work/line-floor-lamp",
-      "summary": "A graphic reading lamp drawn as one continuous vermilion line from a terrazzo counterweight to a cobalt perforated shade. The broad arc places light over a chair without a heavy visual frame.",
+      "summary": "A restrained floor reading lamp with a weighted low-profile base, slim rectangular upright, and pivoting linear head. Its compact geometry keeps the light stable, adjustable, and visually quiet.",
       "notes": [
-        "The continuous tubular arc provides the structure and cable path in one readable gesture.",
-        "A compact terrazzo base counters the long reach while keeping the floor footprint small.",
-        "The cobalt half-cylinder shade pivots at a warm-yellow joint and controls glare through an opal underside lens."
+        "The rectangular aluminium upright carries concealed wiring from the weighted base directly to the light head.",
+        "A compact brushed-aluminium friction pivot adjusts the short linear head without adding a second arm or exposed cable.",
+        "The graphite base inset lowers the visual weight while a flush rotary dimmer and recessed opal diffuser provide simple control."
       ],
       "views": [
         {
-          "label": "Front arc profile",
+          "label": "Front profile",
           "image": "/assets/lighting/line-floor-lamp-angle-front-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Rear arc profile",
+          "label": "Rear cable profile",
           "image": "/assets/lighting/line-floor-lamp-angle-rear-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Perforated hood",
+          "label": "Head pivot detail",
           "image": "/assets/lighting/line-floor-lamp-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Terrazzo base control",
+          "label": "Weighted base control",
           "image": "/assets/lighting/line-floor-lamp-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
