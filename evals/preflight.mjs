@@ -85,9 +85,11 @@ assert(localAssetHash("/assets/lighting/plane-wall-light-lead-vibrant-v1.webp") 
 assert(localAssetHash("/assets/lighting/plane-wall-light-angle-rear-vibrant-v1.webp") === "9db71b38cc9cf146aa798cca3db2e61cee52138047cbfeaaae620a5bf3d594e8", "Rill side view proves the pivot and head connection");
 assert(localAssetHash("/assets/lighting/plane-wall-light-card-off-vibrant-v1.webp") === "7587eb207409248d7ab316694de743465b2b2757483cad89a72354b6a868e37b", "Rill card uses the matching switched-off assembly");
 assert(/stainless steel/i.test(site.projects.find(project => project.slug === "ratio-coffee-mill").materials), "Coffee mill is specified entirely in stainless steel");
-assert(/mirror-gloss/i.test(site.projects.find(project => project.slug === "axis-kettle").materials), "Kettle copy specifies its reflective finish");
-assert(localAssetHash("/assets/homewares/axis-kettle-context-active-vibrant-v1.webp") === "36eaf26ac35c36d64772207a78cecd32e1f2409b8a50b619185148574bf42034", "Flux pouring render uses the approved connected kettle assembly");
-assert(localAssetHash("/assets/homewares/axis-kettle-context-use-vibrant-v1.webp") === "2c95388d44840fdd774276439dd695c6c0cf13eba530ef8300808198d4630be9", "Flux filling render proves the lid hinge and release action");
+assert(/satin warm-ivory/i.test(site.projects.find(project => project.slug === "axis-kettle").materials), "Kettle copy specifies its approved minimal finish");
+assert(site.projects.find(project => project.slug === "axis-kettle").views.some(view => view.label === "Open lid and hinge mechanism"), "Kettle gallery names the hinge proof view");
+assert(localAssetHash("/assets/homewares/axis-kettle-detail-primary-vibrant-v1.webp") === "712b65e4eb056882dd777534e0c0b82b790aa45a66c82b9ed6a579ac8a1b26b7", "Flux detail render proves the compact connected hinge, pivot, lid arm, and release");
+assert(localAssetHash("/assets/homewares/axis-kettle-context-active-vibrant-v1.webp") === "b4a9a7157871838bb9180370da6af320c05bd505c7511a2a433d1546e88fba58", "Flux pouring render uses the approved connected kettle assembly");
+assert(localAssetHash("/assets/homewares/axis-kettle-context-use-vibrant-v1.webp") === "1aca9fa3eb447c1dfabaa93f89dc3e0deb9abb5092dc4badd20b5b76e1079587", "Flux filling render proves the lid hinge and release action");
 assert(site.projects.find(project => project.slug === "grid-tray-system").views.some(view => view.label === "Separated desk modules"), "Tray gallery includes separated desk use");
 assert(product.includes('content="Industrial design project by Jon Brooks."'), "Project metadata covers the complete industrial-design portfolio");
 assert(index.includes(site.hero.body), "Home fallback copy matches site data");

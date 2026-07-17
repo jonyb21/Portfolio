@@ -5,7 +5,7 @@ const site = JSON.parse(fs.readFileSync(sitePath, "utf8"));
 
 const labelsBySlug = {
   "axis-kettle": [
-    "Front three-quarter", "Rear handle profile", "Lid and pour control", "Enamel and base seam",
+    "Front three-quarter", "Rear handle profile", "Open lid and hinge mechanism", "Ivory enamel and base seam",
     "Kitchen worktop", "Tea preparation overhead", "Pouring profile", "Filling in use",
   ],
   "tempo-clock": [

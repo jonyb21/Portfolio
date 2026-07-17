@@ -17,7 +17,7 @@ Replace the current Flux Kettle gallery with nine consistent 4:3 product images 
 
 - Show one exposed horizontal stainless hinge barrel at the rear, aligned parallel with the top of the handle.
 - Build the barrel from two outer body-side knuckles and one central lid knuckle around one visible pivot pin with capped ends.
-- Connect the stainless lid to the central knuckle with one formed stainless arm.
+- Connect the stainless lid directly to the central knuckle with one short compact formed stainless lug; no extended vertical lever.
 - Keep the torsion spring inside the barrel and show a plausible handle-mounted release button and lid latch relationship.
 - Open the lid between 100 and 110 degrees against a visible mechanical stop.
 - In open views, show a continuous stainless inner vessel, rim seal, attached lid, and enough clearance for filling. No detached or floating parts.

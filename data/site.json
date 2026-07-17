@@ -332,16 +332,16 @@
       "category": "homewares",
       "year": "2026",
       "type": "Kitchen appliance",
-      "materials": "Mirror-gloss cobalt and vermilion vitreous enamel, polished stainless steel, concealed stainless heating plate",
+      "materials": "Satin warm-ivory vitreous enamel, graphite heat-safe polymer, brushed stainless steel, concealed stainless heating plate",
       "image": "/assets/homewares/axis-kettle-lead-vibrant-v1.webp",
       "cardImage": "/assets/homewares/axis-kettle-lead-vibrant-v1.webp",
       "detailImage": "/assets/homewares/axis-kettle-detail-primary-vibrant-v1.webp",
       "href": "/work/axis-kettle",
-      "summary": "A compact electric kettle whose cobalt body, vermilion grip, and base are finished in deep mirror-gloss enamel. Polished stainless pour surfaces sharpen the colour breaks while keeping heat, handling, and service zones immediately legible.",
+      "summary": "A minimal electric kettle with a warm-ivory satin body, graphite grip and base, and a visible stainless hinge that makes the lid action immediately legible.",
       "notes": [
-        "The short polished stainless spout controls flow while remaining visually separate from the hot enamelled body.",
-        "A broad mirror-gloss vermilion loop keeps the hand clear and makes the grip zone unmistakable.",
-        "The detachable glossy red base carries the chartreuse status light and keeps electrical servicing outside the water vessel."
+        "The short brushed stainless spout controls flow while remaining visually separate from the hot enamelled body.",
+        "A graphite loop keeps the hand clear and places the stainless lid release naturally under the thumb.",
+        "An exposed stainless barrel hinge connects the lid through a visible pivot and stop, while the low graphite base carries one amber status light."
       ],
       "views": [
         {
@@ -355,12 +355,12 @@
           "type": "crop"
         },
         {
-          "label": "Lid and pour control",
+          "label": "Open lid and hinge mechanism",
           "image": "/assets/homewares/axis-kettle-detail-primary-vibrant-v1.webp",
           "type": "crop"
         },
         {
-          "label": "Enamel and base seam",
+          "label": "Ivory enamel and base seam",
           "image": "/assets/homewares/axis-kettle-detail-material-vibrant-v1.webp",
           "type": "crop"
         },
