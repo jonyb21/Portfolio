@@ -9,8 +9,9 @@ const publicDir = path.join(root, "public");
 const dataPath = process.env.PORTFOLIO_DATA_PATH || path.join(root, "data", "site.json");
 const port = Number(process.env.PORT || 8788);
 const adminPassword = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "admin");
-const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
-const MEDIA_REVISION = "20260718-1";
+const PROJECT_CATEGORY_COUNTS = { furniture: 5, homewares: 5, lighting: 5, mobility: 4 };
+const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
+const MEDIA_REVISION = "20260718-2";
 
 if (process.env.NODE_ENV === "production" && !adminPassword) {
   throw new Error("ADMIN_PASSWORD is required in production");
@@ -163,7 +164,7 @@ function validateSite(site) {
     if (project.href !== `/work/${project.slug}`) throw new Error("Project links must match their product page slug");
   }
   for (const category of PROJECT_CATEGORIES) {
-    if (categoryCounts[category] !== 5) throw new Error(`Category ${category} must contain exactly five projects`);
+    if (categoryCounts[category] !== PROJECT_CATEGORY_COUNTS[category]) throw new Error(`Category ${category} must contain exactly ${PROJECT_CATEGORY_COUNTS[category]} projects`);
   }
   validatePagePath(site.hero.ctaHref, slugs, "Hero CTA");
   for (const item of site.nav) {

@@ -20,10 +20,11 @@ const index = fs.readFileSync("public/index.html", "utf8");
 const app = fs.readFileSync("public/app.js", "utf8");
 const admin = fs.readFileSync("public/admin.js", "utf8");
 const work = fs.readFileSync("public/work.html", "utf8");
-const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
+const PROJECT_CATEGORY_COUNTS = { furniture: 5, homewares: 5, lighting: 5, mobility: 4 };
+const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260718-1";
+const MEDIA_REVISION = "20260718-2";
 validateSite(validSite);
 
 function withProject(index, changes) {
@@ -38,6 +39,7 @@ assert(adminCss.includes("border-radius: var(--radius)"));
 assert(!css.includes("animation-timeline: view(block)"), "Below-fold content remains visible without scroll-timeline support");
 assert(!css.includes("13vw"), "Mobile hero typography stays proportionate to the viewport");
 assert(css.includes("letter-spacing: 0"), "Display typography does not use compressed negative tracking");
+assert(css.includes(".brand-family") && app.includes("function renderBrand"), "Only the Brooks surname uses the green accent");
 assert(css.includes("--media-ratio: 4 / 3"), "All public image containers share one 4:3 ratio");
 assert(css.includes("object-fit: contain"), "Public images remain fully visible without cropping");
 assert(css.includes(".gallery-image img {\n  object-fit: cover;"), "Detail-study tiles fill their frames without side bands");
@@ -71,7 +73,7 @@ assert.throws(() => validateSite({ ...validSite, contact: { ...validSite.contact
 assert.throws(() => validateSite({ ...validSite, contact: { ...validSite.contact, phone: "12" } }), /valid phone/);
 assert.throws(() => validateSite(withProject(0, { category: "" })), /category/);
 assert.throws(() => validateSite(withProject(0, { category: "appliances" })), /category/);
-assert.throws(() => validateSite(withProject(0, { category: "homewares" })), /exactly five/);
+assert.throws(() => validateSite(withProject(0, { category: "homewares" })), /exactly 5/);
 assert.throws(() => validateSite(withProject(0, { href: "/work/wrong" })), /links/);
 assert.throws(() => validateSite({ ...validSite, projects: validSite.projects.map((project, index) => index === 1 ? { ...validSite.projects[0] } : project) }), /unique/);
 assert.throws(() => validateSite(withProject(0, { slug: "Bad Slug", href: "/work/Bad Slug" })), /lowercase/);
@@ -114,14 +116,15 @@ try {
   assert.equal(site.brand, "Jon Brooks");
   assert.equal(site.nav[0].href, "/work");
   assert.equal(site.workCta, "Get in contact");
-  assert.match(site.workIntro, /furniture, homewares, and lighting/);
+  assert.match(site.workIntro, /furniture, homewares, lighting, and mobility/);
   assert.equal(site.projects[0].slug, "contour-lounge-chair");
-  assert.equal(site.projects.length, 15);
-  assert.deepEqual(Object.fromEntries(PROJECT_CATEGORIES.map(category => [category, site.projects.filter(project => project.category === category).length])), {
-    furniture: 5,
-    homewares: 5,
-    lighting: 5
-  });
+  assert.equal(site.projects.length, 19);
+  assert.deepEqual(Object.fromEntries(PROJECT_CATEGORIES.map(category => [category, site.projects.filter(project => project.category === category).length])), PROJECT_CATEGORY_COUNTS);
+  assert.deepEqual(site.projects.filter(project => project.category === "mobility").map(project => project.slug), ["stride-fold-ebike", "aero-commuter-helmet", "latch-convertible-pannier", "gauge-electric-inflator"]);
+  for (const project of site.projects.filter(project => project.category === "mobility")) {
+    const hashes = [project.image, ...project.views.map(view => view.image)].map(image => crypto.createHash("sha256").update(fs.readFileSync(`public${image}`)).digest("hex"));
+    assert.equal(new Set(hashes).size, 9, `${project.title} uses nine genuinely different images`);
+  }
   assert(site.projects.some(project => project.slug === "dining-table" && project.title === "Ridge Dining Table"));
   assert.equal(site.projects[0].cardImage, "/assets/furniture/contour-lounge-chair-card-4x3.webp");
   assert.match(site.projects[0].summary, /continuous timber frame/);
@@ -183,7 +186,7 @@ try {
   assert.equal(site.contact.email, "jonbrooks35@gmail.com");
   assert.equal(site.contact.phone, "0412 218 673");
   assert(app.includes('"mailto:", "tel:"'), "Public links safely retain phone links");
-  assert(work.includes('role="tablist"') && PROJECT_CATEGORIES.every(category => work.includes(`data-work-category="${category}"`)), "Work page exposes three accessible category tabs");
+  assert(work.includes('role="tablist"') && PROJECT_CATEGORIES.every(category => work.includes(`data-work-category="${category}"`)), "Work page exposes four accessible category tabs");
   assert(app.includes("new URLSearchParams(location.search)") && app.includes('addEventListener("popstate"'), "Work category persists in browser history");
   assert(["ArrowRight", "ArrowLeft", "Home", "End"].every(key => app.includes(`event.key === "${key}"`)), "Work tabs support standard keyboard navigation");
   assert(app.includes("categoryProjects") && app.includes("item.category === project.category"), "Project navigation stays within the current category");

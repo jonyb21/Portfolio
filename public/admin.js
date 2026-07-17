@@ -8,7 +8,7 @@ const projectsEditor = document.getElementById("projects-editor");
 const experienceEditor = document.getElementById("experience-editor");
 const navEditor = document.getElementById("nav-editor");
 const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
-const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
+const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting", "mobility"];
 
 let site;
 

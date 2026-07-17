@@ -23,7 +23,7 @@
     "detailImage": "/assets/furniture/hero-lounge-chair-detail.webp"
   },
   "workTitle": "Selected Work",
-  "workIntro": "Industrial design work across furniture, homewares, and lighting, shaped through form, function, materials, visualisation, and practical problem-solving.",
+  "workIntro": "Industrial design work across furniture, homewares, lighting, and mobility, shaped through form, function, materials, visualisation, and practical problem-solving.",
   "workCta": "Get in contact",
   "projects": [
     {
@@ -922,6 +922,246 @@
         {
           "label": "Reading in use",
           "image": "/assets/lighting/line-floor-lamp-context-use-vibrant-v1.webp",
+          "type": "insitu"
+        }
+      ]
+    },
+    {
+      "title": "Stride Fold E-bike",
+      "slug": "stride-fold-ebike",
+      "category": "mobility",
+      "year": "2026",
+      "type": "Folding electric bicycle",
+      "materials": "Hydroformed aluminium, graphite engineering polymer, carbon belt, stainless steel, rubber",
+      "image": "/assets/mobility/stride-fold-ebike-lead-vibrant-v1.webp",
+      "cardImage": "/assets/mobility/stride-fold-ebike-lead-vibrant-v1.webp",
+      "detailImage": "/assets/mobility/stride-fold-ebike-detail-primary-vibrant-v1.webp",
+      "href": "/work/stride-fold-ebike",
+      "summary": "A compact 20-inch electric bicycle designed around a low-step frame and one secure central fold. Integrated lighting, a removable battery, and a clean commuter package make mixed train and street journeys easier to manage.",
+      "notes": [
+        "The hydroformed low-step frame keeps the battery inside the downtube while leaving a clear and accessible step-through.",
+        "A compact clevis hinge, safety catch, and forest-green locking lever make the fold readable without dominating the frame.",
+        "A carbon belt, full guards, integrated lights, and a rear rack reduce maintenance and support daily all-weather travel."
+      ],
+      "views": [
+        {
+          "label": "Full side profile",
+          "image": "/assets/mobility/stride-fold-ebike-angle-front-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Rear drivetrain profile",
+          "image": "/assets/mobility/stride-fold-ebike-angle-rear-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Folding hinge mechanism",
+          "image": "/assets/mobility/stride-fold-ebike-detail-primary-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Removable battery system",
+          "image": "/assets/mobility/stride-fold-ebike-detail-material-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "City cafe stop",
+          "image": "/assets/mobility/stride-fold-ebike-context-wide-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Folded at home",
+          "image": "/assets/mobility/stride-fold-ebike-context-alt-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Urban commute",
+          "image": "/assets/mobility/stride-fold-ebike-context-active-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Transit carry",
+          "image": "/assets/mobility/stride-fold-ebike-context-use-vibrant-v1.webp",
+          "type": "insitu"
+        }
+      ]
+    },
+    {
+      "title": "Aero Commuter Helmet",
+      "slug": "aero-commuter-helmet",
+      "category": "mobility",
+      "year": "2026",
+      "type": "Urban cycling helmet",
+      "materials": "In-mould polycarbonate, recycled EPS, nylon webbing, soft-touch polymer, LED light guide",
+      "image": "/assets/mobility/aero-commuter-helmet-lead-vibrant-v1.webp",
+      "cardImage": "/assets/mobility/aero-commuter-helmet-lead-vibrant-v1.webp",
+      "detailImage": "/assets/mobility/aero-commuter-helmet-detail-primary-vibrant-v1.webp",
+      "href": "/work/aero-commuter-helmet",
+      "summary": "A low-profile urban helmet that combines deep continuous airflow channels with a compact fit system and integrated rear light. Its restrained shell is shaped for daily clothing rather than racing equipment.",
+      "notes": [
+        "Three front-to-rear channels move air through the helmet while broad bridges maintain credible shell and liner structure.",
+        "The polycarbonate shell wraps the recycled-EPS edge to protect high-contact areas and give the lower profile a clean datum.",
+        "A narrow rear light, magnetic buckle, and indexed occipital dial make visibility and fit simple to manage with one hand."
+      ],
+      "views": [
+        {
+          "label": "Low side profile",
+          "image": "/assets/mobility/aero-commuter-helmet-angle-front-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Rear light and cradle",
+          "image": "/assets/mobility/aero-commuter-helmet-angle-rear-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Vent construction",
+          "image": "/assets/mobility/aero-commuter-helmet-detail-primary-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Fit and buckle system",
+          "image": "/assets/mobility/aero-commuter-helmet-detail-material-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Ready at home",
+          "image": "/assets/mobility/aero-commuter-helmet-context-wide-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Rear light at dusk",
+          "image": "/assets/mobility/aero-commuter-helmet-context-alt-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Rainy office stop",
+          "image": "/assets/mobility/aero-commuter-helmet-context-active-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Fit adjustment",
+          "image": "/assets/mobility/aero-commuter-helmet-context-use-vibrant-v1.webp",
+          "type": "insitu"
+        }
+      ]
+    },
+    {
+      "title": "Latch Convertible Pannier",
+      "slug": "latch-convertible-pannier",
+      "category": "mobility",
+      "year": "2026",
+      "type": "Convertible bicycle luggage",
+      "materials": "TPU-coated recycled nylon, thermoformed recycled polymer, anodised aluminium, nylon webbing",
+      "image": "/assets/mobility/latch-convertible-pannier-lead-vibrant-v1.webp",
+      "cardImage": "/assets/mobility/latch-convertible-pannier-lead-vibrant-v1.webp",
+      "detailImage": "/assets/mobility/latch-convertible-pannier-detail-primary-vibrant-v1.webp",
+      "href": "/work/latch-convertible-pannier",
+      "summary": "A weather-resistant bicycle pannier that leaves its rack hardware behind visually when carried off the bike. A structured back panel, concealed release, and stowable shoulder strap support a clean transition into work or home.",
+      "notes": [
+        "The welded recycled-nylon body uses a roll top and bright waterproof liner to protect everyday equipment without a separate rain cover.",
+        "Spring-loaded hooks and a lower anti-sway catch are integrated into the thermoformed back panel and released by one green pull.",
+        "The padded shoulder strap stores inside a recessed side channel so loose webbing cannot reach the wheel while riding."
+      ],
+      "views": [
+        {
+          "label": "Closed front profile",
+          "image": "/assets/mobility/latch-convertible-pannier-angle-front-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Rack interface",
+          "image": "/assets/mobility/latch-convertible-pannier-angle-rear-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Release hardware",
+          "image": "/assets/mobility/latch-convertible-pannier-detail-primary-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Shoulder conversion",
+          "image": "/assets/mobility/latch-convertible-pannier-detail-material-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Grocery stop",
+          "image": "/assets/mobility/latch-convertible-pannier-context-wide-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Rack mounted",
+          "image": "/assets/mobility/latch-convertible-pannier-context-alt-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Office carry",
+          "image": "/assets/mobility/latch-convertible-pannier-context-active-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Open storage",
+          "image": "/assets/mobility/latch-convertible-pannier-context-use-vibrant-v1.webp",
+          "type": "insitu"
+        }
+      ]
+    },
+    {
+      "title": "Gauge Electric Inflator",
+      "slug": "gauge-electric-inflator",
+      "category": "mobility",
+      "year": "2026",
+      "type": "Rechargeable tyre inflator",
+      "materials": "Die-cast aluminium, graphite engineering polymer, braided nylon, rubber, lithium-ion cells",
+      "image": "/assets/mobility/gauge-electric-inflator-lead-vibrant-v1.webp",
+      "cardImage": "/assets/mobility/gauge-electric-inflator-lead-vibrant-v1.webp",
+      "detailImage": "/assets/mobility/gauge-electric-inflator-detail-primary-vibrant-v1.webp",
+      "href": "/work/gauge-electric-inflator",
+      "summary": "A compact rechargeable inflator with a stored braided hose, clear pressure display, and one rotary push control. A removable battery and open ventilation path make a small electronic tool easier to maintain and trust.",
+      "notes": [
+        "The die-cast aluminium shell works as both a durable enclosure and a heat spreader around the compressor assembly.",
+        "The hose clips into a recessed side channel with its threaded valve head protected but immediately accessible.",
+        "A slide-out battery cartridge, replaceable seals, and exposed housing fasteners support service rather than sealed disposal."
+      ],
+      "views": [
+        {
+          "label": "Control overview",
+          "image": "/assets/mobility/gauge-electric-inflator-angle-front-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Ventilation profile",
+          "image": "/assets/mobility/gauge-electric-inflator-angle-rear-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Hose connector",
+          "image": "/assets/mobility/gauge-electric-inflator-detail-primary-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Battery cartridge",
+          "image": "/assets/mobility/gauge-electric-inflator-detail-material-vibrant-v1.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Entry storage",
+          "image": "/assets/mobility/gauge-electric-inflator-context-wide-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Kerbside inflation",
+          "image": "/assets/mobility/gauge-electric-inflator-context-alt-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Workshop use",
+          "image": "/assets/mobility/gauge-electric-inflator-context-active-vibrant-v1.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Dusk top-up",
+          "image": "/assets/mobility/gauge-electric-inflator-context-use-vibrant-v1.webp",
           "type": "insitu"
         }
       ]

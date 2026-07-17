@@ -20,7 +20,7 @@ Set `ADMIN_PASSWORD` in `.env`, then open `http://127.0.0.1:8788/admin`.
 
 The admin saves `data/site.json`. Docker mounts `./data` so edits survive container rebuilds.
 
-The Work page uses `?category=furniture`, `?category=homewares`, or `?category=lighting`. Each category contains exactly five projects, enforced by the server, tests, and preflight eval.
+The Work page uses `?category=furniture`, `?category=homewares`, `?category=lighting`, or `?category=mobility`. Furniture, Homewares, and Lighting contain five projects each; Mobility contains four. The exact counts are enforced by the server, tests, and preflight eval.
 
 Project images use local `/assets/...` WebP files. Each project page needs one main image, materials, at least three notes, four studio/detail studies, and four context images so the detail page renders as a complete nine-image product story. Every Homewares and Lighting project includes a final use scene showing the product being operated or illuminated in context.
 

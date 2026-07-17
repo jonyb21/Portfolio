@@ -11,7 +11,7 @@ const port = server.address().port;
 const origin = `http://127.0.0.1:${port}`;
 const appRevision = crypto.createHash("sha256").update(fs.readFileSync("public/app.js")).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(fs.readFileSync("public/styles.css")).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260718-1";
+const MEDIA_REVISION = "20260718-2";
 
 async function assertImagesRender(page, selector, label) {
   const images = page.locator(selector);
@@ -45,12 +45,17 @@ try {
   });
 
   const site = await fetch(`${origin}/api/site`).then(response => response.json());
-  const categories = ["furniture", "homewares", "lighting"];
+  await page.goto(origin, { waitUntil: "networkidle" });
+  await page.waitForFunction(() => getComputedStyle(document.querySelector(".brand-family")).color === "rgb(173, 189, 104)");
+  assert.equal(await page.locator(".brand-family").textContent(), "Brooks", "Surname is rendered separately");
+  assert.equal(await page.locator(".brand-family").evaluate(element => getComputedStyle(element).color), "rgb(173, 189, 104)", "Brooks uses the green accent token");
+  const categories = ["furniture", "homewares", "lighting", "mobility"];
+  const expectedCards = { furniture: 5, homewares: 5, lighting: 5, mobility: 4 };
   for (const category of categories) {
     await page.goto(`${origin}/work?category=${category}`, { waitUntil: "networkidle" });
     assert.equal(await page.locator('script[src^="/app.js"]').getAttribute("src"), `/app.js?v=${appRevision}`, `${category} loads the current app.js revision`);
     assert.equal(await page.locator('link[href^="/styles.css"]').getAttribute("href"), `/styles.css?v=${styleRevision}`, `${category} loads the current styles.css revision`);
-    assert.equal(await page.locator(".project-card").count(), 5, `${category} renders five cards`);
+    assert.equal(await page.locator(".project-card").count(), expectedCards[category], `${category} renders its approved card count`);
     assert.equal(await page.locator(`[data-work-category="${category}"]`).getAttribute("aria-selected"), "true");
     assert.equal(await page.locator("#work-category-heading").textContent(), `${category[0].toUpperCase()}${category.slice(1)}`);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), true, `${category} does not overflow horizontally`);

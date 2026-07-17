@@ -1,8 +1,19 @@
-const MEDIA_REVISION = "20260718-1";
+const MEDIA_REVISION = "20260718-2";
 
 function setText(selector, value) {
   const node = document.querySelector(selector);
   if (node) node.textContent = value;
+}
+
+function renderBrand(name) {
+  const brand = document.querySelector('[data-field="brand"]');
+  if (!brand) return;
+  const split = name.lastIndexOf(" ");
+  if (split < 0) return setText('[data-field="brand"]', name);
+  const family = document.createElement("span");
+  family.className = "brand-family";
+  family.textContent = name.slice(split + 1);
+  brand.replaceChildren(`${name.slice(0, split)} `, family);
 }
 
 function setHref(selector, value) {
@@ -107,7 +118,7 @@ function projectUrl(project) {
   return safeUrl(project.href || `/work/${project.slug}`);
 }
 
-const WORK_CATEGORIES = ["furniture", "homewares", "lighting"];
+const WORK_CATEGORIES = ["furniture", "homewares", "lighting", "mobility"];
 
 function workCategory() {
   const category = new URLSearchParams(location.search).get("category");
@@ -254,7 +265,7 @@ function render(site) {
   const emailHref = `mailto:${site.contact.email}`;
   const contactPhoneHref = phoneUrl(site.contact.phone);
 
-  setText('[data-field="brand"]', site.brand);
+  renderBrand(site.brand);
   setText('[data-field="hero.title"]', site.hero.title);
   setText('[data-field="hero.body"]', site.hero.body);
   setText('[data-field="hero.cta"]', site.hero.cta);

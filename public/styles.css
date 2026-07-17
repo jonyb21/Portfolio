@@ -100,6 +100,10 @@ h2,
   font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
+.brand-family {
+  color: var(--accent);
+}
+
 nav {
   display: flex;
   gap: clamp(28px, 5vw, 58px);
