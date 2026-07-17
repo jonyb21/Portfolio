@@ -11,7 +11,7 @@ const port = server.address().port;
 const origin = `http://127.0.0.1:${port}`;
 const appRevision = crypto.createHash("sha256").update(fs.readFileSync("public/app.js")).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(fs.readFileSync("public/styles.css")).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260712-3";
+const MEDIA_REVISION = "20260718-1";
 
 async function assertImagesRender(page, selector, label) {
   const images = page.locator(selector);
@@ -54,7 +54,14 @@ try {
     assert.equal(await page.locator(`[data-work-category="${category}"]`).getAttribute("aria-selected"), "true");
     assert.equal(await page.locator("#work-category-heading").textContent(), `${category[0].toUpperCase()}${category.slice(1)}`);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), true, `${category} does not overflow horizontally`);
-    assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0)), true, `${category} card images finish loading before scroll`);
+    for (let index = 0; index < await page.locator(".project-card").count(); index += 1) {
+      await page.locator(".project-card").nth(index).scrollIntoViewIfNeeded();
+    }
+    await page.waitForFunction(() => [...document.querySelectorAll(".project-card img")].every(image => image.complete && image.naturalWidth > 0)).catch(async error => {
+      const failed = await page.locator(".project-card img").evaluateAll(images => images.filter(image => !image.complete || image.naturalWidth < 1).map(image => image.currentSrc || image.src));
+      throw new Error(`${category} card images did not load: ${failed.join(", ")}`, { cause: error });
+    });
+    assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0)), true, `${category} card images finish loading after scrolling`);
     await assertMobileBounds(page, ".project-card", `${category} cards`);
     if (category === "lighting") {
       assert.equal(await page.locator(".light-switch-card").count(), 5, "Every lighting card has off and on states");
@@ -75,6 +82,12 @@ try {
   await page.goBack();
   assert.equal(await page.locator('[data-work-category="homewares"]').getAttribute("aria-selected"), "true", "Browser history restores the selected category");
 
+  for (const route of ["/about", "/contact"]) {
+    await page.goto(`${origin}${route}`, { waitUntil: "networkidle" });
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), true, `${route} does not overflow on mobile`);
+    assert.equal(await page.locator("main").evaluate(element => element.getBoundingClientRect().height > 0), true, `${route} renders meaningful content`);
+  }
+
   const tilePage = await browser.newPage({ viewport: { width: 1100, height: 800 } });
   for (const category of categories) {
     await tilePage.goto(`${origin}/work?category=${category}`, { waitUntil: "networkidle" });
@@ -84,6 +97,9 @@ try {
     }));
     assert.equal(new Set(tileSizes).size, 1, `${category} uses one default product tile size`);
   }
+  await tilePage.goto(`${origin}/work/line-floor-lamp`, { waitUntil: "networkidle" });
+  assert.equal(await tilePage.locator(".lead-image img, .project-gallery img").count(), 9, "Desktop product page renders its complete gallery");
+  assert.equal(await tilePage.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), true, "Desktop product page does not overflow horizontally");
   await tilePage.close();
 
   const hoverPage = await browser.newPage({ viewport: { width: 1100, height: 800 } });

@@ -14,9 +14,9 @@ Replace the complete Rill Wall Light and Trace Floor Lamp image sets with photor
 
 ## Trace Floor Lamp
 
-- Use the approved 1250 mm warm-grey rectangular aluminium upright, short horizontal light head, and compact weighted rounded rectangular base.
-- Connect the head to the upright with one compact brushed-aluminium cylindrical friction pivot.
-- Recess a linear opal diffuser into the underside of the head and route wiring internally through the upright.
+- Use the approved 1550 mm warm-grey flattened-oval aluminium mast, 650 mm tapered light blade, and substantial weighted racetrack base.
+- Lean the mast forward by 3 degrees and connect the blade through one compact concealed clevis with a small brushed-aluminium side pin.
+- Recess a tapered linear opal diffuser into the underside of the blade and route wiring internally through the mast.
 - Use a graphite lower base inset, one small flush black rotary dimmer on the base, and a black cable exiting neatly at the rear.
 - Keep the centre of mass over the base and show stable floor contact, restrained light output, and realistic manufactured tolerances.
 
@@ -49,9 +49,9 @@ Keep the existing ten stable `-vibrant-v1.webp` paths for each product: illumina
 
 1. Illuminated full front three-quarter studio lead.
 2. Matching switched-off card.
-3. Full front profile.
-4. Full rear profile proving the cable exit and base stability.
-5. Tight head, diffuser, and brushed-aluminium pivot detail.
+3. Full front profile proving the 1550 mm floor scale.
+4. Full rear profile proving the cable exit, racetrack base, and stability.
+5. Tight tapered blade, diffuser, concealed clevis, and pin detail.
 6. Tight weighted base, graphite inset, dimmer, and cable-exit detail.
 7. Reading-corner installation.
 8. Sofa-side installation.

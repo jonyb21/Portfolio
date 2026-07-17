@@ -10,7 +10,7 @@ const dataPath = process.env.PORTFOLIO_DATA_PATH || path.join(root, "data", "sit
 const port = Number(process.env.PORT || 8788);
 const adminPassword = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "admin");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
-const MEDIA_REVISION = "20260712-3";
+const MEDIA_REVISION = "20260718-1";
 
 if (process.env.NODE_ENV === "production" && !adminPassword) {
   throw new Error("ADMIN_PASSWORD is required in production");
@@ -100,6 +100,12 @@ function renderWorkFallback(html, site, requestedCategory) {
   return output;
 }
 
+function renderProductMetadata(html, project) {
+  return html
+    .replace('content="Industrial design project by Jon Brooks."', `content="${escapeHtml(project.summary)}"`)
+    .replace("<title>Project | Jon Brooks</title>", `<title>${escapeHtml(project.title)} | Jon Brooks</title>`);
+}
+
 function validatePagePath(value, slugs, label) {
   if (typeof value !== "string" || !value) throw new Error(`${label} is required`);
   if (!value.startsWith("/") || value.includes("#") || value.includes("..")) throw new Error(`${label} must use separate page paths`);
@@ -179,9 +185,11 @@ function authed(req) {
 function staticFile(urlPath, res, category) {
   let clean = urlPath === "/" ? "/index.html" : decodeURIComponent(urlPath);
   const productMatch = clean.match(/^\/work\/([^/]+)$/);
+  let product;
   if (productMatch) {
     const site = loadSite();
-    if (!site.projects.some(project => project.slug === productMatch[1])) {
+    product = site.projects.find(project => project.slug === productMatch[1]);
+    if (!product) {
       return send(res, 404, "Not found", "text/plain; charset=utf-8");
     }
     clean = "/product.html";
@@ -190,7 +198,11 @@ function staticFile(urlPath, res, category) {
   const filePath = path.normalize(path.join(publicDir, clean));
   if (!filePath.startsWith(publicDir)) return send(res, 403, "Forbidden", "text/plain; charset=utf-8");
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) return send(res, 404, "Not found", "text/plain; charset=utf-8");
-  const body = clean === "/work.html" ? renderWorkFallback(fs.readFileSync(filePath, "utf8"), loadSite(), category) : fs.readFileSync(filePath);
+  const isHtml = path.extname(filePath) === ".html";
+  const template = fs.readFileSync(filePath, isHtml ? "utf8" : undefined);
+  const body = clean === "/work.html"
+    ? renderWorkFallback(template, loadSite(), category)
+    : product ? renderProductMetadata(template, product) : template;
   send(res, 200, body, types[path.extname(filePath)] || "application/octet-stream");
 }
 

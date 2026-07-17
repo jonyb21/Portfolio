@@ -23,7 +23,7 @@ const work = fs.readFileSync("public/work.html", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260712-3";
+const MEDIA_REVISION = "20260718-1";
 validateSite(validSite);
 
 function withProject(index, changes) {
@@ -146,10 +146,15 @@ try {
   assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/plane-wall-light-angle-rear-vibrant-v1.webp")).digest("hex"), "66d3f6828ceb07f4ce67075dc31a06f1d710779d847ac4df60ea4b2df63ec245", "Rill rear view proves the shallow plate and compact pivots");
   assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/plane-wall-light-card-off-vibrant-v1.webp")).digest("hex"), "bc3f0ea52e162b3358417fdb88d61bbed961de437adfbbabf71dad99b842db1a", "Rill card uses the matching switched-off assembly");
   assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/plane-wall-light-context-use-vibrant-v1.webp")).digest("hex"), "856a1cb2a9539a5d9f9a2a4f92d464ed28f966292fe8194be5e6ae88d5cb0850", "Rill in-use view proves the cylinder adjustment");
-  assert.match(site.projects.find(project => project.slug === "line-floor-lamp").summary, /weighted low-profile base.*pivoting linear head/i);
-  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/line-floor-lamp-lead-vibrant-v1.webp")).digest("hex"), "b470997ab7d851e1e5a25aa2a6651b79f29a1eb4e0f2a4f40dbce93897bc28f5", "Trace lead uses the approved minimal floor-lamp assembly");
-  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/line-floor-lamp-detail-material-vibrant-v1.webp")).digest("hex"), "d494d8d2b079b4fd2742da30479d99824b66a58fa986f57daf0803273e353704", "Trace detail proves the weighted base, dimmer, and cable exit");
-  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/line-floor-lamp-card-off-vibrant-v1.webp")).digest("hex"), "b15efad00c7ed84a7ecde7ecfe57c8af283473cf9f524194cfb84d1eeb8a75fc", "Trace card uses the matching switched-off assembly");
+  assert.match(site.projects.find(project => project.slug === "line-floor-lamp").summary, /weighted racetrack base.*tapered light blade/i);
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/line-floor-lamp-lead-vibrant-v1.webp")).digest("hex"), "9668d690be1c36c6668914992c9f2d425ac99a2f392ea7bad6c4d6f07fe21352", "Trace lead uses the approved full-scale floor-lamp assembly");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/line-floor-lamp-detail-material-vibrant-v1.webp")).digest("hex"), "c7e42d13dbb61927a0ac860ca3769a7984b73ff592d97d9718134aa5edeee394", "Trace detail proves the weighted base, dimmer, and cable exit");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/line-floor-lamp-card-off-vibrant-v1.webp")).digest("hex"), "1942cdad7440054202328acb12511835612a0e26bd6a4cbae2c65b64cdf8e8be", "Trace card uses the matching switched-off assembly");
+  assert.deepEqual(
+    ["wide", "alt", "active"].map(name => crypto.createHash("sha256").update(fs.readFileSync(`public/assets/lighting/line-floor-lamp-context-${name}-vibrant-v1.webp`)).digest("hex")),
+    ["78507d6f638c67fc3ae8bfebffb019d292427b1318ed7e901e61302d0b0563b3", "43455f90018f8ec5898ff1d6ca44b04e92a90aabd02c09e97efb66835241ad29", "78f8f0f9abb104fff1471af171c323d32a73cd716d081d4cce8ef345e94a6a66"],
+    "Trace uses three distinct, approved person-free interior scenes"
+  );
   assert.match(site.projects.find(project => project.slug === "ratio-coffee-mill").materials, /stainless steel/i);
   assert.match(site.projects.find(project => project.slug === "axis-kettle").materials, /satin warm-ivory/i);
   assert(site.projects.find(project => project.slug === "axis-kettle").views.some(view => view.label === "Open lid and hinge mechanism"));
@@ -202,10 +207,23 @@ try {
 
   const productPage = await fetch(`${base}/work/silhouette-sofa`);
   assert.equal(productPage.status, 200);
-  assert.match(await productPage.text(), /product-page/);
+  const productHtml = await productPage.text();
+  const silhouette = site.projects.find(project => project.slug === "silhouette-sofa");
+  assert.match(productHtml, /product-page/);
+  assert.match(productHtml, /<title>Silhouette Sofa \| Jon Brooks<\/title>/);
+  assert(productHtml.includes(`content="${silhouette.summary}"`), "Product URL includes its project-specific description");
 
   const heroChairPage = await fetch(`${base}/work/contour-lounge-chair`);
   assert.equal(heroChairPage.status, 200);
+
+  const cardPath = "public/assets/furniture/contour-lounge-chair-card-4x3.webp";
+  const cardResponse = await fetch(`${base}/assets/furniture/contour-lounge-chair-card-4x3.webp?v=${MEDIA_REVISION}`);
+  assert.equal(cardResponse.status, 200);
+  assert.equal(
+    crypto.createHash("sha256").update(Buffer.from(await cardResponse.arrayBuffer())).digest("hex"),
+    crypto.createHash("sha256").update(fs.readFileSync(cardPath)).digest("hex"),
+    "Static binary assets are served byte-for-byte without text decoding"
+  );
 
   const missingProduct = await fetch(`${base}/work/not-a-project`);
   assert.equal(missingProduct.status, 404);

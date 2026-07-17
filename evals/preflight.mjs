@@ -18,7 +18,7 @@ const app = fs.readFileSync("public/app.js", "utf8");
 const PROJECT_CATEGORIES = ["furniture", "homewares", "lighting"];
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260712-3";
+const MEDIA_REVISION = "20260718-1";
 new Function(adminJs);
 
 function localAssetHash(image) {
@@ -85,10 +85,15 @@ assert(localAssetHash("/assets/lighting/plane-wall-light-lead-vibrant-v1.webp") 
 assert(localAssetHash("/assets/lighting/plane-wall-light-angle-rear-vibrant-v1.webp") === "66d3f6828ceb07f4ce67075dc31a06f1d710779d847ac4df60ea4b2df63ec245", "Rill rear view proves the shallow plate and compact pivots");
 assert(localAssetHash("/assets/lighting/plane-wall-light-card-off-vibrant-v1.webp") === "bc3f0ea52e162b3358417fdb88d61bbed961de437adfbbabf71dad99b842db1a", "Rill card uses the matching switched-off assembly");
 assert(localAssetHash("/assets/lighting/plane-wall-light-context-use-vibrant-v1.webp") === "856a1cb2a9539a5d9f9a2a4f92d464ed28f966292fe8194be5e6ae88d5cb0850", "Rill in-use view proves the cylinder adjustment");
-assert(/weighted low-profile base.*pivoting linear head/i.test(site.projects.find(project => project.slug === "line-floor-lamp").summary), "Floor-lamp copy matches the approved minimal design");
-assert(localAssetHash("/assets/lighting/line-floor-lamp-lead-vibrant-v1.webp") === "b470997ab7d851e1e5a25aa2a6651b79f29a1eb4e0f2a4f40dbce93897bc28f5", "Trace lead uses the approved minimal floor-lamp assembly");
-assert(localAssetHash("/assets/lighting/line-floor-lamp-detail-material-vibrant-v1.webp") === "d494d8d2b079b4fd2742da30479d99824b66a58fa986f57daf0803273e353704", "Trace detail proves the weighted base, dimmer, and cable exit");
-assert(localAssetHash("/assets/lighting/line-floor-lamp-card-off-vibrant-v1.webp") === "b15efad00c7ed84a7ecde7ecfe57c8af283473cf9f524194cfb84d1eeb8a75fc", "Trace card uses the matching switched-off assembly");
+assert(/weighted racetrack base.*tapered light blade/i.test(site.projects.find(project => project.slug === "line-floor-lamp").summary), "Floor-lamp copy matches the approved full-scale design");
+assert(localAssetHash("/assets/lighting/line-floor-lamp-lead-vibrant-v1.webp") === "9668d690be1c36c6668914992c9f2d425ac99a2f392ea7bad6c4d6f07fe21352", "Trace lead uses the approved full-scale floor-lamp assembly");
+assert(localAssetHash("/assets/lighting/line-floor-lamp-detail-material-vibrant-v1.webp") === "c7e42d13dbb61927a0ac860ca3769a7984b73ff592d97d9718134aa5edeee394", "Trace detail proves the weighted base, dimmer, and cable exit");
+assert(localAssetHash("/assets/lighting/line-floor-lamp-card-off-vibrant-v1.webp") === "1942cdad7440054202328acb12511835612a0e26bd6a4cbae2c65b64cdf8e8be", "Trace card uses the matching switched-off assembly");
+assert.deepEqual(
+  ["wide", "alt", "active"].map(name => localAssetHash(`/assets/lighting/line-floor-lamp-context-${name}-vibrant-v1.webp`)),
+  ["78507d6f638c67fc3ae8bfebffb019d292427b1318ed7e901e61302d0b0563b3", "43455f90018f8ec5898ff1d6ca44b04e92a90aabd02c09e97efb66835241ad29", "78f8f0f9abb104fff1471af171c323d32a73cd716d081d4cce8ef345e94a6a66"],
+  "Trace uses three distinct, approved person-free interior scenes"
+);
 assert(/stainless steel/i.test(site.projects.find(project => project.slug === "ratio-coffee-mill").materials), "Coffee mill is specified entirely in stainless steel");
 assert(/satin warm-ivory/i.test(site.projects.find(project => project.slug === "axis-kettle").materials), "Kettle copy specifies its approved minimal finish");
 assert(site.projects.find(project => project.slug === "axis-kettle").views.some(view => view.label === "Open lid and hinge mechanism"), "Kettle gallery names the hinge proof view");
@@ -166,6 +171,7 @@ assert(app.includes("function workCategory") && app.includes("new URLSearchParam
 assert(["ArrowRight", "ArrowLeft", "Home", "End"].every(key => app.includes(`event.key === "${key}"`)), "Work tabs support keyboard navigation");
 assert(app.includes("categoryProjects") && app.includes("item.category === project.category"), "Product navigation remains inside the selected category");
 assert(app.includes("previousProject") && app.includes("Previous project"), "Product pages provide previous and next navigation");
+assert(fs.readFileSync("server.js", "utf8").includes("renderProductMetadata"), "Product URLs render project-specific title and description metadata");
 assert(fs.readFileSync("server.js", "utf8").includes("renderWorkFallback"), "Work categories are server-rendered for no-JavaScript navigation");
 assert(css.includes('.work-category-tabs [role="tab"][aria-selected="true"]') && css.includes("border-bottom-color: var(--accent)"), "Work category tabs use the specified active underline treatment");
 assert(!app.includes("<figcaption>"), "Product gallery images do not show text captions");
