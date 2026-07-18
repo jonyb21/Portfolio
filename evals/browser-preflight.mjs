@@ -11,7 +11,7 @@ const port = server.address().port;
 const origin = `http://127.0.0.1:${port}`;
 const appRevision = crypto.createHash("sha256").update(fs.readFileSync("public/app.js")).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(fs.readFileSync("public/styles.css")).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260718-3";
+const MEDIA_REVISION = "20260718-4";
 
 async function assertImagesRender(page, selector, label) {
   const images = page.locator(selector);

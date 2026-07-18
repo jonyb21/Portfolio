@@ -24,7 +24,7 @@ The Work page uses `?category=furniture`, `?category=homewares`, `?category=ligh
 
 Project images use local `/assets/...` WebP files. Each project page needs one main image, materials, at least three notes, four studio/detail studies, and four context images so the detail page renders as a complete nine-image product story. Every Homewares and Lighting project includes a final use scene showing the product being operated or illuminated in context.
 
-Homepage slides, work cards, project leads, and gallery images use native 4:3 assets, so every frame fills edge to edge without side bands or blur fills. New and corrected documentary product photography uses the `-photo-v2.webp` image set. Every project story keeps nine unique files: one lead, four product studies, and four distinct real-world contexts.
+Homepage slides, work cards, project leads, and gallery images use native 4:3 assets, so every frame fills edge to edge without side bands or blur fills. New and corrected documentary product photography uses versioned `-photo-v*.webp` files so rejected images cannot remain in browser caches. Every project story keeps nine unique files: one lead, four product studies, and four distinct real-world contexts.
 
 Lighting cards use `cardImage` for the switched-off state and `image` for the illuminated hover and keyboard-focus state. Both files must use the same product, framing, and 4:3 geometry so the 650 ms crossfade reads as the light switching on rather than a scene change.
 

@@ -11,7 +11,7 @@ const port = Number(process.env.PORT || 8788);
 const adminPassword = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "admin");
 const PROJECT_CATEGORY_COUNTS = { furniture: 6, homewares: 6, lighting: 6, mobility: 6 };
 const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
-const MEDIA_REVISION = "20260718-3";
+const MEDIA_REVISION = "20260718-4";
 
 if (process.env.NODE_ENV === "production" && !adminPassword) {
   throw new Error("ADMIN_PASSWORD is required in production");

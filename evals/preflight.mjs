@@ -19,7 +19,7 @@ const PROJECT_CATEGORY_COUNTS = { furniture: 6, homewares: 6, lighting: 6, mobil
 const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260718-3";
+const MEDIA_REVISION = "20260718-4";
 new Function(adminJs);
 
 function localAssetHash(image) {
@@ -141,13 +141,16 @@ assert(site.projects.every(project => [project.cardImage, ...project.views.map(v
 assert(site.projects.every(project => project.views.filter(view => view.type === "crop").length === 4), "Each project has four cropped product studies");
 assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").length === 4), "Each project has four in situ views");
 assert(!/\.project-card:nth-child\(|a\.project-card\[href="\/work\/dining-table"\]\s*\{\s*grid-column:/.test(css), "Each category uses the shared default tile size");
-assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-(?:vibrant-v1|photo-v2))\.webp$/.test(view.image))), "Each project uses four optimized generated in-situ assets");
+assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-(?:vibrant-v1|photo-v[23]))\.webp$/.test(view.image))), "Each project uses four optimized generated in-situ assets");
 const generatedProjects = site.projects.filter(project => project.category !== "furniture" || project.slug === "pivot-writing-desk");
-assert(generatedProjects.every(project => project.views.some(view => view.type === "insitu" && /-context-use-(?:vibrant-v1|photo-v2)\.webp$/.test(view.image))), "Every generated product story includes a use scene");
+assert(generatedProjects.every(project => project.views.some(view => view.type === "insitu" && /-context-use-(?:vibrant-v1|photo-v[23])\.webp$/.test(view.image))), "Every generated product story includes a use scene");
 assert(generatedProjects.every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Generated galleries contain four studio studies followed by four context views");
 assert(generatedProjects.every(project => new Set([project.image, ...project.views.map(view => view.image)].map(localAssetHash)).size === 9), "Every generated product story uses nine distinct image files");
 const photoProjects = site.projects.filter(project => ["pivot-writing-desk", "silo-food-waste-caddy", "beacon-portable-lantern", "stride-fold-ebike", "aero-commuter-helmet", "latch-convertible-pannier", "gauge-electric-pump", "rove-carry-on", "link-folding-lock"].includes(project.slug));
-assert(photoProjects.every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => image.includes("-photo-v2.webp"))), "New and corrected projects use the realistic photo-v2 media system");
+assert(photoProjects.every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => /-photo-v[23]\.webp$/.test(image))), "New and corrected projects use the realistic versioned photo media system");
+const aeroHelmet = site.projects.find(project => project.slug === "aero-commuter-helmet");
+assert([aeroHelmet.image, aeroHelmet.cardImage, aeroHelmet.detailImage, ...aeroHelmet.views.map(view => view.image)].every(image => image.endsWith("-photo-v3.webp")), "Aero helmet uses the corrected consistent photo-v3 set");
+assert(/magnetic buckle/i.test(aeroHelmet.notes.join(" ")), "Aero helmet documents its matching chin clasp");
 assert(generatedProjects.every(project => /(cobalt|tangerine|sunflower|vermilion|green|teal|chartreuse|coral|ultramarine|warm-grey|graphite|stainless steel|aluminium|polycarbonate|recycled|ocean-blue|ash|brass)/i.test(`${project.materials} ${project.summary}`)), "Every generated project defines a deliberate colour or material identity");
 const electricPump = site.projects.find(project => project.slug === "gauge-electric-pump");
 assert(electricPump.title === "Gauge Electric Pump" && /LED built into the end of the nozzle/i.test(electricPump.summary), "The electric pump is named correctly and locates its LED at the nozzle tip");

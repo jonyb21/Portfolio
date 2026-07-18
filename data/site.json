@@ -1173,9 +1173,9 @@
       "year": "2026",
       "type": "Urban cycling helmet",
       "materials": "In-mould polycarbonate, recycled EPS, nylon webbing, soft-touch polymer, LED light guide",
-      "image": "/assets/mobility/aero-commuter-helmet-lead-photo-v2.webp",
-      "cardImage": "/assets/mobility/aero-commuter-helmet-lead-photo-v2.webp",
-      "detailImage": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v2.webp",
+      "image": "/assets/mobility/aero-commuter-helmet-lead-photo-v3.webp",
+      "cardImage": "/assets/mobility/aero-commuter-helmet-lead-photo-v3.webp",
+      "detailImage": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v3.webp",
       "href": "/work/aero-commuter-helmet",
       "summary": "A low-profile urban helmet that combines deep continuous airflow channels with a compact fit system and integrated rear light. Its restrained shell is shaped for daily clothing rather than racing equipment.",
       "notes": [
@@ -1186,42 +1186,42 @@
       "views": [
         {
           "label": "Low side profile",
-          "image": "/assets/mobility/aero-commuter-helmet-angle-front-photo-v2.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-angle-front-photo-v3.webp",
           "type": "crop"
         },
         {
           "label": "Rear light and cradle",
-          "image": "/assets/mobility/aero-commuter-helmet-angle-rear-photo-v2.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-angle-rear-photo-v3.webp",
           "type": "crop"
         },
         {
           "label": "Vent construction",
-          "image": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v2.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v3.webp",
           "type": "crop"
         },
         {
           "label": "Fit and buckle system",
-          "image": "/assets/mobility/aero-commuter-helmet-detail-material-photo-v2.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-detail-material-photo-v3.webp",
           "type": "crop"
         },
         {
           "label": "Ready at home",
-          "image": "/assets/mobility/aero-commuter-helmet-context-wide-photo-v2.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-context-wide-photo-v3.webp",
           "type": "insitu"
         },
         {
           "label": "Office desk",
-          "image": "/assets/mobility/aero-commuter-helmet-context-alt-photo-v2.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-context-alt-photo-v3.webp",
           "type": "insitu"
         },
         {
           "label": "Rainy office stop",
-          "image": "/assets/mobility/aero-commuter-helmet-context-active-photo-v2.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-context-active-photo-v3.webp",
           "type": "insitu"
         },
         {
           "label": "Rear light at dusk",
-          "image": "/assets/mobility/aero-commuter-helmet-context-use-photo-v2.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-context-use-photo-v3.webp",
           "type": "insitu"
         }
       ]
