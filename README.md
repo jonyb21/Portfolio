@@ -20,11 +20,11 @@ Set `ADMIN_PASSWORD` in `.env`, then open `http://127.0.0.1:8788/admin`.
 
 The admin saves `data/site.json`. Docker mounts `./data` so edits survive container rebuilds.
 
-The Work page uses `?category=furniture`, `?category=homewares`, `?category=lighting`, or `?category=mobility`. Furniture, Homewares, and Lighting contain five projects each; Mobility contains four. The exact counts are enforced by the server, tests, and preflight eval.
+The Work page uses `?category=furniture`, `?category=homewares`, `?category=lighting`, or `?category=mobility`. Every category contains six projects, for 24 designs in total. The exact 6/6/6/6 counts are enforced by the server, tests, and preflight eval.
 
 Project images use local `/assets/...` WebP files. Each project page needs one main image, materials, at least three notes, four studio/detail studies, and four context images so the detail page renders as a complete nine-image product story. Every Homewares and Lighting project includes a final use scene showing the product being operated or illuminated in context.
 
-Homepage slides, work cards, project leads, and gallery images use native 4:3 assets, so every frame fills edge to edge without side bands or blur fills. Homewares and Lighting media uses the `-vibrant-v1.webp` image set and keeps nine unique files per product story.
+Homepage slides, work cards, project leads, and gallery images use native 4:3 assets, so every frame fills edge to edge without side bands or blur fills. New and corrected documentary product photography uses the `-photo-v2.webp` image set. Every project story keeps nine unique files: one lead, four product studies, and four distinct real-world contexts.
 
 Lighting cards use `cardImage` for the switched-off state and `image` for the illuminated hover and keyboard-focus state. Both files must use the same product, framing, and 4:3 geometry so the 650 ms crossfade reads as the light switching on rather than a scene change.
 

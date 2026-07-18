@@ -27,8 +27,9 @@
   "workCta": "Get in contact",
   "projects": [
     {
-      "slug": "contour-lounge-chair",
       "title": "Contour Lounge Chair",
+      "slug": "contour-lounge-chair",
+      "category": "furniture",
       "year": "2026",
       "type": "Lounge chair",
       "materials": "Dark olive upholstery, sculpted walnut frame, recessed support rails",
@@ -83,12 +84,12 @@
           "image": "/assets/furniture/contour-lounge-chair-insitu-v5.webp",
           "type": "insitu"
         }
-      ],
-      "category": "furniture"
+      ]
     },
     {
-      "slug": "silhouette-sofa",
       "title": "Silhouette Sofa",
+      "slug": "silhouette-sofa",
+      "category": "furniture",
       "year": "2026",
       "type": "Soft seating",
       "materials": "Olive boucle upholstery, hardwood frame, blackened stone table",
@@ -143,12 +144,12 @@
           "image": "/assets/furniture/silhouette-sofa-insitu-v5.webp",
           "type": "insitu"
         }
-      ],
-      "category": "furniture"
+      ]
     },
     {
-      "slug": "arc-lounge-chair",
       "title": "Arc Lounge Chair",
+      "slug": "arc-lounge-chair",
+      "category": "furniture",
       "year": "2026",
       "type": "Lounge chair",
       "materials": "Cream boucle, sculpted walnut, concealed webbing",
@@ -203,12 +204,12 @@
           "image": "/assets/furniture/arc-lounge-chair-insitu-v5.webp",
           "type": "insitu"
         }
-      ],
-      "category": "furniture"
+      ]
     },
     {
-      "slug": "foundry-sideboard",
       "title": "Foundry Sideboard",
+      "slug": "foundry-sideboard",
+      "category": "furniture",
       "year": "2026",
       "type": "Storage",
       "materials": "Ribbed walnut, satin finish, slim timber legs",
@@ -263,12 +264,12 @@
           "image": "/assets/furniture/foundry-sideboard-insitu-v5.webp",
           "type": "insitu"
         }
-      ],
-      "category": "furniture"
+      ]
     },
     {
-      "slug": "dining-table",
       "title": "Ridge Dining Table",
+      "slug": "dining-table",
+      "category": "furniture",
       "year": "2026",
       "type": "Dining table",
       "materials": "Dark walnut, satin finish, rounded bullnose top, four tapered corner legs",
@@ -323,12 +324,71 @@
           "image": "/assets/furniture/ridge-four-leg-insitu-v4.webp",
           "type": "insitu"
         }
-      ],
-      "category": "furniture"
+      ]
     },
     {
-      "slug": "axis-kettle",
+      "title": "Pivot Writing Desk",
+      "slug": "pivot-writing-desk",
+      "category": "furniture",
+      "year": "2026",
+      "type": "Compact writing desk",
+      "materials": "Solid ash, folded powder-coated aluminium, wool felt, stainless steel fasteners",
+      "image": "/assets/furniture/pivot-writing-desk-lead-photo-v2.webp",
+      "cardImage": "/assets/furniture/pivot-writing-desk-lead-photo-v2.webp",
+      "detailImage": "/assets/furniture/pivot-writing-desk-detail-primary-photo-v2.webp",
+      "href": "/work/pivot-writing-desk",
+      "summary": "A compact ash writing desk organised around a cobalt service spine. Cable sockets, a sliding pencil tray, and a shallow privacy panel make a small workstation useful without turning it into office equipment.",
+      "notes": [
+        "The folded aluminium rear spine carries power, cable routing, and the sliding felt-lined pencil tray in one replaceable assembly.",
+        "A shallow timber privacy panel screens visual clutter while preserving the open proportions of the solid-ash frame.",
+        "Bolted leg joints and separate metal hardware let the desk flat-pack, move, and be repaired without damaging the timber."
+      ],
+      "views": [
+        {
+          "label": "Front working view",
+          "image": "/assets/furniture/pivot-writing-desk-angle-front-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Rear service view",
+          "image": "/assets/furniture/pivot-writing-desk-angle-rear-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Cable and tray spine",
+          "image": "/assets/furniture/pivot-writing-desk-detail-primary-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Bolted leg joint",
+          "image": "/assets/furniture/pivot-writing-desk-detail-material-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Shared studio",
+          "image": "/assets/furniture/pivot-writing-desk-context-wide-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Bedroom workspace",
+          "image": "/assets/furniture/pivot-writing-desk-context-alt-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Sketching session",
+          "image": "/assets/furniture/pivot-writing-desk-context-active-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Console mode",
+          "image": "/assets/furniture/pivot-writing-desk-context-use-photo-v2.webp",
+          "type": "insitu"
+        }
+      ]
+    },
+    {
       "title": "Flux Kettle",
+      "slug": "axis-kettle",
       "category": "homewares",
       "year": "2026",
       "type": "Kitchen appliance",
@@ -387,8 +447,8 @@
       ]
     },
     {
-      "slug": "tempo-clock",
       "title": "Morrow Clock",
+      "slug": "tempo-clock",
       "category": "homewares",
       "year": "2026",
       "type": "Timepiece",
@@ -447,8 +507,8 @@
       ]
     },
     {
-      "slug": "grid-tray-system",
       "title": "Tessera Tray System",
+      "slug": "grid-tray-system",
       "category": "homewares",
       "year": "2026",
       "type": "Home organisation",
@@ -507,8 +567,8 @@
       ]
     },
     {
-      "slug": "signal-radio",
       "title": "Relay Radio",
+      "slug": "signal-radio",
       "category": "homewares",
       "year": "2026",
       "type": "Tabletop audio",
@@ -567,8 +627,8 @@
       ]
     },
     {
-      "slug": "ratio-coffee-mill",
       "title": "Torque Coffee Mill",
+      "slug": "ratio-coffee-mill",
       "category": "homewares",
       "year": "2026",
       "type": "Coffee preparation",
@@ -627,8 +687,68 @@
       ]
     },
     {
-      "slug": "column-table-lamp",
+      "title": "Silo Food Waste Caddy",
+      "slug": "silo-food-waste-caddy",
+      "category": "homewares",
+      "year": "2026",
+      "type": "Countertop food-waste caddy",
+      "materials": "Recycled polypropylene, brushed stainless steel, silicone, activated charcoal",
+      "image": "/assets/homewares/silo-food-waste-caddy-lead-photo-v2.webp",
+      "cardImage": "/assets/homewares/silo-food-waste-caddy-lead-photo-v2.webp",
+      "detailImage": "/assets/homewares/silo-food-waste-caddy-detail-primary-photo-v2.webp",
+      "href": "/work/silo-food-waste-caddy",
+      "summary": "A countertop food-waste caddy that keeps the parts people touch simple and the parts that get dirty removable. A sealed lid, lift-out bucket, and replaceable charcoal filter make daily composting cleaner.",
+      "notes": [
+        "The stainless carry loop stays outside the waste volume and locks upright when the inner bucket is lifted out.",
+        "A silicone perimeter gasket and replaceable charcoal cassette control odour without hiding a complicated mechanism in the lid.",
+        "The recycled-polypropylene bucket, shell, filter carrier, and gasket separate without tools for cleaning and replacement."
+      ],
+      "views": [
+        {
+          "label": "Closed front profile",
+          "image": "/assets/homewares/silo-food-waste-caddy-angle-front-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Open carry view",
+          "image": "/assets/homewares/silo-food-waste-caddy-angle-rear-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Charcoal filter cassette",
+          "image": "/assets/homewares/silo-food-waste-caddy-detail-primary-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Lift-out inner bucket",
+          "image": "/assets/homewares/silo-food-waste-caddy-detail-material-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Kitchen counter",
+          "image": "/assets/homewares/silo-food-waste-caddy-context-wide-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Meal preparation",
+          "image": "/assets/homewares/silo-food-waste-caddy-context-alt-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Compost transfer",
+          "image": "/assets/homewares/silo-food-waste-caddy-context-active-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Cleaning sequence",
+          "image": "/assets/homewares/silo-food-waste-caddy-context-use-photo-v2.webp",
+          "type": "insitu"
+        }
+      ]
+    },
+    {
       "title": "Cairn Table Lamp",
+      "slug": "column-table-lamp",
       "category": "lighting",
       "year": "2026",
       "type": "Table lamp",
@@ -687,8 +807,8 @@
       ]
     },
     {
-      "slug": "rail-task-light",
       "title": "Vector Task Light",
+      "slug": "rail-task-light",
       "category": "lighting",
       "year": "2026",
       "type": "Task light",
@@ -747,8 +867,8 @@
       ]
     },
     {
-      "slug": "halo-pendant",
       "title": "Aperture Pendant",
+      "slug": "halo-pendant",
       "category": "lighting",
       "year": "2026",
       "type": "Pendant light",
@@ -807,8 +927,8 @@
       ]
     },
     {
-      "slug": "plane-wall-light",
       "title": "Rill Wall Light",
+      "slug": "plane-wall-light",
       "category": "lighting",
       "year": "2026",
       "type": "Wall light",
@@ -867,8 +987,8 @@
       ]
     },
     {
-      "slug": "line-floor-lamp",
       "title": "Trace Floor Lamp",
+      "slug": "line-floor-lamp",
       "category": "lighting",
       "year": "2026",
       "type": "Floor lamp",
@@ -927,15 +1047,75 @@
       ]
     },
     {
+      "title": "Beacon Portable Lantern",
+      "slug": "beacon-portable-lantern",
+      "category": "lighting",
+      "year": "2026",
+      "type": "Rechargeable portable lantern",
+      "materials": "Bead-blasted aluminium, anodised aluminium, opal glass, brass, silicone",
+      "image": "/assets/lighting/beacon-portable-lantern-lead-photo-v2.webp",
+      "cardImage": "/assets/lighting/beacon-portable-lantern-card-off-photo-v2.webp",
+      "detailImage": "/assets/lighting/beacon-portable-lantern-detail-primary-photo-v2.webp",
+      "href": "/work/beacon-portable-lantern",
+      "summary": "A rechargeable lantern whose light disc pivots inside a protective aluminium arch. It works as a table light, reading light, or low outdoor marker without changing parts or hiding its mechanism.",
+      "notes": [
+        "Two small brass pivots let the opal light disc aim through a wide arc while the outer frame remains a stable carry handle.",
+        "A recessed rotary dimmer and protected USB-C port keep operation direct and the electrical parts replaceable.",
+        "The weighted silicone-footed base holds the lantern steady indoors while the sealed aluminium body tolerates everyday outdoor use."
+      ],
+      "views": [
+        {
+          "label": "Illuminated front view",
+          "image": "/assets/lighting/beacon-portable-lantern-angle-front-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Rear construction",
+          "image": "/assets/lighting/beacon-portable-lantern-angle-rear-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Brass pivot detail",
+          "image": "/assets/lighting/beacon-portable-lantern-detail-primary-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Dimmer and charging port",
+          "image": "/assets/lighting/beacon-portable-lantern-detail-material-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Dining light",
+          "image": "/assets/lighting/beacon-portable-lantern-context-wide-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Bedside light",
+          "image": "/assets/lighting/beacon-portable-lantern-context-alt-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Balcony evening",
+          "image": "/assets/lighting/beacon-portable-lantern-context-active-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Outdoor table",
+          "image": "/assets/lighting/beacon-portable-lantern-context-use-photo-v2.webp",
+          "type": "insitu"
+        }
+      ]
+    },
+    {
       "title": "Stride Fold E-bike",
       "slug": "stride-fold-ebike",
       "category": "mobility",
       "year": "2026",
       "type": "Folding electric bicycle",
       "materials": "Hydroformed aluminium, graphite engineering polymer, carbon belt, stainless steel, rubber",
-      "image": "/assets/mobility/stride-fold-ebike-lead-vibrant-v1.webp",
-      "cardImage": "/assets/mobility/stride-fold-ebike-lead-vibrant-v1.webp",
-      "detailImage": "/assets/mobility/stride-fold-ebike-detail-primary-vibrant-v1.webp",
+      "image": "/assets/mobility/stride-fold-ebike-lead-photo-v2.webp",
+      "cardImage": "/assets/mobility/stride-fold-ebike-lead-photo-v2.webp",
+      "detailImage": "/assets/mobility/stride-fold-ebike-detail-primary-photo-v2.webp",
       "href": "/work/stride-fold-ebike",
       "summary": "A compact 20-inch electric bicycle designed around a low-step frame and one secure central fold. Integrated lighting, a removable battery, and a clean commuter package make mixed train and street journeys easier to manage.",
       "notes": [
@@ -946,42 +1126,42 @@
       "views": [
         {
           "label": "Full side profile",
-          "image": "/assets/mobility/stride-fold-ebike-angle-front-vibrant-v1.webp",
+          "image": "/assets/mobility/stride-fold-ebike-angle-front-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Rear drivetrain profile",
-          "image": "/assets/mobility/stride-fold-ebike-angle-rear-vibrant-v1.webp",
+          "image": "/assets/mobility/stride-fold-ebike-angle-rear-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Folding hinge mechanism",
-          "image": "/assets/mobility/stride-fold-ebike-detail-primary-vibrant-v1.webp",
+          "image": "/assets/mobility/stride-fold-ebike-detail-primary-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Removable battery system",
-          "image": "/assets/mobility/stride-fold-ebike-detail-material-vibrant-v1.webp",
+          "image": "/assets/mobility/stride-fold-ebike-detail-material-photo-v2.webp",
           "type": "crop"
         },
         {
+          "label": "Folded for rail travel",
+          "image": "/assets/mobility/stride-fold-ebike-context-wide-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
           "label": "City cafe stop",
-          "image": "/assets/mobility/stride-fold-ebike-context-wide-vibrant-v1.webp",
+          "image": "/assets/mobility/stride-fold-ebike-context-alt-photo-v2.webp",
           "type": "insitu"
         },
         {
           "label": "Folded at home",
-          "image": "/assets/mobility/stride-fold-ebike-context-alt-vibrant-v1.webp",
+          "image": "/assets/mobility/stride-fold-ebike-context-active-photo-v2.webp",
           "type": "insitu"
         },
         {
-          "label": "Urban commute",
-          "image": "/assets/mobility/stride-fold-ebike-context-active-vibrant-v1.webp",
-          "type": "insitu"
-        },
-        {
-          "label": "Transit carry",
-          "image": "/assets/mobility/stride-fold-ebike-context-use-vibrant-v1.webp",
+          "label": "Wet-weather storage",
+          "image": "/assets/mobility/stride-fold-ebike-context-use-photo-v2.webp",
           "type": "insitu"
         }
       ]
@@ -993,9 +1173,9 @@
       "year": "2026",
       "type": "Urban cycling helmet",
       "materials": "In-mould polycarbonate, recycled EPS, nylon webbing, soft-touch polymer, LED light guide",
-      "image": "/assets/mobility/aero-commuter-helmet-lead-vibrant-v1.webp",
-      "cardImage": "/assets/mobility/aero-commuter-helmet-lead-vibrant-v1.webp",
-      "detailImage": "/assets/mobility/aero-commuter-helmet-detail-primary-vibrant-v1.webp",
+      "image": "/assets/mobility/aero-commuter-helmet-lead-photo-v2.webp",
+      "cardImage": "/assets/mobility/aero-commuter-helmet-lead-photo-v2.webp",
+      "detailImage": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v2.webp",
       "href": "/work/aero-commuter-helmet",
       "summary": "A low-profile urban helmet that combines deep continuous airflow channels with a compact fit system and integrated rear light. Its restrained shell is shaped for daily clothing rather than racing equipment.",
       "notes": [
@@ -1006,42 +1186,42 @@
       "views": [
         {
           "label": "Low side profile",
-          "image": "/assets/mobility/aero-commuter-helmet-angle-front-vibrant-v1.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-angle-front-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Rear light and cradle",
-          "image": "/assets/mobility/aero-commuter-helmet-angle-rear-vibrant-v1.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-angle-rear-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Vent construction",
-          "image": "/assets/mobility/aero-commuter-helmet-detail-primary-vibrant-v1.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Fit and buckle system",
-          "image": "/assets/mobility/aero-commuter-helmet-detail-material-vibrant-v1.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-detail-material-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Ready at home",
-          "image": "/assets/mobility/aero-commuter-helmet-context-wide-vibrant-v1.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-context-wide-photo-v2.webp",
           "type": "insitu"
         },
         {
-          "label": "Rear light at dusk",
-          "image": "/assets/mobility/aero-commuter-helmet-context-alt-vibrant-v1.webp",
+          "label": "Office desk",
+          "image": "/assets/mobility/aero-commuter-helmet-context-alt-photo-v2.webp",
           "type": "insitu"
         },
         {
           "label": "Rainy office stop",
-          "image": "/assets/mobility/aero-commuter-helmet-context-active-vibrant-v1.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-context-active-photo-v2.webp",
           "type": "insitu"
         },
         {
-          "label": "Fit adjustment",
-          "image": "/assets/mobility/aero-commuter-helmet-context-use-vibrant-v1.webp",
+          "label": "Rear light at dusk",
+          "image": "/assets/mobility/aero-commuter-helmet-context-use-photo-v2.webp",
           "type": "insitu"
         }
       ]
@@ -1053,115 +1233,235 @@
       "year": "2026",
       "type": "Convertible bicycle luggage",
       "materials": "TPU-coated recycled nylon, thermoformed recycled polymer, anodised aluminium, nylon webbing",
-      "image": "/assets/mobility/latch-convertible-pannier-lead-vibrant-v1.webp",
-      "cardImage": "/assets/mobility/latch-convertible-pannier-lead-vibrant-v1.webp",
-      "detailImage": "/assets/mobility/latch-convertible-pannier-detail-primary-vibrant-v1.webp",
+      "image": "/assets/mobility/latch-convertible-pannier-lead-photo-v2.webp",
+      "cardImage": "/assets/mobility/latch-convertible-pannier-lead-photo-v2.webp",
+      "detailImage": "/assets/mobility/latch-convertible-pannier-detail-primary-photo-v2.webp",
       "href": "/work/latch-convertible-pannier",
       "summary": "A weather-resistant bicycle pannier that leaves its rack hardware behind visually when carried off the bike. A structured back panel, concealed release, and stowable shoulder strap support a clean transition into work or home.",
       "notes": [
         "The welded recycled-nylon body uses a roll top and bright waterproof liner to protect everyday equipment without a separate rain cover.",
-        "Spring-loaded hooks and a lower anti-sway catch are integrated into the thermoformed back panel and released by one green pull.",
-        "The padded shoulder strap stores inside a recessed side channel so loose webbing cannot reach the wheel while riding."
+        "Two compact spring-loaded upper hooks wrap the rack's side rail and release together through one recessed green pull.",
+        "A lower anti-sway catch locks around the rack stay, holding the bag clear of the wheel and heel while the shoulder strap remains fully stowed."
       ],
       "views": [
         {
           "label": "Closed front profile",
-          "image": "/assets/mobility/latch-convertible-pannier-angle-front-vibrant-v1.webp",
+          "image": "/assets/mobility/latch-convertible-pannier-angle-front-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Rack interface",
-          "image": "/assets/mobility/latch-convertible-pannier-angle-rear-vibrant-v1.webp",
+          "image": "/assets/mobility/latch-convertible-pannier-angle-rear-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Release hardware",
-          "image": "/assets/mobility/latch-convertible-pannier-detail-primary-vibrant-v1.webp",
+          "image": "/assets/mobility/latch-convertible-pannier-detail-primary-photo-v2.webp",
           "type": "crop"
         },
         {
-          "label": "Shoulder conversion",
-          "image": "/assets/mobility/latch-convertible-pannier-detail-material-vibrant-v1.webp",
+          "label": "Open storage and liner",
+          "image": "/assets/mobility/latch-convertible-pannier-detail-material-photo-v2.webp",
           "type": "crop"
         },
         {
-          "label": "Grocery stop",
-          "image": "/assets/mobility/latch-convertible-pannier-context-wide-vibrant-v1.webp",
+          "label": "Office rack mount",
+          "image": "/assets/mobility/latch-convertible-pannier-context-wide-photo-v2.webp",
           "type": "insitu"
         },
         {
           "label": "Rack mounted",
-          "image": "/assets/mobility/latch-convertible-pannier-context-alt-vibrant-v1.webp",
+          "image": "/assets/mobility/latch-convertible-pannier-context-alt-photo-v2.webp",
           "type": "insitu"
         },
         {
-          "label": "Office carry",
-          "image": "/assets/mobility/latch-convertible-pannier-context-active-vibrant-v1.webp",
+          "label": "Grocery stop",
+          "image": "/assets/mobility/latch-convertible-pannier-context-active-photo-v2.webp",
           "type": "insitu"
         },
         {
-          "label": "Open storage",
-          "image": "/assets/mobility/latch-convertible-pannier-context-use-vibrant-v1.webp",
+          "label": "Shoulder carry mode",
+          "image": "/assets/mobility/latch-convertible-pannier-context-use-photo-v2.webp",
           "type": "insitu"
         }
       ]
     },
     {
-      "title": "Gauge Electric Inflator",
-      "slug": "gauge-electric-inflator",
+      "title": "Gauge Electric Pump",
+      "slug": "gauge-electric-pump",
       "category": "mobility",
       "year": "2026",
-      "type": "Rechargeable tyre inflator",
+      "type": "Rechargeable electric tyre pump",
       "materials": "Die-cast aluminium, graphite engineering polymer, braided nylon, rubber, lithium-ion cells",
-      "image": "/assets/mobility/gauge-electric-inflator-lead-vibrant-v1.webp",
-      "cardImage": "/assets/mobility/gauge-electric-inflator-lead-vibrant-v1.webp",
-      "detailImage": "/assets/mobility/gauge-electric-inflator-detail-primary-vibrant-v1.webp",
-      "href": "/work/gauge-electric-inflator",
-      "summary": "A compact rechargeable inflator with a stored braided hose, clear pressure display, and one rotary push control. A removable battery and open ventilation path make a small electronic tool easier to maintain and trust.",
+      "image": "/assets/mobility/gauge-electric-pump-lead-photo-v2.webp",
+      "cardImage": "/assets/mobility/gauge-electric-pump-lead-photo-v2.webp",
+      "detailImage": "/assets/mobility/gauge-electric-pump-detail-primary-photo-v2.webp",
+      "href": "/work/gauge-electric-pump",
+      "summary": "A compact rechargeable electric tyre pump with a stored braided hose, clear pressure display, and one rotary push control. An LED built into the end of the nozzle illuminates the valve exactly where it is needed.",
       "notes": [
         "The die-cast aluminium shell works as both a durable enclosure and a heat spreader around the compressor assembly.",
-        "The hose clips into a recessed side channel with its threaded valve head protected but immediately accessible.",
-        "A slide-out battery cartridge, replaceable seals, and exposed housing fasteners support service rather than sealed disposal."
+        "The single braided hose stores in a recessed front channel; when deployed, that channel is empty and the hose exits directly toward the tyre.",
+        "A focused LED ring sits only at the nozzle tip, while a service door, replaceable seals, and exposed fasteners support repair."
       ],
       "views": [
         {
           "label": "Control overview",
-          "image": "/assets/mobility/gauge-electric-inflator-angle-front-vibrant-v1.webp",
+          "image": "/assets/mobility/gauge-electric-pump-angle-front-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Ventilation profile",
-          "image": "/assets/mobility/gauge-electric-inflator-angle-rear-vibrant-v1.webp",
+          "image": "/assets/mobility/gauge-electric-pump-angle-rear-photo-v2.webp",
           "type": "crop"
         },
         {
-          "label": "Hose connector",
-          "image": "/assets/mobility/gauge-electric-inflator-detail-primary-vibrant-v1.webp",
+          "label": "Nozzle-tip LED",
+          "image": "/assets/mobility/gauge-electric-pump-detail-primary-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Battery cartridge",
-          "image": "/assets/mobility/gauge-electric-inflator-detail-material-vibrant-v1.webp",
+          "image": "/assets/mobility/gauge-electric-pump-detail-material-photo-v2.webp",
           "type": "crop"
         },
         {
           "label": "Entry storage",
-          "image": "/assets/mobility/gauge-electric-inflator-context-wide-vibrant-v1.webp",
+          "image": "/assets/mobility/gauge-electric-pump-context-wide-photo-v2.webp",
           "type": "insitu"
         },
         {
           "label": "Kerbside inflation",
-          "image": "/assets/mobility/gauge-electric-inflator-context-alt-vibrant-v1.webp",
+          "image": "/assets/mobility/gauge-electric-pump-context-alt-photo-v2.webp",
           "type": "insitu"
         },
         {
-          "label": "Workshop use",
-          "image": "/assets/mobility/gauge-electric-inflator-context-active-vibrant-v1.webp",
+          "label": "Dusk valve lighting",
+          "image": "/assets/mobility/gauge-electric-pump-context-active-photo-v2.webp",
           "type": "insitu"
         },
         {
-          "label": "Dusk top-up",
-          "image": "/assets/mobility/gauge-electric-inflator-context-use-vibrant-v1.webp",
+          "label": "Workshop storage",
+          "image": "/assets/mobility/gauge-electric-pump-context-use-photo-v2.webp",
+          "type": "insitu"
+        }
+      ]
+    },
+    {
+      "title": "Rove Carry-on",
+      "slug": "rove-carry-on",
+      "category": "mobility",
+      "year": "2026",
+      "type": "Repairable cabin carry-on",
+      "materials": "Recycled polycarbonate, anodised aluminium, TPE, recycled nylon, stainless steel",
+      "image": "/assets/mobility/rove-carry-on-lead-photo-v2.webp",
+      "cardImage": "/assets/mobility/rove-carry-on-lead-photo-v2.webp",
+      "detailImage": "/assets/mobility/rove-carry-on-detail-primary-photo-v2.webp",
+      "href": "/work/rove-carry-on",
+      "summary": "A compact cabin case designed around the parts that wear first. Recessed handles, replaceable wheel cassettes, and separate corner bumpers keep the shell quiet and make damage straightforward to repair.",
+      "notes": [
+        "Four wheel cassettes release from inside the case so worn wheels can be replaced without cutting or drilling the shell.",
+        "A low-profile telescopic handle sits behind the packing volume and locks through a broad, comfortable aluminium grip.",
+        "Separate TPE corner bumpers take impacts at transfer points and can be replaced independently of the recycled-polycarbonate body."
+      ],
+      "views": [
+        {
+          "label": "Front shell view",
+          "image": "/assets/mobility/rove-carry-on-angle-front-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Raised handle view",
+          "image": "/assets/mobility/rove-carry-on-angle-rear-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Telescopic handle detail",
+          "image": "/assets/mobility/rove-carry-on-detail-primary-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Replaceable wheel cassette",
+          "image": "/assets/mobility/rove-carry-on-detail-material-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Overhead locker",
+          "image": "/assets/mobility/rove-carry-on-context-wide-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Train journey",
+          "image": "/assets/mobility/rove-carry-on-context-alt-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Open packing",
+          "image": "/assets/mobility/rove-carry-on-context-active-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Wheel replacement",
+          "image": "/assets/mobility/rove-carry-on-context-use-photo-v2.webp",
+          "type": "insitu"
+        }
+      ]
+    },
+    {
+      "title": "Link Folding Lock",
+      "slug": "link-folding-lock",
+      "category": "mobility",
+      "year": "2026",
+      "type": "Folding bicycle lock",
+      "materials": "Hardened steel, fibre-reinforced polymer, brass, stainless steel",
+      "image": "/assets/mobility/link-folding-lock-lead-photo-v2.webp",
+      "cardImage": "/assets/mobility/link-folding-lock-lead-photo-v2.webp",
+      "detailImage": "/assets/mobility/link-folding-lock-detail-primary-photo-v2.webp",
+      "href": "/work/link-folding-lock",
+      "summary": "A compact folding bicycle lock that balances visible security with clean everyday storage. Protected steel links articulate around serviceable brass pivots and fold into a frame-mounted holster.",
+      "notes": [
+        "Fibre-reinforced blue covers protect the hardened-steel links from weather and keep them quiet against the bicycle frame.",
+        "Brass-coloured pivot bushes make the articulation readable and allow individual links and fasteners to be serviced.",
+        "The keyed head locks the articulated chain into one continuous loop while the two-strap holster keeps the folded stack clear of pedals and cables."
+      ],
+      "views": [
+        {
+          "label": "Unfolded articulation",
+          "image": "/assets/mobility/link-folding-lock-angle-front-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Folded in holster",
+          "image": "/assets/mobility/link-folding-lock-angle-rear-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Serviceable pivot",
+          "image": "/assets/mobility/link-folding-lock-detail-primary-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Protected keyway",
+          "image": "/assets/mobility/link-folding-lock-detail-material-photo-v2.webp",
+          "type": "crop"
+        },
+        {
+          "label": "Frame-mounted holster",
+          "image": "/assets/mobility/link-folding-lock-context-wide-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Locked to a street rail",
+          "image": "/assets/mobility/link-folding-lock-context-alt-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Entry shelf storage",
+          "image": "/assets/mobility/link-folding-lock-context-active-photo-v2.webp",
+          "type": "insitu"
+        },
+        {
+          "label": "Replaceable link service",
+          "image": "/assets/mobility/link-folding-lock-context-use-photo-v2.webp",
           "type": "insitu"
         }
       ]
@@ -1181,10 +1481,10 @@
         "description": "Taking products and furniture from early ideas through CAD, materials, visualisation, detailing, and production-ready outcomes."
       },
       {
-        "role": "Graphic design and catalogues",
+        "role": "Graphic design",
         "company": "Self-taught visual practice",
         "period": "Graphic",
-        "description": "Creating catalogues, layouts, production artwork, and supporting marketing material with a clear eye for hierarchy and consistency."
+        "description": "Experience in creating catalogues, layouts, production artwork, and supporting marketing material. With guidance from the Marketing team."
       },
       {
         "role": "AI and image generation",

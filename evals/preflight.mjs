@@ -15,11 +15,11 @@ const adminJs = fs.readFileSync("public/admin.js", "utf8");
 const readme = fs.readFileSync("README.md", "utf8");
 const site = JSON.parse(fs.readFileSync("data/site.json", "utf8"));
 const app = fs.readFileSync("public/app.js", "utf8");
-const PROJECT_CATEGORY_COUNTS = { furniture: 5, homewares: 5, lighting: 5, mobility: 4 };
+const PROJECT_CATEGORY_COUNTS = { furniture: 6, homewares: 6, lighting: 6, mobility: 6 };
 const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260718-2";
+const MEDIA_REVISION = "20260718-3";
 new Function(adminJs);
 
 function localAssetHash(image) {
@@ -44,11 +44,11 @@ assert(adminCss.includes("radial-gradient(circle at 22% 12%") && adminCss.includ
 assert(adminCss.includes("border-radius: var(--radius)"), "Admin form follows the same rounded panel system");
 assert(site.workCta === "Get in contact", "Work CTA uses the requested contact wording");
 assert(css.includes("grid-template-columns: repeat(6, minmax(0, 1fr))") && css.includes("grid-column: span 2"), "Selected work uses a balanced six-column editorial grid");
-assert(site.projects.length === 19, "Work page includes nineteen projects across four categories");
-assert.deepEqual(Object.fromEntries(PROJECT_CATEGORIES.map(category => [category, site.projects.filter(project => project.category === category).length])), PROJECT_CATEGORY_COUNTS, "Work categories use the approved 5/5/5/4 counts");
-assert.deepEqual(site.projects.filter(project => project.category === "mobility").map(project => project.slug), ["stride-fold-ebike", "aero-commuter-helmet", "latch-convertible-pannier", "gauge-electric-inflator"], "Mobility uses the approved four products");
-assert.deepEqual(site.projects.filter(project => ["homewares", "lighting"].includes(project.category)).map(project => project.title), ["Flux Kettle", "Morrow Clock", "Tessera Tray System", "Relay Radio", "Torque Coffee Mill", "Cairn Table Lamp", "Vector Task Light", "Aperture Pendant", "Rill Wall Light", "Trace Floor Lamp"], "Homewares and Lighting use the approved distinct product names");
-for (const project of site.projects.filter(project => project.category === "mobility")) {
+assert(site.projects.length === 24, "Work page includes twenty-four projects across four categories");
+assert.deepEqual(Object.fromEntries(PROJECT_CATEGORIES.map(category => [category, site.projects.filter(project => project.category === category).length])), PROJECT_CATEGORY_COUNTS, "Work categories use the approved 6/6/6/6 counts");
+assert.deepEqual(site.projects.filter(project => project.category === "mobility").map(project => project.slug), ["stride-fold-ebike", "aero-commuter-helmet", "latch-convertible-pannier", "gauge-electric-pump", "rove-carry-on", "link-folding-lock"], "Mobility uses six distinct products");
+assert.deepEqual(site.projects.filter(project => ["homewares", "lighting"].includes(project.category)).map(project => project.title), ["Flux Kettle", "Morrow Clock", "Tessera Tray System", "Relay Radio", "Torque Coffee Mill", "Silo Food Waste Caddy", "Cairn Table Lamp", "Vector Task Light", "Aperture Pendant", "Rill Wall Light", "Trace Floor Lamp", "Beacon Portable Lantern"], "Homewares and Lighting use distinct product names");
+for (const project of site.projects) {
   const hashes = [project.image, ...project.views.map(view => view.image)].map(localAssetHash);
   assert(new Set(hashes).size === 9, `${project.title} uses nine genuinely different images`);
 }
@@ -85,7 +85,7 @@ assert(app.includes("function imageUrl") && app.includes(`const MEDIA_REVISION =
 assert(fs.readFileSync("server.js", "utf8").includes(`const MEDIA_REVISION = "${MEDIA_REVISION}"`), "Server-rendered cards use the same media revision as the browser app");
 assert(css.includes("bottom: 16px") && css.includes("font-size: clamp(1rem, 1.15vw, 1.15rem)"), "Work card titles sit low and use a compact scale");
 assert(css.includes("rgb(0 0 0 / 0.68)") && css.includes("text-shadow: 0 1px 8px"), "Work card labels remain readable without covering the product");
-assert(site.projects.filter(project => project.category === "lighting").every(project => project.cardImage.endsWith("-card-off-vibrant-v1.webp") && project.cardImage !== project.image), "Lighting cards pair an off render with the illuminated project image");
+assert(site.projects.filter(project => project.category === "lighting").every(project => project.cardImage.includes("-card-off-") && project.cardImage !== project.image), "Lighting cards pair an off photo with the illuminated project image");
 assert(app.includes("light-state-off") && app.includes("light-state-on") && css.includes("transition: opacity 650ms ease-in-out"), "Lighting cards switch on with an image crossfade");
 assert(css.includes(".project-nav-link.next") && css.includes(".project-end-nav .project-contact"), "Project navigation has aligned previous, next, and contact regions");
 assert(site.projects.find(project => project.slug === "plane-wall-light").title === "Rill Wall Light" && /rotating cylindrical.*redirects/i.test(site.projects.find(project => project.slug === "plane-wall-light").summary), "Wall light copy matches the approved rotating-cylinder design");
@@ -141,13 +141,18 @@ assert(site.projects.every(project => [project.cardImage, ...project.views.map(v
 assert(site.projects.every(project => project.views.filter(view => view.type === "crop").length === 4), "Each project has four cropped product studies");
 assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").length === 4), "Each project has four in situ views");
 assert(!/\.project-card:nth-child\(|a\.project-card\[href="\/work\/dining-table"\]\s*\{\s*grid-column:/.test(css), "Each category uses the shared default tile size");
-assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-vibrant-v1)\.webp$/.test(view.image))), "Each project uses four optimized generated in-situ assets");
-const vibrantProjects = site.projects.filter(project => project.category !== "furniture");
-assert(vibrantProjects.every(project => project.views.some(view => view.type === "insitu" && view.image.endsWith("-context-use-vibrant-v1.webp"))), "Every Homewares and Lighting project includes a use scene");
-assert(vibrantProjects.every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => image.includes("-vibrant-v1.webp"))), "Homewares and Lighting use the final vibrant image system");
-assert(vibrantProjects.every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Vibrant galleries contain four studio studies followed by four context views");
-assert(vibrantProjects.every(project => new Set([project.image, ...project.views.map(view => view.image)].map(localAssetHash)).size === 9), "Every vibrant product story uses nine distinct image files");
-assert(vibrantProjects.every(project => /(cobalt|tangerine|sunflower|vermilion|green|teal|chartreuse|coral|ultramarine|warm-grey|graphite|stainless steel|aluminium|polycarbonate|recycled)/i.test(`${project.materials} ${project.summary}`)), "Every vibrant project defines a deliberate colour or material identity");
+assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-(?:vibrant-v1|photo-v2))\.webp$/.test(view.image))), "Each project uses four optimized generated in-situ assets");
+const generatedProjects = site.projects.filter(project => project.category !== "furniture" || project.slug === "pivot-writing-desk");
+assert(generatedProjects.every(project => project.views.some(view => view.type === "insitu" && /-context-use-(?:vibrant-v1|photo-v2)\.webp$/.test(view.image))), "Every generated product story includes a use scene");
+assert(generatedProjects.every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Generated galleries contain four studio studies followed by four context views");
+assert(generatedProjects.every(project => new Set([project.image, ...project.views.map(view => view.image)].map(localAssetHash)).size === 9), "Every generated product story uses nine distinct image files");
+const photoProjects = site.projects.filter(project => ["pivot-writing-desk", "silo-food-waste-caddy", "beacon-portable-lantern", "stride-fold-ebike", "aero-commuter-helmet", "latch-convertible-pannier", "gauge-electric-pump", "rove-carry-on", "link-folding-lock"].includes(project.slug));
+assert(photoProjects.every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => image.includes("-photo-v2.webp"))), "New and corrected projects use the realistic photo-v2 media system");
+assert(generatedProjects.every(project => /(cobalt|tangerine|sunflower|vermilion|green|teal|chartreuse|coral|ultramarine|warm-grey|graphite|stainless steel|aluminium|polycarbonate|recycled|ocean-blue|ash|brass)/i.test(`${project.materials} ${project.summary}`)), "Every generated project defines a deliberate colour or material identity");
+const electricPump = site.projects.find(project => project.slug === "gauge-electric-pump");
+assert(electricPump.title === "Gauge Electric Pump" && /LED built into the end of the nozzle/i.test(electricPump.summary), "The electric pump is named correctly and locates its LED at the nozzle tip");
+assert(/single braided hose.*channel is empty/i.test(electricPump.notes.join(" ")), "The electric pump documents one physically consistent hose path");
+assert(/two compact.*upper hooks.*lower anti-sway catch/i.test(site.projects.find(project => project.slug === "latch-convertible-pannier").notes.join(" ")), "The pannier documents its two hooks and lower anti-sway catch");
 assert(localAssetHash("/assets/lighting/rail-task-light-angle-rear-vibrant-v1.webp") === "d8d0a1cc9b40ff4b105567d5c8ad0ece8835ec7618dd0ea3cbb7f568f19d968c", "Vector folded view uses the approved fully connected render");
 assert(localAssetHash("/assets/lighting/halo-pendant-card-off-vibrant-v1.webp") === "93659eb2b16d4e0d9aae054473cd9eec574c2c990625aa56afe59abc98cc9a52", "Aperture card uses the approved symmetric switched-off render");
 assert(site.projects.some(project => project.slug === "dining-table" && project.title === "Ridge Dining Table"), "Renamed dining table project is included");
@@ -179,8 +184,8 @@ assert(app.includes("function workCategory") && app.includes("new URLSearchParam
 assert(["ArrowRight", "ArrowLeft", "Home", "End"].every(key => app.includes(`event.key === "${key}"`)), "Work tabs support keyboard navigation");
 assert(app.includes("categoryProjects") && app.includes("item.category === project.category"), "Product navigation remains inside the selected category");
 assert(app.includes("previousProject") && app.includes("Previous project"), "Product pages provide previous and next navigation");
-assert(fs.readFileSync("server.js", "utf8").includes("renderProductMetadata"), "Product URLs render project-specific title and description metadata");
 assert(fs.readFileSync("server.js", "utf8").includes("renderWorkFallback"), "Work categories are server-rendered for no-JavaScript navigation");
+assert(fs.readFileSync("server.js", "utf8").includes("renderProductMetadata"), "Product URLs render project-specific title and description metadata");
 assert(css.includes('.work-category-tabs [role="tab"][aria-selected="true"]') && css.includes("border-bottom-color: var(--accent)"), "Work category tabs use the specified active underline treatment");
 assert(!app.includes("<figcaption>"), "Product gallery images do not show text captions");
 assert(!css.includes("@keyframes projectCardFade"), "Work card image transitions are removed outside the homepage slideshow");
@@ -202,8 +207,8 @@ assert(/self-taught in graphic design/i.test(site.about.body) && site.about.body
 assert(site.about.body.includes("learn, upskill, and improve"), "About page describes continuous learning and improvement");
 assert(site.about.body.includes("strong hands-on experience with AI and image generation"), "About page states strong AI and image-generation experience in natural language");
 assert(site.about.experience.some(item => /AI and image generation/.test(item.role)), "About page includes AI and image generation experience");
-assert(site.about.experience.some(item => /Graphic design and catalogues/.test(item.role)), "About page includes graphic and catalogue design experience");
-assert(site.about.experience[1].role === "Graphic design and catalogues", "Graphic design follows the main Design row");
+assert(site.about.experience.some(item => /Graphic design/.test(item.role) && /catalogues/i.test(item.description)), "About page includes graphic and catalogue design experience");
+assert(site.about.experience[1].role === "Graphic design", "Graphic design follows the main Design row");
 assert(site.about.experience.some(item => item.period === "Personality" && /learn, upskill, and improve/.test(item.description)), "About page promotes an open, improvement-focused personality");
 assert(fs.readFileSync("server.js", "utf8").includes("role, company, period, and description"), "Server keeps about experience rows complete");
 assert(about.includes('id="experience-list"'), "About page renders experience list");
@@ -214,7 +219,7 @@ assert(admin.includes('data-tab="home"'), "Admin UI has interactive section tabs
 assert(admin.includes('id="projects-editor"'), "Admin UI has project form editing");
 assert(app.includes('page === "product" ? "work" : page'), "Product pages keep Work nav active");
 assert(!admin.includes("Add project") && !adminJs.includes("Remove project"), "Admin keeps the fixed category sets intact");
-assert.deepEqual(Object.fromEntries(PROJECT_CATEGORIES.map(category => [category, site.projects.filter(project => project.category === category).length])), PROJECT_CATEGORY_COUNTS, "Admin categories use the approved 5/5/5/4 counts");
+assert.deepEqual(Object.fromEntries(PROJECT_CATEGORIES.map(category => [category, site.projects.filter(project => project.category === category).length])), PROJECT_CATEGORY_COUNTS, "Admin categories use the approved 6/6/6/6 counts");
 assert(adminJs.includes('["furniture", "homewares", "lighting", "mobility"]'), "Admin can edit Mobility projects");
 assert(fs.readFileSync("server.js", "utf8").includes("Project images must use a native 4:3 ratio"), "Server enforces native 4:3 project media on save");
 assert(readme.includes("one main image") && readme.includes("four studio/detail studies") && readme.includes("four context images"), "README documents the nine-image product page requirement");

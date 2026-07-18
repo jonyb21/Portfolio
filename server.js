@@ -9,9 +9,9 @@ const publicDir = path.join(root, "public");
 const dataPath = process.env.PORTFOLIO_DATA_PATH || path.join(root, "data", "site.json");
 const port = Number(process.env.PORT || 8788);
 const adminPassword = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "admin");
-const PROJECT_CATEGORY_COUNTS = { furniture: 5, homewares: 5, lighting: 5, mobility: 4 };
+const PROJECT_CATEGORY_COUNTS = { furniture: 6, homewares: 6, lighting: 6, mobility: 6 };
 const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
-const MEDIA_REVISION = "20260718-2";
+const MEDIA_REVISION = "20260718-3";
 
 if (process.env.NODE_ENV === "production" && !adminPassword) {
   throw new Error("ADMIN_PASSWORD is required in production");
@@ -211,6 +211,11 @@ function createServer() {
   return http.createServer(async (req, res) => {
     try {
       const url = new URL(req.url, "http://127.0.0.1");
+
+      if (req.method === "GET" && url.pathname === "/work/gauge-electric-inflator") {
+        res.writeHead(301, { location: "/work/gauge-electric-pump", "cache-control": "no-store" });
+        return res.end();
+      }
 
       if (req.method === "GET" && url.pathname === "/api/health") {
         return send(res, 200, JSON.stringify({ ok: true }));

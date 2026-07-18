@@ -20,11 +20,11 @@ const index = fs.readFileSync("public/index.html", "utf8");
 const app = fs.readFileSync("public/app.js", "utf8");
 const admin = fs.readFileSync("public/admin.js", "utf8");
 const work = fs.readFileSync("public/work.html", "utf8");
-const PROJECT_CATEGORY_COUNTS = { furniture: 5, homewares: 5, lighting: 5, mobility: 4 };
+const PROJECT_CATEGORY_COUNTS = { furniture: 6, homewares: 6, lighting: 6, mobility: 6 };
 const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260718-2";
+const MEDIA_REVISION = "20260718-3";
 validateSite(validSite);
 
 function withProject(index, changes) {
@@ -73,7 +73,7 @@ assert.throws(() => validateSite({ ...validSite, contact: { ...validSite.contact
 assert.throws(() => validateSite({ ...validSite, contact: { ...validSite.contact, phone: "12" } }), /valid phone/);
 assert.throws(() => validateSite(withProject(0, { category: "" })), /category/);
 assert.throws(() => validateSite(withProject(0, { category: "appliances" })), /category/);
-assert.throws(() => validateSite(withProject(0, { category: "homewares" })), /exactly 5/);
+assert.throws(() => validateSite(withProject(0, { category: "homewares" })), /exactly 6/);
 assert.throws(() => validateSite(withProject(0, { href: "/work/wrong" })), /links/);
 assert.throws(() => validateSite({ ...validSite, projects: validSite.projects.map((project, index) => index === 1 ? { ...validSite.projects[0] } : project) }), /unique/);
 assert.throws(() => validateSite(withProject(0, { slug: "Bad Slug", href: "/work/Bad Slug" })), /lowercase/);
@@ -112,16 +112,20 @@ try {
   assert.equal(health.status, 200);
   assert.equal((await health.json()).ok, true);
 
+  const oldPumpRoute = await fetch(`${base}/work/gauge-electric-inflator`, { redirect: "manual" });
+  assert.equal(oldPumpRoute.status, 301);
+  assert.equal(oldPumpRoute.headers.get("location"), "/work/gauge-electric-pump");
+
   const site = await fetch(`${base}/api/site`).then(response => response.json());
   assert.equal(site.brand, "Jon Brooks");
   assert.equal(site.nav[0].href, "/work");
   assert.equal(site.workCta, "Get in contact");
   assert.match(site.workIntro, /furniture, homewares, lighting, and mobility/);
   assert.equal(site.projects[0].slug, "contour-lounge-chair");
-  assert.equal(site.projects.length, 19);
+  assert.equal(site.projects.length, 24);
   assert.deepEqual(Object.fromEntries(PROJECT_CATEGORIES.map(category => [category, site.projects.filter(project => project.category === category).length])), PROJECT_CATEGORY_COUNTS);
-  assert.deepEqual(site.projects.filter(project => project.category === "mobility").map(project => project.slug), ["stride-fold-ebike", "aero-commuter-helmet", "latch-convertible-pannier", "gauge-electric-inflator"]);
-  for (const project of site.projects.filter(project => project.category === "mobility")) {
+  assert.deepEqual(site.projects.filter(project => project.category === "mobility").map(project => project.slug), ["stride-fold-ebike", "aero-commuter-helmet", "latch-convertible-pannier", "gauge-electric-pump", "rove-carry-on", "link-folding-lock"]);
+  for (const project of site.projects) {
     const hashes = [project.image, ...project.views.map(view => view.image)].map(image => crypto.createHash("sha256").update(fs.readFileSync(`public${image}`)).digest("hex"));
     assert.equal(new Set(hashes).size, 9, `${project.title} uses nine genuinely different images`);
   }
@@ -136,11 +140,15 @@ try {
     const images = [project.image, ...project.views.map(view => view.image)].filter(Boolean);
     return new Set(images).size === images.length;
   }));
-  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-vibrant-v1)\.webp$/.test(view.image))));
-  assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.some(view => view.type === "insitu" && view.image.endsWith("-context-use-vibrant-v1.webp"))), "Every Homewares and Lighting project includes a use scene");
-  assert(site.projects.filter(project => project.category !== "furniture").every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => image.includes("-vibrant-v1.webp"))), "Homewares and Lighting use the final vibrant image system");
-  assert(site.projects.filter(project => project.category === "lighting").every(project => project.cardImage.endsWith("-card-off-vibrant-v1.webp") && project.cardImage !== project.image), "Every lighting card has a separate switched-off render");
-  assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Vibrant galleries keep four studio studies followed by four context views");
+  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-(?:vibrant-v1|photo-v2))\.webp$/.test(view.image))));
+  assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.some(view => view.type === "insitu" && /-context-use-(?:vibrant-v1|photo-v2)\.webp$/.test(view.image))), "Every Homewares, Lighting, and Mobility project includes a use scene");
+  assert(site.projects.filter(project => project.category === "lighting").every(project => project.cardImage.includes("-card-off-") && project.cardImage !== project.image), "Every lighting card has a separate switched-off render");
+  assert(site.projects.every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Every gallery keeps four studio studies followed by four context views");
+  const photoProjects = site.projects.filter(project => ["pivot-writing-desk", "silo-food-waste-caddy", "beacon-portable-lantern", "stride-fold-ebike", "aero-commuter-helmet", "latch-convertible-pannier", "gauge-electric-pump", "rove-carry-on", "link-folding-lock"].includes(project.slug));
+  assert(photoProjects.every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => image.includes("-photo-v2.webp"))), "New and corrected projects use the realistic photo-v2 media system");
+  assert.equal(site.projects.find(project => project.slug === "gauge-electric-pump").title, "Gauge Electric Pump");
+  assert.match(site.projects.find(project => project.slug === "gauge-electric-pump").summary, /LED built into the end of the nozzle/i);
+  assert.match(site.projects.find(project => project.slug === "latch-convertible-pannier").notes.join(" "), /two compact.*upper hooks.*lower anti-sway catch/i);
   assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/rail-task-light-angle-rear-vibrant-v1.webp")).digest("hex"), "d8d0a1cc9b40ff4b105567d5c8ad0ece8835ec7618dd0ea3cbb7f568f19d968c", "Vector folded view uses the approved fully connected render");
   assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/halo-pendant-card-off-vibrant-v1.webp")).digest("hex"), "93659eb2b16d4e0d9aae054473cd9eec574c2c990625aa56afe59abc98cc9a52", "Aperture card uses the approved symmetric switched-off render");
   assert.equal(site.projects.find(project => project.slug === "plane-wall-light").title, "Rill Wall Light");
@@ -176,7 +184,8 @@ try {
   assert.match(site.about.body, /genuinely enjoys shaping/);
   assert.match(site.about.body, /value other people's experience/);
   assert.equal(site.about.experience[0].role, "Industrial design and product development");
-  assert.equal(site.about.experience[1].role, "Graphic design and catalogues");
+  assert.equal(site.about.experience[1].role, "Graphic design");
+  assert.match(site.about.experience[1].description, /catalogues/i);
   assert.equal(site.about.experience[2].role, "AI and image generation");
   assert.match(site.about.body, /strong hands-on experience with AI and image generation/i);
   assert.match(site.about.body, /self-taught in graphic design/i);

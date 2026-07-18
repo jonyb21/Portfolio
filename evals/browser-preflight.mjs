@@ -11,7 +11,7 @@ const port = server.address().port;
 const origin = `http://127.0.0.1:${port}`;
 const appRevision = crypto.createHash("sha256").update(fs.readFileSync("public/app.js")).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(fs.readFileSync("public/styles.css")).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260718-2";
+const MEDIA_REVISION = "20260718-3";
 
 async function assertImagesRender(page, selector, label) {
   const images = page.locator(selector);
@@ -50,7 +50,7 @@ try {
   assert.equal(await page.locator(".brand-family").textContent(), "Brooks", "Surname is rendered separately");
   assert.equal(await page.locator(".brand-family").evaluate(element => getComputedStyle(element).color), "rgb(173, 189, 104)", "Brooks uses the green accent token");
   const categories = ["furniture", "homewares", "lighting", "mobility"];
-  const expectedCards = { furniture: 5, homewares: 5, lighting: 5, mobility: 4 };
+  const expectedCards = { furniture: 6, homewares: 6, lighting: 6, mobility: 6 };
   for (const category of categories) {
     await page.goto(`${origin}/work?category=${category}`, { waitUntil: "networkidle" });
     assert.equal(await page.locator('script[src^="/app.js"]').getAttribute("src"), `/app.js?v=${appRevision}`, `${category} loads the current app.js revision`);
@@ -69,7 +69,7 @@ try {
     assert.equal(await page.locator(".project-card img").evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0)), true, `${category} card images finish loading after scrolling`);
     await assertMobileBounds(page, ".project-card", `${category} cards`);
     if (category === "lighting") {
-      assert.equal(await page.locator(".light-switch-card").count(), 5, "Every lighting card has off and on states");
+      assert.equal(await page.locator(".light-switch-card").count(), 6, "Every lighting card has off and on states");
       assert.equal(await page.locator(".light-switch-card").evaluateAll(cards => cards.every(card => {
         const images = [...card.querySelectorAll("img")];
         return images.length === 2 && images.every(image => image.complete && image.naturalWidth > 0) && images.filter(image => Number(getComputedStyle(image).opacity) > 0).length === 1;
@@ -83,7 +83,7 @@ try {
   await page.goto(`${origin}/work?category=homewares`, { waitUntil: "networkidle" });
   await page.locator('[data-work-category="lighting"]').click();
   await page.waitForURL(/category=lighting/);
-  assert.equal(await page.locator(".project-card").count(), 5, "Lighting renders five cards");
+  assert.equal(await page.locator(".project-card").count(), 6, "Lighting renders six cards");
   await page.goBack();
   assert.equal(await page.locator('[data-work-category="homewares"]').getAttribute("aria-selected"), "true", "Browser history restores the selected category");
 
