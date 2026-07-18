@@ -1173,30 +1173,30 @@
       "year": "2026",
       "type": "Urban cycling helmet",
       "materials": "In-mould polycarbonate, recycled EPS, nylon webbing, soft-touch polymer, LED light guide",
-      "image": "/assets/mobility/aero-commuter-helmet-lead-photo-v5.webp",
-      "cardImage": "/assets/mobility/aero-commuter-helmet-lead-photo-v5.webp",
-      "detailImage": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v3.webp",
+      "image": "/assets/mobility/aero-commuter-helmet-lead-photo-v6.webp",
+      "cardImage": "/assets/mobility/aero-commuter-helmet-lead-photo-v6.webp",
+      "detailImage": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v6.webp",
       "href": "/work/aero-commuter-helmet",
       "summary": "A low-profile urban helmet that combines deep continuous airflow channels with a compact fit system and integrated rear light. Its restrained shell is shaped for daily clothing rather than racing equipment.",
       "notes": [
         "Three front-to-rear channels move air through the helmet while broad bridges maintain credible shell and liner structure.",
         "The polycarbonate shell wraps the recycled-EPS edge to protect high-contact areas and give the lower profile a clean datum.",
-        "A central red running and brake light, paired amber turn indicators, a conventional three-prong side-release buckle, and an indexed occipital dial make visibility and fit simple to manage."
+        "A central red running and brake light, paired amber turn indicators, synced wearable wrist indicators, a conventional three-prong side-release buckle, and an indexed occipital dial make visibility and fit simple to manage."
       ],
       "views": [
         {
-          "label": "Low side profile",
-          "image": "/assets/mobility/aero-commuter-helmet-angle-front-photo-v4.webp",
+          "label": "Underside and wearable kit",
+          "image": "/assets/mobility/aero-commuter-helmet-angle-front-photo-v6.webp",
           "type": "crop"
         },
         {
           "label": "Rear indicators and cradle",
-          "image": "/assets/mobility/aero-commuter-helmet-angle-rear-photo-v5.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-angle-rear-photo-v6.webp",
           "type": "crop"
         },
         {
-          "label": "Vent construction",
-          "image": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v3.webp",
+          "label": "Paired wrist indicators",
+          "image": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v6.webp",
           "type": "crop"
         },
         {
@@ -1206,22 +1206,22 @@
         },
         {
           "label": "Ready at home",
-          "image": "/assets/mobility/aero-commuter-helmet-context-wide-photo-v3.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-context-wide-photo-v6.webp",
           "type": "insitu"
         },
         {
-          "label": "Office desk",
-          "image": "/assets/mobility/aero-commuter-helmet-context-alt-photo-v3.webp",
+          "label": "Office charging",
+          "image": "/assets/mobility/aero-commuter-helmet-context-alt-photo-v6.webp",
           "type": "insitu"
         },
         {
-          "label": "Rainy office stop",
-          "image": "/assets/mobility/aero-commuter-helmet-context-active-photo-v3.webp",
+          "label": "Turning signal in use",
+          "image": "/assets/mobility/aero-commuter-helmet-context-active-photo-v6.webp",
           "type": "insitu"
         },
         {
           "label": "Indicators at dusk",
-          "image": "/assets/mobility/aero-commuter-helmet-context-use-photo-v5.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-context-use-photo-v6.webp",
           "type": "insitu"
         }
       ]
@@ -1421,12 +1421,12 @@
       "notes": [
         "Fibre-reinforced blue covers protect the hardened-steel links from weather and keep them quiet against the bicycle frame.",
         "Brass-coloured pivot bushes make the articulation readable and allow individual links and fasteners to be serviced.",
-        "A recessed cool-white LED ring illuminates the keyhole without obstructing it, while the two-strap holster keeps the folded stack clear of pedals and cables."
+        "A hardened-steel terminal stud closes into a matching receiver in the keyed head, while a recessed cool-white LED ring illuminates the keyhole without obstructing it."
       ],
       "views": [
         {
           "label": "Unfolded articulation",
-          "image": "/assets/mobility/link-folding-lock-angle-front-photo-v3.webp",
+          "image": "/assets/mobility/link-folding-lock-angle-front-photo-v4.webp",
           "type": "crop"
         },
         {
@@ -1450,8 +1450,8 @@
           "type": "insitu"
         },
         {
-          "label": "Locked to a street rail",
-          "image": "/assets/mobility/link-folding-lock-context-alt-photo-v2.webp",
+          "label": "Terminal locked to a street rail",
+          "image": "/assets/mobility/link-folding-lock-context-alt-photo-v4.webp",
           "type": "insitu"
         },
         {
