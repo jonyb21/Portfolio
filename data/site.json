@@ -1173,20 +1173,20 @@
       "year": "2026",
       "type": "Urban cycling helmet",
       "materials": "In-mould polycarbonate, recycled EPS, nylon webbing, soft-touch polymer, LED light guide",
-      "image": "/assets/mobility/aero-commuter-helmet-lead-photo-v3.webp",
-      "cardImage": "/assets/mobility/aero-commuter-helmet-lead-photo-v3.webp",
+      "image": "/assets/mobility/aero-commuter-helmet-lead-photo-v4.webp",
+      "cardImage": "/assets/mobility/aero-commuter-helmet-lead-photo-v4.webp",
       "detailImage": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v3.webp",
       "href": "/work/aero-commuter-helmet",
       "summary": "A low-profile urban helmet that combines deep continuous airflow channels with a compact fit system and integrated rear light. Its restrained shell is shaped for daily clothing rather than racing equipment.",
       "notes": [
         "Three front-to-rear channels move air through the helmet while broad bridges maintain credible shell and liner structure.",
         "The polycarbonate shell wraps the recycled-EPS edge to protect high-contact areas and give the lower profile a clean datum.",
-        "A narrow rear light, magnetic buckle, and indexed occipital dial make visibility and fit simple to manage with one hand."
+        "A narrow rear light, conventional three-prong side-release buckle, and indexed occipital dial make visibility and fit simple to manage with one hand."
       ],
       "views": [
         {
           "label": "Low side profile",
-          "image": "/assets/mobility/aero-commuter-helmet-angle-front-photo-v3.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-angle-front-photo-v4.webp",
           "type": "crop"
         },
         {
@@ -1201,7 +1201,7 @@
         },
         {
           "label": "Fit and buckle system",
-          "image": "/assets/mobility/aero-commuter-helmet-detail-material-photo-v3.webp",
+          "image": "/assets/mobility/aero-commuter-helmet-detail-material-photo-v4.webp",
           "type": "crop"
         },
         {
@@ -1233,30 +1233,30 @@
       "year": "2026",
       "type": "Convertible bicycle luggage",
       "materials": "TPU-coated recycled nylon, thermoformed recycled polymer, anodised aluminium, nylon webbing",
-      "image": "/assets/mobility/latch-convertible-pannier-lead-photo-v2.webp",
-      "cardImage": "/assets/mobility/latch-convertible-pannier-lead-photo-v2.webp",
-      "detailImage": "/assets/mobility/latch-convertible-pannier-detail-primary-photo-v2.webp",
+      "image": "/assets/mobility/latch-convertible-pannier-lead-photo-v3.webp",
+      "cardImage": "/assets/mobility/latch-convertible-pannier-lead-photo-v3.webp",
+      "detailImage": "/assets/mobility/latch-convertible-pannier-detail-primary-photo-v3.webp",
       "href": "/work/latch-convertible-pannier",
       "summary": "A weather-resistant bicycle pannier that leaves its rack hardware behind visually when carried off the bike. A structured back panel, concealed release, and stowable shoulder strap support a clean transition into work or home.",
       "notes": [
-        "The welded recycled-nylon body uses a roll top and bright waterproof liner to protect everyday equipment without a separate rain cover.",
+        "The welded recycled-nylon body uses a roll-top inner closure beneath a broad weather flap secured by two low-profile compression clasps.",
         "Two compact spring-loaded upper hooks wrap the rack's side rail and release together through one recessed green pull.",
         "A lower anti-sway catch locks around the rack stay, holding the bag clear of the wheel and heel while the shoulder strap remains fully stowed."
       ],
       "views": [
         {
           "label": "Closed front profile",
-          "image": "/assets/mobility/latch-convertible-pannier-angle-front-photo-v2.webp",
+          "image": "/assets/mobility/latch-convertible-pannier-angle-front-photo-v3.webp",
           "type": "crop"
         },
         {
           "label": "Rack interface",
-          "image": "/assets/mobility/latch-convertible-pannier-angle-rear-photo-v2.webp",
+          "image": "/assets/mobility/latch-convertible-pannier-angle-rear-photo-v3.webp",
           "type": "crop"
         },
         {
           "label": "Release hardware",
-          "image": "/assets/mobility/latch-convertible-pannier-detail-primary-photo-v2.webp",
+          "image": "/assets/mobility/latch-convertible-pannier-detail-primary-photo-v3.webp",
           "type": "crop"
         },
         {
@@ -1266,22 +1266,22 @@
         },
         {
           "label": "Office rack mount",
-          "image": "/assets/mobility/latch-convertible-pannier-context-wide-photo-v2.webp",
+          "image": "/assets/mobility/latch-convertible-pannier-context-wide-photo-v3.webp",
           "type": "insitu"
         },
         {
           "label": "Rack mounted",
-          "image": "/assets/mobility/latch-convertible-pannier-context-alt-photo-v2.webp",
+          "image": "/assets/mobility/latch-convertible-pannier-context-alt-photo-v3.webp",
           "type": "insitu"
         },
         {
           "label": "Grocery stop",
-          "image": "/assets/mobility/latch-convertible-pannier-context-active-photo-v2.webp",
+          "image": "/assets/mobility/latch-convertible-pannier-context-active-photo-v3.webp",
           "type": "insitu"
         },
         {
           "label": "Shoulder carry mode",
-          "image": "/assets/mobility/latch-convertible-pannier-context-use-photo-v2.webp",
+          "image": "/assets/mobility/latch-convertible-pannier-context-use-photo-v3.webp",
           "type": "insitu"
         }
       ]

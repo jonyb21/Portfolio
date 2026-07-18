@@ -24,7 +24,7 @@ const PROJECT_CATEGORY_COUNTS = { furniture: 6, homewares: 6, lighting: 6, mobil
 const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260718-4";
+const MEDIA_REVISION = "20260718-5";
 validateSite(validSite);
 
 function withProject(index, changes) {
@@ -140,15 +140,20 @@ try {
     const images = [project.image, ...project.views.map(view => view.image)].filter(Boolean);
     return new Set(images).size === images.length;
   }));
-  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-(?:vibrant-v1|photo-v[23]))\.webp$/.test(view.image))));
-  assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.some(view => view.type === "insitu" && /-context-use-(?:vibrant-v1|photo-v[23])\.webp$/.test(view.image))), "Every Homewares, Lighting, and Mobility project includes a use scene");
+  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-(?:vibrant-v1|photo-v[234]))\.webp$/.test(view.image))));
+  assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.some(view => view.type === "insitu" && /-context-use-(?:vibrant-v1|photo-v[234])\.webp$/.test(view.image))), "Every Homewares, Lighting, and Mobility project includes a use scene");
   assert(site.projects.filter(project => project.category === "lighting").every(project => project.cardImage.includes("-card-off-") && project.cardImage !== project.image), "Every lighting card has a separate switched-off render");
   assert(site.projects.every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Every gallery keeps four studio studies followed by four context views");
   const photoProjects = site.projects.filter(project => ["pivot-writing-desk", "silo-food-waste-caddy", "beacon-portable-lantern", "stride-fold-ebike", "aero-commuter-helmet", "latch-convertible-pannier", "gauge-electric-pump", "rove-carry-on", "link-folding-lock"].includes(project.slug));
-  assert(photoProjects.every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => /-photo-v[23]\.webp$/.test(image))), "New and corrected projects use the realistic versioned photo media system");
+  assert(photoProjects.every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => /-photo-v[234]\.webp$/.test(image))), "New and corrected projects use the realistic versioned photo media system");
   const aeroHelmet = site.projects.find(project => project.slug === "aero-commuter-helmet");
-  assert([aeroHelmet.image, aeroHelmet.cardImage, aeroHelmet.detailImage, ...aeroHelmet.views.map(view => view.image)].every(image => image.endsWith("-photo-v3.webp")), "Aero helmet uses the corrected consistent photo-v3 set");
-  assert.match(aeroHelmet.notes.join(" "), /magnetic buckle/i, "Aero helmet documents its matching chin clasp");
+  assert([aeroHelmet.image, aeroHelmet.cardImage, aeroHelmet.views[0].image, aeroHelmet.views[3].image].every(image => image.endsWith("-photo-v4.webp")), "Aero helmet uses corrected photo-v4 assets wherever the chin clasp is visible");
+  assert.match(aeroHelmet.notes.join(" "), /three-prong side-release buckle/i, "Aero helmet documents its matching chin clasp");
+  const pannier = site.projects.find(project => project.slug === "latch-convertible-pannier");
+  assert.match(pannier.notes.join(" "), /weather flap.*two low-profile compression clasps/i, "Pannier documents its outward weather flap and paired clasps");
+  assert.match(pannier.notes.join(" "), /two compact spring-loaded upper hooks/i, "Pannier documents two rack-rail hooks");
+  assert.match(pannier.notes.join(" "), /lower anti-sway catch/i, "Pannier documents its lower rack-stay catch");
+  assert([pannier.image, pannier.cardImage, pannier.detailImage, ...pannier.views.filter(view => !view.image.includes("detail-material")).map(view => view.image)].every(image => image.endsWith("-photo-v3.webp")), "Pannier uses the corrected flap-front and wheel-side mounting assets");
   assert.equal(site.projects.find(project => project.slug === "gauge-electric-pump").title, "Gauge Electric Pump");
   assert.match(site.projects.find(project => project.slug === "gauge-electric-pump").summary, /LED built into the end of the nozzle/i);
   assert.match(site.projects.find(project => project.slug === "latch-convertible-pannier").notes.join(" "), /two compact.*upper hooks.*lower anti-sway catch/i);
