@@ -1173,15 +1173,15 @@
       "year": "2026",
       "type": "Urban cycling helmet",
       "materials": "In-mould polycarbonate, recycled EPS, nylon webbing, soft-touch polymer, LED light guide",
-      "image": "/assets/mobility/aero-commuter-helmet-lead-photo-v4.webp",
-      "cardImage": "/assets/mobility/aero-commuter-helmet-lead-photo-v4.webp",
+      "image": "/assets/mobility/aero-commuter-helmet-lead-photo-v5.webp",
+      "cardImage": "/assets/mobility/aero-commuter-helmet-lead-photo-v5.webp",
       "detailImage": "/assets/mobility/aero-commuter-helmet-detail-primary-photo-v3.webp",
       "href": "/work/aero-commuter-helmet",
       "summary": "A low-profile urban helmet that combines deep continuous airflow channels with a compact fit system and integrated rear light. Its restrained shell is shaped for daily clothing rather than racing equipment.",
       "notes": [
         "Three front-to-rear channels move air through the helmet while broad bridges maintain credible shell and liner structure.",
         "The polycarbonate shell wraps the recycled-EPS edge to protect high-contact areas and give the lower profile a clean datum.",
-        "A narrow rear light, conventional three-prong side-release buckle, and indexed occipital dial make visibility and fit simple to manage with one hand."
+        "A central red running and brake light, paired amber turn indicators, a conventional three-prong side-release buckle, and an indexed occipital dial make visibility and fit simple to manage."
       ],
       "views": [
         {
@@ -1190,8 +1190,8 @@
           "type": "crop"
         },
         {
-          "label": "Rear light and cradle",
-          "image": "/assets/mobility/aero-commuter-helmet-angle-rear-photo-v3.webp",
+          "label": "Rear indicators and cradle",
+          "image": "/assets/mobility/aero-commuter-helmet-angle-rear-photo-v5.webp",
           "type": "crop"
         },
         {
@@ -1200,8 +1200,8 @@
           "type": "crop"
         },
         {
-          "label": "Fit and buckle system",
-          "image": "/assets/mobility/aero-commuter-helmet-detail-material-photo-v4.webp",
+          "label": "Side-release clasp",
+          "image": "/assets/mobility/aero-commuter-helmet-detail-material-photo-v5.webp",
           "type": "crop"
         },
         {
@@ -1220,8 +1220,8 @@
           "type": "insitu"
         },
         {
-          "label": "Rear light at dusk",
-          "image": "/assets/mobility/aero-commuter-helmet-context-use-photo-v3.webp",
+          "label": "Indicators at dusk",
+          "image": "/assets/mobility/aero-commuter-helmet-context-use-photo-v5.webp",
           "type": "insitu"
         }
       ]
@@ -1413,20 +1413,20 @@
       "year": "2026",
       "type": "Folding bicycle lock",
       "materials": "Hardened steel, fibre-reinforced polymer, brass, stainless steel",
-      "image": "/assets/mobility/link-folding-lock-lead-photo-v2.webp",
-      "cardImage": "/assets/mobility/link-folding-lock-lead-photo-v2.webp",
+      "image": "/assets/mobility/link-folding-lock-lead-photo-v3.webp",
+      "cardImage": "/assets/mobility/link-folding-lock-lead-photo-v3.webp",
       "detailImage": "/assets/mobility/link-folding-lock-detail-primary-photo-v2.webp",
       "href": "/work/link-folding-lock",
       "summary": "A compact folding bicycle lock that balances visible security with clean everyday storage. Protected steel links articulate around serviceable brass pivots and fold into a frame-mounted holster.",
       "notes": [
         "Fibre-reinforced blue covers protect the hardened-steel links from weather and keep them quiet against the bicycle frame.",
         "Brass-coloured pivot bushes make the articulation readable and allow individual links and fasteners to be serviced.",
-        "The keyed head locks the articulated chain into one continuous loop while the two-strap holster keeps the folded stack clear of pedals and cables."
+        "A recessed cool-white LED ring illuminates the keyhole without obstructing it, while the two-strap holster keeps the folded stack clear of pedals and cables."
       ],
       "views": [
         {
           "label": "Unfolded articulation",
-          "image": "/assets/mobility/link-folding-lock-angle-front-photo-v2.webp",
+          "image": "/assets/mobility/link-folding-lock-angle-front-photo-v3.webp",
           "type": "crop"
         },
         {
@@ -1440,8 +1440,8 @@
           "type": "crop"
         },
         {
-          "label": "Protected keyway",
-          "image": "/assets/mobility/link-folding-lock-detail-material-photo-v2.webp",
+          "label": "Illuminated keyway",
+          "image": "/assets/mobility/link-folding-lock-detail-material-photo-v3.webp",
           "type": "crop"
         },
         {
