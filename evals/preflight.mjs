@@ -19,7 +19,7 @@ const PROJECT_CATEGORY_COUNTS = { furniture: 6, homewares: 6, lighting: 6, mobil
 const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260718-7";
+const MEDIA_REVISION = "20260719-1";
 new Function(adminJs);
 
 function localAssetHash(image) {
@@ -160,7 +160,10 @@ assert(/lower anti-sway catch/i.test(pannier.notes.join(" ")), "Pannier document
 assert([pannier.image, pannier.cardImage, pannier.detailImage, ...pannier.views.filter(view => !view.image.includes("detail-material")).map(view => view.image)].every(image => image.endsWith("-photo-v3.webp")), "Pannier uses the corrected flap-front and wheel-side mounting assets");
 const foldingLock = site.projects.find(project => project.slug === "link-folding-lock");
 assert(/LED ring illuminates the keyhole/i.test(foldingLock.notes.join(" ")), "Folding lock documents its illuminated keyway");
-assert(/terminal stud closes into a matching receiver/i.test(foldingLock.notes.join(" ")), "Folding lock documents its working closure");
+assert(/captive hardened-steel tongue.*matching receiver.*permanently attached keyed body/i.test(foldingLock.notes.join(" ")), "Folding lock documents its captive working closure");
+assert(/peened pivot rivets permanently capture every link/i.test(foldingLock.notes.join(" ")), "Folding lock documents its permanent non-removable joints");
+assert(!/serviceable|replaceable|detachable/i.test(`${foldingLock.summary} ${foldingLock.notes.join(" ")} ${foldingLock.views.map(view => view.label).join(" ")}`), "Folding lock never presents a separable security chain");
+assert([foldingLock.image, foldingLock.cardImage, foldingLock.detailImage, foldingLock.views[0].image, foldingLock.views[2].image, foldingLock.views[5].image, foldingLock.views[7].image].every(image => image.endsWith("-photo-v5.webp")), "Folding lock uses corrected permanent-closure media wherever the mechanism is visible");
 assert(generatedProjects.every(project => /(cobalt|tangerine|sunflower|vermilion|green|teal|chartreuse|coral|ultramarine|warm-grey|graphite|stainless steel|aluminium|polycarbonate|recycled|ocean-blue|ash|brass)/i.test(`${project.materials} ${project.summary}`)), "Every generated project defines a deliberate colour or material identity");
 const electricPump = site.projects.find(project => project.slug === "gauge-electric-pump");
 assert(electricPump.title === "Gauge Electric Pump" && /LED built into the end of the nozzle/i.test(electricPump.summary), "The electric pump is named correctly and locates its LED at the nozzle tip");

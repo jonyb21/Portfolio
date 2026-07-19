@@ -1413,20 +1413,20 @@
       "year": "2026",
       "type": "Folding bicycle lock",
       "materials": "Hardened steel, fibre-reinforced polymer, brass, stainless steel",
-      "image": "/assets/mobility/link-folding-lock-lead-photo-v3.webp",
-      "cardImage": "/assets/mobility/link-folding-lock-lead-photo-v3.webp",
-      "detailImage": "/assets/mobility/link-folding-lock-detail-primary-photo-v2.webp",
+      "image": "/assets/mobility/link-folding-lock-lead-photo-v5.webp",
+      "cardImage": "/assets/mobility/link-folding-lock-lead-photo-v5.webp",
+      "detailImage": "/assets/mobility/link-folding-lock-detail-primary-photo-v5.webp",
       "href": "/work/link-folding-lock",
-      "summary": "A compact folding bicycle lock that balances visible security with clean everyday storage. Protected steel links articulate around serviceable brass pivots and fold into a frame-mounted holster.",
+      "summary": "A compact folding bicycle lock that balances visible security with clean everyday storage. One permanently riveted steel chain remains a single assembly as it folds into a frame-mounted holster.",
       "notes": [
         "Fibre-reinforced blue covers protect the hardened-steel links from weather and keep them quiet against the bicycle frame.",
-        "Brass-coloured pivot bushes make the articulation readable and allow individual links and fasteners to be serviced.",
-        "A hardened-steel terminal stud closes into a matching receiver in the keyed head, while a recessed cool-white LED ring illuminates the keyhole without obstructing it."
+        "Smooth peened pivot rivets permanently capture every link, creating a tamper-resistant assembly that cannot be taken apart without destroying the rivets.",
+        "A captive hardened-steel tongue integrated into the final link slides into a matching receiver in the permanently attached keyed body, while a recessed cool-white LED ring illuminates the keyhole without obstructing it."
       ],
       "views": [
         {
           "label": "Unfolded articulation",
-          "image": "/assets/mobility/link-folding-lock-angle-front-photo-v4.webp",
+          "image": "/assets/mobility/link-folding-lock-angle-front-photo-v5.webp",
           "type": "crop"
         },
         {
@@ -1435,8 +1435,8 @@
           "type": "crop"
         },
         {
-          "label": "Serviceable pivot",
-          "image": "/assets/mobility/link-folding-lock-detail-primary-photo-v2.webp",
+          "label": "Permanent peened joint",
+          "image": "/assets/mobility/link-folding-lock-detail-primary-photo-v5.webp",
           "type": "crop"
         },
         {
@@ -1450,8 +1450,8 @@
           "type": "insitu"
         },
         {
-          "label": "Terminal locked to a street rail",
-          "image": "/assets/mobility/link-folding-lock-context-alt-photo-v4.webp",
+          "label": "Captive closure locked to a street rail",
+          "image": "/assets/mobility/link-folding-lock-context-alt-photo-v5.webp",
           "type": "insitu"
         },
         {
@@ -1460,8 +1460,8 @@
           "type": "insitu"
         },
         {
-          "label": "Replaceable link service",
-          "image": "/assets/mobility/link-folding-lock-context-use-photo-v2.webp",
+          "label": "Continuous chain folding into holster",
+          "image": "/assets/mobility/link-folding-lock-context-use-photo-v5.webp",
           "type": "insitu"
         }
       ]

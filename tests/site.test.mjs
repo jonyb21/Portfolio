@@ -24,7 +24,7 @@ const PROJECT_CATEGORY_COUNTS = { furniture: 6, homewares: 6, lighting: 6, mobil
 const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
 const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
 const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
-const MEDIA_REVISION = "20260718-7";
+const MEDIA_REVISION = "20260719-1";
 validateSite(validSite);
 
 function withProject(index, changes) {
@@ -158,7 +158,10 @@ try {
   assert([pannier.image, pannier.cardImage, pannier.detailImage, ...pannier.views.filter(view => !view.image.includes("detail-material")).map(view => view.image)].every(image => image.endsWith("-photo-v3.webp")), "Pannier uses the corrected flap-front and wheel-side mounting assets");
   const foldingLock = site.projects.find(project => project.slug === "link-folding-lock");
   assert.match(foldingLock.notes.join(" "), /LED ring illuminates the keyhole/i, "Folding lock documents its illuminated keyway");
-  assert.match(foldingLock.notes.join(" "), /terminal stud closes into a matching receiver/i, "Folding lock documents its working closure");
+  assert.match(foldingLock.notes.join(" "), /captive hardened-steel tongue.*matching receiver.*permanently attached keyed body/i, "Folding lock documents its captive working closure");
+  assert.match(foldingLock.notes.join(" "), /peened pivot rivets permanently capture every link/i, "Folding lock documents its permanent non-removable joints");
+  assert.doesNotMatch(`${foldingLock.summary} ${foldingLock.notes.join(" ")} ${foldingLock.views.map(view => view.label).join(" ")}`, /serviceable|replaceable|detachable/i, "Folding lock does not imply that security links can be taken apart");
+  assert([foldingLock.image, foldingLock.cardImage, foldingLock.detailImage, foldingLock.views[0].image, foldingLock.views[2].image, foldingLock.views[5].image, foldingLock.views[7].image].every(image => image.endsWith("-photo-v5.webp")), "Folding lock uses the corrected permanent-closure photo-v5 assets wherever the mechanism is visible");
   assert.equal(site.projects.find(project => project.slug === "gauge-electric-pump").title, "Gauge Electric Pump");
   assert.match(site.projects.find(project => project.slug === "gauge-electric-pump").summary, /LED built into the end of the nozzle/i);
   assert.match(site.projects.find(project => project.slug === "latch-convertible-pannier").notes.join(" "), /two compact.*upper hooks.*lower anti-sway catch/i);
