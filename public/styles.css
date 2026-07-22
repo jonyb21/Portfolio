@@ -282,27 +282,21 @@ h2 {
 }
 
 .work-category-tabs {
-  display: flex;
-  width: max-content;
-  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
   margin: 0 0 28px;
-  gap: 32px;
-  overflow-x: auto;
   border-bottom: 1px solid var(--line);
-  scrollbar-width: none;
-}
-
-.work-category-tabs::-webkit-scrollbar {
-  display: none;
 }
 
 .work-category-tabs [role="tab"] {
-  flex: 0 0 auto;
-  padding: 0 0 10px;
+  min-width: 0;
+  padding: 0 4px 10px;
   border-bottom: 2px solid transparent;
   color: var(--muted);
   font-size: 0.9rem;
   letter-spacing: 0;
+  text-align: center;
   cursor: pointer;
 }
 
@@ -1014,14 +1008,12 @@ body.preview-open {
   }
 
   .work-category-tabs {
-    width: 100%;
     margin-bottom: 18px;
-    gap: 24px;
   }
 
   .work-category-tabs [role="tab"] {
-    padding-bottom: 9px;
-    font-size: 0.85rem;
+    padding: 0 2px 9px;
+    font-size: clamp(0.72rem, 3.4vw, 0.85rem);
   }
 
   .project-grid {

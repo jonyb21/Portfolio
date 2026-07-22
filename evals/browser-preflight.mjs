@@ -35,6 +35,17 @@ async function assertMobileBounds(page, selector, label) {
   assert.deepEqual(outside, [], `${label} stays inside the mobile viewport`);
 }
 
+async function assertEqualCategoryTabs(page, label) {
+  const layout = await page.locator(".work-category-tabs").evaluate(tablist => {
+    const list = tablist.getBoundingClientRect();
+    const tabs = [...tablist.querySelectorAll('[role="tab"]')].map(tab => tab.getBoundingClientRect());
+    return { listWidth: list.width, tabWidths: tabs.map(tab => tab.width), coveredWidth: tabs.reduce((sum, tab) => sum + tab.width, 0) };
+  });
+  assert.equal(layout.tabWidths.length, 4, `${label} renders four category tabs`);
+  assert(layout.tabWidths.every(width => Math.abs(width - layout.tabWidths[0]) < 0.5), `${label} category tabs have equal widths`);
+  assert(Math.abs(layout.coveredWidth - layout.listWidth) < 1, `${label} category tabs span the full tablist`);
+}
+
 let browser;
 try {
   browser = await chromium.launch({ headless: true });
@@ -58,6 +69,7 @@ try {
     assert.equal(await page.locator(".project-card").count(), expectedCards[category], `${category} renders its approved card count`);
     assert.equal(await page.locator(`[data-work-category="${category}"]`).getAttribute("aria-selected"), "true");
     assert.equal(await page.locator("#work-category-heading").textContent(), `${category[0].toUpperCase()}${category.slice(1)}`);
+    await assertEqualCategoryTabs(page, `${category} mobile`);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), true, `${category} does not overflow horizontally`);
     for (let index = 0; index < await page.locator(".project-card").count(); index += 1) {
       await page.locator(".project-card").nth(index).scrollIntoViewIfNeeded();
@@ -96,6 +108,7 @@ try {
   const tilePage = await browser.newPage({ viewport: { width: 1100, height: 800 } });
   for (const category of categories) {
     await tilePage.goto(`${origin}/work?category=${category}`, { waitUntil: "networkidle" });
+    await assertEqualCategoryTabs(tilePage, `${category} desktop`);
     const tileSizes = await tilePage.locator(".project-card").evaluateAll(cards => cards.map(card => {
       const { width, height } = card.getBoundingClientRect();
       return `${Math.round(width)}x${Math.round(height)}`;

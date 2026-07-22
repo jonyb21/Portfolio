@@ -332,56 +332,56 @@
       "category": "furniture",
       "year": "2026",
       "type": "Compact writing desk",
-      "materials": "Solid ash, folded powder-coated aluminium, wool felt, stainless steel fasteners",
-      "image": "/assets/furniture/pivot-writing-desk-lead-photo-v2.webp",
-      "cardImage": "/assets/furniture/pivot-writing-desk-lead-photo-v2.webp",
-      "detailImage": "/assets/furniture/pivot-writing-desk-detail-primary-photo-v2.webp",
+      "materials": "Dark walnut, powder-coated aluminium, wool felt, stainless steel fasteners",
+      "image": "/assets/furniture/pivot-writing-desk-lead-photo-v3.webp",
+      "cardImage": "/assets/furniture/pivot-writing-desk-lead-photo-v3.webp",
+      "detailImage": "/assets/furniture/pivot-writing-desk-detail-primary-photo-v3.webp",
       "href": "/work/pivot-writing-desk",
-      "summary": "A compact ash writing desk organised around a cobalt service spine. Cable sockets, a sliding pencil tray, and a shallow privacy panel make a small workstation useful without turning it into office equipment.",
+      "summary": "A compact dark-walnut writing desk organised around a charcoal service spine. Cable sockets, a sliding felt-lined tray, and a pivoting privacy panel make a small workstation useful without turning it into office equipment.",
       "notes": [
-        "The folded aluminium rear spine carries power, cable routing, and the sliding felt-lined pencil tray in one replaceable assembly.",
-        "A shallow timber privacy panel screens visual clutter while preserving the open proportions of the solid-ash frame.",
-        "Bolted leg joints and separate metal hardware let the desk flat-pack, move, and be repaired without damaging the timber."
+        "The charcoal powder-coated aluminium service spine carries power, cable routing, and the sliding felt-lined pencil tray in one replaceable assembly.",
+        "A shallow pivoting walnut privacy panel screens visual clutter while preserving the desk's open proportions.",
+        "Bolted aluminium leg joints and separate stainless hardware let the desk flat-pack, move, and be repaired without damaging the walnut top."
       ],
       "views": [
         {
           "label": "Front working view",
-          "image": "/assets/furniture/pivot-writing-desk-angle-front-photo-v2.webp",
+          "image": "/assets/furniture/pivot-writing-desk-angle-front-photo-v3.webp",
           "type": "crop"
         },
         {
           "label": "Rear service view",
-          "image": "/assets/furniture/pivot-writing-desk-angle-rear-photo-v2.webp",
+          "image": "/assets/furniture/pivot-writing-desk-angle-rear-photo-v3.webp",
           "type": "crop"
         },
         {
           "label": "Cable and tray spine",
-          "image": "/assets/furniture/pivot-writing-desk-detail-primary-photo-v2.webp",
+          "image": "/assets/furniture/pivot-writing-desk-detail-primary-photo-v3.webp",
           "type": "crop"
         },
         {
           "label": "Bolted leg joint",
-          "image": "/assets/furniture/pivot-writing-desk-detail-material-photo-v2.webp",
+          "image": "/assets/furniture/pivot-writing-desk-detail-material-photo-v3.webp",
           "type": "crop"
         },
         {
           "label": "Shared studio",
-          "image": "/assets/furniture/pivot-writing-desk-context-wide-photo-v2.webp",
+          "image": "/assets/furniture/pivot-writing-desk-context-wide-photo-v3.webp",
           "type": "insitu"
         },
         {
           "label": "Bedroom workspace",
-          "image": "/assets/furniture/pivot-writing-desk-context-alt-photo-v2.webp",
+          "image": "/assets/furniture/pivot-writing-desk-context-alt-photo-v3.webp",
           "type": "insitu"
         },
         {
           "label": "Sketching session",
-          "image": "/assets/furniture/pivot-writing-desk-context-active-photo-v2.webp",
+          "image": "/assets/furniture/pivot-writing-desk-context-active-photo-v3.webp",
           "type": "insitu"
         },
         {
           "label": "Console mode",
-          "image": "/assets/furniture/pivot-writing-desk-context-use-photo-v2.webp",
+          "image": "/assets/furniture/pivot-writing-desk-context-use-photo-v3.webp",
           "type": "insitu"
         }
       ]
@@ -1407,61 +1407,61 @@
       ]
     },
     {
-      "title": "Link Folding Lock",
+      "title": "Arc Hinged D-Lock",
       "slug": "link-folding-lock",
       "category": "mobility",
       "year": "2026",
-      "type": "Folding bicycle lock",
-      "materials": "Hardened steel, fibre-reinforced polymer, brass, stainless steel",
-      "image": "/assets/mobility/link-folding-lock-lead-photo-v5.webp",
-      "cardImage": "/assets/mobility/link-folding-lock-lead-photo-v5.webp",
-      "detailImage": "/assets/mobility/link-folding-lock-detail-primary-photo-v5.webp",
+      "type": "Hinged D-lock for bicycles",
+      "materials": "Hardened steel, bead-blasted aluminium, moulded elastomer, stainless steel",
+      "image": "/assets/mobility/arc-hinged-d-lock-lead-photo-v6.webp",
+      "cardImage": "/assets/mobility/arc-hinged-d-lock-lead-photo-v6.webp",
+      "detailImage": "/assets/mobility/arc-hinged-d-lock-detail-primary-photo-v6.webp",
       "href": "/work/link-folding-lock",
-      "summary": "A compact folding bicycle lock that balances visible security with clean everyday storage. One permanently riveted steel chain remains a single assembly as it folds into a frame-mounted holster.",
+      "summary": "A compact hinged D-lock built as one captive assembly. A permanent pivot keeps the shackle attached, while a recessed receiver and separate frame mount make locking and daily carry easy to understand.",
       "notes": [
-        "Fibre-reinforced blue covers protect the hardened-steel links from weather and keep them quiet against the bicycle frame.",
-        "Smooth peened pivot rivets permanently capture every link, creating a tamper-resistant assembly that cannot be taken apart without destroying the rivets.",
-        "A captive hardened-steel tongue integrated into the final link slides into a matching receiver in the permanently attached keyed body, while a recessed cool-white LED ring illuminates the keyhole without obstructing it."
+        "The blue-sleeved hardened-steel shackle stays permanently captured by a concealed permanent pivot inside the bead-blasted aluminium crossbar, so unlocking never creates a loose part.",
+        "The free end swings into a recessed receiver with a stainless-steel collar and an internal deadbolt; the recessed key cylinder and cool-white LED ring sit beside it.",
+        "A separate low-profile frame mount is only a transport accessory: rubber-lined guides hold the closed lock vertically and a thumb tab releases its spring latch."
       ],
       "views": [
         {
-          "label": "Unfolded articulation",
-          "image": "/assets/mobility/link-folding-lock-angle-front-photo-v5.webp",
+          "label": "Closed three-quarter view",
+          "image": "/assets/mobility/arc-hinged-d-lock-angle-front-photo-v6.webp",
           "type": "crop"
         },
         {
-          "label": "Folded in holster",
-          "image": "/assets/mobility/link-folding-lock-angle-rear-photo-v2.webp",
+          "label": "Pivot-side construction",
+          "image": "/assets/mobility/arc-hinged-d-lock-angle-rear-photo-v6.webp",
           "type": "crop"
         },
         {
-          "label": "Permanent peened joint",
-          "image": "/assets/mobility/link-folding-lock-detail-primary-photo-v5.webp",
+          "label": "Concealed permanent pivot",
+          "image": "/assets/mobility/arc-hinged-d-lock-detail-primary-photo-v6.webp",
           "type": "crop"
         },
         {
-          "label": "Illuminated keyway",
-          "image": "/assets/mobility/link-folding-lock-detail-material-photo-v3.webp",
+          "label": "Receiver, deadbolt and illuminated keyway",
+          "image": "/assets/mobility/arc-hinged-d-lock-detail-material-photo-v6.webp",
           "type": "crop"
         },
         {
-          "label": "Frame-mounted holster",
-          "image": "/assets/mobility/link-folding-lock-context-wide-photo-v2.webp",
+          "label": "Released from the frame mount",
+          "image": "/assets/mobility/arc-hinged-d-lock-context-wide-photo-v6.webp",
           "type": "insitu"
         },
         {
-          "label": "Captive closure locked to a street rail",
-          "image": "/assets/mobility/link-folding-lock-context-alt-photo-v5.webp",
+          "label": "Frame and rear wheel secured to a street rail",
+          "image": "/assets/mobility/arc-hinged-d-lock-context-alt-photo-v6.webp",
           "type": "insitu"
         },
         {
-          "label": "Entry shelf storage",
-          "image": "/assets/mobility/link-folding-lock-context-active-photo-v2.webp",
+          "label": "Captive shackle swinging closed",
+          "image": "/assets/mobility/arc-hinged-d-lock-context-active-photo-v6.webp",
           "type": "insitu"
         },
         {
-          "label": "Continuous chain folding into holster",
-          "image": "/assets/mobility/link-folding-lock-context-use-photo-v5.webp",
+          "label": "Closed lock stored with cycling gear",
+          "image": "/assets/mobility/arc-hinged-d-lock-context-use-photo-v6.webp",
           "type": "insitu"
         }
       ]
