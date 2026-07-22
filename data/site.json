@@ -332,56 +332,56 @@
       "category": "furniture",
       "year": "2026",
       "type": "Compact writing desk",
-      "materials": "Dark walnut, powder-coated aluminium, wool felt, stainless steel fasteners",
-      "image": "/assets/furniture/pivot-writing-desk-lead-photo-v3.webp",
-      "cardImage": "/assets/furniture/pivot-writing-desk-lead-photo-v3.webp",
-      "detailImage": "/assets/furniture/pivot-writing-desk-detail-primary-photo-v3.webp",
+      "materials": "Dark walnut, graphite powder-coated aluminium, charcoal aluminium, olive wool felt, stainless steel fasteners",
+      "image": "/assets/furniture/pivot-writing-desk-lead-photo-v4.webp",
+      "cardImage": "/assets/furniture/pivot-writing-desk-lead-photo-v4.webp",
+      "detailImage": "/assets/furniture/pivot-writing-desk-detail-primary-photo-v4.webp",
       "href": "/work/pivot-writing-desk",
-      "summary": "A compact dark-walnut writing desk organised around a charcoal service spine. Cable sockets, a sliding felt-lined tray, and a pivoting privacy panel make a small workstation useful without turning it into office equipment.",
+      "summary": "A compact dark-walnut writing desk carried by two graphite sled frames and organised around a continuous charcoal service spine. An olive felt tray, two cable sockets, and a two-state walnut pivot panel keep the work surface useful without turning it into office equipment.",
       "notes": [
-        "The charcoal powder-coated aluminium service spine carries power, cable routing, and the sliding felt-lined pencil tray in one replaceable assembly.",
-        "A shallow pivoting walnut privacy panel screens visual clutter while preserving the desk's open proportions.",
-        "Bolted aluminium leg joints and separate stainless hardware let the desk flat-pack, move, and be repaired without damaging the walnut top."
+        "The continuous charcoal service spine spans the rear edge, keeping the shallow sliding olive felt tray on the left and two cable sockets on the right.",
+        "The central dark-walnut pivot panel locks upright as a document screen or folds flush into the spine; those are its only two working states.",
+        "Two graphite sled frames use compact bolted brackets and separate stainless steel fasteners so the desk can flat-pack and be repaired without damaging the walnut top."
       ],
       "views": [
         {
           "label": "Front working view",
-          "image": "/assets/furniture/pivot-writing-desk-angle-front-photo-v3.webp",
+          "image": "/assets/furniture/pivot-writing-desk-angle-front-photo-v4.webp",
           "type": "crop"
         },
         {
           "label": "Rear service view",
-          "image": "/assets/furniture/pivot-writing-desk-angle-rear-photo-v3.webp",
+          "image": "/assets/furniture/pivot-writing-desk-angle-rear-photo-v4.webp",
           "type": "crop"
         },
         {
-          "label": "Cable and tray spine",
-          "image": "/assets/furniture/pivot-writing-desk-detail-primary-photo-v3.webp",
+          "label": "Sliding tray and cable spine",
+          "image": "/assets/furniture/pivot-writing-desk-detail-primary-photo-v4.webp",
           "type": "crop"
         },
         {
           "label": "Bolted leg joint",
-          "image": "/assets/furniture/pivot-writing-desk-detail-material-photo-v3.webp",
+          "image": "/assets/furniture/pivot-writing-desk-detail-material-photo-v4.webp",
           "type": "crop"
         },
         {
-          "label": "Shared studio",
-          "image": "/assets/furniture/pivot-writing-desk-context-wide-photo-v3.webp",
+          "label": "Front-edge sketching",
+          "image": "/assets/furniture/pivot-writing-desk-context-wide-photo-v4.webp",
           "type": "insitu"
         },
         {
           "label": "Bedroom workspace",
-          "image": "/assets/furniture/pivot-writing-desk-context-alt-photo-v3.webp",
+          "image": "/assets/furniture/pivot-writing-desk-context-alt-photo-v4.webp",
           "type": "insitu"
         },
         {
-          "label": "Sketching session",
-          "image": "/assets/furniture/pivot-writing-desk-context-active-photo-v3.webp",
+          "label": "Over-shoulder sketching",
+          "image": "/assets/furniture/pivot-writing-desk-context-active-photo-v4.webp",
           "type": "insitu"
         },
         {
           "label": "Console mode",
-          "image": "/assets/furniture/pivot-writing-desk-context-use-photo-v3.webp",
+          "image": "/assets/furniture/pivot-writing-desk-context-use-photo-v4.webp",
           "type": "insitu"
         }
       ]
