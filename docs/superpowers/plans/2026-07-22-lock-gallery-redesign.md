@@ -13,7 +13,7 @@
 - One removable hardened-steel U-shackle with muted navy elastomer, one bead-blasted aluminium crossbar, two recessed receivers, two internal deadbolts, one recessed stainless key barrel in the right end-cap, a thin cool-white LED locating ring, and charcoal rubber protection.
 - Product geometry, receiver spacing, end-cap keyway position, LED ring, materials, and colors remain identical in every view.
 - Nine unique native 4:3 WebP files: one hero, four crop views, and four human in-situ views.
-- In locked views, the shackle passes through the bicycle rear wheel and rear frame triangle and around one fixed rail.
+- In locked views, the shackle encloses the bicycle seat tube and one fixed rail without intersecting either solid tube.
 - No hinge, cable, folding links, exposed fasteners, floating parts, extra lights, logos, text, or watermark.
 - Preserve slug `link-folding-lock`; use new `arc-u-lock-*-photo-v8.webp` paths without overwriting old assets.
 
@@ -123,9 +123,9 @@ Save to the four `angle-front` / `detail-*` WebP paths above.
 Pass the hero as the single reference and preserve the exact lock in every scene.
 
 ```text
-context-wide: an adult cyclist threads the separate U-shackle through the rear wheel and rear frame triangle and around one fixed street rail before fitting the crossbar; both hands anatomically correct; natural urban daylight.
+context-wide: an adult cyclist places the separate U-shackle around the bicycle seat tube and one fixed street rail before fitting the crossbar; both hands anatomically correct; natural urban daylight.
 context-active: after both shackle legs are fully seated, one hand steadies the crossbar and the other turns a physical key in the recessed right-end key barrel; its thin cool-white LED ring is visible; frame, rear wheel, and fixed rail all enclosed by the shackle.
-context-alt: completed locked state with the same lock securing rear wheel and rear frame triangle to the fixed rail; no hands obscure the mechanism; clear contact and plausible clearances.
+context-alt: completed locked state with the same lock securing the bicycle frame to the fixed rail; no hands obscure the mechanism; clear contact and plausible clearances.
 context-use: adult cyclist removes the same closed lock from a separate low-profile rubber-lined frame mount; mount supports transport only and is not part of the locking mechanism.
 ```
 

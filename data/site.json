@@ -1407,61 +1407,61 @@
       ]
     },
     {
-      "title": "Arc Hinged D-Lock",
+      "title": "Arc Double-Deadbolt U-Lock",
       "slug": "link-folding-lock",
       "category": "mobility",
       "year": "2026",
-      "type": "Hinged D-lock for bicycles",
+      "type": "Double-deadbolt U-lock for bicycles",
       "materials": "Hardened steel, bead-blasted aluminium, moulded elastomer, stainless steel",
-      "image": "/assets/mobility/arc-hinged-d-lock-lead-photo-v6.webp",
-      "cardImage": "/assets/mobility/arc-hinged-d-lock-lead-photo-v6.webp",
-      "detailImage": "/assets/mobility/arc-hinged-d-lock-detail-primary-photo-v6.webp",
+      "image": "/assets/mobility/arc-u-lock-lead-photo-v8.webp",
+      "cardImage": "/assets/mobility/arc-u-lock-lead-photo-v8.webp",
+      "detailImage": "/assets/mobility/arc-u-lock-detail-primary-photo-v8.webp",
       "href": "/work/link-folding-lock",
-      "summary": "A compact hinged D-lock built as one captive assembly. A permanent pivot keeps the shackle attached, while a recessed receiver and separate frame mount make locking and daily carry easy to understand.",
+      "summary": "A compact U-lock with a removable hardened-steel shackle, a two-sided deadbolt mechanism, and an LED-ringed key barrel in the crossbar end-cap for clear low-light use.",
       "notes": [
-        "The blue-sleeved hardened-steel shackle stays permanently captured by a concealed permanent pivot inside the bead-blasted aluminium crossbar, so unlocking never creates a loose part.",
-        "The free end swings into a recessed receiver with a stainless-steel collar and an internal deadbolt; the recessed key cylinder and cool-white LED ring sit beside it.",
-        "A separate low-profile frame mount is only a transport accessory: rubber-lined guides hold the closed lock vertically and a thumb tab releases its spring latch."
+        "The removable blue-sleeved hardened-steel U-shackle enters the crossbar vertically through two rubber-lined top collars.",
+        "The bead-blasted aluminium crossbar uses two recessed receivers and two internal deadbolts, so both shackle legs resist twisting and pulling.",
+        "The stainless-steel key barrel sits in the right end-cap with a thin cool-white LED ring for low-light alignment; a separate rubber-lined frame mount is transport only and releases with one thumb tab."
       ],
       "views": [
         {
-          "label": "Closed three-quarter view",
-          "image": "/assets/mobility/arc-hinged-d-lock-angle-front-photo-v6.webp",
+          "label": "Closed double-deadbolt U-lock",
+          "image": "/assets/mobility/arc-u-lock-angle-front-photo-v8.webp",
           "type": "crop"
         },
         {
-          "label": "Pivot-side construction",
-          "image": "/assets/mobility/arc-hinged-d-lock-angle-rear-photo-v6.webp",
+          "label": "End-cap key barrel and LED ring",
+          "image": "/assets/mobility/arc-u-lock-detail-primary-photo-v8.webp",
           "type": "crop"
         },
         {
-          "label": "Concealed permanent pivot",
-          "image": "/assets/mobility/arc-hinged-d-lock-detail-primary-photo-v6.webp",
+          "label": "Twin-deadbolt internal mechanism",
+          "image": "/assets/mobility/arc-u-lock-detail-mechanism-photo-v8.webp",
           "type": "crop"
         },
         {
-          "label": "Receiver, deadbolt and illuminated keyway",
-          "image": "/assets/mobility/arc-hinged-d-lock-detail-material-photo-v6.webp",
+          "label": "Shackle notch aligned with top receiver",
+          "image": "/assets/mobility/arc-u-lock-detail-material-photo-v8.webp",
           "type": "crop"
         },
         {
-          "label": "Closed lock releasing from frame mount",
-          "image": "/assets/mobility/arc-hinged-d-lock-context-wide-photo-v7.webp",
+          "label": "Open shackle aligned around frame and rail",
+          "image": "/assets/mobility/arc-u-lock-context-wide-photo-v8.webp",
           "type": "insitu"
         },
         {
-          "label": "Frame and rear wheel secured to a street rail",
-          "image": "/assets/mobility/arc-hinged-d-lock-context-alt-photo-v6.webp",
+          "label": "Key turning in illuminated end barrel",
+          "image": "/assets/mobility/arc-u-lock-context-active-photo-v8.webp",
           "type": "insitu"
         },
         {
-          "label": "Shackle closing around frame and fixed rack",
-          "image": "/assets/mobility/arc-hinged-d-lock-context-active-photo-v7.webp",
+          "label": "Bicycle frame secured to a street rail",
+          "image": "/assets/mobility/arc-u-lock-context-alt-photo-v8.webp",
           "type": "insitu"
         },
         {
-          "label": "Closed lock stored with cycling gear",
-          "image": "/assets/mobility/arc-hinged-d-lock-context-use-photo-v6.webp",
+          "label": "Closed lock released from transport mount",
+          "image": "/assets/mobility/arc-u-lock-context-use-photo-v8.webp",
           "type": "insitu"
         }
       ]

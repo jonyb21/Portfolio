@@ -17,16 +17,16 @@ The material language matches the portfolio: muted navy-blue elastomer, warm sil
 3. **Crop:** recessed end-cap key barrel, thin LED ring, and crossbar seam.
 4. **Crop:** cutaway-style close detail showing the two internal deadbolts engaging the shackle notches, without labels or floating parts.
 5. **Crop:** hardened-steel shackle notch and the clean transition into its blue elastomer sleeve.
-6. **In situ:** cyclist placing the shackle around the bicycle frame, rear wheel, and a fixed street rail before fitting the crossbar.
+6. **In situ:** cyclist placing the shackle around the bicycle seat tube and a fixed street rail before fitting the crossbar.
 7. **In situ:** cyclist holding the crossbar with one hand and turning the key with the other after both shackle legs are seated.
-8. **In situ:** completed locked state securing the frame and rear wheel to the rail, with no hand obscuring the mechanism.
+8. **In situ:** completed locked state securing the bicycle frame to the rail, with no hand obscuring the mechanism.
 9. **In situ:** closed lock removed from a low-profile rubber-lined frame mount by a cyclist.
 
 ## Image Rules
 
 - Photorealistic industrial-design photography with natural scale, gravity, contact, and hand placement.
 - One bicycle, one lock, one fixed anchor, and one human where specified.
-- The U-shackle must pass through the rear wheel and rear frame triangle and around the fixed rail in locked views.
+- The U-shackle must enclose the bicycle seat tube and fixed rail without intersecting either solid tube in locked views.
 - The crossbar is separate while positioning and attached only after both shackle legs align with its receivers.
 - No text, logos, watermarks, keys floating in space, merged geometry, extra lock parts, or changing product proportions.
 - Landscape 4:3 framing compatible with the existing cards and detail gallery.

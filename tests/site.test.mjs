@@ -142,7 +142,7 @@ try {
     return new Set(images).size === images.length;
   }));
   assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-(?:vibrant-v1|photo-v[23456789]))\.webp$/.test(view.image))));
-  assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.some(view => view.type === "insitu" && /-context-use-(?:vibrant-v1|photo-v[234567])\.webp$/.test(view.image))), "Every Homewares, Lighting, and Mobility project includes a use scene");
+  assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.some(view => view.type === "insitu" && /-context-use-(?:vibrant-v1|photo-v[2-9])\.webp$/.test(view.image))), "Every Homewares, Lighting, and Mobility project includes a use scene");
   assert(site.projects.filter(project => project.category === "lighting").every(project => project.cardImage.includes("-card-off-") && project.cardImage !== project.image), "Every lighting card has a separate switched-off render");
   assert(site.projects.every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Every gallery keeps four studio studies followed by four context views");
   const photoProjects = site.projects.filter(project => ["pivot-writing-desk", "silo-food-waste-caddy", "beacon-portable-lantern", "stride-fold-ebike", "aero-commuter-helmet", "latch-convertible-pannier", "gauge-electric-pump", "rove-carry-on", "link-folding-lock"].includes(project.slug));
