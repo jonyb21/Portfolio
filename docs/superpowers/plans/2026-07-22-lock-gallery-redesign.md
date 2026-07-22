@@ -10,11 +10,11 @@
 
 ## Global Constraints
 
-- One removable hardened-steel U-shackle with muted navy elastomer, one bead-blasted aluminium crossbar, two recessed receivers, two internal deadbolts, one recessed stainless key cylinder, and charcoal rubber protection.
-- Product geometry, receiver spacing, keyway position, materials, and colors remain identical in every view.
+- One removable hardened-steel U-shackle with muted navy elastomer, one bead-blasted aluminium crossbar, two recessed receivers, two internal deadbolts, one recessed stainless key barrel in the right end-cap, a thin cool-white LED locating ring, and charcoal rubber protection.
+- Product geometry, receiver spacing, end-cap keyway position, LED ring, materials, and colors remain identical in every view.
 - Nine unique native 4:3 WebP files: one hero, four crop views, and four human in-situ views.
 - In locked views, the shackle passes through the bicycle rear wheel and rear frame triangle and around one fixed rail.
-- No hinge, cable, folding links, LED, exposed fasteners, floating parts, logos, text, or watermark.
+- No hinge, cable, folding links, exposed fasteners, floating parts, extra lights, logos, text, or watermark.
 - Preserve slug `link-folding-lock`; use new `arc-u-lock-*-photo-v8.webp` paths without overwriting old assets.
 
 ---
@@ -41,7 +41,8 @@ assert.match(arcLock.type, /double-deadbolt U-lock/i);
 assert.match(arcLock.notes.join(" "), /removable.*hardened-steel U-shackle/i);
 assert.match(arcLock.notes.join(" "), /two recessed receivers.*two internal deadbolts/i);
 assert.match(arcLock.notes.join(" "), /frame mount.*transport/i);
-assert.doesNotMatch(arcLockCopy, /hinge|captive shackle|folding link|steel chain|LED/i);
+assert.match(arcLock.notes.join(" "), /key barrel.*right end-cap.*LED ring/i);
+assert.doesNotMatch(arcLockCopy, /hinge|captive shackle|folding link|steel chain|front-face key/i);
 assert.equal(arcLock.views.filter(view => view.type === "crop").length, 4);
 assert.equal(arcLock.views.filter(view => view.type === "insitu").length, 4);
 assert.equal(new Set(arcLockImages).size, 9);
@@ -94,12 +95,12 @@ Use case: product-mockup
 Asset type: industrial design portfolio hero
 Primary request: one premium, manufacturable double-deadbolt bicycle U-lock, closed, photographed front three-quarter
 Scene/backdrop: seamless warm-grey studio surface, no props
-Subject: removable rounded hardened-steel U-shackle with a smooth muted navy elastomer sleeve; both exposed steel tips are equal, parallel, and fully seated into two matching recessed receivers in one compact bead-blasted warm-silver aluminium crossbar; charcoal rubber receiver collars and lower bumper; one recessed stainless key cylinder centered on the outward face
+Subject: removable rounded hardened-steel U-shackle with a smooth muted navy elastomer sleeve; both exposed steel tips are equal, parallel, and fully seated into two matching recessed receivers in one compact bead-blasted warm-silver aluminium crossbar; charcoal rubber receiver collars and lower bumper; one recessed stainless key barrel centered in the right circular end-cap, surrounded by one thin cool-white LED locating ring; the long front face is uninterrupted
 Style/medium: photorealistic industrial-design photography, physically correct machining and assembly
 Composition/framing: landscape 4:3, full product centered, modest contact shadow, 50mm lens
 Lighting/mood: soft neutral studio light
 Constraints: canonical reference for every later image; symmetrical receiver geometry; plausible wall thickness and part seams; no text or logo
-Avoid: hinge, cable, folding links, LED, exposed screws, floating parts, extra receivers, asymmetrical shackle legs, merged metal, watermark
+Avoid: hinge, cable, folding links, front-face keyhole, extra lights, exposed screws, floating parts, extra receivers, asymmetrical shackle legs, merged metal, watermark
 ```
 
 Copy the selected output into the workspace as `arc-u-lock-lead-photo-v8.webp` without overwriting another file.
@@ -110,7 +111,7 @@ Pass the hero as the single reference and repeat the shared constraint: change o
 
 ```text
 angle-front: closed lock, tighter front view showing both equal shackle legs seated in both recessed receivers; warm-grey studio; no hands or props.
-detail-primary: macro crop of the recessed stainless key cylinder, aluminium crossbar seam, and charcoal bumper; no extra controls.
+detail-primary: macro crop of the recessed stainless key barrel in the right circular end-cap, its thin cool-white LED locating ring, aluminium crossbar seam, and charcoal bumper; no extra controls or front-face keyhole.
 detail-mechanism: physically accurate sectional product photograph through the crossbar showing two separate internal steel deadbolts engaging matching notches in both shackle tips; housing remains one coherent object; no labels or exploded parts.
 detail-material: macro crop of one exposed hardened-steel shackle notch transitioning cleanly into the muted navy elastomer sleeve; realistic molded edge and steel finish.
 ```
@@ -123,7 +124,7 @@ Pass the hero as the single reference and preserve the exact lock in every scene
 
 ```text
 context-wide: an adult cyclist threads the separate U-shackle through the rear wheel and rear frame triangle and around one fixed street rail before fitting the crossbar; both hands anatomically correct; natural urban daylight.
-context-active: after both shackle legs are fully seated, one hand steadies the crossbar and the other turns a physical key in the recessed cylinder; frame, rear wheel, and fixed rail all enclosed by the shackle.
+context-active: after both shackle legs are fully seated, one hand steadies the crossbar and the other turns a physical key in the recessed right-end key barrel; its thin cool-white LED ring is visible; frame, rear wheel, and fixed rail all enclosed by the shackle.
 context-alt: completed locked state with the same lock securing rear wheel and rear frame triangle to the fixed rail; no hands obscure the mechanism; clear contact and plausible clearances.
 context-use: adult cyclist removes the same closed lock from a separate low-profile rubber-lined frame mount; mount supports transport only and is not part of the locking mechanism.
 ```
@@ -162,7 +163,7 @@ Set title to `Arc Double-Deadbolt U-Lock`, type to `Double-deadbolt U-lock for b
 "detailImage": "/assets/mobility/arc-u-lock-detail-primary-photo-v8.webp"
 ```
 
-Describe the removable shackle, two receivers/two deadbolts, recessed cylinder, rubber protection, and transport-only frame mount. Add the four crop paths first, then the four in-situ paths, using labels matching the spec.
+Describe the removable shackle, two receivers/two deadbolts, recessed right-end key barrel with LED locating ring, rubber protection, and transport-only frame mount. Add the four crop paths first, then the four in-situ paths, using labels matching the spec.
 
 - [ ] **Step 2: Normalize the referenced images**
 

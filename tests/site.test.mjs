@@ -164,8 +164,9 @@ try {
   assert.match(arcLock.type, /double-deadbolt U-lock/i, "Arc lock names its actual product architecture");
   assert.match(arcLock.notes.join(" "), /removable.*hardened-steel U-shackle/i, "Arc lock documents its removable shackle");
   assert.match(arcLock.notes.join(" "), /two recessed receivers.*two internal deadbolts/i, "Arc lock documents its two-sided locking mechanism");
+  assert.match(arcLock.notes.join(" "), /key barrel.*right end-cap.*LED ring/i, "Arc lock places its illuminated key barrel in the end-cap");
   assert.match(arcLock.notes.join(" "), /frame mount.*transport/i, "Arc lock separates transport from security");
-  assert.doesNotMatch(arcLockCopy, /hinge|captive shackle|folding link|steel chain|LED/i, "Arc lock rejects non-U-lock mechanisms");
+  assert.doesNotMatch(arcLockCopy, /hinge|captive shackle|folding link|steel chain|front-face key/i, "Arc lock rejects non-U-lock mechanisms and the wrong keyway position");
   assert.equal(arcLock.views.filter(view => view.type === "crop").length, 4);
   assert.equal(arcLock.views.filter(view => view.type === "insitu").length, 4);
   assert.equal(new Set(arcLockImages).size, 9, "Arc lock uses nine distinct portfolio images");

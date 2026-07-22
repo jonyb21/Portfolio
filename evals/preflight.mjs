@@ -166,8 +166,9 @@ assert(arcLock.title === "Arc Double-Deadbolt U-Lock", "Arc lock uses the approv
 assert(/double-deadbolt U-lock/i.test(arcLock.type), "Arc lock names its actual product architecture");
 assert(/removable.*hardened-steel U-shackle/i.test(arcLock.notes.join(" ")), "Arc lock documents its removable shackle");
 assert(/two recessed receivers.*two internal deadbolts/i.test(arcLock.notes.join(" ")), "Arc lock documents its two-sided locking mechanism");
+assert(/key barrel.*right end-cap.*LED ring/i.test(arcLock.notes.join(" ")), "Arc lock places its illuminated key barrel in the end-cap");
 assert(/frame mount.*transport/i.test(arcLock.notes.join(" ")), "Arc lock separates transport from security");
-assert(!/hinge|captive shackle|folding link|steel chain|LED/i.test(arcLockCopy), "Arc lock rejects non-U-lock mechanisms");
+assert(!/hinge|captive shackle|folding link|steel chain|front-face key/i.test(arcLockCopy), "Arc lock rejects non-U-lock mechanisms and the wrong keyway position");
 assert(arcLock.views.filter(view => view.type === "crop").length === 4, "Arc lock has four cropped mechanism views");
 assert(arcLock.views.filter(view => view.type === "insitu").length === 4, "Arc lock has four human in-situ views");
 assert(new Set(arcLockImages).size === 9, "Arc lock uses nine distinct portfolio images");
