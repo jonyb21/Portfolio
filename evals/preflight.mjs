@@ -175,10 +175,15 @@ assert(new Set(arcLockImages).size === 9, "Arc lock uses nine distinct portfolio
 assert(arcLockImages.every(image => /^\/assets\/mobility\/arc-u-lock-[a-z-]+-photo-v8\.webp$/.test(image)), "Arc lock uses the coherent photo-v8 media set");
 const pivotDesk = site.projects.find(project => project.slug === "pivot-writing-desk");
 const pivotDeskImages = [pivotDesk.image, ...pivotDesk.views.map(view => view.image)];
+const pivotDeskCopy = `${pivotDesk.materials} ${pivotDesk.summary} ${pivotDesk.notes.join(" ")}`;
 assert(/dark walnut.*powder-coated aluminium.*wool felt.*stainless steel/i.test(pivotDesk.materials), "Pivot desk uses the approved material family");
-assert(/charcoal.*service spine.*pivoting walnut privacy panel/i.test(pivotDesk.notes.join(" ")), "Pivot desk copy matches its visible construction");
+assert(/two graphite sled frames/i.test(pivotDeskCopy), "Pivot desk documents its matching leg structure");
+assert(/continuous charcoal service spine/i.test(pivotDeskCopy), "Pivot desk documents its continuous rear service spine");
+assert(/olive felt/i.test(pivotDeskCopy), "Pivot desk documents its tray material");
+assert(/two cable sockets/i.test(pivotDeskCopy), "Pivot desk documents its paired cable routing");
+assert(/pivot panel/i.test(pivotDeskCopy), "Pivot desk documents its two-state privacy panel");
 assert(new Set(pivotDeskImages.map(localAssetHash)).size === 9, "Pivot desk uses nine distinct portfolio images");
-assert(pivotDeskImages.every(image => /^\/assets\/furniture\/pivot-writing-desk-[a-z-]+-photo-v3\.webp$/.test(image)), "Pivot desk uses the coherent photo-v3 media set");
+assert(pivotDeskImages.every(image => /^\/assets\/furniture\/pivot-writing-desk-[a-z-]+-photo-v4\.webp$/.test(image)), "Pivot desk uses the coherent photo-v4 media set");
 assert(generatedProjects.every(project => /(cobalt|tangerine|sunflower|vermilion|green|teal|chartreuse|coral|ultramarine|warm-grey|graphite|stainless steel|aluminium|polycarbonate|recycled|ocean-blue|ash|brass)/i.test(`${project.materials} ${project.summary}`)), "Every generated project defines a deliberate colour or material identity");
 const electricPump = site.projects.find(project => project.slug === "gauge-electric-pump");
 assert(electricPump.title === "Gauge Electric Pump" && /LED built into the end of the nozzle/i.test(electricPump.summary), "The electric pump is named correctly and locates its LED at the nozzle tip");

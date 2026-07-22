@@ -173,10 +173,15 @@ try {
   assert(arcLockImages.every(image => /^\/assets\/mobility\/arc-u-lock-[a-z-]+-photo-v8\.webp$/.test(image)), "Arc lock uses the coherent photo-v8 media set");
   const pivotDesk = site.projects.find(project => project.slug === "pivot-writing-desk");
   const pivotDeskImages = [pivotDesk.image, ...pivotDesk.views.map(view => view.image)];
+  const pivotDeskCopy = `${pivotDesk.materials} ${pivotDesk.summary} ${pivotDesk.notes.join(" ")}`;
   assert.match(pivotDesk.materials, /dark walnut.*powder-coated aluminium.*wool felt.*stainless steel/i, "Pivot desk uses the approved material family");
-  assert.match(pivotDesk.notes.join(" "), /charcoal.*service spine.*pivoting walnut privacy panel/i, "Pivot desk copy matches its visible construction");
+  assert.match(pivotDeskCopy, /two graphite sled frames/i, "Pivot desk documents its matching leg structure");
+  assert.match(pivotDeskCopy, /continuous charcoal service spine/i, "Pivot desk documents its continuous rear service spine");
+  assert.match(pivotDeskCopy, /olive felt/i, "Pivot desk documents its tray material");
+  assert.match(pivotDeskCopy, /two cable sockets/i, "Pivot desk documents its paired cable routing");
+  assert.match(pivotDeskCopy, /pivot panel/i, "Pivot desk documents its two-state privacy panel");
   assert.equal(new Set(pivotDeskImages).size, 9, "Pivot desk uses nine distinct portfolio images");
-  assert(pivotDeskImages.every(image => /^\/assets\/furniture\/pivot-writing-desk-[a-z-]+-photo-v3\.webp$/.test(image)), "Pivot desk uses the coherent photo-v3 media set");
+  assert(pivotDeskImages.every(image => /^\/assets\/furniture\/pivot-writing-desk-[a-z-]+-photo-v4\.webp$/.test(image)), "Pivot desk uses the coherent photo-v4 media set");
   assert.equal(site.projects.find(project => project.slug === "gauge-electric-pump").title, "Gauge Electric Pump");
   assert.match(site.projects.find(project => project.slug === "gauge-electric-pump").summary, /LED built into the end of the nozzle/i);
   const electricPumpKerbsideView = site.projects.find(project => project.slug === "gauge-electric-pump").views.find(view => view.image.includes("context-alt"));
