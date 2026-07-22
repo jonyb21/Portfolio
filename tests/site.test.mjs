@@ -141,12 +141,12 @@ try {
     const images = [project.image, ...project.views.map(view => view.image)].filter(Boolean);
     return new Set(images).size === images.length;
   }));
-  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-(?:vibrant-v1|photo-v[234567]))\.webp$/.test(view.image))));
+  assert(site.projects.every(project => project.views.filter(view => view.type === "insitu").every(view => /-(?:insitu-v(?:[1-5]|4-fixed)|in-use-v1|context-(?:wide|alt|active|use)-(?:vibrant-v1|photo-v[2345678]))\.webp$/.test(view.image))));
   assert(site.projects.filter(project => project.category !== "furniture").every(project => project.views.some(view => view.type === "insitu" && /-context-use-(?:vibrant-v1|photo-v[234567])\.webp$/.test(view.image))), "Every Homewares, Lighting, and Mobility project includes a use scene");
   assert(site.projects.filter(project => project.category === "lighting").every(project => project.cardImage.includes("-card-off-") && project.cardImage !== project.image), "Every lighting card has a separate switched-off render");
   assert(site.projects.every(project => project.views.slice(0, 4).every(view => view.type === "crop") && project.views.slice(4).every(view => view.type === "insitu")), "Every gallery keeps four studio studies followed by four context views");
   const photoProjects = site.projects.filter(project => ["pivot-writing-desk", "silo-food-waste-caddy", "beacon-portable-lantern", "stride-fold-ebike", "aero-commuter-helmet", "latch-convertible-pannier", "gauge-electric-pump", "rove-carry-on", "link-folding-lock"].includes(project.slug));
-  assert(photoProjects.every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => /-photo-v[234567]\.webp$/.test(image))), "New and corrected projects use the realistic versioned photo media system");
+  assert(photoProjects.every(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)].every(image => /-photo-v[2345678]\.webp$/.test(image))), "New and corrected projects use the realistic versioned photo media system");
   const aeroHelmet = site.projects.find(project => project.slug === "aero-commuter-helmet");
   assert([aeroHelmet.image, aeroHelmet.cardImage, aeroHelmet.detailImage, ...aeroHelmet.views.filter((_, index) => index !== 3).map(view => view.image)].every(image => image.endsWith("-photo-v6.webp")), "Aero helmet uses the varied wearable-indicator photo-v6 gallery");
   assert.match(aeroHelmet.notes.join(" "), /three-prong side-release buckle/i, "Aero helmet documents its matching chin clasp");
@@ -184,6 +184,10 @@ try {
   assert(pivotDeskImages.every(image => /^\/assets\/furniture\/pivot-writing-desk-[a-z-]+-photo-v3\.webp$/.test(image)), "Pivot desk uses the coherent photo-v3 media set");
   assert.equal(site.projects.find(project => project.slug === "gauge-electric-pump").title, "Gauge Electric Pump");
   assert.match(site.projects.find(project => project.slug === "gauge-electric-pump").summary, /LED built into the end of the nozzle/i);
+  const electricPumpKerbsideView = site.projects.find(project => project.slug === "gauge-electric-pump").views.find(view => view.image.includes("context-alt"));
+  assert.equal(electricPumpKerbsideView.label, "Human-operated kerbside inflation");
+  assert(electricPumpKerbsideView.image.endsWith("context-alt-photo-v8.webp"), "Pump kerbside card includes a person using the nozzle-lit valve connection");
+  assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/mobility/gauge-electric-pump-context-alt-photo-v8.webp")).digest("hex"), "770674ee60f298a6b7ca7bdaf38de58af2ea495c572f2961e4307bcb6871ce8c", "Pump kerbside card preserves the approved human-operated nozzle light");
   assert.match(site.projects.find(project => project.slug === "latch-convertible-pannier").notes.join(" "), /two compact.*upper hooks.*lower anti-sway catch/i);
   assert.match(css, /\.work-category-tabs\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\);[^}]*width:\s*100%;/s, "Four work categories span the full width equally");
   assert.equal(crypto.createHash("sha256").update(fs.readFileSync("public/assets/lighting/rail-task-light-angle-rear-vibrant-v1.webp")).digest("hex"), "d8d0a1cc9b40ff4b105567d5c8ad0ece8835ec7618dd0ea3cbb7f568f19d968c", "Vector folded view uses the approved fully connected render");

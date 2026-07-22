@@ -7,3 +7,4 @@ public/assets/mobility/*-photo-v4.webp filter=lfs diff=lfs merge=lfs -text
 public/assets/mobility/*-photo-v5.webp filter=lfs diff=lfs merge=lfs -text
 public/assets/mobility/*-photo-v6.webp filter=lfs diff=lfs merge=lfs -text
 public/assets/mobility/*-photo-v7.webp filter=lfs diff=lfs merge=lfs -text
+public/assets/mobility/*-photo-v8.webp filter=lfs diff=lfs merge=lfs -text
