@@ -2,7 +2,7 @@
 
 ## Outcome
 
-Replace the current hinged lock renders with one mechanically credible bicycle U-lock shown consistently across a hero image, three cropped detail views, and four in-situ views. Every new asset is WebP.
+Replace the current hinged lock renders with one mechanically credible bicycle U-lock shown consistently across a hero image, four cropped detail views, and four in-situ views. Every new asset is WebP.
 
 ## Product
 
@@ -16,10 +16,11 @@ The material language matches the portfolio: muted navy-blue elastomer, warm sil
 2. **Crop:** both shackle legs fully seated in the two recessed receivers.
 3. **Crop:** recessed key cylinder and crossbar seam.
 4. **Crop:** cutaway-style close detail showing the two internal deadbolts engaging the shackle notches, without labels or floating parts.
-5. **In situ:** cyclist placing the shackle around the bicycle frame, rear wheel, and a fixed street rail before fitting the crossbar.
-6. **In situ:** cyclist holding the crossbar with one hand and turning the key with the other after both shackle legs are seated.
-7. **In situ:** completed locked state securing the frame and rear wheel to the rail, with no hand obscuring the mechanism.
-8. **In situ:** closed lock removed from a low-profile rubber-lined frame mount by a cyclist.
+5. **Crop:** hardened-steel shackle notch and the clean transition into its blue elastomer sleeve.
+6. **In situ:** cyclist placing the shackle around the bicycle frame, rear wheel, and a fixed street rail before fitting the crossbar.
+7. **In situ:** cyclist holding the crossbar with one hand and turning the key with the other after both shackle legs are seated.
+8. **In situ:** completed locked state securing the frame and rear wheel to the rail, with no hand obscuring the mechanism.
+9. **In situ:** closed lock removed from a low-profile rubber-lined frame mount by a cyclist.
 
 ## Image Rules
 
@@ -36,6 +37,6 @@ Keep the existing product slug and gallery structure. Update the title, product 
 
 ## Verification
 
-- Gate test: the gallery totals eight images: one hero plus exactly seven views, including three `crop` and four `insitu` entries; every referenced image ends in `.webp` and exists.
+- Gate test: the gallery totals nine images: one hero plus exactly eight views, including four `crop` and four `insitu` entries; every referenced image ends in `.webp` and exists.
 - Eval: labels and copy describe a removable double-deadbolt U-lock and do not mention a hinge, captive shackle, LED, or folding mechanism.
 - Visual QA: desktop and mobile galleries load every image; the same product geometry and material palette appear across all views; the in-situ locking sequence is physically possible.
