@@ -9,8 +9,9 @@ const server = createServer();
 await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
 const port = server.address().port;
 const origin = `http://127.0.0.1:${port}`;
-const appRevision = crypto.createHash("sha256").update(fs.readFileSync("public/app.js")).digest("hex").slice(0, 12);
-const styleRevision = crypto.createHash("sha256").update(fs.readFileSync("public/styles.css")).digest("hex").slice(0, 12);
+const revision = file => crypto.createHash("sha256").update(fs.readFileSync(file, "utf8").replaceAll("\r\n", "\n")).digest("hex").slice(0, 12);
+const appRevision = revision("public/app.js");
+const styleRevision = revision("public/styles.css");
 const MEDIA_REVISION = "20260719-1";
 
 async function assertImagesRender(page, selector, label) {

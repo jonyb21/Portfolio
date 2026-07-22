@@ -22,8 +22,9 @@ const admin = fs.readFileSync("public/admin.js", "utf8");
 const work = fs.readFileSync("public/work.html", "utf8");
 const PROJECT_CATEGORY_COUNTS = { furniture: 6, homewares: 6, lighting: 6, mobility: 6 };
 const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
-const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
-const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
+const revision = content => crypto.createHash("sha256").update(content.replaceAll("\r\n", "\n")).digest("hex").slice(0, 12);
+const appRevision = revision(app);
+const styleRevision = revision(css);
 const MEDIA_REVISION = "20260719-1";
 validateSite(validSite);
 
@@ -42,7 +43,7 @@ assert(css.includes("letter-spacing: 0"), "Display typography does not use compr
 assert(css.includes(".brand-family") && app.includes("function renderBrand"), "Only the Brooks surname uses the green accent");
 assert(css.includes("--media-ratio: 4 / 3"), "All public image containers share one 4:3 ratio");
 assert(css.includes("object-fit: contain"), "Public images remain fully visible without cropping");
-assert(css.includes(".gallery-image img {\n  object-fit: cover;"), "Detail-study tiles fill their frames without side bands");
+assert(/\.gallery-image img\s*\{\s*object-fit:\s*cover;/.test(css), "Detail-study tiles fill their frames without side bands");
 assert(css.includes(".portrait-slot img") && css.includes("object-fit: cover"), "The portrait fills its frame without side bands");
 for (const page of ["index", "work", "product", "about", "contact"]) {
   const html = fs.readFileSync(`public/${page}.html`, "utf8");

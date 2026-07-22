@@ -17,8 +17,9 @@ const site = JSON.parse(fs.readFileSync("data/site.json", "utf8"));
 const app = fs.readFileSync("public/app.js", "utf8");
 const PROJECT_CATEGORY_COUNTS = { furniture: 6, homewares: 6, lighting: 6, mobility: 6 };
 const PROJECT_CATEGORIES = Object.keys(PROJECT_CATEGORY_COUNTS);
-const appRevision = crypto.createHash("sha256").update(app).digest("hex").slice(0, 12);
-const styleRevision = crypto.createHash("sha256").update(css).digest("hex").slice(0, 12);
+const revision = content => crypto.createHash("sha256").update(content.replaceAll("\r\n", "\n")).digest("hex").slice(0, 12);
+const appRevision = revision(app);
+const styleRevision = revision(css);
 const MEDIA_REVISION = "20260719-1";
 new Function(adminJs);
 
@@ -63,7 +64,7 @@ assert(!css.includes("animation-timeline: view(block)"), "Below-fold work and ex
 assert(!css.includes("13vw"), "Mobile hero type avoids an oversized viewport-relative scale");
 assert(!app.includes('loading="lazy"'), "Work cards and product studies begin loading immediately");
 assert(css.includes("--media-ratio: 4 / 3") && css.includes("object-fit: contain"), "Lead product photos use one uncropped 4:3 presentation");
-assert(css.includes(".gallery-image img {\n  object-fit: cover;"), "Detail-study tiles fill their frames without side bands");
+assert(/\.gallery-image img\s*\{\s*object-fit:\s*cover;/.test(css), "Detail-study tiles fill their frames without side bands");
 assert([index, work, product, about, contact].every(page => page.includes(`/styles.css?v=${styleRevision}`)), "Every public page loads the current styles.css content revision");
 assert([index, work, product, about, contact].every(page => page.includes(`/app.js?v=${appRevision}`)), "Every public page loads the current app.js content revision");
 for (const image of new Set([site.hero.image, site.about.portrait, ...site.projects.flatMap(project => [project.image, project.cardImage, project.detailImage, ...project.views.map(view => view.image)])])) {
