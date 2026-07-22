@@ -1445,8 +1445,8 @@
           "type": "crop"
         },
         {
-          "label": "Released from the frame mount",
-          "image": "/assets/mobility/arc-hinged-d-lock-context-wide-photo-v6.webp",
+          "label": "Closed lock releasing from frame mount",
+          "image": "/assets/mobility/arc-hinged-d-lock-context-wide-photo-v7.webp",
           "type": "insitu"
         },
         {
@@ -1455,8 +1455,8 @@
           "type": "insitu"
         },
         {
-          "label": "Captive shackle swinging closed",
-          "image": "/assets/mobility/arc-hinged-d-lock-context-active-photo-v6.webp",
+          "label": "Shackle closing around frame and fixed rack",
+          "image": "/assets/mobility/arc-hinged-d-lock-context-active-photo-v7.webp",
           "type": "insitu"
         },
         {
