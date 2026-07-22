@@ -1293,55 +1293,55 @@
       "year": "2026",
       "type": "Rechargeable electric tyre pump",
       "materials": "Die-cast aluminium, graphite engineering polymer, braided nylon, rubber, lithium-ion cells",
-      "image": "/assets/mobility/gauge-electric-pump-lead-photo-v2.webp",
-      "cardImage": "/assets/mobility/gauge-electric-pump-lead-photo-v2.webp",
-      "detailImage": "/assets/mobility/gauge-electric-pump-detail-primary-photo-v2.webp",
+      "image": "/assets/mobility/gauge-electric-pump-lead-photo-v4.webp",
+      "cardImage": "/assets/mobility/gauge-electric-pump-lead-photo-v4.webp",
+      "detailImage": "/assets/mobility/gauge-electric-pump-detail-primary-photo-v4.webp",
       "href": "/work/gauge-electric-pump",
-      "summary": "A compact rechargeable electric tyre pump with a stored braided hose, clear pressure display, and one rotary push control. An LED built into the end of the nozzle illuminates the valve exactly where it is needed.",
+      "summary": "A compact rechargeable electric tyre pump with a stored braided hose, clear pressure display, and one rotary push control. One LED work light sits within the side air-intake panel, illuminating the working area without adding weight to the hose connector.",
       "notes": [
         "The die-cast aluminium shell works as both a durable enclosure and a heat spreader around the compressor assembly.",
         "The single braided hose stores in a recessed front channel; when deployed, that channel is empty and the hose exits directly toward the tyre.",
-        "A focused LED ring sits only at the nozzle tip, while a service door, replaceable seals, and exposed fasteners support repair."
+        "A sealed LED module sits within the perforated side air-intake panel, keeping the beam aligned with the pump while the plain valve connector stays compact and easy to handle."
       ],
       "views": [
         {
           "label": "Control overview",
-          "image": "/assets/mobility/gauge-electric-pump-angle-front-photo-v2.webp",
+          "image": "/assets/mobility/gauge-electric-pump-angle-front-photo-v4.webp",
           "type": "crop"
         },
         {
-          "label": "Ventilation profile",
-          "image": "/assets/mobility/gauge-electric-pump-angle-rear-photo-v2.webp",
+          "label": "Intake and work-light profile",
+          "image": "/assets/mobility/gauge-electric-pump-angle-rear-photo-v4.webp",
           "type": "crop"
         },
         {
-          "label": "Nozzle-tip LED",
-          "image": "/assets/mobility/gauge-electric-pump-detail-primary-photo-v2.webp",
+          "label": "Air-intake work light",
+          "image": "/assets/mobility/gauge-electric-pump-detail-primary-photo-v4.webp",
           "type": "crop"
         },
         {
           "label": "Battery cartridge",
-          "image": "/assets/mobility/gauge-electric-pump-detail-material-photo-v2.webp",
+          "image": "/assets/mobility/gauge-electric-pump-detail-material-photo-v4.webp",
           "type": "crop"
         },
         {
           "label": "Entry storage",
-          "image": "/assets/mobility/gauge-electric-pump-context-wide-photo-v2.webp",
+          "image": "/assets/mobility/gauge-electric-pump-context-wide-photo-v4.webp",
           "type": "insitu"
         },
         {
-          "label": "Kerbside inflation",
-          "image": "/assets/mobility/gauge-electric-pump-context-alt-photo-v2.webp",
+          "label": "Kerbside inflation with one connected valve",
+          "image": "/assets/mobility/gauge-electric-pump-context-alt-photo-v4.webp",
           "type": "insitu"
         },
         {
-          "label": "Dusk valve lighting",
-          "image": "/assets/mobility/gauge-electric-pump-context-active-photo-v2.webp",
+          "label": "Human-operated inflation at dusk",
+          "image": "/assets/mobility/gauge-electric-pump-context-active-photo-v5.webp",
           "type": "insitu"
         },
         {
           "label": "Workshop storage",
-          "image": "/assets/mobility/gauge-electric-pump-context-use-photo-v2.webp",
+          "image": "/assets/mobility/gauge-electric-pump-context-use-photo-v4.webp",
           "type": "insitu"
         }
       ]
