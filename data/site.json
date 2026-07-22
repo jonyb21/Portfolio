@@ -1301,7 +1301,7 @@
       "notes": [
         "The die-cast aluminium shell works as both a durable enclosure and a heat spreader around the compressor assembly.",
         "The single braided hose stores in a recessed front channel; when deployed, that channel is empty and the hose exits directly toward the tyre.",
-        "A sealed LED module sits within the perforated side air-intake panel, keeping the beam aligned with the pump while the plain valve connector stays compact and easy to handle."
+        "A sealed LED module sits within the perforated side air-intake panel, while the plain valve connector stays compact and easy to handle. The pump is placed so its intake panel faces the valve during use, giving the fixed light a direct line of sight."
       ],
       "views": [
         {
@@ -1335,8 +1335,8 @@
           "type": "insitu"
         },
         {
-          "label": "Human-operated inflation at dusk",
-          "image": "/assets/mobility/gauge-electric-pump-context-active-photo-v5.webp",
+          "label": "Human-operated inflation with intake facing valve",
+          "image": "/assets/mobility/gauge-electric-pump-context-active-photo-v6.webp",
           "type": "insitu"
         },
         {
